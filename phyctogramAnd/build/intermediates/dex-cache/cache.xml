@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\PhyctogramApp\Phyctogram\app\build\intermediates\exploded-aar\Phyctogram.libraries\actionbarsherlock\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="fd76e73ee70917011301b32265782b59a0cef972">
+        <dex dex="D:\PhyctogramApp\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-dde9fdd73228a0a2de42fbc40340117dfcf7b459.jar" />
+    </item>
+    <item
+        jar="C:\Users\sjw\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="D:\PhyctogramApp\Phyctogram\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-8e7472d04dcd776cc9050d89d854825c6c543232.jar" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\Phyctogram\app\build\intermediates\exploded-aar\Phyctogram.libraries.SlidingMenu-master\library\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b52163780003d32eed1b271681bb6b256267a9a8">
+        <dex dex="D:\PhyctogramApp\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-4cb15521c01edf88d2493705b9e45e7b5a59ba71.jar" />
+    </item>
+
+</items>
