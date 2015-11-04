@@ -1,10 +1,10 @@
 package knowledge_seek.com.phyctogram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,19 +81,47 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.nav_user) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_user_mod) {
+            Intent intent2 = new Intent(getApplicationContext(), UserModActivity.class);
+            startActivity(intent2);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_user_add) {
+            Intent intent3 = new Intent(getApplicationContext(), UserAddActivity.class);
+            startActivity(intent3);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_user_rec) {
+            Intent intent4 = new Intent(getApplicationContext(), RecordActivity.class);
+            startActivity(intent4);
 
-        } /*else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_diary) {
+            Intent intent5 = new Intent(getApplicationContext(), CalendarActivity.class);
+            startActivity(intent5);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_set) {
+            Intent intent6 = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent6);
 
-        }*/
+        }else if (id == R.id.nav_qna) {
+            Intent intent7 = new Intent(getApplicationContext(), WriteQnaActivity.class);
+            startActivity(intent7);
+
+        }else if (id == R.id.nav_pw) {
+            Intent intent8 = new Intent(getApplicationContext(), PwModActivity.class);
+            startActivity(intent8);
+
+        }else if (id == R.id.nav_set2) {
+            Intent intent9 = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent9);
+
+        }else if (id == R.id.nav_drop) {
+            Intent intent0 = new Intent(getApplicationContext(), UserDropoutActivity.class);
+            startActivity(intent0);
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
