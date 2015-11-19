@@ -7,22 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#C0AAE1"
-        android:gravity="center"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="사용자 추가"
-            android:textColor="#fff" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:paddingLeft="10dp"
@@ -44,9 +28,12 @@
             android:layout_marginTop="60dp"
             android:text="생년월일" />
 
-        <EditText
+        <DatePicker
+            android:id="@+id/datepick_user_birth"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:spinnersShown="true"/>
 
         <TextView
             android:layout_width="wrap_content"

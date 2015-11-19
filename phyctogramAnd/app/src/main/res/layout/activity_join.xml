@@ -32,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="이메일" />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -41,9 +40,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="이름" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dd"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="비밀번호" />
-
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="비밀번호 확인" />
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,12 +76,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이용약관 동의" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="개인정보취급방침 동의" />
+            android:text="이용약관 및 개인정보취급방침 동의" />
 
         <Button
             android:layout_width="match_parent"

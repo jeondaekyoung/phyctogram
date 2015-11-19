@@ -17,7 +17,7 @@ public class UserMainActivity extends SherlockFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		
+
 		v = inflater.inflate(R.layout.activity_user_main, container, false);
 
 		textTitleBar = (TextView) getSherlockActivity().findViewById(R.id.textTitle);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.SherlockFragment;
@@ -15,6 +16,29 @@ public class UserAddActivity extends SherlockFragment {
 
     TextView textTitleBar;
     View v;
+
+    DatePicker datePicker;
+
+    /*@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        datePicker = (DatePicker) findViewById(R.id.datepick_user_birth);
+
+        datePicker.init(datePicker.getYear(),
+                datePicker.getMonth(),
+                datePicker.getDayOfMonth(),
+                new DatePicker.OnDateChangedListener() {
+
+                    @Override
+                    public void onDateChanged(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                        // TODO Auto-generated method stub
+                        String msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth);
+                    }
+                });
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

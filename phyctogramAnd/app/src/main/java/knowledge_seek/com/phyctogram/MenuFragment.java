@@ -26,7 +26,7 @@ public class MenuFragment extends SherlockFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        String[] data = {"아람", "사용자 수정", "사용자 추가", "기록 조회", "일기 달력", "기기연결", "문의하기", "비밀번호 변경", "이용약관", "탈퇴하기"};
+        String[] data = {"아람님", "내 아이관리", "육아 일기", "설정"};
 
         View v = inflater.inflate(R.layout.menu_frame, container, false);
 
@@ -44,31 +44,13 @@ public class MenuFragment extends SherlockFragment {
                         newContent = new UserMainActivity();
                         break;
                     case 1:
-                        newContent = new UserModActivity();
+                        newContent = new UserAddActivity();
                         break;
                     case 2:
-                        newContent = new UserAddActivity();
+                        newContent = new CalendarActivity();
                         break;
                     case 3:
                         newContent = new RecordActivity();
-                        break;
-                    case 4:
-                        newContent = new CalendarActivity();
-                        break;
-                    case 5:
-
-                        break;
-                    case 6:
-                        newContent = new WriteQnaActivity();
-                        break;
-                    case 7:
-                        newContent = new PwModActivity();
-                        break;
-                    case 8:
-
-                        break;
-                    case 9:
-                        newContent = new UserDropActivity();
                         break;
                 }
 

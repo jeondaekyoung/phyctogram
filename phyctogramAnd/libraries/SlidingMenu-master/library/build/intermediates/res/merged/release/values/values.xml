@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- From: file:/D:/PhyctogramApp/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values/values.xml -->
+    <!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference|color" name="background"/>
     <attr format="reference|color" name="backgroundSplit"/>
@@ -14,9 +14,9 @@
     <bool name="abs__config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abs__config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abs__split_action_bar_is_narrow">true</bool>
-    <color name="abs__background_holo_dark">#ff000000</color>
+    <color name="abs__background_holo_dark">#C0AAE1</color>
     <color name="abs__background_holo_light">#fff3f3f3</color>
-    <color name="abs__bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
+    <color name="abs__bright_foreground_disabled_holo_dark">#C0AAE1</color>
     <color name="abs__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
     <color name="abs__bright_foreground_holo_dark">@color/abs__background_holo_light</color>
     <color name="abs__bright_foreground_holo_light">@color/abs__background_holo_dark</color>
@@ -51,10 +51,10 @@
     <item name="abs__progress_circular" type="id"/>
     <item name="abs__progress_horizontal" type="id"/>
     <item name="abs__up" type="id"/>
-    <!-- From: file:/D:/PhyctogramApp/Phyctogram/libraries/SlidingMenu-master/library/res/values/ids.xml -->
+    <!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/libraries/SlidingMenu-master/library/res/values/ids.xml -->
     <eat-comment/>
     <item name="selected_view" type="id"/>
-    <!-- From: file:/D:/PhyctogramApp/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values/values.xml -->
+    <!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values/values.xml -->
     <eat-comment/>
     <integer name="abs__max_action_buttons">2</integer>
     <string name="abs__action_bar_home_description">Navigate home</string>

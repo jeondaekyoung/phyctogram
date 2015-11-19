@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/D:/PhyctogramApp/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values-v11/values-v11.xml -->
+    <!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/libraries/SlidingMenu-master/library/build/intermediates/exploded-aar/Phyctogram.libraries/actionbarsherlock/unspecified/res/values-v11/values-v11.xml -->
     <eat-comment/>
     <style name="Sherlock.__Theme" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
