@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  
+<configuration>
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+ 	<typeAliases>
+		<typeAlias type="naree.db.domain.Height" alias="Height"/>
+		
+	</typeAliases>
+
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="com.mysql.jdbc.Driver"/>
+        <!-- <property name="url" value="jdbc:mysql://182.162.143.24:3306/alanglang_db"/> -->
+        <property name="url" value="jdbc:mysql://localhost:3306/phyctogram_db"/>
+        <property name="username" value="phyctogram"/>
+        <property name="password" value="phyctogram123"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  
+  <mappers>
+    <mapper resource="mapper/HeightMapper.xml"/>
+  </mappers>
+  
+</configuration>
