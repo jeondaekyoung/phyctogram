@@ -7,8 +7,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<style>
         *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none;}
-		div {width:100%; height:490px; background: #C2ABE2 url('${pageContext.request.contextPath}/resources/img.png') no-repeat; }
-		p {color:#fff; font-size:33px; font-weight:bold; padding-left:260px; padding-top:30px; text-align:center}
+		div {width:100%; height:490px; background: url('${pageContext.request.contextPath}/resources/img.png') no-repeat; }
+		p {color:#fff; font-size:33px; font-weight:bold; padding-left:340px; padding-top:30px; }
 		.p2, .p3 {padding-top:9px;}
 	</style>
 </head>
@@ -22,6 +22,7 @@
 			</c:forEach>
 		</c:if>
 	</div>
+
 
 
 <%-- <table>

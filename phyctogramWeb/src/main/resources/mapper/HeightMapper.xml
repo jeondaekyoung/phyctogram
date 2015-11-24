@@ -20,7 +20,7 @@
 		  FROM height_tb
 		 WHERE user_seq = #{user_seq}
 	 ORDER BY mesure_date DESC
-	 	   LIMIT 25
+	 	   LIMIT 1
 	</select>
 
 </mapper>
