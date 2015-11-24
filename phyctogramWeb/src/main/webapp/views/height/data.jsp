@@ -3,20 +3,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<body>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<style>
         *{padding:0; margin: 0; border-spacing: 0; border-collapse:collapse; font-size: 12px; font-family: 'malgun gothic', sans-serif; text-decoration: none;}
-		table {width:100%; }
-		tbody tr:hover {background: #f7f7f7}
-		th {background:#777; color:#fff; border: 1px solid #f7f7f7; padding:10px 5px; font-size:18px}
-		td {border: 1px solid #f7f7f7; padding:5px; text-align: center; font-size: 18px}
-		
+		div {width:100%; height:220px; background: #C2ABE2 url('${pageContext.request.contextPath}/resources/img.png') no-repeat}
+		p {color:#fff; font-size:33px; font-weight:bold; padding-left:260px; padding-top:30px; text-align:center}
+		.p2, .p3 {padding-top:9px;}
 	</style>
 </head>
 
-<table>
+<body>
+
+	<div>
+		<c:if test="${not empty heights }">
+			<c:forEach var="height" items="${heights }">
+				<p>${height.height } cm</p>
+				<p class="p2">? cm</p>
+				<p class="p3">? %</p>
+			</c:forEach>
+		</c:if>
+	</div>
+
+
+<%-- <table>
 <colgroup>
 	<col style="width:25%;"/>
 	<col style="width:40%;"/>
@@ -40,7 +50,7 @@
 	</tbody>
 </table>
 
-<h3>날짜순위로 25개 조회.</h3>
+<h3>날짜순위로 25개 조회.</h3> --%>
 
 
 </body>
