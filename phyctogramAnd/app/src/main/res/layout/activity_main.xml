@@ -116,6 +116,7 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/record"
             android:layout_width="185dp"
             android:layout_height="185dp"
             android:onClick="onClick" />
@@ -142,5 +143,6 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
 
 </LinearLayout>
