@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-2e57ffa468e61f29b85ae70ecde10ad9d8db28d0.jar" />
+    </item>
+    <item
+        jar="C:\Users\dkfka\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-64d1c4d04ab97a544ed28938366a784340bbc65c.jar" />
+    </item>
+    <item
+        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-22d2053a18811256c73947a22a54f3cbfdeae3a1.jar" />
+    </item>
+    <item
+        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-0228e88278bd4c744cde3ca72a287d20d8df4865.jar" />
+    </item>
+
+</items>
