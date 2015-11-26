@@ -20,12 +20,12 @@ public class LoginActivity2 extends AppCompatActivity {
 
         switch (v.getId()) {
             case R.id.member_login:
-                Intent login = new Intent(this, MainActivity.class);
-                startActivity(login);
+                /*Intent login = new Intent(this, MainActivity.class);
+                startActivity(login);*/
                 break;
             case R.id.sitemap:
-                Intent sm = new Intent(this, sitemap.class);
-                startActivity(sm);
+                /*Intent sm = new Intent(this, sitemap.class);
+                startActivity(sm);*/
                 break;
         }
     }
