@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#776096"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_left"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/btn_menu" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/borderbottom"
+            android:gravity="left|center"
+            android:text="2015-11-26" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="제목"
+            android:background="@drawable/borderbottom"
+            android:textSize="14dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="10dp"
+            android:hint="내용"
+            android:background="@drawable/borderbottom"
+            android:inputType="textMultiLine"
+            android:lines="21"
+            android:maxWidth="5.0dip"
+            android:minWidth="10.0dip"
+            android:scrollHorizontally="false"
+            android:textSize="14dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/pic"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/write_pic" />
+
+            <Button
+                android:id="@+id/mov"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/pic"
+                android:background="@drawable/write_mov" />
+
+            <Button
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="#C0AAE1"
+                android:text="저장"
+                android:textSize="12dp"
+                android:textColor="#ffffff" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/app/src/main/res/layout/activity_write.xml -->

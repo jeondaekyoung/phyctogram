@@ -3,7 +3,6 @@ package knowledge_seek.com.phyctogram;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,18 +18,20 @@ import android.widget.LinearLayout;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+
 /**
  * Created by dkfka on 2015-11-25.
  */
-public class RecordActivity extends AppCompatActivity implements View.OnClickListener {
+public class RecordActivity extends BaseActivity implements View.OnClickListener {
 
     /* slide menu */
-    public static DisplayMetrics metrics;
-    public static LinearLayout ll_mainLayout;
-    public static LinearLayout ll_menuLayout;
-    public static FrameLayout.LayoutParams leftMenuLayoutPrams;
-    public static int leftMenuWidth;
-    public static boolean isLeftExpanded;
+    //public static DisplayMetrics metrics;
+    //public static LinearLayout ll_mainLayout;
+    //public static LinearLayout ll_menuLayout;
+    //public static FrameLayout.LayoutParams leftMenuLayoutPrams;
+    //public static int leftMenuWidth;
+    //public static boolean isLeftExpanded;
     public static Button bt_left;
     public static Button btn1;
     public static Button btn2;
@@ -43,6 +44,19 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
+
+
+        bt_left = (Button) findViewById(R.id.bt_left);
+        bt_left.setOnClickListener(this);
+
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
 
         initSildeMenu();
 
@@ -85,7 +99,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
     };
 
 
-    public void initSildeMenu() {
+    /*public void initSildeMenu() {
 
         // init left menu width
         metrics = new DisplayMetrics();
@@ -116,9 +130,9 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         btn4.setOnClickListener(this);
     }
 
-    /**
+    *//**
      * left menu toggle
-     */
+     *//*
     public void menuLeftSlideAnimationToggle() {
 
         if (!isLeftExpanded) {
@@ -171,12 +185,12 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    /**
+    *//**
      * 뷰의 동작을 제어한다. 하위 모든 뷰들이 enable 값으로 설정된다.
      *
      * @param viewGroup
      * @param enabled
-     */
+     *//*
     public static void enableDisableViewGroup(ViewGroup viewGroup,
                                               boolean enabled) {
         int childCount = viewGroup.getChildCount();
@@ -190,6 +204,7 @@ public class RecordActivity extends AppCompatActivity implements View.OnClickLis
             }
         }
     }
+    */
 
     @Override
     public void onClick(View v) {

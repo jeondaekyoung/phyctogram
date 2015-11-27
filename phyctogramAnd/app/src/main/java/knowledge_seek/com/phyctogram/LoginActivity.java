@@ -1,6 +1,5 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -71,8 +70,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()){
             case R.id.btn_login:
                 Log.d("-진우-", "픽토그램 로그인");
-                //Intent memberlogin = new Intent(this, LoginActivity2.class);
-                //startActivity(memberlogin);
+                Intent memberlogin = new Intent(this, sitemap.class);
+                startActivity(memberlogin);
                 break;
 
             //case R.id.com_kakao_login:

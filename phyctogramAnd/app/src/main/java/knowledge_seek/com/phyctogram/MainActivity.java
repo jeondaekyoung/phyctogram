@@ -1,22 +1,20 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+
 /**
  * Created by dkfka on 2015-11-25.
  */
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
+
 
     /* slide menu */
     public static DisplayMetrics metrics;
@@ -36,11 +34,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        bt_left = (Button) findViewById(R.id.bt_left);
+        bt_left.setOnClickListener(this);
+
+        btn1 = (Button) findViewById(R.id.btn1);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn3 = (Button) findViewById(R.id.btn3);
+        btn4 = (Button) findViewById(R.id.btn4);
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+
         initSildeMenu();
 
     }
 
-    public void initSildeMenu() {
+    /*public void initSildeMenu() {
 
         // init left menu width
         metrics = new DisplayMetrics();
@@ -71,9 +81,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn4.setOnClickListener(this);
     }
 
-    /**
+    *//**
      * left menu toggle
-     */
+     *//*
     public void menuLeftSlideAnimationToggle() {
 
         if (!isLeftExpanded) {
@@ -126,12 +136,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
-    /**
+    *//**
      * 뷰의 동작을 제어한다. 하위 모든 뷰들이 enable 값으로 설정된다.
-     *
-     * @param viewGroup
-     * @param enabled
-     */
+     *//*
     public static void enableDisableViewGroup(ViewGroup viewGroup,
                                               boolean enabled) {
         int childCount = viewGroup.getChildCount();
@@ -144,7 +151,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         }
-    }
+    }*/
+
 
     @Override
     public void onClick(View v) {

@@ -43,7 +43,7 @@
         <activity
             android:name=".LoginActivity2"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <!--<activity
+        <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -65,8 +65,14 @@
             android:name=".WriteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".PwfindActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".UserdropActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".sitemap"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />-->
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
 
     </application>
 

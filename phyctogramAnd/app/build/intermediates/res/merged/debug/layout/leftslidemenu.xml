@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        android:background="@drawable/menu">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="아이디 님"
+            android:textColor="#ffffff" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderbottom"
+        android:gravity="fill_vertical"
+        android:text="    지민이"
+        android:textColor="#F2B649"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderbottom"
+        android:gravity="fill_vertical"
+        android:text="    내 아이 관리" />
+
+    <Button
+        android:id="@+id/btn3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderbottom"
+        android:gravity="fill_vertical"
+        android:text="    육아일기" />
+
+    <Button
+        android:id="@+id/btn4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/borderbottom"
+        android:gravity="fill_vertical"
+        android:text="    설정" />
+
+</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/app/src/main/res/layout/leftslidemenu.xml -->

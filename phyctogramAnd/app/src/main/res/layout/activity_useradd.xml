@@ -5,7 +5,7 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#776096"
@@ -13,29 +13,35 @@
 
         <Button
             android:id="@+id/bt_left"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/btn_menu" />
-    </LinearLayout>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
+            android:background="#ffffff"
+            android:text="저장" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="이름" />
 
             <EditText
@@ -76,7 +82,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:text="성별" />
 
             <RadioGroup
@@ -93,17 +98,6 @@
                     android:layout_height="wrap_content"
                     android:text="남자" />
             </RadioGroup>
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="20dp"
-                android:background="#C0AAE1"
-                android:paddingBottom="10dp"
-                android:text="저장"
-                android:textColor="#fff" />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
