@@ -2,6 +2,7 @@ package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
@@ -54,10 +55,11 @@ public class BaseActivity extends Activity {
     }
 
     protected void redirectSignupActivity() {
-        /*final Intent intent = new Intent(this, SampleSignupActivity.class);
+        Log.d("-진우", "SampleSignupActivity 불러온다.");
+        final Intent intent = new Intent(this, SampleSignupActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        finish();*/
+        finish();
     }
 
 }
