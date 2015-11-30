@@ -10,15 +10,31 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.StoryProtocol;
 import com.kakao.util.helper.TalkProtocol;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +48,15 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
     private SessionCallback callback;
+
+    private com.facebook.login.widget.LoginButton facebookLoginButton;
+    private CallbackManager callbackManager;
+    private AccessTokenTracker accessTokenTracker;
+    private boolean isResumed = false;
+
+    private Button logoutButton;
+
+
 
     /**
      * 로그인 버튼을 클릭 했을시 access token을 요청하도록 설정한다.
@@ -48,14 +73,104 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             setContentView(R.layout.activity_login);
         }
 
+        //페이스북 로그인 세션 검사
+        callbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                if(currentAccessToken != null){
+                    startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+                    finish();
+                } else {
+                    //
+                }
+            }
+        };
 
+
+        facebookLoginButton = (com.facebook.login.widget.LoginButton)findViewById(R.id.btn_login_fb);
+        facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
+        facebookLoginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        facebookLoginButton.setReadPermissions(Arrays.asList("user_photos", "email", "user_birthday", "user_friends"));
+        //LoginResult : This class shows the results of a login operation.
+        facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d("-진우-", "로그인 성공");
+                //AccessToken : This class represents an immutable access token for using Facebook APIs. It also includes associated metadata such as expiration date and permissions.
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback(){
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        Log.d("-진우-", "로그인1 : " + response.toString());
+                        if (!"".equals(object)) {
+                            String id = "";
+                            String name = "";
+                            String email = "";
+                            String gender = "";
+                            String birthday = "";
+                            try {
+                                id = object.getString("id");
+                                name = object.getString("name");
+                                email = object.getString("email");
+                                gender = object.getString("gender");
+                                birthday = object.getString("birthday");
+
+                                Log.d("-진우-", "로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email,gender,birthday");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+
+                Profile profile = Profile.getCurrentProfile();
+                Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
+
+                startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+                finish();
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("-진우-", "취소 ");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("-진우-", "실패 : " + error.getCause().toString());
+            }
+        });
+
+
+        //로그아웃
+        logoutButton = (Button)findViewById(R.id.logout_Button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "페이스북 로그아웃");
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                //accessToken 값이 있다면 로그인 상태라고 판단
+                if (accessToken != null) {
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("-진우-", "LoginActivity.onActivityResult() " + requestCode + ", " + resultCode);
         if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)){
+            Log.d("-진우-", "세션 없다.");
             return;
         }
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -63,6 +178,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onDestroy() {
         super.onDestroy();
         Session.getCurrentSession().removeCallback(callback);
+        accessTokenTracker.stopTracking();
     }
 
     public void onClick(View v) {
@@ -82,11 +198,38 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                 break;
 
-            case R.id.btn_login_fb:
+            /*case R.id.btn_login_fb:
                 Log.d("-진우-", "페이스북 로그인");
-                break;
+                break;*/
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        // Call the 'activateApp' method to log an app event for use in analytics and advertising
+        // reporting.  Do so in the onResume methods of the primary Activities that an app may be
+        // launched into.
+        AppEventsLogger.activateApp(this);
+
+        if(AccessToken.getCurrentAccessToken() != null){
+            // if the user already logged in, try to show the selection fragment
+            startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+            finish();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Call the 'deactivateApp' method to log an app event for use in analytics and advertising
+        // reporting.  Do so in the onPause methods of the primary Activities that an app may be
+        // launched into.
+        AppEventsLogger.deactivateApp(this);
     }
 
     //com.kakao.usermgmt.LoginButton

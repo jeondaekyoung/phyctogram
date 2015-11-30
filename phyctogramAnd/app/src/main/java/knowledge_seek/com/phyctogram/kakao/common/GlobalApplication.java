@@ -9,6 +9,7 @@ import android.util.Log;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+import com.facebook.FacebookSdk;
 import com.kakao.auth.KakaoSDK;
 
 /**
@@ -68,6 +69,8 @@ public class GlobalApplication extends Application {
         };
 
         imageLoader = new ImageLoader(requestQueue, imageCache);
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
 
     /**
