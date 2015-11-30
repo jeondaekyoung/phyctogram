@@ -51,7 +51,8 @@
         android:gravity="center"
         android:textColor="#ffffff"
         android:textSize="12dp"
-        facebook:com_facebook_login_text="페이스북 로그인"/>
+        facebook:com_facebook_login_text="페이스북 로그인"
+        facebook:com_facebook_logout_text="페이스북 로그인"/>
 
     <Button
         android:id="@+id/btn_login"

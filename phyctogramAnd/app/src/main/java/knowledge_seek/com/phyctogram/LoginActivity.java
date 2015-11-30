@@ -54,6 +54,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private AccessTokenTracker accessTokenTracker;
     private boolean isResumed = false;
 
+    private String login_gubun = "";
+
     private Button logoutButton;
 
 
@@ -66,28 +68,45 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.activity_login);
+
         //카카오 로그인 세션 검사
         callback = new SessionCallback();
+        //카카오 로그인이 되어있을 경우 메인화면으로 간다.
         Session.getCurrentSession().addCallback(callback);
         if(!Session.getCurrentSession().checkAndImplicitOpen()){
-            setContentView(R.layout.activity_login);
+            Log.d("-진우-", "카카오 로그인 체크 안됨");
+            //setContentView(R.layout.activity_login);
+        } else {
+            Log.d("-진우-", "카카오 로그인 완료 상태");
         }
 
         //페이스북 로그인 세션 검사
+        if(AccessToken.getCurrentAccessToken() != null){
+            Log.d("-진우-", "페이스북 로그인 완료 상태");
+            // if the user already logged in, try to show the selection fragment
+            Profile profile = Profile.getCurrentProfile();
+            Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
+
+            startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+            finish();
+        }
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                Log.d("-진우-", "onCurrentAccessTokenChanged() 실행");
                 if(currentAccessToken != null){
                     startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
                     finish();
                 } else {
-                    //
+                    setContentView(R.layout.activity_login);
                 }
             }
+
         };
 
-
+        //Log.d("-진우-", " 아우 " + accessTokenTracker.isTracking());
         facebookLoginButton = (com.facebook.login.widget.LoginButton)findViewById(R.id.btn_login_fb);
         facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
         facebookLoginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -149,7 +168,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
         //로그아웃
-        logoutButton = (Button)findViewById(R.id.logout_Button);
+        /*logoutButton = (Button)findViewById(R.id.logout_Button);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -160,7 +179,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     LoginManager.getInstance().logOut();
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -179,6 +198,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         super.onDestroy();
         Session.getCurrentSession().removeCallback(callback);
         accessTokenTracker.stopTracking();
+        /*if (login_gubun.equals("KAKAO")) {
+            Session.getCurrentSession().removeCallback(callback);
+        }
+        if(login_gubun.equals("FACEBOOK")){
+            accessTokenTracker.stopTracking();
+        }*/
     }
 
     public void onClick(View v) {
@@ -215,11 +240,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // launched into.
         AppEventsLogger.activateApp(this);
 
-        if(AccessToken.getCurrentAccessToken() != null){
+        /*if(AccessToken.getCurrentAccessToken() != null){
             // if the user already logged in, try to show the selection fragment
             startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
             finish();
-        }
+        }*/
     }
 
     @Override
@@ -329,7 +354,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
 
-
+    // 카카오
     private class SessionCallback implements ISessionCallback {
         @Override
         public void onSessionOpened() {
@@ -339,10 +364,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         @Override
         public void onSessionOpenFailed(KakaoException exception) {
+            Log.d("-진우-", "LoginActivity에서 SessionCallback.onSessionOpenFailed() 실행");
             if(exception != null){
                 Log.d("-진우 ", "에러 : " + exception.getMessage());
             }
-
             setContentView(R.layout.activity_login);
         }
     }
