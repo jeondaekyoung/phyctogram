@@ -5,6 +5,10 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
 
+    repositories {
+        mavenCentral()
+    }
+
     project.ext.set("defaultDeployPhase", "${project.hasProperty('deploy_phase') ? deploy_phase.toString() : "$DEFAULT_PHASE"}")
 
     defaultConfig {
@@ -26,6 +30,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.7.0'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.google.code.gson:gson:2.3.1'
 
     // 카카오스토리, 카카오톡 sdk를 사용하기 위해 필요.
     compile 'com.mcxiaoke.volley:library:1.0.8'
