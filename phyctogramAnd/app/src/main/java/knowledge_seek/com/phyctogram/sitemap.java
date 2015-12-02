@@ -53,6 +53,30 @@ public class sitemap extends AppCompatActivity {
                 Intent btn8 = new Intent(this, WriteActivity.class);
                 startActivity(btn8);
                 break;
+
+            case R.id.btn_userdrop:
+                Intent btn9 = new Intent(this, UserDropActivity.class);
+                startActivity(btn9);
+                break;
+
+            case R.id.btn_pwfind:
+                Intent btn10 = new Intent(this, PwfindActivity.class);
+                startActivity(btn10);
+                break;
+
+            case R.id.btn_equip:
+                Intent btn11 = new Intent(this, EquipmentActivity.class);
+                startActivity(btn11);
+                break;
+
+            case R.id.btn_calendar:
+                Intent btn12 = new Intent(this, CalendarActivity.class);
+                startActivity(btn12);
+                break;
+            case R.id.btn_set:
+                Intent btn13 = new Intent(this, SettingActivity.class);
+                startActivity(btn13);
+                break;
         }
     }
 }

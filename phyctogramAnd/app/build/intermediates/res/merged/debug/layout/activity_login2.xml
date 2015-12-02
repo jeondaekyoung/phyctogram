@@ -91,12 +91,19 @@
         android:text="사이트맵"
         android:textSize="12dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:text="copyright ⓒ 2015 Knowledge-seek Co., Ltd. all rights reserved"
-        android:textColor="#fff"
-        android:textSize="10dp" />
-</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/phyctogramAnd/app/src/main/res/layout/activity_login2.xml -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:text="copyright ⓒ 2015 Knowledge-seek Co., Ltd. all rights reserved"
+            android:textColor="#fff"
+            android:textSize="10dp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,12 +1,11 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
@@ -16,19 +15,17 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 public class UserDropActivity extends BaseActivity implements View.OnClickListener {
 
     /* slide menu */
-//public static DisplayMetrics metrics;
-//public static LinearLayout ll_mainLayout;
-//public static LinearLayout ll_menuLayout;
-//public static FrameLayout.LayoutParams leftMenuLayoutPrams;
-//public static int leftMenuWidth;
-//public static boolean isLeftExpanded;
+    //public static DisplayMetrics metrics;
+    //public static LinearLayout ll_mainLayout;
+    //public static LinearLayout ll_menuLayout;
+    //public static FrameLayout.LayoutParams leftMenuLayoutPrams;
+    //public static int leftMenuWidth;
+    //public static boolean isLeftExpanded;
     public static Button bt_left;
     public static Button btn1;
     public static Button btn2;
     public static Button btn3;
     public static Button btn4;
-    int year, month, day, hour, minute;
-    EditText editText1, editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +46,7 @@ public class UserDropActivity extends BaseActivity implements View.OnClickListen
         btn4.setOnClickListener(this);
 
         initSildeMenu();
-
     }
-
-
 
     @Override
     public void onClick(View v) {
@@ -75,6 +69,24 @@ public class UserDropActivity extends BaseActivity implements View.OnClickListen
 
                 break;
 
+            case R.id.btn_dropout:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("회원 탈퇴시 모든 데이터가 삭제되므로 복구가 되지 않습니다. 탈퇴 하시겠습니까?")
+                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
         }
 
     }

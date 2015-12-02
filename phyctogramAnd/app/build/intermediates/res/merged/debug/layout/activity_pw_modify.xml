@@ -70,7 +70,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         android:text="현재 비밀번호" />
 
                     <EditText
@@ -121,4 +120,4 @@
             </FrameLayout>
         </LinearLayout>
     </FrameLayout>
-</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/phyctogramAnd/app/src/main/res/layout/activity_pw_modify.xml -->
+</LinearLayout>

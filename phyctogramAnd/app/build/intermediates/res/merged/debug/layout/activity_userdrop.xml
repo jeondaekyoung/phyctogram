@@ -108,10 +108,12 @@
                         android:layout_height="match_parent">
 
                         <Button
+                            android:id="@+id/btn_dropout"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:layout_alignParentBottom="true"
                             android:background="#ff0000"
+                            android:onClick="onClick"
                             android:text="탈퇴"
                             android:textColor="#ffffff" />
                     </RelativeLayout>
@@ -126,4 +128,4 @@
             </FrameLayout>
         </LinearLayout>
     </FrameLayout>
-</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/phyctogramAnd/app/src/main/res/layout/activity_userdrop.xml -->
+</LinearLayout>
