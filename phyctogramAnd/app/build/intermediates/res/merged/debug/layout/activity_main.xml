@@ -52,7 +52,7 @@
                     <Button
                         android:id="@+id/bt_left"
                         android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:layout_height="21dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="12dp"
@@ -225,4 +225,4 @@
         </LinearLayout>
     </FrameLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/app/src/main/res/layout/activity_main.xml -->
+</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/phyctogramAnd/app/src/main/res/layout/activity_main.xml -->

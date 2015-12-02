@@ -97,7 +97,7 @@
 
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:background="#c1abe1"
                         android:text="검색"
                         android:textColor="#ffffff" />
@@ -123,4 +123,4 @@
         </LinearLayout>
     </FrameLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/Phyctogram/app/src/main/res/layout/activity_record.xml -->
+</LinearLayout><!-- From: file:/C:/Users/dkfka/AndroidStudioProjects/phyctogramAnd/app/src/main/res/layout/activity_record.xml -->

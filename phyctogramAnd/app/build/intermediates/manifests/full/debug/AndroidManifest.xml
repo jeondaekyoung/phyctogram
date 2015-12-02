@@ -34,6 +34,7 @@
             </intent-filter>
         </activity>
 
+        <!-- 카카오 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
@@ -42,6 +43,31 @@
             android:name="knowledge_seek.com.phyctogram.kakao.common.SampleSignupActivity"
             android:launchMode="singleTask"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- 페이스북 -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationName"
+            android:value="@string/facebook_app_name" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1656605951265060"
+            android:exported="true" />
+
+        <receiver android:name="knowledge_seek.com.phyctogram.facebook.FacebookBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="com.facebook.platform.AppCallResultBroadcast" />
+            </intent-filter>
+        </receiver>
 
         <!-- 메인 테스트 액티비티 -->
         <activity
@@ -72,10 +98,10 @@
             android:name="knowledge_seek.com.phyctogram.WriteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="knowledge_seek.com.phyctogram.JoinActivity"
+            android:name="knowledge_seek.com.phyctogram.PwfindActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="knowledge_seek.com.phyctogram.WriteActivity"
+            android:name="knowledge_seek.com.phyctogram.UserDropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name="knowledge_seek.com.phyctogram.sitemap"

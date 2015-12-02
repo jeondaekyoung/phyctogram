@@ -92,7 +92,7 @@
             android:name=".PwfindActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".UserdropActivity"
+            android:name=".UserDropActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".sitemap"
