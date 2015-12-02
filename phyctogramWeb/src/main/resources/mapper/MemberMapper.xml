@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.MemberMapper">
+
+	<select id="selectMemberByFacebook_id" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM member_tb
+		WHERE facebook_id = #{facebook_id}
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO member_tb (
+						email
+						,id
+						,domain
+						,password
+						,join_de
+						,kakao_id
+						,kakao_nickname
+						,kakao_thumbnailimagepath
+						,facebook_id
+						,facebook_email
+						,facebook_birthday
+						,facebook_name
+						,facebook_gender
+						,join_route) VALUES (
+						#{email},
+						#{id},
+						#{domain},
+						#{password},
+						now(),
+						#{kakao_id},
+						#{kakao_nickname},
+						#{kakao_thumbnailimagepath},
+						#{facebook_id},
+						#{facebook_email},
+						#{facebook_birthday},
+						#{facebook_name},
+						#{facebook_gender},
+						#{join_route} )
+	</insert>
+	
+	<select id="selectMemberByKakao_id" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM member_tb
+		WHERE kakao_id = #{kakao_id}
+	</select>
+	
+
+</mapper>
