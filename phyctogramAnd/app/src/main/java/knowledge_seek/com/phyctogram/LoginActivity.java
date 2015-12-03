@@ -71,15 +71,12 @@ public class LoginActivity extends BaseActivity {
     private com.facebook.login.widget.LoginButton facebookLoginButton;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
-    private boolean isResumed = false;
     private Button btn_login_kko;
     private Button btn_login;
 
-    private String login_gubun = "";
 
     //테스트 버튼
     private Button logoutButton;
-    private Button httptest;
 
     //데이터
     private Member member = new Member();
@@ -147,43 +144,6 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });*/
-        //http통신테스트
-        httptest = (Button)findViewById(R.id.httptest);
-        httptest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                member.setFacebook_id("895541255");
-                member.setFacebook_name("nametest");
-                member.setFacebook_email("emailtest");
-                member.setFacebook_gender("gendertest");
-                member.setFacebook_birthday("2000/01/01");
-                member.setJoin_route("facebook");
-                member.setEmail("email@naver.com");
-
-                Log.d("-진우-", "멤버는 " + member.toString());
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(HTTPADDR)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-                MemberAPI service = retrofit.create(MemberAPI.class);
-                Call<String> call = service.registerMember(member);
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Response<String> response, Retrofit retrofit) {
-                        Log.d("-진우-", "성공 - " + response.body());
-                    }
-
-                    @Override
-                    public void onFailure(Throwable t) {
-                        Log.d("-진우-", "실패");
-                    }
-                });
-
-            }
-        });
 
 
         //버튼 정의
@@ -315,12 +275,7 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
         Session.getCurrentSession().removeCallback(callback);
         accessTokenTracker.stopTracking();
-        /*if (login_gubun.equals("KAKAO")) {
-            Session.getCurrentSession().removeCallback(callback);
-        }
-        if(login_gubun.equals("FACEBOOK")){
-            accessTokenTracker.stopTracking();
-        }*/
+
     }
 
     @Override
