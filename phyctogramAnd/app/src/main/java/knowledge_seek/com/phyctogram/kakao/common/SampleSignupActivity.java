@@ -12,6 +12,13 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
 import knowledge_seek.com.phyctogram.Maintestactivity;
+import knowledge_seek.com.phyctogram.domain.Member;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * 유효한 세션이 있다는 검증 후
@@ -19,6 +26,7 @@ import knowledge_seek.com.phyctogram.Maintestactivity;
  * Created by sjw on 2015-11-26.
  */
 public class SampleSignupActivity extends BaseActivity {
+    public static final String HTTPADDR = "http://117.52.89.181";
     /**
      * Main으로 넘길지 가입 페이지를 그릴지 판단하기 위해 me를 호출한다.
      * @param savedInstanceState 기존 session 정보가 저장된 객체
@@ -68,9 +76,38 @@ public class SampleSignupActivity extends BaseActivity {
             @Override
             public void onSuccess(UserProfile userProfile) {
                 Log.d("-진우 ", "UserProfile : " + userProfile);
+                Member member = new Member();
+                member.setKakao_id(String.valueOf(userProfile.getId()));
+                member.setKakao_nickname(userProfile.getNickname());
+                member.setKakao_thumbnailimagepath(userProfile.getThumbnailImagePath());
+                member.setJoin_route("kakao");
+                Log.d("-진우-", member.toString());
+                registerMember(member);
                 redirectMainActivity();
             }
         });
+    }
+
+    //유저저장
+    private void registerMember(Member member){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HTTPADDR)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        MemberAPI service = retrofit.create(MemberAPI.class);
+        Call<String> call = service.registerMember(member);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Response<String> response, Retrofit retrofit) {
+                Log.d("-진우-", "성공 결과 : " + response.body());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+            }
+        });
+
     }
 
     private void redirectMainActivity() {

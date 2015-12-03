@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,52 +14,75 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.google.gson.JsonObject;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.StoryProtocol;
 import com.kakao.util.helper.TalkProtocol;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import junit.framework.Test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.TestDomail;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * 로그인 페이지
  * 세션을 오픈한 후 action을 override해서 사용한다.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity {
+    public static final String HTTPADDRTEST = "http://192.168.123.103/phyctogramWeb";
+    public static final String HTTPADDR = "http://117.52.89.181";
+    private ProgressDialog prgDialog;
+
     private SessionCallback callback;
 
     private com.facebook.login.widget.LoginButton facebookLoginButton;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private boolean isResumed = false;
+    private Button btn_login_kko;
+    private Button btn_login;
 
     private String login_gubun = "";
 
+    //테스트 버튼
     private Button logoutButton;
+    private Button httptest;
 
-
+    //데이터
+    private Member member = new Member();
 
     /**
      * 로그인 버튼을 클릭 했을시 access token을 요청하도록 설정한다.
@@ -69,6 +93,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+        prgDialog = new ProgressDialog(this);
+        prgDialog.setMessage("Please wait...");
+        prgDialog.setCancelable(false);
+
 
         //카카오 로그인 세션 검사
         callback = new SessionCallback();
@@ -106,6 +134,67 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
         };
 
+        //로그아웃
+        /*logoutButton = (Button)findViewById(R.id.logout_Button);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "페이스북 로그아웃");
+                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                //accessToken 값이 있다면 로그인 상태라고 판단
+                if (accessToken != null) {
+                    LoginManager.getInstance().logOut();
+                }
+            }
+        });*/
+        //http통신테스트
+        httptest = (Button)findViewById(R.id.httptest);
+        httptest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                member.setFacebook_id("895541255");
+                member.setFacebook_name("nametest");
+                member.setFacebook_email("emailtest");
+                member.setFacebook_gender("gendertest");
+                member.setFacebook_birthday("2000/01/01");
+                member.setJoin_route("facebook");
+                member.setEmail("email@naver.com");
+
+                Log.d("-진우-", "멤버는 " + member.toString());
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(HTTPADDR)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                MemberAPI service = retrofit.create(MemberAPI.class);
+                Call<String> call = service.registerMember(member);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Response<String> response, Retrofit retrofit) {
+                        Log.d("-진우-", "성공 - " + response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Log.d("-진우-", "실패");
+                    }
+                });
+
+            }
+        });
+
+
+        //버튼 정의
+        btn_login_kko = (Button)findViewById(R.id.btn_login_kko);
+        btn_login_kko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "카카오 계정으로 로그인");
+                kakaoLogin();
+            }
+        });
         //Log.d("-진우-", " 아우 " + accessTokenTracker.isTracking());
         facebookLoginButton = (com.facebook.login.widget.LoginButton)findViewById(R.id.btn_login_fb);
         facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
@@ -117,7 +206,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void onSuccess(LoginResult loginResult) {
                 Log.d("-진우-", "로그인 성공");
                 //AccessToken : This class represents an immutable access token for using Facebook APIs. It also includes associated metadata such as expiration date and permissions.
-                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback(){
+                GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
                         Log.d("-진우-", "로그인1 : " + response.toString());
@@ -134,7 +223,19 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                                 gender = object.getString("gender");
                                 birthday = object.getString("birthday");
 
+
+                                member.setFacebook_id(object.getString("id"));
+                                member.setFacebook_name(object.getString("name"));
+                                member.setFacebook_email(object.getString("email"));
+                                member.setFacebook_gender(object.getString("gender"));
+                                member.setFacebook_birthday(object.getString("birthday"));
+                                member.setJoin_route("facebook");
+
                                 Log.d("-진우-", "로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
+                                Log.d("-진우-", "멤버는 " + member.toString());
+
+                                registerMember(member);
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -162,24 +263,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("-진우-", "실패 : " + error.getCause().toString());
+                Log.d("-진우-", "실패(에러) ");
+            }
+        });
+        btn_login = (Button)findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "픽토그램 로그인");
+                Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
+                startActivity(memberlogin);
+            }
+        });
+    }
+
+    //유저저장
+    private void registerMember(Member member){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(HTTPADDR)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        MemberAPI service = retrofit.create(MemberAPI.class);
+        Call<String> call = service.registerMember(member);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Response<String> response, Retrofit retrofit) {
+                Log.d("-진우-", "성공 결과 : " + response.body());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
             }
         });
 
-
-        //로그아웃
-        /*logoutButton = (Button)findViewById(R.id.logout_Button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("-진우-", "페이스북 로그아웃");
-                AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                //accessToken 값이 있다면 로그인 상태라고 판단
-                if (accessToken != null) {
-                    LoginManager.getInstance().logOut();
-                }
-            }
-        });*/
     }
 
     @Override
@@ -206,34 +323,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }*/
     }
 
-    public void onClick(View v) {
-
-        switch (v.getId()){
-            case R.id.btn_login:
-                Log.d("-진우-", "픽토그램 로그인");
-                Intent memberlogin = new Intent(this, sitemap.class);
-                startActivity(memberlogin);
-                break;
-
-            //case R.id.com_kakao_login:
-            case R.id.btn_login_kko:
-                Log.d("-진우-", "카카오 계정으로 로그인");
-
-                kakaoLogin();
-
-                break;
-
-            /*case R.id.btn_login_fb:
-                Log.d("-진우-", "페이스북 로그인");
-                break;*/
-        }
-
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-
 
         // Call the 'activateApp' method to log an app event for use in analytics and advertising
         // reporting.  Do so in the onResume methods of the primary Activities that an app may be
@@ -256,6 +348,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // launched into.
         AppEventsLogger.deactivateApp(this);
     }
+
 
     //com.kakao.usermgmt.LoginButton
     private void kakaoLogin(){
@@ -371,4 +464,5 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             setContentView(R.layout.activity_login);
         }
     }
+
 }
