@@ -16,12 +16,12 @@ public class MemberDaoImpl implements MemberDao {
 	private static final Logger logger = LoggerFactory.getLogger(MemberDaoImpl.class);
 	
 	@Override
-	public int selectMemberByFacebook_id(String facebook_id) {
+	public int selectMemberExistByFacebook_id(String facebook_id) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result = 0;
 		try{
 			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-			result = memberMapper.selectMemberByFacebook_id(facebook_id);
+			result = memberMapper.selectMemberExistByFacebook_id(facebook_id);
 		}finally{
 			sqlSession.close();
 		}
@@ -43,12 +43,52 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int selectMemberByKakao_id(String kakao_id) {
+	public int selectMemberExistByKakao_id(String kakao_id) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result = 0;
 		try{
 			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-			result = memberMapper.selectMemberByKakao_id(kakao_id);
+			result = memberMapper.selectMemberExistByKakao_id(kakao_id);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int selectMemberExistByEmail(String email) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberExistByEmail(email);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertJoinAgre(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.insertJoinAgre(member);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByEmail(String email) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByEmail(email);
 		}finally{
 			sqlSession.close();
 		}

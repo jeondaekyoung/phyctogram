@@ -30,6 +30,8 @@ public class MemberRestController {
 		
 		if(result == 1){
 			return "success";
+		} else if(result == 5){
+			return "exist";
 		} else {
 			return "fail";
 		}

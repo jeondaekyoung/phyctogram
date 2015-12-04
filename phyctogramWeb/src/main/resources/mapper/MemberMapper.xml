@@ -5,7 +5,7 @@
 	
 <mapper namespace="naree.db.mapper.MemberMapper">
 
-	<select id="selectMemberByFacebook_id" parameterType="String" resultType="Integer">
+	<select id="selectMemberExistByFacebook_id" parameterType="String" resultType="Integer">
 		SELECT count(*) FROM member_tb
 		WHERE facebook_id = #{facebook_id}
 	</select>
@@ -13,9 +13,10 @@
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO member_tb (
 						email
+						,name
 						,id
 						,domain
-						,password
+						<if test="password != null">,password</if>
 						,join_de
 						,kakao_id
 						,kakao_nickname
@@ -27,9 +28,10 @@
 						,facebook_gender
 						,join_route) VALUES (
 						#{email},
+						#{name},
 						#{id},
 						#{domain},
-						#{password},
+						<if test="password != null">password(#{password}),</if>
 						now(),
 						#{kakao_id},
 						#{kakao_nickname},
@@ -42,10 +44,36 @@
 						#{join_route} )
 	</insert>
 	
-	<select id="selectMemberByKakao_id" parameterType="String" resultType="Integer">
+	<select id="selectMemberExistByKakao_id" parameterType="String" resultType="Integer">
 		SELECT count(*) FROM member_tb
 		WHERE kakao_id = #{kakao_id}
 	</select>
 	
+	<select id="selectMemberExistByEmail" parameterType="String" resultType="Integer">
+		SELECT count(*) FROM member_tb
+		WHERE email = #{email}
+	</select>
+	
+	<insert id="insertJoinAgre" parameterType="Member">
+		INSERT INTO join_agre_tb (
+							use_stplat_agre_at,
+							use_stplat_agre_de,
+							indvdlinfo_trtmnt_polcy_agre_at,
+							indvdlinfo_trtmnt_polcy_agre_de,
+							member_seq) VALUES (
+							'Y',
+							now(),
+							'Y',
+							now(),
+							#{member_seq} )
+	</insert>
+	
+	<select id="selectMemberByEmail" parameterType="String" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de
+					, kakao_id, kakao_nickname, kakao_thumbnailimagepath
+					, facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		   FROM member_tb
+		 WHERE email = #{email}
+	</select>
 
 </mapper>

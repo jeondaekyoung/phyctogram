@@ -4,9 +4,17 @@ import naree.db.domain.Member;
 
 public interface MemberMapper {
 
-	int selectMemberByFacebook_id(String facebook_id);
+	int selectMemberExistByFacebook_id(String facebook_id);
 
 	int insertMember(Member member);
 
-	int selectMemberByKakao_id(String kakao_id);
+	int selectMemberExistByKakao_id(String kakao_id);
+
+	int selectMemberExistByEmail(String email);
+
+	int insertJoinAgre(Member member);
+
+	Member selectMemberByEmail(String email);
 }
+
+

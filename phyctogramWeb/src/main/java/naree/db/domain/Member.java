@@ -6,6 +6,7 @@ public class Member {
 
 	private int member_seq;
 	private String email;
+	private String name;
 	private String id;
 	private String domain;
 	private String password;
@@ -30,6 +31,12 @@ public class Member {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getId() {
 		return id;
@@ -109,14 +116,15 @@ public class Member {
 	public void setJoin_route(String join_route) {
 		this.join_route = join_route;
 	}
+	
 	@Override
 	public String toString() {
-		return "Member [member_seq=" + member_seq + ", email=" + email + ", id=" + id + ", domain=" + domain
-				+ ", password=" + password + ", join_de=" + join_de + ", kakao_id=" + kakao_id + ", kakao_nickname="
-				+ kakao_nickname + ", kakao_thumbnailimagepath=" + kakao_thumbnailimagepath + ", facebook_id="
-				+ facebook_id + ", facebook_email=" + facebook_email + ", facebook_birthday=" + facebook_birthday
-				+ ", facebook_name=" + facebook_name + ", facebook_gender=" + facebook_gender + ", join_route="
-				+ join_route + "]";
+		return "Member [member_seq=" + member_seq + ", email=" + email + ", name=" + name + ", id=" + id + ", domain="
+				+ domain + ", password=" + password + ", join_de=" + join_de + ", kakao_id=" + kakao_id
+				+ ", kakao_nickname=" + kakao_nickname + ", kakao_thumbnailimagepath=" + kakao_thumbnailimagepath
+				+ ", facebook_id=" + facebook_id + ", facebook_email=" + facebook_email + ", facebook_birthday="
+				+ facebook_birthday + ", facebook_name=" + facebook_name + ", facebook_gender=" + facebook_gender
+				+ ", join_route=" + join_route + "]";
 	}
 	
 	

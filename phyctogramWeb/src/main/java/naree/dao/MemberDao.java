@@ -10,7 +10,7 @@ public interface MemberDao {
 	 * @param facebook_id
 	 * @return
 	 */
-	int selectMemberByFacebook_id(String facebook_id);
+	int selectMemberExistByFacebook_id(String facebook_id);
 
 	/**
 	 * 멤버 가입하기
@@ -24,6 +24,27 @@ public interface MemberDao {
 	 * @param kakao_id
 	 * @return
 	 */
-	int selectMemberByKakao_id(String kakao_id);
+	int selectMemberExistByKakao_id(String kakao_id);
+
+	/**
+	 * 픽토그램 로그인시 가입한 멤버인지 확인
+	 * @param email
+	 * @return
+	 */
+	int selectMemberExistByEmail(String email);
+
+	/**
+	 * 픽토그램 로그인 후 이용약관및개인정보동의
+	 * @param member
+	 * @return
+	 */
+	int insertJoinAgre(Member member);
+
+	/**
+	 * 이메일로 멤버찾기(이용약관및개인정보취급방침을 위해 멤버시퀀스가필요)
+	 * @param email
+	 * @return
+	 */
+	Member selectMemberByEmail(String email);
 
 }
