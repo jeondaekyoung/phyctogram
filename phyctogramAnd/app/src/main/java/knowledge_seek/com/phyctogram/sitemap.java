@@ -77,6 +77,10 @@ public class sitemap extends AppCompatActivity {
                 Intent btn13 = new Intent(this, SettingActivity.class);
                 startActivity(btn13);
                 break;
+            case R.id.btn_login2:
+                Intent btn14 = new Intent(this, LoginActivity2.class);
+                startActivity(btn14);
+                break;
         }
     }
 }

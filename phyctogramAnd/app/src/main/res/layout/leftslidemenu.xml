@@ -6,21 +6,38 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="290dp"
-        android:background="@drawable/menu">
+        android:layout_height="250dp"
+        android:background="@drawable/menu"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/sample" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="12dp"
+            android:layout_toRightOf="@id/img_profile"
             android:text="아이디 님"
             android:textColor="#ffffff" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/list_user"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:divider="#e0e0e0"
+        android:dividerHeight="1dp" />
 
     <Button
         android:id="@+id/btn1"
@@ -28,7 +45,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/borderbottom"
         android:gravity="fill_vertical"
-        android:text="    지민이"
+        android:text="지민이"
+        android:paddingLeft="15dp"
         android:textColor="#F2B649"
         android:textStyle="bold" />
 
@@ -38,7 +56,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/borderbottom"
         android:gravity="fill_vertical"
-        android:text="    내 아이 관리" />
+        android:paddingLeft="15dp"
+        android:text="내 아이 관리" />
 
     <Button
         android:id="@+id/btn3"
@@ -46,14 +65,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/borderbottom"
         android:gravity="fill_vertical"
-        android:text="    육아일기" />
+        android:paddingLeft="15dp"
+        android:text="육아일기" />
 
     <Button
         android:id="@+id/btn4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/borderbottom"
+        android:paddingLeft="15dp"
         android:gravity="fill_vertical"
-        android:text="    설정" />
+        android:text="설정" />
 
 </LinearLayout>

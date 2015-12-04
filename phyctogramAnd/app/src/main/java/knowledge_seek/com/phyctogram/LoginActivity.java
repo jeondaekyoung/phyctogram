@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -26,23 +25,16 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
-import com.google.gson.JsonObject;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.util.exception.KakaoException;
 import com.kakao.util.helper.StoryProtocol;
 import com.kakao.util.helper.TalkProtocol;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import junit.framework.Test;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +43,6 @@ import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
-import knowledge_seek.com.phyctogram.retrofitapi.TestDomail;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
