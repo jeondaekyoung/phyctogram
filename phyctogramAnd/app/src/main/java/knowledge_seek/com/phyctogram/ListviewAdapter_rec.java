@@ -12,12 +12,12 @@ import java.util.ArrayList;
 /**
  * Created by dkfka on 2015-12-04.
  */
-public class ListviewAdapter extends BaseAdapter{
+public class ListviewAdapter_rec extends BaseAdapter {
     private LayoutInflater inflater;
-    private ArrayList<Listviewitem_com> data;
+    private ArrayList<Listviewitem_rec> data;
     private int layout;
 
-    public ListviewAdapter(Context context, int layout, ArrayList<Listviewitem_com> data) {
+    public ListviewAdapter_rec(Context context, int layout, ArrayList<Listviewitem_rec> data) {
         this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.data = data;
         this.layout = layout;
@@ -30,7 +30,7 @@ public class ListviewAdapter extends BaseAdapter{
 
     @Override
     public String getItem(int position) {
-        return data.get(position).getTitle();
+        return data.get(position).getDate();
     }
 
     @Override
@@ -43,17 +43,13 @@ public class ListviewAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = inflater.inflate(layout, parent, false);
         }
-        Listviewitem_com listviewitem = data.get(position);
-        TextView title = (TextView) convertView.findViewById(R.id.community_title);
-        TextView userid = (TextView) convertView.findViewById(R.id.community_userid);
-        TextView date = (TextView) convertView.findViewById(R.id.community_date);
-        TextView read = (TextView) convertView.findViewById(R.id.community_read);
-        TextView reply = (TextView) convertView.findViewById(R.id.community_reply);
-        title.setText(listviewitem.getTitle());
-        userid.setText(listviewitem.getUserid());
-        date.setText(listviewitem.getDate());
-        read.setText(listviewitem.getRead());
-        reply.setText(listviewitem.getReply());
+        Listviewitem_rec listviewitem_rec = data.get(position);
+        TextView recordDate = (TextView) convertView.findViewById(R.id.recordDate);
+        TextView recordHeight = (TextView) convertView.findViewById(R.id.recordHeight);
+        TextView recordGrow = (TextView) convertView.findViewById(R.id.record_grow);
+        recordDate.setText(listviewitem_rec.getDate());
+        recordHeight.setText(listviewitem_rec.getHeight());
+        recordGrow.setText(listviewitem_rec.getGrow());
         return convertView;
     }
 }

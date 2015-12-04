@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -38,7 +40,19 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
+        //커뮤니티 글 목록
+        ListView listview = (ListView) findViewById(R.id.list_record);
 
+        ArrayList<Listviewitem_rec> data = new ArrayList<>();
+        Listviewitem_rec item = new Listviewitem_rec("15-12-04", "155cm", "1cm");
+        data.add(item);
+        Listviewitem_rec item2 = new Listviewitem_rec("15-12-04", "155cm", "1cm");
+        data.add(item2);
+
+        ListviewAdapter_rec adapter2 = new ListviewAdapter_rec(this, R.layout.list_record, data);
+        listview.setAdapter(adapter2);
+
+//액션바
         bt_left = (Button) findViewById(R.id.bt_left);
         bt_left.setOnClickListener(this);
 
@@ -58,8 +72,8 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        editText1 = (EditText)findViewById(R.id.datepick1);
-        editText2 = (EditText)findViewById(R.id.datepick2);
+        editText1 = (EditText) findViewById(R.id.datepick1);
+        editText2 = (EditText) findViewById(R.id.datepick2);
 
         editText1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,15 +92,15 @@ public class RecordActivity extends BaseActivity implements View.OnClickListener
     }
 
     //날짜 입력
-    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener(){
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-            String msg = String.format("%d / %d / %d", year, monthOfYear+1, dayOfMonth);
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            String msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth);
             editText1.setText(msg);
         }
     };
-    private DatePickerDialog.OnDateSetListener dateSetListener2 = new DatePickerDialog.OnDateSetListener(){
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-            String msg = String.format("%d / %d / %d", year, monthOfYear+1, dayOfMonth);
+    private DatePickerDialog.OnDateSetListener dateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            String msg = String.format("%d / %d / %d", year, monthOfYear + 1, dayOfMonth);
             editText2.setText(msg);
         }
     };

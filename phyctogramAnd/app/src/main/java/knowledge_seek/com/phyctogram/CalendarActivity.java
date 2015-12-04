@@ -2,6 +2,7 @@ package knowledge_seek.com.phyctogram;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,12 +14,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-
 /**
  * Created by dkfka on 2015-12-02.
  */
-public class CalendarActivity extends BaseActivity implements View.OnClickListener {
+public class CalendarActivity extends FragmentActivity implements View.OnClickListener {
 
 
     /* slide menu */
@@ -33,6 +32,11 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
     public static Button btn2;
     public static Button btn3;
     public static Button btn4;
+
+    private static final String TAG = MConfig.TAG;
+    private static final String NAME = "CalendarActivity";
+    private final String CLASS = NAME + "@" + Integer.toHexString(hashCode());
+
     private TextView thisMonthTv;
 
     @Override
@@ -40,6 +44,16 @@ public class CalendarActivity extends BaseActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        thisMonthTv = (TextView) findViewById(R.id.this_month_tv);
+
+        MonthlyFragment mf = (MonthlyFragment) getSupportFragmentManager().findFragmentById(R.id.monthly);
+        mf.setOnMonthChangeListener(new MonthlyFragment.OnMonthChangeListener() {
+
+            @Override
+            public void onChange(int year, int month) {
+                thisMonthTv.setText(year + "." + (month + 1));
+            }
+        });
         bt_left = (Button) findViewById(R.id.bt_left);
         bt_left.setOnClickListener(this);
 

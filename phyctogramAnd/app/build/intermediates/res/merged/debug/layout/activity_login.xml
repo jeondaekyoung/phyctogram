@@ -24,7 +24,6 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/log_kko"
         android:gravity="center"
-        android:onClick="onClick"
         android:text="카카오톡 로그인"
         android:textColor="#000000"
         android:textSize="12dp" />
@@ -61,16 +60,15 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/log_btn"
         android:gravity="center"
-        android:onClick="onClick"
         android:text="회원 로그인"
         android:textColor="#ffffff"
         android:textSize="12dp" />
 
-    <Button
+    <!--<Button
         android:id="@+id/logout_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log out with Facebook" />
+        android:text="Log out with Facebook" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -86,6 +84,5 @@
             android:textColor="#fff"
             android:textSize="10dp" />
     </RelativeLayout>
-
 
 </LinearLayout>

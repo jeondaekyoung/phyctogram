@@ -1,6 +1,5 @@
 package knowledge_seek.com.phyctogram;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,10 +21,6 @@ public class LoginActivity2 extends AppCompatActivity {
             case R.id.member_login:
                 /*Intent login = new Intent(this, MainActivity.class);
                 startActivity(login);*/
-                break;
-            case R.id.sitemap:
-                /*Intent sm = new Intent(this, sitemap.class);
-                startActivity(sm);*/
                 break;
         }
     }

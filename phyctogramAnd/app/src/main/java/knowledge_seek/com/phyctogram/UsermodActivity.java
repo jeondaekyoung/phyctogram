@@ -28,7 +28,7 @@ public class UsermodActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_userdrop);
+        setContentView(R.layout.activity_usermodify);
 
 
         bt_left = (Button) findViewById(R.id.bt_left);

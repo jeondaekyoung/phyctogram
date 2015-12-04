@@ -62,46 +62,52 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="50dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="조회기간" />
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <EditText
-                            android:id="@+id/datepick1"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000" />
+                        android:orientation="vertical"
+                        android:padding="10dp"
+                        android:background="#f2f2f2">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="-"
-                            android:textColor="#000000" />
+                            android:text="조회기간" />
 
-                        <EditText
-                            android:id="@+id/datepick2"
-                            android:layout_width="180dp"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="#000000" />
+                            android:orientation="horizontal">
 
+                            <EditText
+                                android:id="@+id/datepick1"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="-"
+                                android:textColor="#000000" />
+
+                            <EditText
+                                android:id="@+id/datepick2"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="#c1abe1"
+                            android:text="검색"
+                            android:textColor="#ffffff" />
                     </LinearLayout>
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginBottom="10dp"
-                        android:background="#c1abe1"
-                        android:text="검색"
-                        android:textColor="#ffffff" />
 
                     <ListView
                         android:id="@+id/list_record"

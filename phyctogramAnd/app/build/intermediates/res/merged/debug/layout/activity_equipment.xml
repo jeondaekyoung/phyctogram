@@ -68,7 +68,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="110dp"
-                        android:src="@drawable/equipment"/>
+                        android:src="@drawable/equipment" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -116,6 +116,18 @@
                         android:text="기기 연결 해제"
                         android:textColor="#ffffff" />
 
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/float_button_03"
+                            android:padding="5dp" />
+                    </RelativeLayout>
                 </LinearLayout>
 
                 <LinearLayout
