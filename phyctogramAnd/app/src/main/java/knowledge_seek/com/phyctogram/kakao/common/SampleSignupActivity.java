@@ -11,7 +11,7 @@ import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
-import knowledge_seek.com.phyctogram.Maintestactivity;
+import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import retrofit.Call;
@@ -111,7 +111,7 @@ public class SampleSignupActivity extends BaseActivity {
     }
 
     private void redirectMainActivity() {
-        startActivity(new Intent(this, Maintestactivity.class));
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 

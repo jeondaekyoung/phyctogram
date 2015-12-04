@@ -9,6 +9,7 @@ public class Member {
 
     private int member_seq;
     private String email;
+    private String name;
     private String id;
     private String domain;
     private String password;
@@ -37,6 +38,14 @@ public class Member {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {
@@ -148,6 +157,7 @@ public class Member {
         return "Member{" +
                 "member_seq=" + member_seq +
                 ", email='" + email + '\'' +
+                ", name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", domain='" + domain + '\'' +
                 ", password='" + password + '\'' +

@@ -16,6 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:name=".kakao.common.GlobalApplication">
+
+
         <activity
             android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
@@ -25,6 +27,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
 
         <!-- 카카오 -->
         <meta-data
@@ -59,10 +63,6 @@
                 <action android:name="com.facebook.platform.AppCallResultBroadcast" />
             </intent-filter>
         </receiver>
-
-        <!-- 메인 테스트 액티비티 -->
-        <activity android:name=".Maintestactivity"
-            android:launchMode="singleTask" />
 
         <activity
             android:name=".LoginActivity2"

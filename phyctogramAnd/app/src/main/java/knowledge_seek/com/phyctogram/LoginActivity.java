@@ -49,6 +49,7 @@ import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.TestDomail;
 import retrofit.Call;
@@ -113,16 +114,28 @@ public class LoginActivity extends BaseActivity {
             Profile profile = Profile.getCurrentProfile();
             Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
 
-            startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
+
+        //픽토그램 로그인 검사
+        Log.d("-진우-", "픽토그램 로그인 확인 : " + SaveSharedPreference.getUserName(getApplicationContext()));
+        if(SaveSharedPreference.getUserName(LoginActivity.this).length() == 0){
+            Log.d("-진우-", "픽토그램 로그인 안됨");
+        } else {
+            Log.d("-진우-", "픽토그램 로그인 됨");
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+
+        }
+
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
                 Log.d("-진우-", "onCurrentAccessTokenChanged() 실행");
                 if(currentAccessToken != null){
-                    startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 } else {
                     setContentView(R.layout.activity_login);
@@ -144,6 +157,13 @@ public class LoginActivity extends BaseActivity {
                 }
             }
         });*/
+        //픽토그램 로그아웃
+        /*public static void clearUserName(Context ctx)
+        {
+            Editor editor = getSharedPreferences(ctx).edit();
+            editor.clear(); //clear all stored data
+            editor.commit();
+        }*/
 
 
         //버튼 정의
@@ -212,7 +232,7 @@ public class LoginActivity extends BaseActivity {
                 Profile profile = Profile.getCurrentProfile();
                 Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
 
-                startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
 
@@ -230,7 +250,7 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("-진우-", "픽토그램 로그인");
+                Log.d("-진우-", "픽토그램 로그인 하자");
                 Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
                 startActivity(memberlogin);
             }
@@ -289,7 +309,7 @@ public class LoginActivity extends BaseActivity {
 
         /*if(AccessToken.getCurrentAccessToken() != null){
             // if the user already logged in, try to show the selection fragment
-            startActivity(new Intent(getApplicationContext(), Maintestactivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }*/
     }
