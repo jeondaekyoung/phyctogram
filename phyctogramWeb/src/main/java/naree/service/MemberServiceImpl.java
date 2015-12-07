@@ -54,4 +54,29 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public Member findMemberByJoinRoute(Member member) {
+		Member m = new Member();
+		if(member.getJoin_route().equals("facebook")){
+			m = memberDao.selectMemberByFacebookId(member);
+		} else if(member.getJoin_route().equals("kakao")){
+			m = memberDao.selectMemberByKakaoId(member);
+		} else {
+			m = memberDao.selectMemberByPhyctoEmail(member);
+		}
+		return m;
+	}
+
+	@Override
+	public Member findMemberByMemberSeq(int member_seq) {
+		
+		return memberDao.selectMemberByMemberSeq(member_seq);
+	}
+
+	@Override
+	public Member findMemberByFacebookInfo(Member member) {
+		
+		return memberDao.selectMemberByFacebookInfo(member);
+	}
+
 }

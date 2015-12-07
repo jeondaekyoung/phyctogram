@@ -15,6 +15,16 @@ public interface MemberMapper {
 	int insertJoinAgre(Member member);
 
 	Member selectMemberByEmail(String email);
+
+	Member selectMemberByFacebookId(Member member);
+
+	Member selectMemberByKakaoId(Member member);
+
+	Member selectMemberByPhyctoEmail(Member member);
+
+	Member selectMemberByMemberSeq(int member_seq);
+
+	Member selectMemberByFacebookInfo(Member memberResult);
 }
 
 

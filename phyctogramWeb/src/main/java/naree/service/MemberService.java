@@ -10,6 +10,27 @@ public interface MemberService {
 	 * @return 
 	 */
 	int registerMember(Member member);
+
+	/**
+	 * 가입정보를 통하야 가입된 정보를 불러온다(member_seq)
+	 * @param member
+	 * @return
+	 */
+	Member findMemberByJoinRoute(Member member);
+
+	/**
+	 * member_seq로 멤버찾기
+	 * @param member_seq
+	 * @return
+	 */
+	Member findMemberByMemberSeq(int member_seq);
+
+	/**
+	 * 페이스북 가입 정보로 멤버찾기
+	 * @param memberResult
+	 * @return
+	 */
+	Member findMemberByFacebookInfo(Member member);
 	
 	
 }

@@ -95,4 +95,69 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public Member selectMemberByFacebookId(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByFacebookId(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByKakaoId(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByKakaoId(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByPhyctoEmail(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByPhyctoEmail(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByMemberSeq(int member_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByMemberSeq(member_seq);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByFacebookInfo(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByFacebookInfo(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

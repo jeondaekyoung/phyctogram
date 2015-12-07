@@ -47,4 +47,39 @@ public interface MemberDao {
 	 */
 	Member selectMemberByEmail(String email);
 
+	/**
+	 * 페이스북아이디로 멤버찾기
+	 * @param member
+	 * @return
+	 */
+	Member selectMemberByFacebookId(Member member);
+
+	/**
+	 * 카카오아이디로 멤버찾기
+	 * @param member
+	 * @return
+	 */
+	Member selectMemberByKakaoId(Member member);
+
+	/**
+	 * 픽토그램가입시 이메일로 멤버찾기
+	 * @param member
+	 * @return
+	 */
+	Member selectMemberByPhyctoEmail(Member member);
+
+	/**
+	 * member_seq로 멤버찾기
+	 * @param member_seq
+	 * @return
+	 */
+	Member selectMemberByMemberSeq(int member_seq);
+
+	/**
+	 * 페이스북 가입 정보로 멤버찾기
+	 * @param memberResult
+	 * @return
+	 */
+	Member selectMemberByFacebookInfo(Member member);
+
 }

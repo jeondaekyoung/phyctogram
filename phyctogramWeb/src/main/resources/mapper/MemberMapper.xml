@@ -75,5 +75,49 @@
 		   FROM member_tb
 		 WHERE email = #{email}
 	</select>
+	
+	<select id="selectMemberByFacebookId" parameterType="Member" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de,
+				   kakao_id, kakao_nickname, kakao_thumbnailimagepath,
+				   facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		  FROM member_tb
+		WHERE join_route = #{join_route}
+		   AND facebook_id = #{facebook_id}
+	</select>
+	
+	<select id="selectMemberByKakaoId" parameterType="Member" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de,
+				   kakao_id, kakao_nickname, kakao_thumbnailimagepath,
+				   facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		  FROM member_tb
+		WHERE join_route = #{join_route}
+		   AND kakao_id = #{kakao_id}
+	</select>
+	
+	<select id="selectMemberByPhyctoEmail" parameterType="Member" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de,
+				   kakao_id, kakao_nickname, kakao_thumbnailimagepath,
+				   facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		  FROM member_tb
+		WHERE join_route = #{join_route}
+		   AND email = #{email}
+	</select>
+	
+	<select id="selectMemberByMemberSeq" parameterType="Integer" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de,
+				   kakao_id, kakao_nickname, kakao_thumbnailimagepath,
+				   facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		  FROM member_tb
+		WHERE member_seq = #{member_seq}
+	</select>
+	
+	<select id="selectMemberByFacebookInfo" parameterType="Member" resultType="Member">
+		SELECT member_seq, email, name, id, domain, password, join_de,
+				   kakao_id, kakao_nickname, kakao_thumbnailimagepath,
+				   facebook_id, facebook_email, facebook_birthday, facebook_name, facebook_gender, join_route 
+		  FROM member_tb
+		WHERE join_route = #{join_route}
+		   AND facebook_id = #{facebook_id}
+	</select>
 
 </mapper>
