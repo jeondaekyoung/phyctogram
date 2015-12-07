@@ -1,11 +1,12 @@
 package knowledge_seek.com.phyctogram.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by sjw on 2015-11-30.
  */
-public class Member {
+public class Member implements Serializable {
 
     private int member_seq;
     private String email;

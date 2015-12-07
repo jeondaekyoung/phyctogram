@@ -25,6 +25,9 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kakao.auth.AuthType;
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
@@ -35,6 +38,7 @@ import com.kakao.util.helper.TalkProtocol;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,6 +47,7 @@ import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -71,7 +76,7 @@ public class LoginActivity extends BaseActivity {
     private Button logoutButton;
 
     //데이터
-    private Member member = new Member();
+    private Member memberActivity = new Member();
 
     /**
      * 로그인 버튼을 클릭 했을시 access token을 요청하도록 설정한다.
@@ -105,21 +110,80 @@ public class LoginActivity extends BaseActivity {
             Profile profile = Profile.getCurrentProfile();
             Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
 
+            Member member = new Member();
+            member.setJoin_route("facebook");
+            member.setFacebook_id(profile.getId());
+
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+            gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
+            Gson gson = gsonBuilder.create();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(HTTPADDR)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+            MemberAPI service = retrofit.create(MemberAPI.class);
+            Call<Member> call = service.findMemberByFacebookInfo(member);
+            call.enqueue(new Callback<Member>() {
+                @Override
+                public void onResponse(Response<Member> response, Retrofit retrofit) {
+                    Log.d("-진우-", "페이스북 가입 여부 결과1 : " + response.body());
+                    memberActivity = (Member)response.body();
+                    Log.d("-진우-", "페이스북 가입 여부 결과2 : " + memberActivity.toString());
+                    redirectMainActivity(memberActivity);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
+
+
+
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
         //픽토그램 로그인 검사
-        Log.d("-진우-", "픽토그램 로그인 확인 : " + SaveSharedPreference.getUserName(getApplicationContext()));
-        if(SaveSharedPreference.getUserName(LoginActivity.this).length() == 0){
+        Log.d("-진우-", "픽토그램 로그인 확인 : " + SaveSharedPreference.getMemberSeq(getApplicationContext()));
+        if(SaveSharedPreference.getMemberSeq(getApplicationContext()).length() == 0){
             Log.d("-진우-", "픽토그램 로그인 안됨");
         } else {
             Log.d("-진우-", "픽토그램 로그인 됨");
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
+            //서버에서 멤버불러오기
+            String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
+
+            GsonBuilder gsonBuilder = new GsonBuilder();
+            gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+            gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
+            Gson gson = gsonBuilder.create();
+
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(HTTPADDR)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .build();
+            MemberAPI service = retrofit.create(MemberAPI.class);
+            Call<Member> call = service.findMemberByMemberSeq(Integer.valueOf(member_seq));
+            call.enqueue(new Callback<Member>() {
+                @Override
+                public void onResponse(Response<Member> response, Retrofit retrofit) {
+                    Log.d("-진우-", "픽토그램 가입 여부 성공 결과1 : " + response.body());
+                    memberActivity = (Member) response.body();
+                    Log.d("-진우-", "픽토그램 가입 여부 성공 결과2 : " + memberActivity.toString());
+                    redirectMainActivity(memberActivity);
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+
+                }
+            });
 
         }
 
+        //페이스북 - This class can be extended to receive notifications of access token changes
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
@@ -194,7 +258,7 @@ public class LoginActivity extends BaseActivity {
                                 gender = object.getString("gender");
                                 birthday = object.getString("birthday");
 
-
+                                Member member = new Member();
                                 member.setFacebook_id(object.getString("id"));
                                 member.setFacebook_name(object.getString("name"));
                                 member.setFacebook_email(object.getString("email"));
@@ -206,6 +270,8 @@ public class LoginActivity extends BaseActivity {
                                 Log.d("-진우-", "멤버는 " + member.toString());
 
                                 registerMember(member);
+
+                                //redirectMainActivity(memberActivity);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -220,11 +286,10 @@ public class LoginActivity extends BaseActivity {
                 request.executeAsync();
 
 
-                Profile profile = Profile.getCurrentProfile();
-                Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
+                //Profile profile = Profile.getCurrentProfile();
+                //Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
 
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
+                //redirectMainActivity(memberActivity);
             }
 
             @Override
@@ -241,7 +306,6 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("-진우-", "픽토그램 로그인 하자");
                 Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
                 startActivity(memberlogin);
             }
@@ -250,16 +314,25 @@ public class LoginActivity extends BaseActivity {
 
     //유저저장
     private void registerMember(Member member){
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
+        Gson gson = gsonBuilder.create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<String> call = service.registerMember(member);
-        call.enqueue(new Callback<String>() {
+        Call<Member> call = service.registerMember(member);
+        call.enqueue(new Callback<Member>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
-                Log.d("-진우-", "성공 결과 : " + response.body());
+            public void onResponse(Response<Member> response, Retrofit retrofit) {
+                Log.d("-진우-", "성공 결과1 : " + response.body());
+                memberActivity = (Member)response.body();
+                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
+                redirectMainActivity(memberActivity);
             }
 
             @Override
@@ -279,6 +352,15 @@ public class LoginActivity extends BaseActivity {
         }
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    //메인페이지로 이동
+    private void redirectMainActivity(Member member) {
+        //Log.d("-진우-", "페이스북 로그인 뒤에 멤버 : " + member.toString());
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("member", member);
+        startActivity(intent);
+        finish();
     }
 
     @Override

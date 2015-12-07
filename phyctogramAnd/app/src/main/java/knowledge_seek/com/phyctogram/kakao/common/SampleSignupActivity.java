@@ -5,15 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kakao.auth.ErrorCode;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
+import java.sql.Timestamp;
+
 import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberDes;
+import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
@@ -27,6 +35,10 @@ import retrofit.Retrofit;
  */
 public class SampleSignupActivity extends BaseActivity {
     public static final String HTTPADDR = "http://117.52.89.181";
+
+    private Member memberActivity = new Member();
+
+
     /**
      * Main으로 넘길지 가입 페이지를 그릴지 판단하기 위해 me를 호출한다.
      * @param savedInstanceState 기존 session 정보가 저장된 객체
@@ -75,43 +87,56 @@ public class SampleSignupActivity extends BaseActivity {
 
             @Override
             public void onSuccess(UserProfile userProfile) {
-                Log.d("-진우 ", "UserProfile : " + userProfile);
+                Log.d("-진우 ", "SampleSignupActivity.UserProfile : " + userProfile);
                 Member member = new Member();
                 member.setKakao_id(String.valueOf(userProfile.getId()));
                 member.setKakao_nickname(userProfile.getNickname());
                 member.setKakao_thumbnailimagepath(userProfile.getThumbnailImagePath());
                 member.setJoin_route("kakao");
                 Log.d("-진우-", member.toString());
+                Log.d("-진우-", "json : " + Utility.member2json(member));
                 registerMember(member);
-                redirectMainActivity();
+                //redirectMainActivity(memberActivity);
             }
         });
     }
 
     //유저저장
-    private void registerMember(Member member){
+    private void registerMember(final Member member){
+        Member m = new Member();
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
+        Gson gson = gsonBuilder.create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<String> call = service.registerMember(member);
-        call.enqueue(new Callback<String>() {
+        Call<Member> call = service.registerMember(member);
+        call.enqueue(new Callback<Member>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
-                Log.d("-진우-", "성공 결과 : " + response.body());
+            public void onResponse(Response<Member> response, Retrofit retrofit) {
+                Log.d("-진우-", "카카오 가입 성공 결과1 : " + response.body());
+                memberActivity = (Member)response.body();
+                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
+                redirectMainActivity(memberActivity);
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+                Log.d("-진우-", "카카오 가입 member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
             }
         });
 
     }
 
-    private void redirectMainActivity() {
-        startActivity(new Intent(this, MainActivity.class));
+    private void redirectMainActivity(Member member) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("member", member);
+        startActivity(intent);
         finish();
     }
 

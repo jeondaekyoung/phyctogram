@@ -91,5 +91,11 @@ public interface MemberAPI {
 
     //여기부터 시작
     @POST("/rest/member/register")
-    Call<String> registerMember(@Body Member member);
+    Call<Member> registerMember(@Body Member member);
+
+    @POST("/rest/member/findMemberByMemberSeq")
+    Call<Member> findMemberByMemberSeq(@Body int member_seq);
+
+    @POST("/rest/member/findMemberByFacebookInfo")
+    Call<Member> findMemberByFacebookInfo(@Body Member member);
 }

@@ -17,9 +17,16 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.sql.Timestamp;
+
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
@@ -32,6 +39,7 @@ import retrofit.Retrofit;
  */
 public class JoinActivity extends Activity {
     public static final String HTTPADDR = "http://117.52.89.181";
+    private Member memberActivity;
     private Member member;
 
     private EditText et_name;
@@ -85,7 +93,7 @@ public class JoinActivity extends Activity {
                 Log.d("-진우-", Utility.member2json(member));
                 registerMember(member);
 
-
+                //redirectMainActivity(memberActivity);
             }
         });
 
@@ -164,24 +172,33 @@ public class JoinActivity extends Activity {
 
     //유저저장
     private void registerMember(final Member member){
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
+        Gson gson = gsonBuilder.create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<String> call = service.registerMember(member);
-        call.enqueue(new Callback<String>() {
+        Call<Member> call = service.registerMember(member);
+        call.enqueue(new Callback<Member>() {
             @Override
-            public void onResponse(Response<String> response, Retrofit retrofit) {
-                Log.d("-진우-", "성공 결과 : " + response.body());
-                if(response.body().equals("exist")){
+            public void onResponse(Response<Member> response, Retrofit retrofit) {
+                Log.d("-진우-", "성공 결과1 : " + response.body());
+                memberActivity = (Member)response.body();
+                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
+
+                if(memberActivity == null){
                     Toast.makeText(getApplicationContext(), "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    SaveSharedPreference.setUserName(getApplicationContext(), member.getName());
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-
+                    //가입완료후 로그인유지를 위해 preference를 사용한다.
+                    SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
+                    redirectMainActivity(memberActivity);
                 }
+
             }
 
             @Override
@@ -190,6 +207,13 @@ public class JoinActivity extends Activity {
             }
         });
 
+    }
+
+    private void redirectMainActivity(Member member) {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.putExtra("member", member);
+        startActivity(intent);
+        finish();
     }
 
 }

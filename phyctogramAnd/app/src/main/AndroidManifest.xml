@@ -67,6 +67,7 @@
             </intent-filter>
         </receiver>
 
+        <!-- Activity -->
         <activity
             android:name=".LoginActivity2"
             android:screenOrientation="portrait"
