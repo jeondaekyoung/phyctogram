@@ -121,11 +121,13 @@
                         android:layout_height="wrap_content">
 
                         <ImageButton
+                            android:id="@+id/addEquip"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentRight="true"
                             android:background="@drawable/float_button_03"
+                            android:onClick="onClick"
                             android:padding="5dp" />
                     </RelativeLayout>
                 </LinearLayout>

@@ -1,26 +1,16 @@
 package knowledge_seek.com.phyctogram.retrofitapi;
 
-import com.squareup.okhttp.RequestBody;
-
-import java.util.List;
-
 import knowledge_seek.com.phyctogram.domain.Member;
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.http.Body;
-import retrofit.http.Field;
-import retrofit.http.FormUrlEncoded;
-import retrofit.http.GET;
 import retrofit.http.POST;
-import retrofit.http.Path;
-import retrofit.http.Query;
 
 /**
  * Created by sjw on 2015-12-01.
  */
 public interface MemberAPI {
 
-    @GET("/rest/member/testget")
+    /*@GET("/rest/member/testget")
     public void getFeed(Callback<List<Member>> response);
 
 
@@ -86,7 +76,7 @@ public interface MemberAPI {
     Call<Member> testget9(@Body TestDomail testDomail);
 
     @POST("/rest/test/testget10")
-    Call<TestDomail> testget10(@Body TestDomail testDomail);
+    Call<TestDomail> testget10(@Body TestDomail testDomail);*/
 
 
     //여기부터 시작

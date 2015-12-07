@@ -1,9 +1,12 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -75,6 +78,27 @@ public class EquipmentActivity extends BaseActivity implements View.OnClickListe
 
                 break;
 
+            case R.id.addEquip:
+
+                final EditText et = new EditText(this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("기기 추가")
+                        .setMessage("일련번호를 입력하세요.")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setView(et)
+                        .show();
+                break;
         }
 
     }
