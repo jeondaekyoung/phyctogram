@@ -1,6 +1,5 @@
 package knowledge_seek.com.phyctogram;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,13 +9,22 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-11-25.
  */
-public class UseraddActivity extends BaseActivity {
+public class UsersAddActivity extends BaseActivity {
+    public static final String HTTPADDR = "http://117.52.89.181";
 
     //사이드매뉴
     public static Button bt_left;
@@ -26,6 +34,7 @@ public class UseraddActivity extends BaseActivity {
     public static Button btn4;
 
     //데이터
+    private Member member;
     private Users users;
 
     //레이아웃 정의
@@ -40,7 +49,14 @@ public class UseraddActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_useradd);
+        setContentView(R.layout.activity_users_add);
+
+        //데이터셋팅
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            member = (Member)bundle.getSerializable("member");
+            Log.d("-진우-", "UserAaddActivity 에서 " + member.toString());
+        }
 
         //사이드매뉴
         bt_left = (Button) findViewById(R.id.bt_left);
@@ -82,6 +98,7 @@ public class UseraddActivity extends BaseActivity {
                 Log.d("-진우-", String.valueOf(rb_male.isChecked()));*/
 
                 //이름 및 이니셜 체크
+                users.setMember_seq(member.getMember_seq());
                 users.setName(et_name.getText().toString());
                 users.setInitials(et_initials.getText().toString());
                 users.setLifyea(String.valueOf(dp_lifedate.getYear()));
@@ -97,6 +114,26 @@ public class UseraddActivity extends BaseActivity {
                     return ;
                 }
 
+                //내아이 저장하기
+                Log.d("-진우-", "내 아이 저장하기 : " + users.toString());
+                Log.d("-진우-", "json : " + Utility.users2json(users));
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(HTTPADDR)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UsersAPI service = retrofit.create(UsersAPI.class);
+                Call<String> call = service.registerUsers(users);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Response<String> response, Retrofit retrofit) {
+                        Log.d("-진우-", "내 아이 등록 결과 : " + response.body());
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Log.d("-진우-", "내 아이 등록 실패 " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+                    }
+                });
             }
         });
 
@@ -104,7 +141,7 @@ public class UseraddActivity extends BaseActivity {
 
     //users의 내용 체크
     private boolean checkUsers(Users users){
-        Log.d("-진우-", users.toString());
+        //Log.d("-진우-", users.toString());
         if(users.getName().length() <= 0 || users.getInitials().length() <= 0){
             return false;
         }

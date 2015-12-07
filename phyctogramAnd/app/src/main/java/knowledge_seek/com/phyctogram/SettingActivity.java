@@ -115,7 +115,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 startActivity(pwmod);
                 break;
             case R.id.list_userdrop:
-                Intent userdrop = new Intent(this, UserDropActivity.class);
+                Intent userdrop = new Intent(this, UsersDropActivity.class);
                 startActivity(userdrop);
                 break;
         }

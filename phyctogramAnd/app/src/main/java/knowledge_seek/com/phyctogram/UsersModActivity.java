@@ -10,7 +10,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 /**
  * Created by dkfka on 2015-11-25.
  */
-public class UsermodActivity extends BaseActivity implements View.OnClickListener {
+public class UsersModActivity extends BaseActivity implements View.OnClickListener {
 
     /* slide menu */
 //public static DisplayMetrics metrics;
@@ -28,7 +28,7 @@ public class UsermodActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usermodify);
+        setContentView(R.layout.activity_users_modify);
 
 
         bt_left = (Button) findViewById(R.id.bt_left);

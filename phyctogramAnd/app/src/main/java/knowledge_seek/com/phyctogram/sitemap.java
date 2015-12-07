@@ -20,12 +20,12 @@ public class sitemap extends AppCompatActivity {
 
         switch (v.getId()) {
             case R.id.btn_useradd:
-                Intent btn1 = new Intent(this, UseraddActivity.class);
+                Intent btn1 = new Intent(this, UsersAddActivity.class);
                 startActivity(btn1);
                 break;
 
             case R.id.btn_usermod:
-                Intent btn2 = new Intent(this, UsermodActivity.class);
+                Intent btn2 = new Intent(this, UsersModActivity.class);
                 startActivity(btn2);
                 break;
 
@@ -55,7 +55,7 @@ public class sitemap extends AppCompatActivity {
                 break;
 
             case R.id.btn_userdrop:
-                Intent btn9 = new Intent(this, UserDropActivity.class);
+                Intent btn9 = new Intent(this, UsersDropActivity.class);
                 startActivity(btn9);
                 break;
 
@@ -86,7 +86,7 @@ public class sitemap extends AppCompatActivity {
                 startActivity(btn15);
                 break;
             case R.id.btn_usermanage:
-                Intent btn16 = new Intent(this, UserManageActivity.class);
+                Intent btn16 = new Intent(this, UsersManageActivity.class);
                 startActivity(btn16);
                 break;
         }

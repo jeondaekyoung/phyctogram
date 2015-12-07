@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import knowledge_seek.com.phyctogram.domain.Member;
+import knowledge_seek.com.phyctogram.domain.Users;
 
 /**
  * Created by sjw on 2015-11-30.
@@ -42,6 +43,11 @@ public class Utility {
 
     public static String member2json(Member member){
         String json = new Gson().toJson(member);
+        return json;
+    }
+
+    public static String users2json(Users users){
+        String json = new Gson().toJson(users);
         return json;
     }
 

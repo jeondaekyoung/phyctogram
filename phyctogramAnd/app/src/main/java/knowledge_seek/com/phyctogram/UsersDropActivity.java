@@ -1,17 +1,18 @@
 package knowledge_seek.com.phyctogram;
 
-
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
- * Created by dkfka on 2015-12-07.
+ * Created by dkfka on 2015-11-27.
  */
-public class UserManageActivity extends BaseActivity implements View.OnClickListener {
+public class UsersDropActivity extends BaseActivity implements View.OnClickListener {
 
     /* slide menu */
     //public static DisplayMetrics metrics;
@@ -29,7 +30,7 @@ public class UserManageActivity extends BaseActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_usermanage);
+        setContentView(R.layout.activity_users_drop);
 
 
         bt_left = (Button) findViewById(R.id.bt_left);
@@ -68,7 +69,24 @@ public class UserManageActivity extends BaseActivity implements View.OnClickList
 
                 break;
 
+            case R.id.btn_dropout:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("회원 탈퇴시 모든 데이터가 삭제되므로 복구가 되지 않습니다. 탈퇴 하시겠습니까?")
+                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        });
 
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                break;
         }
 
     }
