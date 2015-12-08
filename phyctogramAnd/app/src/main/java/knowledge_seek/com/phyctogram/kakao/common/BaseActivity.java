@@ -211,7 +211,4 @@ public class BaseActivity extends Activity {
     }
 
 
-    //캘린더
-
-
 }

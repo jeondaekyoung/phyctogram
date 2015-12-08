@@ -43,10 +43,10 @@ public class CommunityListActivity extends BaseActivity implements View.OnClickL
         //커뮤니티 글 목록
         ListView listview = (ListView) findViewById(R.id.list_board);
 
-        ArrayList<Listviewitem_com> data = new ArrayList<>();
-        Listviewitem_com item = new Listviewitem_com("안녕", "ar", "12-04", "55", "11");
+        ArrayList<Listviewitem> data = new ArrayList<>();
+        Listviewitem item = new Listviewitem("안녕", "ar", "12-04", "55", "11");
         data.add(item);
-        Listviewitem_com item2 = new Listviewitem_com("안녕", "ar", "12-04", "55", "11");
+        Listviewitem item2 = new Listviewitem("안녕", "ar", "12-04", "55", "11");
         data.add(item2);
 
         ListviewAdapter adapter = new ListviewAdapter(this, R.layout.list_community, data);

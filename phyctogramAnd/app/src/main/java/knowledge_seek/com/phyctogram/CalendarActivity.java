@@ -206,7 +206,18 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
 
                 break;
 
+            case R.id.btn_write:
+                Intent write = new Intent(this, DiaryWriteActivity.class);
+                startActivity(write);
+                break;
+
         }
 
+    }
+
+    public void onClickDay(View v) {
+
+        Intent view = new Intent(this, DiaryViewActivity.class);
+        startActivity(view);
     }
 }

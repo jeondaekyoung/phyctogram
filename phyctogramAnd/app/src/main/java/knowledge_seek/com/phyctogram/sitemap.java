@@ -50,7 +50,7 @@ public class sitemap extends AppCompatActivity {
                 break;
 
             case R.id.btn_write:
-                Intent btn8 = new Intent(this, WriteActivity.class);
+                Intent btn8 = new Intent(this, CommunityWriteActivity.class);
                 startActivity(btn8);
                 break;
 
@@ -88,6 +88,18 @@ public class sitemap extends AppCompatActivity {
             case R.id.btn_usermanage:
                 Intent btn16 = new Intent(this, UsersManageActivity.class);
                 startActivity(btn16);
+                break;
+            case R.id.btn_boardview:
+                Intent btn17 = new Intent(this, CommunityViewActivity.class);
+                startActivity(btn17);
+                break;
+            case R.id.btn_report:
+                Intent btn18 = new Intent(this, CombinedChartActivity.class);
+                startActivity(btn18);
+                break;
+            case R.id.btn_character:
+                Intent btn19 = new Intent(this, CharacterActivity.class);
+                startActivity(btn19);
                 break;
         }
     }

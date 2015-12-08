@@ -114,5 +114,27 @@
             android:layout_height="wrap_content"
             android:onClick="onClick"
             android:text="usermanage" />
+
+        <Button
+            android:id="@+id/btn_boardview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="boardview" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/btn_report"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="report" />
+        <Button
+            android:id="@+id/btn_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="character" />
     </TableRow>
 </TableLayout>

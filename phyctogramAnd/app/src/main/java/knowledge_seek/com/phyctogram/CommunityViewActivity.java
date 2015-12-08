@@ -68,6 +68,12 @@ public class CommunityViewActivity extends BaseActivity implements View.OnClickL
             case R.id.btn4:
 
                 break;
+            case R.id.reply:
+
+                Intent reply = new Intent(this, CommunityReplyActivity.class);
+                startActivity(reply);
+
+                break;
 
         }
 

@@ -10,7 +10,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 /**
  * Created by dkfka on 2015-11-26.
  */
-public class WriteActivity extends BaseActivity implements View.OnClickListener {
+public class CommunityWriteActivity extends BaseActivity implements View.OnClickListener {
 
     /* slide menu */
 //public static DisplayMetrics metrics;
@@ -28,7 +28,7 @@ public class WriteActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write);
+        setContentView(R.layout.activity_commuinity_write);
 
 
         bt_left = (Button) findViewById(R.id.bt_left);

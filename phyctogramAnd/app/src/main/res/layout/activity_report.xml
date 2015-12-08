@@ -80,91 +80,39 @@
                             android:src="@drawable/sample" />
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="150dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            android:paddingLeft="30dp">
+                            android:layout_width="wrap_content" android:layout_height="150dp" android:gravity="center" android:orientation="vertical" android:paddingLeft="20dp">
 
+                            //최종신장
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal">
-
+                                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:gravity="center" android:orientation="horizontal">
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="최종신장"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:gravity="center" android:text="최종신장" android:textColor="#ffffff" />
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="142.5"
-                                    android:textColor="#ffffff"
-                                    android:textSize="26dp" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:text="142.5" android:textColor="#ffffff" android:textSize="26dp" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="cm"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="cm" android:textColor="#ffffff" />
                             </LinearLayout>
 
+                            //+성장값
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="10dp"
-                                android:orientation="horizontal">
-
+                                android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:gravity="center" android:orientation="horizontal">
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:textColor="#ffffff" />
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="+2.5"
-                                    android:textColor="#ffffff"
-                                    android:textSize="26dp" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:text="+2.5" android:textColor="#ffffff" android:textSize="26dp" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="cm"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="cm" android:textColor="#ffffff" />
                             </LinearLayout>
 
+                            //상위
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
+                                android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal">
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center"
-                                    android:text="상위"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:gravity="center" android:text="상위" android:textColor="#ffffff" />
                                 <TextView
-                                    android:layout_width="70dp"
-                                    android:layout_height="wrap_content"
-                                    android:text="14"
-                                    android:textColor="#ffffff"
-                                    android:textSize="26dp" />
-
+                                    android:layout_width="70dp" android:layout_height="wrap_content" android:text="14" android:textColor="#ffffff" android:textSize="26dp" />
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="%"
-                                    android:textColor="#ffffff" />
-
+                                    android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="%" android:textColor="#ffffff" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -172,138 +120,69 @@
                     </LinearLayout>
 
                     <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#F6D14C"
-                        android:orientation="horizontal"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp">
-
+                        android:layout_width="match_parent" android:layout_height="wrap_content">
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingBottom="5dp"
-                                android:text="평균 147cm" />
-
+                            android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
+                                android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#F6D14C" android:orientation="horizontal" android:paddingBottom="20dp" android:paddingTop="20dp">
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingRight="5dp"
-                                    android:src="@drawable/btn_menu" />
+                                //평균
+                                <LinearLayout
+                                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingBottom="5dp" android:text="평균 147cm" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal">
+                                        <ImageView
+                                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingRight="5dp" android:src="@drawable/btn_menu" />
+                                        <TextView
+                                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5.5cm" android:textSize="24dp" />
+                                    </LinearLayout>
+                                </LinearLayout>
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="5.5cm"
-                                    android:textSize="24dp" />
-
+                                //성장
+                                <LinearLayout
+                                    android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingBottom="5dp" android:text="8개월동안 1.5cm 성장" />
+                                    <LinearLayout
+                                        android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="center" android:orientation="horizontal">
+                                        <ImageView
+                                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingRight="5dp" android:src="@drawable/btn_menu" />
+                                        <TextView
+                                            android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2.5cm" android:textSize="24dp" />
+                                    </LinearLayout>
+                                </LinearLayout>
                             </LinearLayout>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
+                            //분석글
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingBottom="5dp"
-                                android:text="8개월동안 1.5cm 성장" />
+                                android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:text="분석:" />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingLeft="10dp" android:paddingRight="10dp" android:text="평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다." />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingLeft="10dp" android:paddingRight="10dp" android:text="Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다." />
+                            <TextView
+                                android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:text="Tanner 분류법 (바로가기 링크)" android:textColor="#ff0000" />
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
+                            //공유버튼
+                            <Button
+                                android:layout_width="wrap_content" android:layout_height="40dp" android:layout_marginLeft="10dp" android:text="공유하기" />
 
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingRight="5dp"
-                                    android:src="@drawable/btn_menu" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="2.5cm"
-                                    android:textSize="24dp" />
-
-                            </LinearLayout>
+                            //그래프
+                            <charting.charts.CombinedChart
+                                android:id="@+id/chart1" android:layout_width="match_parent" android:layout_height="360dp" android:padding="10dp" />
                         </LinearLayout>
-                    </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="15dp"
-                            android:text="분석:"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:text="평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다."/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:text="Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다."/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="15dp"
-                            android:text="Tanner 분류법 (바로가기 링크)"
-                            android:textColor="#ff0000"/>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""/>
-
-                        <com.github.mikephil.charting.charts.CombinedChart
-                            android:id="@+id/chart1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"/>
-
+                    </ScrollView>
                 </LinearLayout>
 
-            </ScrollView>
-
+                <LinearLayout
+                    android:id="@+id/ll_empty"
+                    android:layout_width="fill_parent"
+                    android:layout_height="524dp"
+                    android:background="@android:color/transparent"
+                    android:orientation="horizontal"></LinearLayout>
+            </FrameLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_empty"
-            android:layout_width="fill_parent"
-            android:layout_height="524dp"
-            android:background="@android:color/transparent"
-            android:orientation="horizontal"></LinearLayout>
     </FrameLayout>
-</LinearLayout></FrameLayout>
-
-    </LinearLayout>
+</LinearLayout>

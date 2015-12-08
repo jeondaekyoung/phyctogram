@@ -87,7 +87,7 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
                 dayViews.add(ov);
             }
         }
-        
+
         //for Preview of Graphic editor
         if(isInEditMode()) {
             Calendar cal = Calendar.getInstance();
@@ -133,20 +133,20 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         if(mYear == year && mMonth == month) {
             return;
         }
-        
+
         long makeTime = System.currentTimeMillis();
-        
+
         this.mYear = year;
         this.mMonth = month;
 
         Calendar cal = Calendar.getInstance();
         cal.set(year, month, 1);
         cal.setFirstDayOfWeek(Calendar.SUNDAY);//Sunday is first day of week in this sample
-        
+
         int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);//Get day of the week in first day of this month
         int maxOfMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);//Get max day number of this month
         ArrayList<OneDayData> oneDayDataList = new ArrayList<>();
-        
+
         cal.add(Calendar.DAY_OF_MONTH, Calendar.SUNDAY - dayOfWeek);//Move to first day of first week
         //HLog.d(TAG, CLASS, "first day : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
 
@@ -155,14 +155,14 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         for(;;) {
             seekDay = cal.get(Calendar.DAY_OF_WEEK);
             if(dayOfWeek == seekDay) break;
-            
+
             OneDayData one = new OneDayData();
             one.setDay(cal);
             oneDayDataList.add(one);
             //하루 증가
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
-        
+
         //HLog.d(TAG, CLASS, "this month : " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.KOREA) + " / " + cal.get(Calendar.DAY_OF_MONTH));
         /* add this month */
         for(int i=0; i < maxOfMonth; i++) {
@@ -179,22 +179,22 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
                 OneDayData one = new OneDayData();
                 one.setDay(cal);
                 oneDayDataList.add(one);
-            } 
+            }
             else {
                 break;
             }
             //add one day
             cal.add(Calendar.DAY_OF_MONTH, 1);
         }
-        
+
         if(oneDayDataList.size() == 0) return;
 
         //Remove all day-views
         this.removeAllViews();
-        
+
         int count = 0;
         for(OneDayData one : oneDayDataList) {
-            
+
             if(count % 7 == 0) {
                 addView(weeks.get(count / 7));
             }
@@ -210,23 +210,23 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
 
 
        /* HLog.d(TAG, CLASS, "<<<<< making timeMillis : " + (System.currentTimeMillis() - makeTime));*/
- 
+
     }
 
 
     protected String doubleString(int value) {
 
         String temp;
- 
+
         if(value < 10){
             temp = "0"+ String.valueOf(value);
-             
+
         }else {
             temp = String.valueOf(value);
         }
         return temp;
     }
- 
+
     @Override
     public void onClick(View v) {
 
@@ -234,5 +234,4 @@ public class OneMonthView extends LinearLayout implements View.OnClickListener {
         /*HLog.d(TAG, CLASS, "click " + ov.get(Calendar.MONTH) + "/" + ov.get(Calendar.DAY_OF_MONTH));*/
 
     }
-
 }
