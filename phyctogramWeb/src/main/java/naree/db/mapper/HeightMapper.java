@@ -9,4 +9,6 @@ public interface HeightMapper {
 	int insertHeight(Height insHeight);
 
 	List<Height> selectHeightByUser_seq(String user_seq);
+
+	int deleteHeightByUserSeq(String user_seq);
 }

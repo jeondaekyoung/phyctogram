@@ -22,5 +22,16 @@
 						#{sexdstn},
 						#{member_seq} )
 	</insert>
+	
+	<select id="selectUsersByMemberSeq" parameterType="String" resultType="Users">
+		SELECT user_seq, name, initials, lifyea, mt, de, sexdstn, member_seq 
+	       FROM users_tb
+	     WHERE member_seq = #{member_seq}
+	</select>
+	
+	<delete id="delectUsersByUserSeq" parameterType="String">
+		DELETE FROM users_tb 
+		WHERE user_seq = #{user_seq}
+	</delete>
 
 </mapper>

@@ -79,4 +79,10 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMemberByFacebookInfo(member);
 	}
 
+	@Override
+	public Member loginMemberByPhycto(Member member) {
+		
+		return memberDao.selectMemberByPhycto(member);
+	}
+
 }

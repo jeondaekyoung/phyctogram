@@ -41,4 +41,19 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	@Override
+	public void deleteHeightByUserSeq(String user_seq) {
+		System.out.println("HeightDaoImpl.deleteHeightByUserSeq : " + user_seq);
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			result = heightMapper.deleteHeightByUserSeq(user_seq);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
+	}
+
 }

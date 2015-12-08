@@ -31,6 +31,13 @@ public interface MemberService {
 	 * @return
 	 */
 	Member findMemberByFacebookInfo(Member member);
+
+	/**
+	 * 픽토그램 멤버 로그인하기
+	 * @param member
+	 * @return
+	 */
+	Member loginMemberByPhycto(Member member);
 	
 	
 }

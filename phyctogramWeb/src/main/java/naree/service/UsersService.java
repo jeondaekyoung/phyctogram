@@ -1,14 +1,30 @@
 package naree.service;
 
+import java.util.List;
+
 import naree.db.domain.Users;
 
 public interface UsersService {
 
 	/**
-	 * 내 아이 등록하기
+	 * 유저(내 아이) 등록하기
 	 * @param users
 	 * @return
 	 */
 	int registerUsers(Users users);
+
+	/**
+	 * 멤버로 유저(내 아이) 찾기
+	 * @param member_seq
+	 * @return
+	 */
+	List<Users> findUsersByMemberSeq(String member_seq);
+
+	/**
+	 * 내 아이(유저) 삭제(키도 삭제)
+	 * @param user_seq
+	 * @return 
+	 */
+	int delUsersByUserSeq(String user_seq);
 
 }

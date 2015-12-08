@@ -82,4 +82,11 @@ public interface MemberDao {
 	 */
 	Member selectMemberByFacebookInfo(Member member);
 
+	/**
+	 * 픽토그램 멤버 로그인하기
+	 * @param member
+	 * @return
+	 */
+	Member selectMemberByPhycto(Member member);
+
 }

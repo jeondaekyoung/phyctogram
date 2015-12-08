@@ -79,7 +79,20 @@ public class MemberRestController {
 	public Member findMemberByFacebookInfo(@RequestBody Member member){
 		logger.info("member 찾기 " + member.toString());
 		
-		member = memberService.findMemberByFacebookInfo(member);
-		return member;
+		return memberService.findMemberByFacebookInfo(member);
 	}
+	
+	
+	/**
+	 * 픽토그램 멤버 로그인하기
+	 * @param member
+	 * @return
+	 */
+	@RequestMapping(value = "loginMemberByPhycto", method = RequestMethod.POST)
+	public Member loginMemberByPhycto(@RequestBody Member member){
+		logger.info("멤버 로그인 하기 : " + member.toString());
+		
+		return memberService.loginMemberByPhycto(member);
+	}
+	
 }

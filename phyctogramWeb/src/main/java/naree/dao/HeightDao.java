@@ -18,4 +18,10 @@ public interface HeightDao {
 	 * @return
 	 */
 	List<Height> selectHeightByUser_seq(String user_seq);
+
+	/**
+	 * 내 아이(유저)의 키 데이터 삭제
+	 * @param user_seq
+	 */
+	void deleteHeightByUserSeq(String user_seq);
 }

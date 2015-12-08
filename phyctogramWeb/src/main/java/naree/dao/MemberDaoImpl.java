@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import naree.db.domain.Member;
-import naree.db.mapper.HeightMapper;
 import naree.db.mapper.MemberMapper;
 import naree.util.factory.ConnectionFactory;
 
@@ -154,6 +153,19 @@ public class MemberDaoImpl implements MemberDao {
 		try{
 			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
 			result = memberMapper.selectMemberByFacebookInfo(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public Member selectMemberByPhycto(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Member result;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByPhycto(member);
 		}finally{
 			sqlSession.close();
 		}

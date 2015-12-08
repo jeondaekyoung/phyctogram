@@ -22,5 +22,10 @@
 	 ORDER BY mesure_date DESC
 	 	   LIMIT 1
 	</select>
+	
+	<delete id="deleteHeightByUserSeq" parameterType="String">
+		DELETE FROM height_tb
+		WHERE user_seq = #{user_seq}
+	</delete>
 
 </mapper>
