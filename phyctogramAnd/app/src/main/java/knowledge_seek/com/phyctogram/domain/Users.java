@@ -1,9 +1,11 @@
 package knowledge_seek.com.phyctogram.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by sjw on 2015-12-04.
  */
-public class Users {
+public class Users implements Serializable {
 
     private int user_seq;
     private String name;

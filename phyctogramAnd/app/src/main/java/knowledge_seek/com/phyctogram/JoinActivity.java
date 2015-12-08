@@ -170,7 +170,7 @@ public class JoinActivity extends Activity {
         return true;
     }
 
-    //유저저장
+    //멤버저장
     private void registerMember(final Member member){
 
         GsonBuilder gsonBuilder = new GsonBuilder();

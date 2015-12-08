@@ -57,11 +57,16 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
             }
         });
 
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.d("-진우-", "onResume() : " + member.toString());
+    }
 }

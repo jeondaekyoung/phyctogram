@@ -88,4 +88,7 @@ public interface MemberAPI {
 
     @POST("/rest/member/findMemberByFacebookInfo")
     Call<Member> findMemberByFacebookInfo(@Body Member member);
+
+    @POST("/rest/member/loginMemberByPhycto")
+    Call<Member> loginMemberByPhycto(@Body Member member);
 }

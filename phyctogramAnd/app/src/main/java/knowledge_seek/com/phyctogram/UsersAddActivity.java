@@ -8,6 +8,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -127,6 +128,9 @@ public class UsersAddActivity extends BaseActivity {
                     @Override
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         Log.d("-진우-", "내 아이 등록 결과 : " + response.body());
+                        if(response.body() != null && response.body().equals("success")){
+                            Toast.makeText(getApplicationContext(), "내 아이 등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override

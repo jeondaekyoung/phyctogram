@@ -25,6 +25,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/et_email"
             android:layout_marginLeft="40dp"
             android:background="#00000000"
             android:hint="e-mail"
@@ -40,6 +41,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/et_pw"
             android:layout_marginLeft="40dp"
             android:background="#00000000"
             android:hint="password"
@@ -48,12 +50,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/member_login"
+        android:id="@+id/btn_member_login"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/log_btn"
-        android:onClick="onClick"
         android:text="회원 로그인"
         android:textColor="#ffffff"
         android:textSize="12dp" />
@@ -67,7 +68,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="intentFindPw"
             android:text="비밀번호 찾기"
             android:textColor="#fff"
             android:textSize="12dp" />
