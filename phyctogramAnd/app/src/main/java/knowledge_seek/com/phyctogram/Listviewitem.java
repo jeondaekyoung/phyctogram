@@ -59,3 +59,15 @@ class Listviewitem_reply {
         this.reply_content = reply_content;
     }
 }
+
+
+//슬라이드 메뉴 사용자 목록
+class Listviewitem_users {
+    private String username;
+
+    public String getUsername() { return username; }
+
+    public Listviewitem_users(String userid, String username) {
+        this.username = username;
+    }
+}

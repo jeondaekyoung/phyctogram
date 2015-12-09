@@ -27,19 +27,13 @@ public class ListviewAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {
-        return data.size();
-    }
+    public int getCount() { return data.size(); }
 
     @Override
-    public String getItem(int position) {
-        return data.get(position).getTitle();
-    }
+    public String getItem(int position) { return data.get(position).getTitle(); }
 
     @Override
-    public long getItemId(int position) {
-        return position;
-    }
+    public long getItemId(int position) { return position; }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -144,6 +138,43 @@ class ListviewAdapter_reply extends BaseAdapter {
         TextView replyContent = (TextView) convertView.findViewById(R.id.community_reply_content);
         userId.setText(listviewitem_reply.getUserid());
         replyContent.setText(listviewitem_reply.getReply_content());
+        return convertView;
+    }
+}
+
+
+
+
+
+//커뮤니티 댓글 목록
+class ListviewAdapter_users extends BaseAdapter {
+    private LayoutInflater inflater;
+    private ArrayList<Listviewitem_users> data;
+    private int layout;
+
+    public ListviewAdapter_users(Context context, int layout, ArrayList<Listviewitem_users> data) {
+            this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.data = data;
+            this.layout = layout;
+    }
+
+    @Override
+    public int getCount() { return data.size(); }
+
+    @Override
+    public String getItem(int position) { return data.get(position).getUsername(); }
+
+    @Override
+    public long getItemId(int position) { return position; }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = inflater.inflate(layout, parent, false);
+        }
+        Listviewitem_users listviewitem_users = data.get(position);
+        TextView username = (TextView) convertView.findViewById(R.id.username);
+        username.setText(listviewitem_users.getUsername());
         return convertView;
     }
 }
