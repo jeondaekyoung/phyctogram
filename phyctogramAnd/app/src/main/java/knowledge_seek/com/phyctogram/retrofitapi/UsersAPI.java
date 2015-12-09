@@ -23,4 +23,8 @@ public interface UsersAPI {
 
     @POST("/rest/users/delUsersByUserSeq")
     Call<String> delUsersByUserSeq(@Query("user_seq") String user_seq);
+
+    @POST("/rest/users/modUsersByUsers")
+    Call<String> modUsersByUsers(@Body Users users);
+
 }

@@ -33,7 +33,7 @@
     </RelativeLayout>
 
     <ListView
-        android:id="@+id/list_user"
+        android:id="@+id/lv_userslist"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:divider="#e0e0e0"

@@ -8,9 +8,19 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-11-25.
@@ -43,7 +53,10 @@ public class UsersModActivity extends BaseActivity {
         if (bundle != null) {
             users = (Users) bundle.getSerializable("users");
             Log.d("-진우-", "UsersModActivity 에서 " + users.toString());
+        } else {
+            users = new Users();
         }
+
 
         //사이드 메뉴
         bt_left = (Button) findViewById(R.id.bt_left);
@@ -77,7 +90,50 @@ public class UsersModActivity extends BaseActivity {
         btn_usersmod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                users.setName(et_name.getText().toString());
+                users.setInitials(et_initials.getText().toString());
+                users.setLifyea(String.valueOf(dp_lifedate.getYear()));
+                users.setMt(String.valueOf((dp_lifedate.getMonth() + 1)));
+                users.setDe(String.valueOf(dp_lifedate.getDayOfMonth()));
+                if(rb_female.isChecked()){
+                    users.setSexdstn("female");
+                } else if(rb_male.isChecked()){
+                    users.setSexdstn("male");
+                }
 
+                if(!checkUsers(users)){
+                    return ;
+                }
+
+                Log.d("-진우-", "내 아이 수정하기 : " + users.toString());
+                Log.d("-진우-", "json : " + Utility.users2json(users));
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(HTTPADDR)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                UsersAPI service = retrofit.create(UsersAPI.class);
+                Call<String> call = service.modUsersByUsers(users);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Response<String> response, Retrofit retrofit) {
+                        Log.d("-진우-", "내 아이 수정 성공 결과 : " + response.body());
+                        if(response.body().equals("success")){
+                            Toast.makeText(UsersModActivity.this, "수정하였습니다", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Log.d("-진우-", "내 아이 수정 실패 " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+                    }
+                });
+                /*try {
+                    String result = call.execute().body();
+                    Log.d("-진우-", "내 아이 수정 성공 결과 : " + result);
+
+                } catch (IOException e){
+                    Log.d("-진우-", "내 아이 수정에 실패하였습니다");
+                }*/
             }
         });
 
@@ -85,5 +141,12 @@ public class UsersModActivity extends BaseActivity {
     }
 
 
-
+    //users의 내용 체크
+    private boolean checkUsers(Users users){
+        //Log.d("-진우-", users.toString());
+        if(users.getName().length() <= 0 || users.getInitials().length() <= 0){
+            return false;
+        }
+        return true;
+    }
 }

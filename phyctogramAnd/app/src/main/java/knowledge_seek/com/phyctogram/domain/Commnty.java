@@ -8,10 +8,11 @@ import java.sql.Timestamp;
 public class Commnty {
 
     private int commty_seq;
-    private String title;
-    private String contents;
+    private String title;       //제목
+    private String contents;    //내용
     private String image_nm;
     private String image_server_nm;
+
     private Timestamp writng_de;
     private int recomend_co;
     private String comment_no;

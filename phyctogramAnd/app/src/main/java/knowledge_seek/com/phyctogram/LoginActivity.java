@@ -151,9 +151,9 @@ public class LoginActivity extends BaseActivity {
         if(SaveSharedPreference.getMemberSeq(getApplicationContext()).length() == 0){
             Log.d("-진우-", "픽토그램 로그인 안됨");
         } else {
-            Log.d("-진우-", "픽토그램 로그인 됨");
             //서버에서 멤버불러오기
             String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
+            Log.d("-진우-", "픽토그램 로그인 됨 : " + member_seq);
 
             GsonBuilder gsonBuilder = new GsonBuilder();
             gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
