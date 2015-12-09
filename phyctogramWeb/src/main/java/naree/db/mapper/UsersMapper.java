@@ -12,4 +12,6 @@ public interface UsersMapper {
 
 	int delectUsersByUserSeq(String user_seq);
 
+	int updateUsersByUsers(Users users);
+
 }

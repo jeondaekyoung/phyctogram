@@ -66,4 +66,17 @@ public class UsersRestController {
 		
 		return "success";
 	}
+	
+	@RequestMapping(value = "modUsersByUsers", method = RequestMethod.POST)
+	public String modUsersByUsers(@RequestBody Users users){
+		logger.info("modUsersByUsers 실행 : " + users);
+		
+		int result = usersService.modifyUsersByUsers(users);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 }

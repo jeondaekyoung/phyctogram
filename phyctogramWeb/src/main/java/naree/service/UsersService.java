@@ -27,4 +27,11 @@ public interface UsersService {
 	 */
 	int delUsersByUserSeq(String user_seq);
 
+	/**
+	 * 내 아이(유저) 수정
+	 * @param users
+	 * @return
+	 */
+	int modifyUsersByUsers(Users users);
+
 }

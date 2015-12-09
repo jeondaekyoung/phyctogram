@@ -33,5 +33,16 @@
 		DELETE FROM users_tb 
 		WHERE user_seq = #{user_seq}
 	</delete>
+	
+	<update id="updateUsersByUsers" parameterType="Users">
+		UPDATE users_tb SET
+					name = #{name},
+					initials = #{initials},
+					lifyea = #{lifyea},
+					mt = #{mt},
+					de = #{de},
+					sexdstn = #{sexdstn}
+		  WHERE user_seq = #{user_seq}
+	</update>
 
 </mapper>

@@ -27,4 +27,11 @@ public interface UsersDao {
 	 */
 	int delectUsersByUserSeq(String user_seq);
 
+	/**
+	 * 내 아이(유저) 수정
+	 * @param users
+	 * @return
+	 */
+	int updateUsersByUsers(Users users);
+
 }

@@ -53,4 +53,18 @@ public class UsersDaoImpl implements UsersDao {
 		return result;
 	}
 
+	@Override
+	public int updateUsersByUsers(Users users) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
+			result = usersMapper.updateUsersByUsers(users);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

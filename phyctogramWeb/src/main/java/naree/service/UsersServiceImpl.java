@@ -44,6 +44,12 @@ public class UsersServiceImpl implements UsersService {
 		return usersDao.delectUsersByUserSeq(user_seq);
 	}
 
+	@Override
+	public int modifyUsersByUsers(Users users) {
+		
+		return usersDao.updateUsersByUsers(users);
+	}
+
 
 
 }
