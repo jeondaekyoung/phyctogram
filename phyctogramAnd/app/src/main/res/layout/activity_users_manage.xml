@@ -51,7 +51,7 @@
                     <Button
                         android:id="@+id/bt_left"
                         android:layout_width="25dp"
-                        android:layout_height="21dp"
+                        android:layout_height="25dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="8dp"
                         android:background="@drawable/btn_menu" />
@@ -65,19 +65,17 @@
                     android:layout_marginTop="45dp"
                     android:orientation="vertical">
 
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/btn_usersadd"
+                        android:background="#f2f2f2"
+                        android:text="+ 내 아이 추가" />
+
                     <ListView
                         android:id="@+id/lv_userslist"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:id="@+id/btn_usersadd"
-                        android:background="#c1abe1"
-                        android:text="내 아이 추가"
-                        android:textColor="#ffffff" />
-
                 </LinearLayout>
 
             </FrameLayout>

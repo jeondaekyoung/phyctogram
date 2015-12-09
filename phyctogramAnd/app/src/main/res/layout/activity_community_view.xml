@@ -149,6 +149,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:background="#eeeeee"
+                            android:editable="false"
                             android:hint="댓글쓰기"
                             android:onClick="onClick"
                             android:padding="5dp" />

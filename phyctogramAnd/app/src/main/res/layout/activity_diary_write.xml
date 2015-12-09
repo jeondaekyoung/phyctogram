@@ -52,7 +52,7 @@
                     <Button
                         android:id="@+id/bt_left"
                         android:layout_width="25dp"
-                        android:layout_height="21dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentLeft="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="12dp"
@@ -67,18 +67,17 @@
                     android:orientation="vertical"
                     android:padding="10dp">
 
-                    <TextView
+                    <EditText
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:background="@drawable/borderbottom"
+                        android:editable="false"
                         android:gravity="left|center"
-                        android:text=" 2015-11-26" />
+                        android:text="2015-11-26" />
 
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/borderbottom"
                         android:hint=" 제목"
                         android:textSize="14dp" />
 
@@ -86,7 +85,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/borderbottom"
                         android:gravity="top|left"
                         android:hint=" 내용"
                         android:inputType="textMultiLine"
@@ -101,18 +99,18 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/pic"
-                            android:layout_width="36dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_alignParentLeft="true"
                             android:background="@drawable/write_pic" />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/mov"
-                            android:layout_width="36dp"
-                            android:layout_height="40dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="5dp"
                             android:layout_toRightOf="@id/pic"
