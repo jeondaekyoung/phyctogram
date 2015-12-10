@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -63,16 +64,18 @@ public class UsersManageActivity extends BaseActivity {
         lv_usersList_manage.setAdapter(usersListManageAdapter);
 
         //리스트뷰 클릭 -> 내 아이 수정으로 이동
-        /*lv_userslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_usersList_manage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Users users = (Users) usersListAdapter.getItem(position);
+                Users users = (Users) usersListManageAdapter.getItem(position);
 
+                //Log.d("-진우-", "수정할 아이 : " + users.toString());
                 Intent intent = new Intent(getApplicationContext(), UsersModActivity.class);
+                intent.putExtra("member", member);
                 intent.putExtra("users", users);
                 startActivity(intent);
             }
-        });*/
+        });
 
         //리스트뷰 롱클릭 -> 내 아이 삭제됨
         /*lv_userslist.setLongClickable(true);
