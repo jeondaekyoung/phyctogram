@@ -1,74 +1,62 @@
 package knowledge_seek.com.phyctogram;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
  * Created by dkfka on 2015-11-27.
  */
-public class UsersDropActivity extends BaseActivity implements View.OnClickListener {
+public class UsersDropActivity extends BaseActivity {
 
-    /* slide menu */
-    //public static DisplayMetrics metrics;
-    //public static LinearLayout ll_mainLayout;
-    //public static LinearLayout ll_menuLayout;
-    //public static FrameLayout.LayoutParams leftMenuLayoutPrams;
-    //public static int leftMenuWidth;
-    //public static boolean isLeftExpanded;
-    public static Button bt_left;
-    public static Button btn1;
-    public static Button btn2;
-    public static Button btn3;
-    public static Button btn4;
+    //데이터정의
+
+    //레이아웃정의 - 슬라이드메뉴
+    private Button btn_left;
+    private LinearLayout ic_screen;
+
+    //레이아웃정의
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_drop);
 
-
-        bt_left = (Button) findViewById(R.id.bt_left);
-        bt_left.setOnClickListener(this);
-
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-
+        //화면 페이지
+        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
+        LayoutInflater.from(this).inflate(R.layout.include_users_drop, ic_screen, true);
+        //슬라이드메뉴 셋팅
         initSildeMenu();
+
+        //레이아웃 정의
+        btn_left = (Button)findViewById(R.id.btn_left);
+        btn_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menuLeftSlideAnimationToggle();
+            }
+        });
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("-진우-", "MainActivity 에서 onResume() : " + member.toString());
+
+        //요건되는데, BaseActivity.onResume()에 있으면 안되네..
+        //login, join등의 member이 없는 activity가 있기 때문에 안된다.
+        updateScreenSlide();
+    }
+
     public void onClick(View v) {
-
         switch (v.getId()) {
-            case R.id.bt_left:
-                menuLeftSlideAnimationToggle();
-                break;
-            case R.id.btn1:
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
-                break;
-            case R.id.btn2:
-
-                break;
-            case R.id.btn3:
-
-                break;
-            case R.id.btn4:
-
-                break;
-
             case R.id.btn_dropout:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setMessage("회원 탈퇴시 모든 데이터가 삭제되므로 복구가 되지 않습니다. 탈퇴 하시겠습니까?")
@@ -88,6 +76,5 @@ public class UsersDropActivity extends BaseActivity implements View.OnClickListe
                 dialog.show();
                 break;
         }
-
     }
 }

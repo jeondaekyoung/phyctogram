@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#776096"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_left"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/btn_menu" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#C0AAE1"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_height="150dp" android:layout_width="0dp" android:layout_weight="1" android:src="@drawable/animal_01_01"/>
+            <ImageView
+                android:layout_height="150dp" android:layout_width="0dp" android:layout_weight="1" android:src="@drawable/animal_02_01"/>
+            <ImageView
+                android:layout_height="150dp" android:layout_width="0dp" android:layout_weight="1" android:src="@drawable/animal_03_01"/>
+
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableRow>
+                <ImageView android:src="@drawable/animal_01" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_02" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_03" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_04" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_05" android:layout_height="90dp" android:layout_weight="1"/>
+            </TableRow>
+            <TableRow>
+                <ImageView android:src="@drawable/animal_06" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_07" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_08" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_09" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_10" android:layout_height="90dp" android:layout_weight="1"/>
+            </TableRow>
+            <TableRow>
+                <ImageView android:src="@drawable/animal_11" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_12" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_13" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_14" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_15" android:layout_height="90dp" android:layout_weight="1"/>
+            </TableRow>
+            <TableRow>
+                <ImageView android:src="@drawable/animal_16" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_17" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_18" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_19" android:layout_height="90dp" android:layout_weight="1"/>
+                <ImageView android:src="@drawable/animal_20" android:layout_height="90dp" android:layout_weight="1"/>
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
