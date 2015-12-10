@@ -6,7 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
@@ -38,6 +40,7 @@ public class MainActivity extends BaseActivity {
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
             }
         });
@@ -47,11 +50,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("-진우-", "MainActivity 에서 onResume() : " + member.toString());
 
         //요건되는데, BaseActivity.onResume()에 있으면 안되네..
         //login, join등의 member이 없는 activity가 있기 때문에 안된다.
+        //슬라이드메뉴에 있는 내 아이 목록
         updateScreenSlide();
+
+        Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
+
     }
 
 

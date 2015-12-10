@@ -2,17 +2,22 @@ package knowledge_seek.com.phyctogram;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
@@ -25,17 +30,14 @@ import retrofit.Retrofit;
  * Created by dkfka on 2015-11-25.
  */
 public class UsersAddActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://117.52.89.181";
 
-    //사이드매뉴
-    public static Button bt_left;
-    public static Button btn1;
-    public static Button btn2;
-    public static Button btn3;
-    public static Button btn4;
+    //레이아웃 - 슬라이드 메뉴
+    private Button btn_left;
+    private LinearLayout ic_screen;
+
 
     //데이터
-    private Member member;
+    //private Member member;
     private Users users;
 
     //레이아웃 정의
@@ -45,41 +47,28 @@ public class UsersAddActivity extends BaseActivity {
     private RadioGroup rg_sexdstn;
     private RadioButton rb_female;
     private RadioButton rb_male;
-    private Button btn_useradd;
+    private Button btn_usersadd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users_add);
 
-        //데이터셋팅
-        Bundle bundle = this.getIntent().getExtras();
-        if(bundle != null){
-            member = (Member)bundle.getSerializable("member");
-            Log.d("-진우-", "UserAaddActivity 에서 " + member.toString());
-        }
+        //화면페이지
+        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
+        LayoutInflater.from(this).inflate(R.layout.include_users_add, ic_screen, true);
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
 
-        //사이드매뉴
-        bt_left = (Button) findViewById(R.id.bt_left);
-        bt_left.setOnClickListener(new View.OnClickListener() {
+        //레이아웃 정의
+        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 menuLeftSlideAnimationToggle();
             }
         });
 
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        /*btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);*/
-
-        //슬라이딩, 메뉴 BaseActivity.class
-        initSildeMenu();
-
+        //데이터셋팅
         users = new Users();
 
         //레이아웃 정의
@@ -89,8 +78,8 @@ public class UsersAddActivity extends BaseActivity {
         rg_sexdstn = (RadioGroup)findViewById(R.id.rg_sexdstn);
         rb_female = (RadioButton)findViewById(R.id.rb_female);
         rb_male = (RadioButton)findViewById(R.id.rb_male);
-        btn_useradd = (Button)findViewById(R.id.btn_useradd);
-        btn_useradd.setOnClickListener(new View.OnClickListener() {
+        btn_usersadd = (Button)findViewById(R.id.btn_usersadd);
+        btn_usersadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*Log.d("-진우-", dp_lifedate.getYear() + "/" + (dp_lifedate.getMonth()+1) + "/" + dp_lifedate.getDayOfMonth());
@@ -118,11 +107,7 @@ public class UsersAddActivity extends BaseActivity {
                 //내아이 저장하기
                 Log.d("-진우-", "내 아이 저장하기 : " + users.toString());
                 Log.d("-진우-", "json : " + Utility.users2json(users));
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(HTTPADDR)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                UsersAPI service = retrofit.create(UsersAPI.class);
+                UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
                 Call<String> call = service.registerUsers(users);
                 call.enqueue(new Callback<String>() {
                     @Override
@@ -141,6 +126,15 @@ public class UsersAddActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //슬라이드메뉴에 있는 내 아이 목록
+        updateScreenSlide();
+        Log.d("-진우-", "UsersAddActivity 에 onResume() : " + member.toString());
     }
 
     //users의 내용 체크

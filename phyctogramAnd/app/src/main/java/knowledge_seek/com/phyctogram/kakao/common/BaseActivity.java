@@ -1,6 +1,9 @@
 package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -19,16 +22,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.LoginActivity;
+import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.R;
+import knowledge_seek.com.phyctogram.UsersManageActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
@@ -53,7 +60,7 @@ public class BaseActivity extends Activity {
     public static LinearLayout ll_menuLayout;
     public static FrameLayout.LayoutParams leftMenuLayoutPrams;
     public static int leftMenuWidth;
-    public static boolean isLeftExpanded;
+    public static boolean isLeftExpanded = false;
     public LinearLayout ll_empty;
 
     //데이터정의
@@ -64,6 +71,7 @@ public class BaseActivity extends Activity {
     //레이아웃 정의
     private ListView lv_usersList;
     private UsersListSlideAdapter usersListSlideAdapter;
+    private Button btn_usersManage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +92,18 @@ public class BaseActivity extends Activity {
         lv_usersList = (ListView)findViewById(R.id.lv_usersList);
         usersListSlideAdapter = new UsersListSlideAdapter(this);
         lv_usersList.setAdapter(usersListSlideAdapter);
+        btn_usersManage = (Button)findViewById(R.id.btn_usersManage);
+        btn_usersManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                menuLeftSlideAnimationToggle();
+
+            }
+        });
     }
 
     @Override
@@ -166,7 +186,7 @@ public class BaseActivity extends Activity {
      * left menu toggle
      */
     public void menuLeftSlideAnimationToggle() {
-
+        Log.d("-진우-", "슬라이드 : " + isLeftExpanded);
         if (!isLeftExpanded) {
             isLeftExpanded = true;
 
@@ -288,7 +308,9 @@ public class BaseActivity extends Activity {
                 }
                 usersListSlideAdapter.setUsersList(userses);
                 usersList = userses;
-                nowUsers = userses.get(0);
+                if(nowUsers == null) {
+                    nowUsers = userses.get(0);
+                }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
@@ -309,4 +331,26 @@ public class BaseActivity extends Activity {
         listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
         return listViewHeight;
     }
+
+    //백버튼 클릭시
+    @Override
+    public void onBackPressed() {
+        Activity nowActivity = GlobalApplication.getCurrentActivity();
+        //Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
+        if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")){
+            finish();
+        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity")){
+            super.onBackPressed();
+        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity2")){
+            super.onBackPressed();
+        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")){
+            super.onBackPressed();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }
+    }
+
 }

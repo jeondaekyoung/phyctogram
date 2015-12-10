@@ -15,14 +15,14 @@ import knowledge_seek.com.phyctogram.domain.Users;
 /**
  * Created by sjw on 2015-12-08.
  */
-public class UsersListAdapter extends BaseAdapter {
+public class UsersListManageAdapter extends BaseAdapter {
     private Context context;
     TextView tv;
 
     //리스트
     private List<Users> usersList = new ArrayList<Users>();
 
-    public UsersListAdapter(Context context) {
+    public UsersListManageAdapter(Context context) {
         this.context = context;
     }
 
