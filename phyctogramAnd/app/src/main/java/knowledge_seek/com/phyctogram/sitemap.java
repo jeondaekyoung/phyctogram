@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -100,6 +101,10 @@ public class sitemap extends AppCompatActivity {
             case R.id.btn_character:
                 Intent btn19 = new Intent(this, CharacterActivity.class);
                 startActivity(btn19);
+                break;
+            case R.id.btn_userdatainput:
+                Intent btn20 = new Intent(this, Activity.class);
+                startActivity(btn20);
                 break;
         }
     }

@@ -14,11 +14,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import knowledge_seek.com.phyctogram.util.AnimationClose;
+import knowledge_seek.com.phyctogram.util.AnimationOpen;
+
 /**
  * Created by dkfka on 2015-12-02.
  */
 public class CalendarActivity extends FragmentActivity implements View.OnClickListener {
-
 
     /* slide menu */
     public static DisplayMetrics metrics;
@@ -28,7 +30,6 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
     public static int leftMenuWidth;
     public static boolean isLeftExpanded;
     public static Button bt_left;
-    public static Button btn1;
     public static Button btn2;
     public static Button btn3;
     public static Button btn4;
@@ -54,17 +55,6 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
                 thisMonthTv.setText(year + "." + (month + 1));
             }
         });
-        bt_left = (Button) findViewById(R.id.bt_left);
-        bt_left.setOnClickListener(this);
-
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
 
         initSildeMenu();
 
@@ -102,11 +92,9 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
         bt_left = (Button) findViewById(R.id.bt_left);
         bt_left.setOnClickListener(this);
 
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn1.setOnClickListener(this);
+        btn2 = (Button) findViewById(R.id.btn_usersManage);
+        btn3 = (Button) findViewById(R.id.btn_usersDiary);
+        btn4 = (Button) findViewById(R.id.btn_setup);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
@@ -184,7 +172,6 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
         }
     }
 
-
     @Override
     public void onClick(View v) {
 
@@ -192,27 +179,17 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
             case R.id.bt_left:
                 menuLeftSlideAnimationToggle();
                 break;
-            case R.id.btn1:
-                Intent main = new Intent(this, MainActivity.class);
-                startActivity(main);
-                break;
-            case R.id.btn2:
+            case R.id.btn_usersManage:
 
                 break;
-            case R.id.btn3:
+            case R.id.btn_usersDiary:
 
                 break;
-            case R.id.btn4:
-
-                break;
-
             case R.id.btn_write:
                 Intent write = new Intent(this, DiaryWriteActivity.class);
                 startActivity(write);
                 break;
-
         }
-
     }
 
     public void onClickDay(View v) {

@@ -1,9 +1,6 @@
 package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -27,7 +24,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
@@ -111,8 +107,6 @@ public class BaseActivity extends Activity {
         super.onResume();
         GlobalApplication.setCurrentActivity(this);
         self = BaseActivity.this;
-
-
     }
 
     @Override

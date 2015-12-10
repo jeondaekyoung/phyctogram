@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
@@ -59,7 +58,4 @@ public class MainActivity extends BaseActivity {
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
 
     }
-
-
-
 }

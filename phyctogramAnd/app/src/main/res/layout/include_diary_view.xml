@@ -5,19 +5,28 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#776096">
+        android:background="#776096"
+        android:orientation="horizontal">
 
         <Button
-            android:id="@id/bt_left"
+            android:id="@+id/btn_left"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/btn_menu" />
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="육아일기"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@id/ll_fragment"

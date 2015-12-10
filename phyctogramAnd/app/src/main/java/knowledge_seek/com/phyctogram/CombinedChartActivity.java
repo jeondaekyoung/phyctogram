@@ -65,9 +65,9 @@ public class CombinedChartActivity extends DemoBase {
 
         data.setData(generateLineData());
         data.setData(generateBarData());
-//        data.setData(generateBubbleData());
-//         data.setData(generateScatterData());
-//         data.setData(generateCandleData());
+//      data.setData(generateBubbleData());
+//      data.setData(generateScatterData());
+//      data.setData(generateCandleData());
 
         mChart.setData(data);
         mChart.invalidate();

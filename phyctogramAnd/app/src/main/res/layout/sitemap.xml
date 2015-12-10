@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="userdrop" />
+            android:text="userdro" />
     </TableRow>
 
     <TableRow>
@@ -80,14 +80,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="eqipment" />
+            android:text="eqipmen" />
 
         <Button
             android:id="@+id/btn_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="calendar" />
+            android:text="calenda" />
         <Button
             android:id="@+id/btn_set"
             android:layout_width="wrap_content"
@@ -107,20 +107,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="boardlist" />
+            android:text="boardli" />
         <Button
             android:id="@+id/btn_usermanage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="usermanage" />
+            android:text="userman" />
 
         <Button
             android:id="@+id/btn_boardview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="boardview" />
+            android:text="boardvi" />
     </TableRow>
 
     <TableRow>
@@ -135,6 +135,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="character" />
+            android:text="charact" />
+        <Button
+            android:id="@+id/btn_userdatainput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="userdat" />
     </TableRow>
 </TableLayout>
