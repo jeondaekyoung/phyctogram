@@ -21,11 +21,11 @@ public class CharacterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mycharacter);
 
+        //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
-        LayoutInflater.from(this).inflate(R.layout.include_main, ic_screen, true);
-
+        LayoutInflater.from(this).inflate(R.layout.include_mycharacter, ic_screen, true);
+        //슬라이드메뉴 셋팅
         initSildeMenu();
 
         //레이아웃 정의
