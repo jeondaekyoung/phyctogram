@@ -97,6 +97,7 @@ public class BaseActivity extends Activity {
                 intent.putExtra("member", member);
                 startActivity(intent);
                 menuLeftSlideAnimationToggle();
+                finish();
 
             }
         });

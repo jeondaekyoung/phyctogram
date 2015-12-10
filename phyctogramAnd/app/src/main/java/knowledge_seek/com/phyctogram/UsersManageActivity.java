@@ -1,5 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,9 +13,19 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.UsersListManageAdapter;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.GsonConverterFactory;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-12-07.
@@ -74,15 +86,16 @@ public class UsersManageActivity extends BaseActivity {
                 intent.putExtra("member", member);
                 intent.putExtra("users", users);
                 startActivity(intent);
+                finish();
             }
         });
 
         //리스트뷰 롱클릭 -> 내 아이 삭제됨
-        /*lv_userslist.setLongClickable(true);
-        lv_userslist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        lv_usersList_manage.setLongClickable(true);
+        lv_usersList_manage.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Users users = (Users)usersListAdapter.getItem(position);
+                final Users users = (Users)usersListManageAdapter.getItem(position);
 
                 //Log.d("-진우-", "삭제 : " + users.getName());
                 AlertDialog.Builder dialog = new AlertDialog.Builder(UsersManageActivity.this);
@@ -93,17 +106,23 @@ public class UsersManageActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Retrofit retrofit = new Retrofit.Builder()
+                        /*Retrofit retrofit = new Retrofit.Builder()
                                 .baseUrl(HTTPADDR)
                                 .addConverterFactory(GsonConverterFactory.create())
                                 .build();
-                        UsersAPI service = retrofit.create(UsersAPI.class);
+                        UsersAPI service = retrofit.create(UsersAPI.class);*/
+                        UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
                         Call<String> call = service.delUsersByUserSeq(String.valueOf(users.getUser_seq()));
                         call.enqueue(new Callback<String>() {
                             @Override
                             public void onResponse(Response<String> response, Retrofit retrofit) {
                                 Log.d("-진우-", "내아이 삭제 성공 결과1 : " + response.body());
-                                updateUsersList();
+                                Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+                                intent.putExtra("member", member);
+                                //intent.putExtra("users", users);
+                                startActivity(intent);
+                                finish();
+
                             }
 
                             @Override
@@ -123,7 +142,7 @@ public class UsersManageActivity extends BaseActivity {
 
                 return true;
             }
-        });*/
+        });
 
 
 
@@ -145,8 +164,11 @@ public class UsersManageActivity extends BaseActivity {
             //등록된 아이가 없을 경우 에러발생
             usersListManageAdapter.setUsersList(usersList);
         } else {
+            usersList = new ArrayList<Users>();
+            usersListManageAdapter.setUsersList(usersList);
             Log.d("-진우-", "UsersManageActivity 에 onResume(), 등록된 내 아이가 없습니다. ");
         }
+
 
         //int height = getListViewHeight(lv_usersList_manage);
         //lv_usersList_manage.getLayoutParams().height = height;
@@ -155,8 +177,25 @@ public class UsersManageActivity extends BaseActivity {
     }
 
     //화면 업데이트
-    /*private void updateUsersList(){
-        Retrofit retrofit = new Retrofit.Builder()
+    private void updateUsersList(){
+
+        updateScreenSlide();
+        Log.d("-진우-", "UsersManageActivity 에 onResume() : " + member.toString());
+        if(usersList != null && usersList.size() > 0){
+            for(Users u :usersList){
+                Log.d("-진우-", "UsersManageActivity 에 onResume(), 내 아이 : " + u.toString());
+            }
+            //등록된 아이가 없을 경우 에러발생
+            usersListManageAdapter.setUsersList(usersList);
+        } else {
+            Log.d("-진우-", "UsersManageActivity 에 onResume(), 등록된 내 아이가 없습니다. ");
+        }
+
+        //int height = getListViewHeight(lv_usersList_manage);
+        //lv_usersList_manage.getLayoutParams().height = height;
+        usersListManageAdapter.notifyDataSetChanged();
+
+        /*Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(HTTPADDR)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -194,8 +233,8 @@ public class UsersManageActivity extends BaseActivity {
                 });
 
             }
-        }.start();
-    }*/
+        }.start();*/
+    }
 
 
 }
