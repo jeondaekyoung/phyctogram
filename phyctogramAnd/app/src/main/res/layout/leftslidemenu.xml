@@ -40,18 +40,7 @@
         android:dividerHeight="1dp" />
 
     <Button
-        android:id="@+id/btn1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/borderbottom"
-        android:gravity="fill_vertical"
-        android:text="지민이"
-        android:paddingLeft="15dp"
-        android:textColor="#F2B649"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btn2"
+        android:id="@+id/btn_usersManage"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/borderbottom"

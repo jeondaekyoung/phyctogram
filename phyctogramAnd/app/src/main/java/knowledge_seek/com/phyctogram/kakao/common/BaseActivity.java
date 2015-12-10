@@ -20,11 +20,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import knowledge_seek.com.phyctogram.AnimationClose;
-import knowledge_seek.com.phyctogram.AnimationOpen;
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.R;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
+import knowledge_seek.com.phyctogram.util.AnimationClose;
+import knowledge_seek.com.phyctogram.util.AnimationOpen;
 
 /**
  * Created by sjw on 2015-11-26.
@@ -34,11 +34,12 @@ public class BaseActivity extends Activity {
 
     //슬라이드, 메뉴
     public static DisplayMetrics metrics;
-    public static int leftMenuWidth;
     public static LinearLayout ll_mainLayout;
     public static LinearLayout ll_menuLayout;
     public static FrameLayout.LayoutParams leftMenuLayoutPrams;
+    public static int leftMenuWidth;
     public static boolean isLeftExpanded;
+    public LinearLayout ll_empty;
 
     @Override
     protected void onResume() {
@@ -103,12 +104,15 @@ public class BaseActivity extends Activity {
 
         // init left menu
         ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
-        leftMenuLayoutPrams = (FrameLayout.LayoutParams) ll_menuLayout
-                .getLayoutParams();
+        leftMenuLayoutPrams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
         leftMenuLayoutPrams.width = leftMenuWidth;
         ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
 
+        ll_empty = (LinearLayout)findViewById(R.id.ll_empty);
+        ll_empty.setVisibility(View.GONE);
 
+        LinearLayout viewGroup = (LinearLayout)findViewById(R.id.ic_leftslidemenu).getParent();
+        enableDisableViewGroup(viewGroup, false);
     }
 
     /**
@@ -117,7 +121,6 @@ public class BaseActivity extends Activity {
     public void menuLeftSlideAnimationToggle() {
 
         if (!isLeftExpanded) {
-
             isLeftExpanded = true;
 
             // Expand
@@ -126,24 +129,19 @@ public class BaseActivity extends Activity {
                     Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);
 
             // disable all of main view
-            FrameLayout viewGroup = (FrameLayout) findViewById(R.id.ll_fragment)
-                    .getParent();
-            enableDisableViewGroup(viewGroup, false);
+            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
+            enableDisableViewGroup(viewGroup, true);
 
             // enable empty view
-            ((LinearLayout) findViewById(R.id.ll_empty))
-                    .setVisibility(View.VISIBLE);
-
-            findViewById(R.id.ll_empty).setEnabled(true);
-            findViewById(R.id.ll_empty).setOnTouchListener(
-                    new View.OnTouchListener() {
-
-                        @Override
-                        public boolean onTouch(View arg0, MotionEvent arg1) {
-                            menuLeftSlideAnimationToggle();
-                            return true;
-                        }
-                    });
+            ll_empty.setVisibility(View.VISIBLE);
+            ll_empty.setEnabled(true);
+            ll_empty.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    menuLeftSlideAnimationToggle();
+                    return true;
+                }
+            });
 
         } else {
             isLeftExpanded = false;
@@ -154,14 +152,12 @@ public class BaseActivity extends Activity {
                     TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
 
             // enable all of main view
-            FrameLayout viewGroup = (FrameLayout) findViewById(R.id.ll_fragment)
-                    .getParent();
-            enableDisableViewGroup(viewGroup, true);
+            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
+            enableDisableViewGroup(viewGroup, false);
 
             // disable empty view
-            ((LinearLayout) findViewById(R.id.ll_empty))
-                    .setVisibility(View.GONE);
-            findViewById(R.id.ll_empty).setEnabled(false);
+            ll_empty.setVisibility(View.GONE);
+            ll_empty.setEnabled(false);
 
         }
     }
@@ -172,17 +168,20 @@ public class BaseActivity extends Activity {
      * @param viewGroup
      * @param enabled
      */
-    public static void enableDisableViewGroup(ViewGroup viewGroup,
-                                              boolean enabled) {
+    public static void enableDisableViewGroup(ViewGroup viewGroup,  boolean enabled) {
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = viewGroup.getChildAt(i);
-            if (view.getId() != R.id.bt_left) {
+            view.setEnabled(enabled);
+            if(view instanceof ViewGroup){
+                enableDisableViewGroup((ViewGroup)view, enabled);
+            }
+            /*if (view.getId() != R.id.bt_left) {
                 view.setEnabled(enabled);
                 if (view instanceof ViewGroup) {
                     enableDisableViewGroup((ViewGroup) view, enabled);
                 }
-            }
+            }*/
         }
     }
 

@@ -31,12 +31,17 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 
+    // 페이스북
     compile 'com.facebook.android:facebook-android-sdk:4.7.0'
 
+    // Retrofit(통신)
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
 
+    // ??
     compile 'com.loopj.android:android-async-http:1.4.4'
+
+
 
     // 카카오스토리, 카카오톡 sdk를 사용하기 위해 필요.
     compile 'com.mcxiaoke.volley:library:1.0.8'
