@@ -19,7 +19,7 @@ public interface UsersAPI {
     Call<String> registerUsers(@Body Users users);
 
     @GET("/rest/users/findUsersByMemberSeq")
-    Call<List<Users>> findByMember(@Query("member_seq") String member_seq);
+    Call<List<Users>> findUsersByMember(@Query("member_seq") String member_seq);
 
     @POST("/rest/users/delUsersByUserSeq")
     Call<String> delUsersByUserSeq(@Query("user_seq") String user_seq);

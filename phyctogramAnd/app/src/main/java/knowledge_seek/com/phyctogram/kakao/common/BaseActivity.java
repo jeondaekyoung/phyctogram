@@ -10,6 +10,8 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -19,17 +21,30 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.io.IOException;
+import java.util.List;
 
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.R;
+import knowledge_seek.com.phyctogram.domain.Member;
+import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
+import knowledge_seek.com.phyctogram.listAdapter.UsersListSlideAdapter;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import knowledge_seek.com.phyctogram.util.AnimationClose;
 import knowledge_seek.com.phyctogram.util.AnimationOpen;
+import retrofit.Call;
 
 /**
  * Created by sjw on 2015-11-26.
  */
 public class BaseActivity extends Activity {
+    public static final String HTTPADDR = "http://117.52.89.181";
+
     protected static Activity self;
 
     //슬라이드, 메뉴
@@ -41,11 +56,43 @@ public class BaseActivity extends Activity {
     public static boolean isLeftExpanded;
     public LinearLayout ll_empty;
 
+    //데이터정의
+    public static Member member = null;
+    public static List<Users> usersList = null;
+    public static Users nowUsers = null;
+
+    //레이아웃 정의
+    private ListView lv_usersList;
+    private UsersListSlideAdapter usersListSlideAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //데이터셋팅
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null){
+            member = (Member)bundle.getSerializable("member");
+            Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
+        } else {
+            member = new Member();
+            Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
+        }
+
+        //레이아웃 정의
+        lv_usersList = (ListView)findViewById(R.id.lv_usersList);
+        usersListSlideAdapter = new UsersListSlideAdapter(this);
+        lv_usersList.setAdapter(usersListSlideAdapter);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         GlobalApplication.setCurrentActivity(this);
         self = BaseActivity.this;
+
+
     }
 
     @Override
@@ -209,5 +256,57 @@ public class BaseActivity extends Activity {
         return output;
     }
 
+    public void updateScreenSlide(){
+        FindUsersByMemberTask task = new FindUsersByMemberTask();
+        task.execute();
+        usersListSlideAdapter.notifyDataSetChanged();
+    }
 
+
+    private class FindUsersByMemberTask extends AsyncTask<Void, Void, List<Users>> {
+        private List<Users> usersTask;
+
+        @Override
+        protected List<Users> doInBackground(Void... params) {
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
+            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+            try {
+                usersTask = call.execute().body();
+            } catch (IOException e){
+                Log.d("-진우-", "내 아이 목록 가져오기 실패");
+            }
+
+            return usersTask;
+        }
+
+        @Override
+        protected void onPostExecute(List<Users> userses) {
+            Log.d("-진우-", "내 아이는 몇명? " + userses.size());
+            if(userses != null && userses.size() > 0){
+                for(Users u : userses){
+                    Log.d("-진우-", "내아이 : " + u.toString());
+                }
+                usersListSlideAdapter.setUsersList(userses);
+                usersList = userses;
+                nowUsers = userses.get(0);
+                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+            } else {
+                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
+            }
+
+            int height = getListViewHeight(lv_usersList);
+            lv_usersList.getLayoutParams().height = height;
+        }
+    }
+    /*
+    * 리스트뷰의 높이를 구함
+    * */
+    public static  int getListViewHeight(ListView listView){
+        ListAdapter adapter = listView.getAdapter();
+        int listViewHeight = 0;
+        listView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
+        return listViewHeight;
+    }
 }
