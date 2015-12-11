@@ -5,6 +5,13 @@
 	
 <mapper namespace="naree.db.mapper.HeightMapper">
 
+
+	<parameterMap type="Map" id="Map">
+		<parameter property="user_seq"/>
+		<parameter property="dateFrom"/>
+		<parameter property="dateTo"/>
+	</parameterMap>
+
 	<insert id="insertHeight" parameterType="Height">
 		INSERT INTO height_tb (
 							height
@@ -27,5 +34,15 @@
 		DELETE FROM height_tb
 		WHERE user_seq = #{user_seq}
 	</delete>
+	
+	<select id="selectHeightByUserSeqFT" parameterType="Map" resultType="Height">
+	<![CDATA[
+		SELECT height, mesure_date, user_seq
+		   FROM height_tb
+		 WHERE user_seq = #{user_seq}
+		 AND #{dateFrom} <= date(mesure_date) AND date(mesure_date) <= #{dateTo}
+		 ORDER BY mesure_date DESC
+	]]>
+	</select>
 
 </mapper>

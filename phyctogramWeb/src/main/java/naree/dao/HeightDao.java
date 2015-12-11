@@ -24,4 +24,13 @@ public interface HeightDao {
 	 * @param user_seq
 	 */
 	void deleteHeightByUserSeq(String user_seq);
+
+	/**
+	 * 내 아이(유저) 기록조회
+	 * @param user_seq
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return
+	 */
+	List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
 }

@@ -18,4 +18,13 @@ public interface HeightService {
 	 * @return
 	 */
 	List<Height> selectHeightByUser_seq(String user_seq);
+
+	/**
+	 * 내 아이(유저) 기록조회
+	 * @param user_seq
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return
+	 */
+	List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
 }

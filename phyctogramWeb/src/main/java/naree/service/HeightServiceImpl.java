@@ -26,4 +26,10 @@ public class HeightServiceImpl implements HeightService {
 		return heightDao.selectHeightByUser_seq(user_seq);
 	}
 
+	@Override
+	public List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo) {
+		
+		return heightDao.selectHeightByUserSeqFT(user_seq, dateFrom, dateTo);
+	}
+
 }

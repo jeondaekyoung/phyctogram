@@ -67,9 +67,14 @@ public class UsersRestController {
 		return "success";
 	}
 	
+	/**
+	 * 내 아이(유저) 수정
+	 * @param users
+	 * @return
+	 */
 	@RequestMapping(value = "modUsersByUsers", method = RequestMethod.POST)
 	public String modUsersByUsers(@RequestBody Users users){
-		logger.info("modUsersByUsers 실행 : " + users);
+		logger.info("modUsersByUsers 실행 : " + users.toString());
 		
 		int result = usersService.modifyUsersByUsers(users);
 		if(result == 1){

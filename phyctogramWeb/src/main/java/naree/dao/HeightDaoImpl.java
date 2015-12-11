@@ -1,7 +1,9 @@
 package naree.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
@@ -43,7 +45,6 @@ public class HeightDaoImpl implements HeightDao {
 
 	@Override
 	public void deleteHeightByUserSeq(String user_seq) {
-		System.out.println("HeightDaoImpl.deleteHeightByUserSeq : " + user_seq);
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result = 0;
 		try{
@@ -54,6 +55,24 @@ public class HeightDaoImpl implements HeightDao {
 			sqlSession.close();
 		}
 		
+	}
+
+	@Override
+	public List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Height> heights = new ArrayList<Height>();
+		Map<String, String> terms = new HashMap<String, String>();
+		terms.put("user_seq", user_seq);
+		terms.put("dateFrom", dateFrom);
+		terms.put("dateTo", dateTo);
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			heights = heightMapper.selectHeightByUserSeqFT(terms);
+		}finally{
+			sqlSession.commit();
+		}
+
+		return heights;
 	}
 
 }
