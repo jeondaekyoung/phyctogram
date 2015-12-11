@@ -1,43 +1,19 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
  * Created by dkfka on 2015-11-25.
  */
+
 public class RecordActivity extends BaseActivity {
-
-    /* slide menu */
-
-    //public static DisplayMetrics metrics;
-    //public static LinearLayout ll_mainLayout;
-    //public static LinearLayout ll_menuLayout;
-    //public static FrameLayout.LayoutParams leftMenuLayoutPrams;
-    //public static int leftMenuWidth;
-    //public static boolean isLeftExpanded;
-    //public static Button bt_left;
-    //public static Button btn1;
-    //public static Button btn2;
-    //public static Button btn3;
-    //public static Button btn4;
-    //int year, month, day, hour, minute;
-    //EditText editText1, editText2;
 
     //레이아웃정의 - 슬라이드메뉴
     private Button btn_left;
@@ -64,7 +40,6 @@ public class RecordActivity extends BaseActivity {
             }
         });
 
-
         //커뮤니티 글 목록
         //ListView listview = (ListView) findViewById(R.id.list_record);
 
@@ -77,16 +52,14 @@ public class RecordActivity extends BaseActivity {
         ListviewAdapter_rec adapter2 = new ListviewAdapter_rec(this, R.layout.list_record, data);
         listview.setAdapter(adapter2);*/
 
-
-        /*btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);*/
-
+        //레이아웃 정의
+        btn_left = (Button)findViewById(R.id.btn_left);
+        btn_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menuLeftSlideAnimationToggle();
+            }
+        });
 
         //달력 대화상자 띄우기
         /*GregorianCalendar calendar = new GregorianCalendar();

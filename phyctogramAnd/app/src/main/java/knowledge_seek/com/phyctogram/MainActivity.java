@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
@@ -24,7 +23,6 @@ public class MainActivity extends BaseActivity {
 
     //레이아웃정의
     private Button btn_record;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,6 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
-
     }
 
     @Override
@@ -69,6 +66,5 @@ public class MainActivity extends BaseActivity {
         updateScreenSlide();
 
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
-
     }
 }

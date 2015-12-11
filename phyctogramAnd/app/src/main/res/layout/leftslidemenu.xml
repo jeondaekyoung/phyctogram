@@ -76,7 +76,5 @@
                 android:paddingLeft="15dp"
                 android:text="설정" />
         </LinearLayout>
-
     </ScrollView>
-
 </LinearLayout>

@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +13,6 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
  * Created by dkfka on 2015-12-10.
  */
 public class UsersDataInputActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://117.52.89.181";
 
     //레이아웃정의
     private LinearLayout ic_screen;
@@ -41,5 +41,12 @@ public class UsersDataInputActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //요건되는데, BaseActivity.onResume()에 있으면 안되네..
+        //login, join등의 member이 없는 activity가 있기 때문에 안된다.
+        //슬라이드메뉴에 있는 내 아이 목록
+        updateScreenSlide();
+
+        Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
     }
 }

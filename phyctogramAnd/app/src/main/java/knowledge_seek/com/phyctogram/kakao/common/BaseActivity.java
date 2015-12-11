@@ -2,14 +2,6 @@ package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -28,9 +20,12 @@ import android.widget.ListView;
 import java.io.IOException;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.CalendarActivity;
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.R;
+import knowledge_seek.com.phyctogram.SettingActivity;
+import knowledge_seek.com.phyctogram.UsersDataInputActivity;
 import knowledge_seek.com.phyctogram.UsersManageActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -68,6 +63,9 @@ public class BaseActivity extends Activity {
     private ListView lv_usersList;
     private UsersListSlideAdapter usersListSlideAdapter;
     private Button btn_usersManage;
+    private Button btn_usersDiary;
+    private Button btn_dataInput;
+    private Button btn_setup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +74,8 @@ public class BaseActivity extends Activity {
 
         //데이터셋팅
         Bundle bundle = this.getIntent().getExtras();
-        if(bundle != null){
-            member = (Member)bundle.getSerializable("member");
+        if (bundle != null) {
+            member = (Member) bundle.getSerializable("member");
             Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
         } else {
             member = new Member();
@@ -85,10 +83,10 @@ public class BaseActivity extends Activity {
         }
 
         //레이아웃 정의
-        lv_usersList = (ListView)findViewById(R.id.lv_usersList);
+        lv_usersList = (ListView) findViewById(R.id.lv_usersList);
         usersListSlideAdapter = new UsersListSlideAdapter(this);
         lv_usersList.setAdapter(usersListSlideAdapter);
-        btn_usersManage = (Button)findViewById(R.id.btn_usersManage);
+        btn_usersManage = (Button) findViewById(R.id.btn_usersManage);
         btn_usersManage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +96,42 @@ public class BaseActivity extends Activity {
                 startActivity(intent);
                 menuLeftSlideAnimationToggle();
                 finish();
-
+            }
+        });
+        btn_usersDiary = (Button) findViewById(R.id.btn_usersDiary);
+        btn_usersDiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                menuLeftSlideAnimationToggle();
+                finish();
+            }
+        });
+        btn_dataInput = (Button) findViewById(R.id.btn_dataInput);
+        btn_dataInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                menuLeftSlideAnimationToggle();
+                finish();
+            }
+        });
+        btn_setup = (Button) findViewById(R.id.btn_setup);
+        btn_setup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                menuLeftSlideAnimationToggle();
+                finish();
             }
         });
     }
@@ -170,10 +203,10 @@ public class BaseActivity extends Activity {
         leftMenuLayoutPrams.width = leftMenuWidth;
         ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
 
-        ll_empty = (LinearLayout)findViewById(R.id.ll_empty);
+        ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
         ll_empty.setVisibility(View.GONE);
 
-        LinearLayout viewGroup = (LinearLayout)findViewById(R.id.ic_leftslidemenu).getParent();
+        LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
         enableDisableViewGroup(viewGroup, false);
     }
 
@@ -230,13 +263,13 @@ public class BaseActivity extends Activity {
      * @param viewGroup
      * @param enabled
      */
-    public static void enableDisableViewGroup(ViewGroup viewGroup,  boolean enabled) {
+    public static void enableDisableViewGroup(ViewGroup viewGroup, boolean enabled) {
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = viewGroup.getChildAt(i);
             view.setEnabled(enabled);
-            if(view instanceof ViewGroup){
-                enableDisableViewGroup((ViewGroup)view, enabled);
+            if (view instanceof ViewGroup) {
+                enableDisableViewGroup((ViewGroup) view, enabled);
             }
             /*if (view.getId() != R.id.bt_left) {
                 view.setEnabled(enabled);
@@ -249,7 +282,7 @@ public class BaseActivity extends Activity {
 
 
     //프로필이미지 둥글게
-    public static Bitmap getRoundedBitmap(Bitmap bitmap) {
+    /*public static Bitmap getRoundedBitmap(Bitmap bitmap) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(output);
 
@@ -269,9 +302,9 @@ public class BaseActivity extends Activity {
         bitmap.recycle();
 
         return output;
-    }
+    }*/
 
-    public void updateScreenSlide(){
+    public void updateScreenSlide() {
         FindUsersByMemberTask task = new FindUsersByMemberTask();
         task.execute();
         usersListSlideAdapter.notifyDataSetChanged();
@@ -287,7 +320,7 @@ public class BaseActivity extends Activity {
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
-            } catch (IOException e){
+            } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
             }
 
@@ -297,11 +330,12 @@ public class BaseActivity extends Activity {
         @Override
         protected void onPostExecute(List<Users> userses) {
             Log.d("-진우-", "내 아이는 몇명? " + userses.size());
-            if(userses != null && userses.size() > 0){
-                for(Users u : userses){
+            if (userses != null && userses.size() > 0) {
+                for (Users u : userses) {
                     Log.d("-진우-", "내아이 : " + u.toString());
                 }
                 usersList = userses;
+
                 usersListSlideAdapter.setUsersList(usersList);
                 if(nowUsers == null) {
                     nowUsers = userses.get(0);
@@ -315,10 +349,11 @@ public class BaseActivity extends Activity {
             lv_usersList.getLayoutParams().height = height;
         }
     }
+
     /*
     * 리스트뷰의 높이를 구함
     * */
-    public static  int getListViewHeight(ListView listView){
+    public static int getListViewHeight(ListView listView) {
         ListAdapter adapter = listView.getAdapter();
         int listViewHeight = 0;
         listView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
@@ -332,13 +367,13 @@ public class BaseActivity extends Activity {
     public void onBackPressed() {
         Activity nowActivity = GlobalApplication.getCurrentActivity();
         //Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
-        if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")){
+        if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
             finish();
-        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity")){
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity")) {
             super.onBackPressed();
-        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity2")){
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity2")) {
             super.onBackPressed();
-        } else if(nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")){
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")) {
             super.onBackPressed();
         } else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

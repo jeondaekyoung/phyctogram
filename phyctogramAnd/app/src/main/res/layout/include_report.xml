@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent" android:id="@+id/linear"
     android:background="#ffffff">
 
     <RelativeLayout
@@ -18,36 +18,24 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/btn_menu" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="지민이"
-            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:text="지민이"
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/ll_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:id="@+id/ll_fragment" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#C0AAE1"
-            android:orientation="horizontal"
-            android:padding="20dp">
-
+            android:layout_width="match_parent" android:layout_height="wrap_content" android:background="#C0AAE1" android:orientation="horizontal" android:padding="20dp">
             <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:background="#fff"
-                android:src="@drawable/sample" />
-
+                android:layout_width="150dp" android:layout_height="150dp" android:background="#fff" android:src="@drawable/sample" />
             <LinearLayout
-                android:layout_width="wrap_content" android:layout_height="150dp" android:gravity="center" android:orientation="vertical" android:paddingLeft="20dp">
+                android:layout_width="wrap_content" android:layout_height="150dp" android:gravity="center" android:orientation="vertical" android:paddingLeft="10dp">
 
                 //최종신장
                 <LinearLayout
@@ -81,9 +69,7 @@
                     <TextView
                         android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="%" android:textColor="#ffffff" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
 
         <ScrollView
@@ -133,15 +119,14 @@
                     android:layout_width="wrap_content" android:layout_height="wrap_content" android:padding="10dp" android:text="Tanner 분류법 (바로가기 링크)" android:textColor="#ff0000" />
 
                 //공유버튼
-                <Button
-                    android:layout_width="wrap_content" android:layout_height="40dp" android:layout_marginLeft="10dp" android:text="공유하기" />
+                <ImageButton
+                    android:id="@+id/btn_share" android:onClick="onClick" android:layout_width="85dp" android:layout_height="25dp" android:layout_marginLeft="10dp" android:background="@drawable/btn_share" />
 
                 //그래프
                 <charting.charts.CombinedChart
-                    android:id="@+id/chart1" android:layout_width="match_parent" android:layout_height="360dp" android:padding="10dp" />
+                    android:id="@+id/chart1" android:layout_width="match_parent" android:layout_height="360dp" android:layout_margin="10dp" />
             </LinearLayout>
         </ScrollView>
+
     </LinearLayout>
-
-
 </LinearLayout>

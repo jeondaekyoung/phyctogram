@@ -1,7 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,10 +12,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -26,7 +23,6 @@ import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -50,7 +46,7 @@ public class UsersManageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         //화면 페이지
-        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
+        ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_users_manage, ic_screen, true);
         //슬라이드메뉴 셋팅
         initSildeMenu();
@@ -63,7 +59,7 @@ public class UsersManageActivity extends BaseActivity {
         });
 
         //레이아웃정의
-        btn_usersadd = (Button)findViewById(R.id.btn_usersadd);
+        btn_usersadd = (Button) findViewById(R.id.btn_usersadd);
         btn_usersadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +142,7 @@ public class UsersManageActivity extends BaseActivity {
 
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         //슬라이드메뉴에 있는 내 아이 목록
@@ -158,8 +154,7 @@ public class UsersManageActivity extends BaseActivity {
     }
 
 
-
-    private class FindUsersByMemberTask1 extends AsyncTask<Void, Void, List<Users>>{
+    private class FindUsersByMemberTask1 extends AsyncTask<Void, Void, List<Users>> {
         private List<Users> usersTask;
 
         @Override
@@ -173,7 +168,7 @@ public class UsersManageActivity extends BaseActivity {
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
-            } catch (IOException e){
+            } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패(내아이관리)");
             }
             return usersTask;
@@ -181,8 +176,8 @@ public class UsersManageActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(List<Users> userses) {
-            if(userses != null && userses.size() > 0){
-                for(Users u : userses){
+            if (userses != null && userses.size() > 0) {
+                for (Users u : userses) {
                     Log.d("-진우-", "내아이 : " + u.toString());
                 }
                 usersListManageAdapter.setUsersList(userses);
@@ -190,10 +185,21 @@ public class UsersManageActivity extends BaseActivity {
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
-
             int height = getListViewHeight(lv_usersList_manage);
             lv_usersList_manage.getLayoutParams().height = height;
         }
     }
 
+
+    /*
+    * 리스트뷰의 높이를 구함
+    * */
+    /*private int getListViewHeight(ListView listView){
+        ListAdapter adapter = listView.getAdapter();
+        int listViewHeight = 0;
+        listView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
+                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
+        listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
+        return listViewHeight;
+    }*/
 }

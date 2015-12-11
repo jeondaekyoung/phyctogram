@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="육아일기"
+            android:text="내 기기"
             android:textColor="#ffffff"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"/>
