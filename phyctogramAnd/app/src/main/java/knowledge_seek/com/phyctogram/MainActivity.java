@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class MainActivity extends BaseActivity {
     private LinearLayout ic_screen;
 
     //레이아웃정의
+    private Button btn_record;
 
 
     @Override
@@ -41,6 +43,17 @@ public class MainActivity extends BaseActivity {
             public void onClick(View v) {
                 //Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
+            }
+        });
+        btn_record = (Button)findViewById(R.id.btn_record);
+        btn_record.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                menuLeftSlideAnimationToggle();
+                finish();
             }
         });
 

@@ -35,48 +35,10 @@ public interface MemberAPI {
     Call<String> testpost2(@Field("member") Member member);
 
     @GET("/rest/member/testget1")
-    Call<String> testget11();
+    Call<String> testget11();*/
 
 
 
-
-
-    @GET("/rest/test/testget0")
-    Call<Void> testget0();
-
-    @GET("/rest/test/testget1/{player}")
-    Call<Void> testget1(@Path("player") String player);
-
-    @GET("/rest/test/testget2")
-    Call<Member> testget2();
-
-    @GET("/rest/test/testget3")
-    Call<Member> testget3();
-
-    @GET("/rest/test/testget4")
-    Call<Member> testget4(@Query("id") Integer id);
-
-    @GET("/rest/test/testget5")
-    Call<Member> testget5();
-
-    @POST("/rest/test/testget6")
-    Call<Member> testget61(@Body String email);
-
-    @FormUrlEncoded
-    @POST("/rest/test/testget6")
-    Call<Member> testget62(@Field("email") String email);
-
-    @POST("/rest/test/testget7")
-    Call<Member> testget7(@Body String email);
-
-    @POST("/rest/test/testget8")
-    Call<Member> testget8(@Body TestDomail testDomail);
-
-    @POST("/rest/test/testget9")
-    Call<Member> testget9(@Body TestDomail testDomail);
-
-    @POST("/rest/test/testget10")
-    Call<TestDomail> testget10(@Body TestDomail testDomail);*/
 
 
     //여기부터 시작

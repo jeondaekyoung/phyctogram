@@ -1,8 +1,10 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,7 +98,7 @@ public class UsersManageActivity extends BaseActivity {
         lv_usersList_manage.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                final Users users = (Users)usersListManageAdapter.getItem(position);
+                final Users users = (Users) usersListManageAdapter.getItem(position);
 
                 //Log.d("-진우-", "삭제 : " + users.getName());
                 AlertDialog.Builder dialog = new AlertDialog.Builder(UsersManageActivity.this);
@@ -106,11 +109,6 @@ public class UsersManageActivity extends BaseActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        /*Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(HTTPADDR)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
-                        UsersAPI service = retrofit.create(UsersAPI.class);*/
                         UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
                         Call<String> call = service.delUsersByUserSeq(String.valueOf(users.getUser_seq()));
                         call.enqueue(new Callback<String>() {
@@ -119,7 +117,6 @@ public class UsersManageActivity extends BaseActivity {
                                 Log.d("-진우-", "내아이 삭제 성공 결과1 : " + response.body());
                                 Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
                                 intent.putExtra("member", member);
-                                //intent.putExtra("users", users);
                                 startActivity(intent);
                                 finish();
 
@@ -145,7 +142,6 @@ public class UsersManageActivity extends BaseActivity {
         });
 
 
-
     }
 
 
@@ -156,85 +152,48 @@ public class UsersManageActivity extends BaseActivity {
         //슬라이드메뉴에 있는 내 아이 목록
         updateScreenSlide();
 
-        Log.d("-진우-", "UsersManageActivity 에 onResume() : " + member.toString());
-        if(usersList != null && usersList.size() > 0){
-            for(Users u :usersList){
-                Log.d("-진우-", "UsersManageActivity 에 onResume(), 내 아이 : " + u.toString());
-            }
-            //등록된 아이가 없을 경우 에러발생
-            usersListManageAdapter.setUsersList(usersList);
-        } else {
-            usersList = new ArrayList<Users>();
-            usersListManageAdapter.setUsersList(usersList);
-            Log.d("-진우-", "UsersManageActivity 에 onResume(), 등록된 내 아이가 없습니다. ");
-        }
-
-
-        //int height = getListViewHeight(lv_usersList_manage);
-        //lv_usersList_manage.getLayoutParams().height = height;
+        FindUsersByMemberTask1 task = new FindUsersByMemberTask1();
+        task.execute();
         usersListManageAdapter.notifyDataSetChanged();
-
     }
 
-    //화면 업데이트
-    private void updateUsersList(){
 
-        updateScreenSlide();
-        Log.d("-진우-", "UsersManageActivity 에 onResume() : " + member.toString());
-        if(usersList != null && usersList.size() > 0){
-            for(Users u :usersList){
-                Log.d("-진우-", "UsersManageActivity 에 onResume(), 내 아이 : " + u.toString());
-            }
-            //등록된 아이가 없을 경우 에러발생
-            usersListManageAdapter.setUsersList(usersList);
-        } else {
-            Log.d("-진우-", "UsersManageActivity 에 onResume(), 등록된 내 아이가 없습니다. ");
+
+    private class FindUsersByMemberTask1 extends AsyncTask<Void, Void, List<Users>>{
+        private List<Users> usersTask;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
 
-        //int height = getListViewHeight(lv_usersList_manage);
-        //lv_usersList_manage.getLayoutParams().height = height;
-        usersListManageAdapter.notifyDataSetChanged();
+        @Override
+        protected List<Users> doInBackground(Void... params) {
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
+            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+            try {
+                usersTask = call.execute().body();
+            } catch (IOException e){
+                Log.d("-진우-", "내 아이 목록 가져오기 실패(내아이관리)");
+            }
+            return usersTask;
+        }
 
-        /*Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        UsersAPI service = retrofit.create(UsersAPI.class);
-        final Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-
-                try{
-                    usersList = call.execute().body();
-
-                    if(usersList != null){
-                        for(Users u : usersList){
-                            Log.d("-진우-", "내아이 : " + u.toString());
-                        }
-                        usersListAdapter.setUsersList(usersList);
-                    } else {
-                        Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
-                    }
-                } catch (IOException e){
-                    e.printStackTrace();
+        @Override
+        protected void onPostExecute(List<Users> userses) {
+            if(userses != null && userses.size() > 0){
+                for(Users u : userses){
+                    Log.d("-진우-", "내아이 : " + u.toString());
                 }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("-진우-", "유저는 몇명 ? " + usersList.size());
-                        int height = getListViewHeight(lv_userslist);
-                        lv_userslist.getLayoutParams().height = height;
-
-                        usersListAdapter.notifyDataSetChanged();
-                    }
-                });
-
+                usersListManageAdapter.setUsersList(userses);
+                usersList = userses;
+            } else {
+                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
-        }.start();*/
-    }
 
+            int height = getListViewHeight(lv_usersList_manage);
+            lv_usersList_manage.getLayoutParams().height = height;
+        }
+    }
 
 }

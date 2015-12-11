@@ -301,8 +301,8 @@ public class BaseActivity extends Activity {
                 for(Users u : userses){
                     Log.d("-진우-", "내아이 : " + u.toString());
                 }
-                usersListSlideAdapter.setUsersList(userses);
                 usersList = userses;
+                usersListSlideAdapter.setUsersList(usersList);
                 if(nowUsers == null) {
                     nowUsers = userses.get(0);
                 }
