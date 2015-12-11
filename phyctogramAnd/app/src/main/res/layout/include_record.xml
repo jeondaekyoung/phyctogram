@@ -52,10 +52,11 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/datepick1"
+                    android:id="@+id/et_datepickFrom"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:editable="false" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,23 +65,25 @@
                     android:textColor="#000000" />
 
                 <EditText
-                    android:id="@+id/datepick2"
+                    android:id="@+id/et_datepickTo"
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000" />
+                    android:textColor="#000000"
+                    android:editable="false"/>
 
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:id="@+id/btn_findHeight"
                 android:background="#c1abe1"
                 android:text="검색"
                 android:textColor="#ffffff" />
         </LinearLayout>
 
         <ListView
-            android:id="@+id/list_record"
+            android:id="@+id/lv_record"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

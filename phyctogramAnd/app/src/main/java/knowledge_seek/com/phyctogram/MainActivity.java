@@ -50,7 +50,6 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                menuLeftSlideAnimationToggle();
                 finish();
             }
         });
