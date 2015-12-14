@@ -75,4 +75,32 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	@Override
+	public String selectHeightSeq() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		String height_seq = null;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			height_seq = heightMapper.selectHeightSeq();
+		}finally{
+			sqlSession.commit();
+		}
+
+		return height_seq;
+	}
+
+	@Override
+	public int delectHeightByHeightSeq(String height_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			result = heightMapper.delectHeightByHeightSeq(height_seq);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

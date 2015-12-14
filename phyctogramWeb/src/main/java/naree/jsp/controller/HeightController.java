@@ -26,7 +26,7 @@ public class HeightController {
 	@Autowired
 	private HeightService heightService;
 
-	//
+	//키 입력
 	@RequestMapping(value = "register.do", method = RequestMethod.GET)
 	@ResponseBody
 	public void registerHeight(String user_seq, String height){

@@ -4,9 +4,16 @@ import java.sql.Timestamp;
 
 public class Height {
 
+	private String height_seq;
 	private int user_seq;
 	private Timestamp mesure_date;
 	private double height;
+	public String getHeight_seq() {
+		return height_seq;
+	}
+	public void setHeight_seq(String height_seq) {
+		this.height_seq = height_seq;
+	}
 	public int getUser_seq() {
 		return user_seq;
 	}
@@ -27,7 +34,9 @@ public class Height {
 	}
 	@Override
 	public String toString() {
-		return "Height [user_seq=" + user_seq + ", mesure_date=" + mesure_date + ", height=" + height + "]";
+		return "Height [height_seq=" + height_seq + ", user_seq=" + user_seq + ", mesure_date=" + mesure_date
+				+ ", height=" + height + "]";
 	}
+	
 	
 }

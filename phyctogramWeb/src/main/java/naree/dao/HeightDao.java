@@ -33,4 +33,17 @@ public interface HeightDao {
 	 * @return
 	 */
 	List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
+
+	/**
+	 * 최근 키시퀀스 찾기
+	 * @return
+	 */
+	String selectHeightSeq();
+
+	/**
+	 * 키 삭제
+	 * @param height_seq
+	 * @return
+	 */
+	int delectHeightByHeightSeq(String height_seq);
 }

@@ -14,4 +14,8 @@ public interface HeightMapper {
 	int deleteHeightByUserSeq(String user_seq);
 
 	List<Height> selectHeightByUserSeqFT(Map<String, String> terms);
+
+	String selectHeightSeq();
+
+	int delectHeightByHeightSeq(String height_seq);
 }

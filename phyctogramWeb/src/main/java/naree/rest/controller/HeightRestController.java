@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +38,22 @@ public class HeightRestController {
 		heights = heightService.findHeightByUserSeqFT(user_seq, dateFrom, dateTo);
 		
 		return heights;
+	}
+	
+	/**
+	 * 키 삭제하기
+	 * @param height
+	 * @return
+	 */
+	@RequestMapping(value = "delHeightByHeightSeq", method = RequestMethod.DELETE)
+	public String delHeightByHeightSeq(@RequestParam String height_seq){
+		logger.info("delHeightByHeight 실행 : " + height_seq);
+		int result = heightService.delHeightByHeightSeq(height_seq);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
 	}
 
 }

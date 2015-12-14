@@ -14,16 +14,18 @@
 
 	<insert id="insertHeight" parameterType="Height">
 		INSERT INTO height_tb (
-							height
+							height_seq
+							,height
 							,mesure_date
 							,user_seq) VALUES (
-							#{height}
+							#{height_seq}
+							,#{height}
 							,now()
 							,#{user_seq} )
 	</insert>
 	
 	<select id="selectHeightByUser_seq" parameterType="String" resultType="Height">
-		SELECT height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq
 		  FROM height_tb
 		 WHERE user_seq = #{user_seq}
 	 ORDER BY mesure_date DESC
@@ -37,12 +39,21 @@
 	
 	<select id="selectHeightByUserSeqFT" parameterType="Map" resultType="Height">
 	<![CDATA[
-		SELECT height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq
 		   FROM height_tb
 		 WHERE user_seq = #{user_seq}
 		 AND #{dateFrom} <= date(mesure_date) AND date(mesure_date) <= #{dateTo}
 		 ORDER BY mesure_date DESC
 	]]>
 	</select>
+	
+	<select id="selectHeightSeq" resultType="String">
+		SELECT max(height_seq) as height_seq FROM height_tb
+	</select>
+	
+	<delete id="delectHeightByHeightSeq" parameterType="String">
+		DELETE FROM height_tb
+		WHERE height_seq = #{height_seq}
+	</delete>
 
 </mapper>

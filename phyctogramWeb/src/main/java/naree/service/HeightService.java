@@ -27,4 +27,11 @@ public interface HeightService {
 	 * @return
 	 */
 	List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
+
+	/**
+	 * 키 삭제
+	 * @param height_seq
+	 * @return
+	 */
+	int delHeightByHeightSeq(String height_seq);
 }
