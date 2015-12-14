@@ -54,9 +54,15 @@ public class HeightListRecordAdapter extends BaseAdapter {
         TextView recordDate = (TextView)convertView.findViewById(R.id.recordDate);
         TextView recordHeight = (TextView)convertView.findViewById(R.id.recordHeight);
         TextView recordGrow = (TextView)convertView.findViewById(R.id.record_grow);
+        TextView recordSa = (TextView)convertView.findViewById(R.id.record_sa);
         recordDate.setText(String.valueOf(height.getMesure_date()));
         recordHeight.setText(String.valueOf(height.getHeight()));
         recordGrow.setText(String.valueOf(height.getGrow()));
+        if(Double.valueOf(height.getGrow()) >= 0){
+            recordSa.setText("+");
+        } else {
+            recordSa.setText("-");
+        }
 
         return convertView;
     }
