@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
@@ -22,7 +23,9 @@ public class MainActivity extends BaseActivity {
     private LinearLayout ic_screen;
 
     //레이아웃정의
-    private Button btn_record;
+    private Button btn_record;  //기록조회
+    private ImageButton imBtn_community_list;      //수다방 리스트
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +46,23 @@ public class MainActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
+        //기록조회
         btn_record = (Button)findViewById(R.id.btn_record);
         btn_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //수다방(community) 글 작성
+        imBtn_community_list = (ImageButton)findViewById(R.id.imBtn_community_list);
+        imBtn_community_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CommunityListActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
                 finish();

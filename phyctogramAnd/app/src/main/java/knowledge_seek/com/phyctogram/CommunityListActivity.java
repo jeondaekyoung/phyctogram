@@ -1,9 +1,12 @@
 package knowledge_seek.com.phyctogram;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -18,11 +21,12 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
  */
 public class CommunityListActivity extends BaseActivity {
 
-    //레이아웃정의
-    private LinearLayout ic_screen;
+    //레이아웃정의 - 슬라이드메뉴
     private Button btn_left;
+    private LinearLayout ic_screen;
 
-    private GoogleApiClient client;
+    //레이아웃정의
+    private ImageButton imBtn_community_write;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,18 @@ public class CommunityListActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
+        //수다방 글쓰기
+        imBtn_community_write = (ImageButton)findViewById(R.id.imBtn_community_write);
+        imBtn_community_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CommunityWriteActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         //커뮤니티 글 목록
         ListView listview = (ListView) findViewById(R.id.list_board);
@@ -60,5 +76,9 @@ public class CommunityListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
+        //슬라이드메뉴에 있는 내 아이 목록
+        updateScreenSlide();
+
+        Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
     }
 }

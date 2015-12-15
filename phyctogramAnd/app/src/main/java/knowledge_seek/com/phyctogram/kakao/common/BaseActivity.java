@@ -2,6 +2,14 @@ package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -282,7 +290,7 @@ public class BaseActivity extends Activity {
 
 
     //프로필이미지 둥글게
-    /*public static Bitmap getRoundedBitmap(Bitmap bitmap) {
+    public static Bitmap getRoundedBitmap(Bitmap bitmap) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(output);
 
@@ -302,7 +310,7 @@ public class BaseActivity extends Activity {
         bitmap.recycle();
 
         return output;
-    }*/
+    }
 
     public void updateScreenSlide() {
         FindUsersByMemberTask task = new FindUsersByMemberTask();
@@ -375,7 +383,9 @@ public class BaseActivity extends Activity {
             super.onBackPressed();
         } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")) {
             super.onBackPressed();
-        } else {
+        }/* else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityListActivity")) {
+            super.onBackPressed();
+        }*/ else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);

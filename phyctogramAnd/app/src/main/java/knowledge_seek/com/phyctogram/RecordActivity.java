@@ -248,10 +248,10 @@ public class RecordActivity extends BaseActivity {
         @Override
         protected List<Height> doInBackground(Void... params) {
             Log.d("-진우-", user_seq + ", " + dateFrom + ", " + dateTo);
-            HeightAPI service = ServiceGenerator.createService(HeightAPI.class, true);
+            HeightAPI service = ServiceGenerator.createService(HeightAPI.class, "RecordActivity");
             Call<List<Height>> call = service.findHeightByUserSeqFT(user_seq, dateFrom, dateTo);
             try {
-                heightTask = call.execute().body();
+                        heightTask = call.execute().body();
             } catch (IOException e){
                 Log.d("-진우-", "기록조회 실패");
             }
@@ -286,12 +286,6 @@ public class RecordActivity extends BaseActivity {
             lv_record.getLayoutParams().height = height;*/
 
             heightListRecordAdapter.notifyDataSetChanged();
-
-            /*try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
 
             dialog.dismiss();
             super.onPostExecute(heights);

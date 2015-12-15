@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,13 +19,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/btn_menu" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="수다방"
-            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:text="수다방"
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -72,9 +74,11 @@
             <ImageButton
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:id="@+id/imBtn_community_write"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/float_button_03"/>
+                android:background="@drawable/float_button_03" />
         </RelativeLayout>
+
     </RelativeLayout>
 </LinearLayout>

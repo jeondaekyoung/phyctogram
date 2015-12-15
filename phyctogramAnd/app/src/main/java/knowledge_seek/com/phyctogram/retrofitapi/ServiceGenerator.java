@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.domain.Height;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
@@ -32,11 +33,15 @@ public class ServiceGenerator {
         return retrofit.create(serviceClass);
     }
 
-    public static <S> S createService(Class<S> serviceClass, Boolean time){
+    public static <S> S createService(Class<S> serviceClass, String gubun){
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        //gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-        gsonBuilder.registerTypeAdapter(Height.class, new HeightDes());
+        //구분
+        if("RecordActivity".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Height.class, new HeightDes());
+        } else if("CommunityWriteActivity".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
+        }
         Gson gson = gsonBuilder.create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
@@ -45,9 +50,5 @@ public class ServiceGenerator {
         return retrofit.create(serviceClass);
 
     }
-
-    //테스트
-    final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
 
 }
