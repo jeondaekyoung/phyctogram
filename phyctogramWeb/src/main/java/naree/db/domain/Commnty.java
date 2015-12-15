@@ -13,9 +13,7 @@ public class Commnty {
 	private String image_server_nm;
 	private MultipartFile image_file;
 	private Timestamp writng_de;
-	private int recomend_co;
-	private String comment_no;
-	private String comment_cn;
+	private int hits_co;
 	private int member_seq;
 	public int getCommty_seq() {
 		return commty_seq;
@@ -59,23 +57,11 @@ public class Commnty {
 	public void setWritng_de(Timestamp writng_de) {
 		this.writng_de = writng_de;
 	}
-	public int getRecomend_co() {
-		return recomend_co;
+	public int getHits_co() {
+		return hits_co;
 	}
-	public void setRecomend_co(int recomend_co) {
-		this.recomend_co = recomend_co;
-	}
-	public String getComment_no() {
-		return comment_no;
-	}
-	public void setComment_no(String comment_no) {
-		this.comment_no = comment_no;
-	}
-	public String getComment_cn() {
-		return comment_cn;
-	}
-	public void setComment_cn(String comment_cn) {
-		this.comment_cn = comment_cn;
+	public void setHits_co(int hits_co) {
+		this.hits_co = hits_co;
 	}
 	public int getMember_seq() {
 		return member_seq;
@@ -87,8 +73,8 @@ public class Commnty {
 	public String toString() {
 		return "Commnty [commty_seq=" + commty_seq + ", title=" + title + ", contents=" + contents + ", image_nm="
 				+ image_nm + ", image_server_nm=" + image_server_nm + ", image_file=" + image_file + ", writng_de="
-				+ writng_de + ", recomend_co=" + recomend_co + ", comment_no=" + comment_no + ", comment_cn="
-				+ comment_cn + ", member_seq=" + member_seq + "]";
+				+ writng_de + ", hits_co=" + hits_co + ", member_seq=" + member_seq + "]";
 	}
+
 	
 }

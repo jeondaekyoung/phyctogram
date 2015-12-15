@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.CommntyMapper">
+
+	<insert id="insertCommnty" parameterType="Commnty">
+		INSERT INTO commnty_tb (
+							title,
+							contents,
+							writng_de,
+							member_seq) VALUES (
+							#{title},
+							#{contents},
+							now(),
+							#{member_seq} )
+	</insert>
+
+</mapper>

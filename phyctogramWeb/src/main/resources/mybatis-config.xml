@@ -13,6 +13,7 @@
 		<typeAlias type="naree.db.domain.Height" alias="Height"/>
 		<typeAlias type="naree.db.domain.Member" alias="Member"/>
 		<typeAlias type="naree.db.domain.Users" alias="Users"/>
+		<typeAlias type="naree.db.domain.Commnty" alias="Commnty"/>
 		
 	</typeAliases>
 
@@ -34,6 +35,7 @@
     <mapper resource="mapper/HeightMapper.xml"/>
     <mapper resource="mapper/MemberMapper.xml"/>
     <mapper resource="mapper/UsersMapper.xml"/>
+    <mapper resource="mapper/CommntyMapper.xml"/>
   </mappers>
   
 </configuration>
