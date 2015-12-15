@@ -1,15 +1,15 @@
 
 package knowledge_seek.com.phyctogram;
 
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
+import android.view.WindowManager.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -39,26 +39,17 @@ public class CombinedChartActivity extends DemoBase {
 
     private CombinedChart mChart;
     private final int itemcount = 12;
-    PopupWindow popup;
-    View popupView;
-    LinearLayout linear;
+
+    //리포트 공유 팝업
+    private PopupWindow popup;
+    private ImageButton btn_share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.include_report);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.include_report);
-
-        //리포트 공유 팝업
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 200, dm);
-        int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, dm);
-
-        linear = (LinearLayout) findViewById(R.id.linear);
-        popupView = View.inflate(this, R.layout.activity_report_share, null);
-
 
         mChart = (CombinedChart) findViewById(R.id.chart1);
         mChart.setDescription("");
@@ -90,6 +81,23 @@ public class CombinedChartActivity extends DemoBase {
 
         mChart.setData(data);
         mChart.invalidate();
+
+        //리포트 공유 팝업
+        btn_share = (ImageButton) findViewById(R.id.btn_share);
+
+    }
+
+    //리포트 공유 팝업
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_share:
+                View popupView = getLayoutInflater().inflate(R.layout.activity_report_share, null);
+                popup = new PopupWindow(popupView,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                popup.setAnimationStyle(-1); // 애니메이션 설정(-1:설정, 0:설정안함)
+                popup.showAtLocation(popupView, Gravity.CENTER, 0, -100);
+                break;
+        }
     }
 
     private LineData generateLineData() {
@@ -202,21 +210,6 @@ public class CombinedChartActivity extends DemoBase {
     private float getRandom(float range, float startsfrom) {
         return (float) (Math.random() * range) + startsfrom;
     }
-
-
-    //리포트 공유 팝업 띄우기
-    /*final Button btnshare = (Button) findViewById(R.id.btn_share);
-    btnshare.setOnClickListener(new Button.OnClickListener(){
-        popup.showAtLocation(linear, Gravity.CENTER, 0, 0); //중앙에 띄운다.
-
-        //닫기버튼 클릭 이벤트
-        Button btnClose = (Button) popupView.findViewById(R.id.btn_close);
-        btnClose.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                popup.dismiss();
-            }
-        });
-    }*/
 
 
    /* @Override

@@ -11,14 +11,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="useradd" />
+            android:text="add" />
 
         <Button
             android:id="@+id/btn_usermod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="usermod" />
+            android:text="mod" />
 
         <Button
             android:id="@+id/btn_record"
@@ -56,14 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="write" />
+            android:text="c_write" />
 
         <Button
             android:id="@+id/btn_userdrop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="userdro" />
+            android:text="drop" />
     </TableRow>
 
     <TableRow>
@@ -80,14 +80,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="eqipmen" />
+            android:text="eqip" />
 
         <Button
             android:id="@+id/btn_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="calenda" />
+            android:text="diary" />
         <Button
             android:id="@+id/btn_set"
             android:layout_width="wrap_content"
@@ -107,20 +107,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="boardli" />
+            android:text="c_list" />
         <Button
             android:id="@+id/btn_usermanage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="userman" />
+            android:text="manage" />
 
         <Button
             android:id="@+id/btn_boardview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="boardvi" />
+            android:text="c_view" />
     </TableRow>
 
     <TableRow>
@@ -135,12 +135,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="charact" />
+            android:text="char" />
         <Button
             android:id="@+id/btn_userdatainput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="userdat" />
+            android:text="data" />
     </TableRow>
 </TableLayout>
