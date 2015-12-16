@@ -264,9 +264,9 @@ public class RecordActivity extends BaseActivity {
         protected void onPostExecute(List<Height> heights) {
             if(heights != null && heights.size() > 0){
                 for(Height h : heights){
-                    Log.d("-진우-", "기록 : " + h.toString());
+                    Log.d("-진우-", "목록 : " + h.toString());
                 }
-                Log.d("-진우-", heights.size() + " 개입습니다");
+                Log.d("-진우-", heights.size() + " 개 있습니다");
                 for(int i=0; i < heights.size()-1 ; i++){
                     //Log.d("-진우-", heights.get(i).toString());
                     //Log.d("-진우-", String.valueOf(heights.get(i).getHeight()));
@@ -279,7 +279,7 @@ public class RecordActivity extends BaseActivity {
                 heightListRecordAdapter.setHeights(heights);
                 heightList = heights;
             } else {
-                Log.d("-진우-", "성공했으나 기록이 없습니다.");
+                Log.d("-진우-", "성공했으나 목록이 없습니다.");
             }
 
             /*int height = getListViewHeight(lv_record);

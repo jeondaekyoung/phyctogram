@@ -12,6 +12,7 @@ import java.util.Date;
 
 import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.domain.Height;
+import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
@@ -41,7 +42,10 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(Height.class, new HeightDes());
         } else if("CommunityWriteActivity".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
+        } else if("CommunityListActivity".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(SqlCommntyListView.class, new SqlCommntyListViewDes());
         }
+
         Gson gson = gsonBuilder.create();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
