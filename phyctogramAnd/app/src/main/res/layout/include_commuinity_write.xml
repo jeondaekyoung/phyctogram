@@ -9,14 +9,11 @@
         android:layout_height="50dp"
         android:background="#776096"
         android:orientation="horizontal">
-
         <Button
             android:id="@+id/btn_left"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
             android:background="@drawable/btn_menu" />
 
         <TextView
@@ -32,7 +29,7 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical">
 
         <!--<EditText
             android:layout_width="match_parent"
@@ -42,22 +39,22 @@
             android:text="2015-11-26" />-->
 
         <EditText
+            android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:id="@+id/et_title"
             android:layout_marginTop="10dp"
             android:hint=" 제목"
             android:textSize="14dp" />
 
         <EditText
+            android:id="@+id/et_contents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:id="@+id/et_contents"
             android:gravity="top|left"
             android:hint=" 내용"
             android:inputType="textMultiLine"
-            android:lines="21"
+            android:lines="24"
             android:maxWidth="5.0dip"
             android:minWidth="10.0dip"
             android:scrollHorizontally="false"
@@ -74,6 +71,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:background="@drawable/write_pic" />
 
             <ImageButton
@@ -81,16 +80,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/pic"
                 android:background="@drawable/write_mov" />
 
             <Button
+                android:id="@+id/btn_community_save"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
-                android:id="@+id/btn_community_save"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
                 android:background="#C0AAE1"
                 android:text="저장"
                 android:textColor="#ffffff"

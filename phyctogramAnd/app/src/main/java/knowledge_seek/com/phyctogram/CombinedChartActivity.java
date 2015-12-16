@@ -1,13 +1,17 @@
 
 package knowledge_seek.com.phyctogram;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
@@ -43,6 +47,8 @@ public class CombinedChartActivity extends DemoBase {
     //리포트 공유 팝업
     private PopupWindow popup;
     private ImageButton btn_share;
+    //캡쳐
+    private LinearLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +90,7 @@ public class CombinedChartActivity extends DemoBase {
 
         //리포트 공유 팝업
         btn_share = (ImageButton) findViewById(R.id.btn_share);
+        container = (LinearLayout)findViewById(R.id.capture);
 
     }
 
@@ -91,11 +98,32 @@ public class CombinedChartActivity extends DemoBase {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_share:
+                container.buildDrawingCache();
+                Bitmap captureView = container.getDrawingCache();
+                //FileOutputStream fos;
+                /*try {
+                    fos = new FileOutputStream(Environment.getExternalStorageDirectory().toString()+"/capture.jpeg");
+                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }*/
+
                 View popupView = getLayoutInflater().inflate(R.layout.activity_report_share, null);
+                //레이아웃 정의
+                Button btn_close = (Button)popupView.findViewById(R.id.btn_close);
+                btn_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popup.dismiss();
+                    }
+                });
+                ImageView iv_capture= (ImageView)popupView.findViewById(R.id.iv_capture);
+                iv_capture.setImageBitmap(captureView);
                 popup = new PopupWindow(popupView,
                         RelativeLayout.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 popup.setAnimationStyle(-1); // 애니메이션 설정(-1:설정, 0:설정안함)
                 popup.showAtLocation(popupView, Gravity.CENTER, 0, -100);
+
                 break;
         }
     }

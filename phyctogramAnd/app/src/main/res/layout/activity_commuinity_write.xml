@@ -48,14 +48,11 @@
                     android:layout_height="50dp"
                     android:background="#776096"
                     android:orientation="horizontal">
-
                     <Button
-                        android:id="@+id/bt_left"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
+                        android:id="@+id/btn_left"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="12dp"
                         android:background="@drawable/btn_menu" />
                 </RelativeLayout>
 

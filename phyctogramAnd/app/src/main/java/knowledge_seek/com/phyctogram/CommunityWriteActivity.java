@@ -15,7 +15,6 @@ import java.io.IOException;
 
 import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-import knowledge_seek.com.phyctogram.kakao.common.GlobalApplication;
 import knowledge_seek.com.phyctogram.retrofitapi.CommntyAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.util.Utility;
@@ -147,7 +146,7 @@ public class CommunityWriteActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기달려주세요");
+            dialog.setMessage("잠시만 기다려주세요");
             dialog.show();
             super.onPreExecute();
         }
