@@ -59,9 +59,7 @@ import retrofit.Retrofit;
  * 세션을 오픈한 후 action을 override해서 사용한다.
  */
 public class LoginActivity extends BaseActivity {
-    public static final String HTTPADDRTEST = "http://192.168.123.103/phyctogramWeb";
     public static final String HTTPADDR = "http://117.52.89.181";
-    private ProgressDialog prgDialog;
 
     private SessionCallback callback;
 
@@ -70,10 +68,6 @@ public class LoginActivity extends BaseActivity {
     private AccessTokenTracker accessTokenTracker;
     private Button btn_login_kko;
     private Button btn_login;
-
-
-    //테스트 버튼
-    private Button logoutButton;
 
     //데이터
     private Member memberActivity = new Member();
@@ -87,10 +81,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-        prgDialog = new ProgressDialog(this);
-        prgDialog.setMessage("Please wait...");
-        prgDialog.setCancelable(false);
-
 
         //카카오 로그인 세션 검사
         callback = new SessionCallback();
@@ -140,10 +130,6 @@ public class LoginActivity extends BaseActivity {
                 }
             });
 
-
-
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            finish();
         }
 
         //픽토그램 로그인 검사
@@ -198,28 +184,6 @@ public class LoginActivity extends BaseActivity {
             }
 
         };
-
-        //로그아웃
-        /*logoutButton = (Button)findViewById(R.id.logout_Button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("-진우-", "페이스북 로그아웃");
-                AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                //accessToken 값이 있다면 로그인 상태라고 판단
-                if (accessToken != null) {
-                    LoginManager.getInstance().logOut();
-                }
-            }
-        });*/
-        //픽토그램 로그아웃
-        /*public static void clearUserName(Context ctx)
-        {
-            Editor editor = getSharedPreferences(ctx).edit();
-            editor.clear(); //clear all stored data
-            editor.commit();
-        }*/
-
 
         //버튼 정의
         btn_login_kko = (Button)findViewById(R.id.btn_login_kko);

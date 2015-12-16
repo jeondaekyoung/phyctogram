@@ -70,10 +70,10 @@ public class BaseActivity extends Activity {
     //레이아웃 정의
     private ListView lv_usersList;
     private UsersListSlideAdapter usersListSlideAdapter;
-    private Button btn_usersManage;
-    private Button btn_usersDiary;
-    private Button btn_dataInput;
-    private Button btn_setup;
+    private Button btn_usersManage;     //내아이관리
+    private Button btn_usersDiary;          //육아일기
+    private Button btn_dataInput;           //직접입력
+    private Button btn_setup;               //설정
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -115,15 +115,14 @@ public class RecordActivity extends BaseActivity {
                             @Override
                             public void onResponse(Response<String> response, Retrofit retrofit) {
                                 Log.d("-진우-", "키 삭제 성공 결과1 : " + response.body());
-                                /*Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
-                                intent.putExtra("member", member);
-                                startActivity(intent);
-                                finish();*/
-                                String dateFrom = et_datepickFrom.getText().toString();
-                                String dateTo = et_datepickTo.getText().toString();
-                                String user_seq = String.valueOf(nowUsers.getUser_seq());
-                                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
-                                task.execute();
+                                //Log.d("-진우-", "삭제전 : " + heightList.size());
+                                heightList.remove(height);
+                                //Log.d("-진우-", "삭제후 : " + heightList.size());
+                                /*for(Height h : heightList){
+                                    Log.d("-진우-", "기록 : " + h.toString());
+                                }*/
+                                heightListRecordAdapter.setHeights(heightList);
+                                heightListRecordAdapter.notifyDataSetChanged();
 
                             }
 

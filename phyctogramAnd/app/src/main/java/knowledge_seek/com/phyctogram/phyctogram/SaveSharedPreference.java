@@ -15,6 +15,7 @@ public class SaveSharedPreference {
         return PreferenceManager.getDefaultSharedPreferences(ctx);
     }
 
+    //로그인 정보 저장
     public static void setMemberSeq(Context ctx, String member_seq)
     {
         SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
@@ -26,6 +27,14 @@ public class SaveSharedPreference {
     public static String getMemberSeq(Context ctx)
     {
         return getSharedPreferences(ctx).getString(PREF_MEMBER_SEQ, "");
+    }
+
+    //로그아웃 정보 삭제
+    public static void clearMemberSeq(Context ctx){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.clear();
+        editor.commit();
+        Log.d("-진우-", "preference를 삭제함");
     }
 
 }
