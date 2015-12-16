@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Commnty {
 
-	private int commty_seq;
+	private int commnty_seq;
 	private String title;
 	private String contents;
 	private String image_nm;
@@ -15,11 +15,11 @@ public class Commnty {
 	private Timestamp writng_de;
 	private int hits_co;
 	private int member_seq;
-	public int getCommty_seq() {
-		return commty_seq;
+	public int getCommnty_seq() {
+		return commnty_seq;
 	}
-	public void setCommty_seq(int commty_seq) {
-		this.commty_seq = commty_seq;
+	public void setCommnty_seq(int commnty_seq) {
+		this.commnty_seq = commnty_seq;
 	}
 	public String getTitle() {
 		return title;
@@ -71,10 +71,11 @@ public class Commnty {
 	}
 	@Override
 	public String toString() {
-		return "Commnty [commty_seq=" + commty_seq + ", title=" + title + ", contents=" + contents + ", image_nm="
+		return "Commnty [commnty_seq=" + commnty_seq + ", title=" + title + ", contents=" + contents + ", image_nm="
 				+ image_nm + ", image_server_nm=" + image_server_nm + ", image_file=" + image_file + ", writng_de="
 				+ writng_de + ", hits_co=" + hits_co + ", member_seq=" + member_seq + "]";
 	}
+	
 
 	
 }

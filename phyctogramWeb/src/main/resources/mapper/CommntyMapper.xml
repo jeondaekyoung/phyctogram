@@ -16,5 +16,31 @@
 							now(),
 							#{member_seq} )
 	</insert>
+	
+	<select id="selectCommntyLatest" resultType="SqlCommntyListView" parameterType="Integer">
+		SELECT a1.commnty_seq, a1.title, a1.name, a1.writng_de, a1.hits_co, ifnull(a2.cnt, 0) as cnt FROM 
+  			(SELECT a.commnty_seq, a.title, b.name, a.writng_de, a.hits_co FROM commnty_tb a, 
+    			(SELECT member_seq, case join_route when 'phyctogram' then name when 'facebook' then facebook_name
+                                  when 'kakao' then kakao_nickname end as name FROM member_tb ) b
+  			where a.member_seq = b.member_seq) a1
+		LEFT OUTER JOIN ( SELECT commnty_seq, count(*) as cnt
+        				            FROM comment_tb GROUP BY commnty_seq ) a2
+		ON a1.commnty_seq = a2.commnty_seq
+		ORDER BY a1.writng_de DESC
+		LIMIT #{pageCntFirstIndex}, 10
+	</select>
+	
+	<select id="selectCommntyPopular" resultType="SqlCommntyListView" parameterType="Integer">
+		SELECT a1.commnty_seq, a1.title, a1.name, a1.writng_de, a1.hits_co, ifnull(a2.cnt, 0) as cnt FROM 
+  			(SELECT a.commnty_seq, a.title, b.name, a.writng_de, a.hits_co FROM commnty_tb a, 
+    			(SELECT member_seq, case join_route when 'phyctogram' then name when 'facebook' then facebook_name
+                                  when 'kakao' then kakao_nickname end as name FROM member_tb ) b
+  			where a.member_seq = b.member_seq) a1
+		LEFT OUTER JOIN ( SELECT commnty_seq, count(*) as cnt
+        				            FROM comment_tb GROUP BY commnty_seq ) a2
+		ON a1.commnty_seq = a2.commnty_seq
+		ORDER BY a1.hits_co DESC
+		LIMIT #{pageCntFirstIndex}, 10
+	</select>
 
 </mapper>

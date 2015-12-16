@@ -14,6 +14,7 @@
 		<typeAlias type="naree.db.domain.Member" alias="Member"/>
 		<typeAlias type="naree.db.domain.Users" alias="Users"/>
 		<typeAlias type="naree.db.domain.Commnty" alias="Commnty"/>
+		<typeAlias type="naree.db.domain.SqlCommntyListView" alias="SqlCommntyListView"/>
 		
 	</typeAliases>
 
