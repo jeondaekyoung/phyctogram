@@ -32,7 +32,7 @@ public interface HeightDao {
 	 * @param dateTo
 	 * @return
 	 */
-	List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
+	List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCntFirstIndex);
 
 	/**
 	 * 최근 키시퀀스 찾기

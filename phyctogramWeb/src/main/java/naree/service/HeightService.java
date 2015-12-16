@@ -26,7 +26,7 @@ public interface HeightService {
 	 * @param dateTo
 	 * @return
 	 */
-	List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo);
+	List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCnt);
 
 	/**
 	 * 키 삭제

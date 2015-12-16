@@ -13,7 +13,7 @@ public interface HeightMapper {
 
 	int deleteHeightByUserSeq(String user_seq);
 
-	List<Height> selectHeightByUserSeqFT(Map<String, String> terms);
+	List<Height> selectHeightByUserSeqFT(Map<String, Object> terms);
 
 	String selectHeightSeq();
 

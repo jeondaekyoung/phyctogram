@@ -10,6 +10,7 @@
 		<parameter property="user_seq"/>
 		<parameter property="dateFrom"/>
 		<parameter property="dateTo"/>
+		<parameter property="pageCntFirstIndex"/>
 	</parameterMap>
 
 	<insert id="insertHeight" parameterType="Height">
@@ -44,6 +45,7 @@
 		 WHERE user_seq = #{user_seq}
 		 AND #{dateFrom} <= date(mesure_date) AND date(mesure_date) <= #{dateTo}
 		 ORDER BY mesure_date DESC
+		 LIMIT #{pageCntFirstIndex}, 10
 	]]>
 	</select>
 	

@@ -31,11 +31,12 @@ public class HeightRestController {
 	 */
 	@RequestMapping(value = "findHeightByUserSeqFT", method = RequestMethod.POST)
 	public List<Height> findHeightByUserSeqFT(@RequestParam("user_seq") String user_seq,
-			@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo){
-		logger.info("findHeightByUsers 실행 : " + user_seq + ", " + dateFrom + ", " + dateTo);
+			@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo,
+			@RequestParam("pageCnt") int pageCnt){
+		logger.info("findHeightByUsers 실행 : " + user_seq + ", " + dateFrom + ", " + dateTo + ", " + pageCnt);
 		
 		List<Height> heights = new ArrayList<Height>();
-		heights = heightService.findHeightByUserSeqFT(user_seq, dateFrom, dateTo);
+		heights = heightService.findHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCnt);
 		
 		return heights;
 	}

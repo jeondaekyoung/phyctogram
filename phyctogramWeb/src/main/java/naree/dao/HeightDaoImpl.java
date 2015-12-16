@@ -58,13 +58,14 @@ public class HeightDaoImpl implements HeightDao {
 	}
 
 	@Override
-	public List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo) {
+	public List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCntFirstIndex) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		List<Height> heights = new ArrayList<Height>();
-		Map<String, String> terms = new HashMap<String, String>();
+		Map<String, Object> terms = new HashMap<String, Object>();
 		terms.put("user_seq", user_seq);
 		terms.put("dateFrom", dateFrom);
 		terms.put("dateTo", dateTo);
+		terms.put("pageCntFirstIndex", pageCntFirstIndex);
 		try{
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
 			heights = heightMapper.selectHeightByUserSeqFT(terms);
