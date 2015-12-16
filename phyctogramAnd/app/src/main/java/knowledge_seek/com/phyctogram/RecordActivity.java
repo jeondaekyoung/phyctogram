@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -58,18 +59,17 @@ public class RecordActivity extends BaseActivity {
     private ListView lv_record;
     private HeightListRecordAdapter heightListRecordAdapter;
 
-
-
     //데이터정의
-    int year, month, day, hour, minute;
-    private Height findHeight = new Height();
+    int year, month, day;
     private List<Height> heightList = new ArrayList<Height>();
+    //리스트뷰 더보기기능 데이터정의
+    private boolean lastListViewVisible = false;        //화면에 리스트의 마지막 아이템이 보여지는지 체크
+    private int pageCnt = 0;                //리스트뷰의 목록 페이지 번호
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_record);
 
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
@@ -93,6 +93,7 @@ public class RecordActivity extends BaseActivity {
         lv_record = (ListView)findViewById(R.id.lv_record);
         heightListRecordAdapter = new HeightListRecordAdapter(this, heightList, R.layout.list_record);
         lv_record.setAdapter(heightListRecordAdapter);
+        lv_record.setOnScrollListener(scrollListener);
 
         //리스트뷰 롱클릭 -> 내 아이 삭제됨
         lv_record.setLongClickable(true);
@@ -121,7 +122,7 @@ public class RecordActivity extends BaseActivity {
                                 String dateFrom = et_datepickFrom.getText().toString();
                                 String dateTo = et_datepickTo.getText().toString();
                                 String user_seq = String.valueOf(nowUsers.getUser_seq());
-                                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo);
+                                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
                                 task.execute();
 
                             }
@@ -157,7 +158,9 @@ public class RecordActivity extends BaseActivity {
                 String dateTo = et_datepickTo.getText().toString();
                 String user_seq = String.valueOf(nowUsers.getUser_seq());
                 //Log.d("-진우-", "검색 : " + dateFrom + " ~ " + dateTo + ", " + user_seq);
-                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo);
+                heightList.clear();     //리스트 초기화
+                pageCnt = 0;            //페이지수 초기화
+                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
                 task.execute();
                 //heightListRecordAdapter.notifyDataSetChanged();
             }
@@ -227,13 +230,15 @@ public class RecordActivity extends BaseActivity {
         private String user_seq;
         private String dateFrom;
         private String dateTo;
+        private int pageCntTask;
         private List<Height> heightTask;
         private ProgressDialog dialog = new ProgressDialog(RecordActivity.this);
 
-        public FindHeightByUserSeqFTTask(String user_seq, String dateFrom, String dateTo) {
+        public FindHeightByUserSeqFTTask(String user_seq, String dateFrom, String dateTo, int pageCntTask) {
             this.user_seq = user_seq;
             this.dateFrom = dateFrom;
             this.dateTo = dateTo;
+            this.pageCntTask = pageCntTask;
         }
 
         @Override
@@ -249,14 +254,12 @@ public class RecordActivity extends BaseActivity {
         protected List<Height> doInBackground(Void... params) {
             Log.d("-진우-", user_seq + ", " + dateFrom + ", " + dateTo);
             HeightAPI service = ServiceGenerator.createService(HeightAPI.class, "RecordActivity");
-            Call<List<Height>> call = service.findHeightByUserSeqFT(user_seq, dateFrom, dateTo);
+            Call<List<Height>> call = service.findHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCntTask);
             try {
-                        heightTask = call.execute().body();
+                heightTask = call.execute().body();
             } catch (IOException e){
                 Log.d("-진우-", "기록조회 실패");
             }
-
-
             return heightTask;
         }
 
@@ -266,18 +269,22 @@ public class RecordActivity extends BaseActivity {
                 for(Height h : heights){
                     Log.d("-진우-", "목록 : " + h.toString());
                 }
-                Log.d("-진우-", heights.size() + " 개 있습니다");
-                for(int i=0; i < heights.size()-1 ; i++){
+                Log.d("-진우-", "읽어온 목록은 " + heights.size() + " 개 있습니다");
+                heightList.addAll(heights);
+                Log.d("-진우-", "총 목록은 " + heightList.size() + " 개 입니다");
+
+                for(int i=0; i < heightList.size()-1 ; i++){
                     //Log.d("-진우-", heights.get(i).toString());
                     //Log.d("-진우-", String.valueOf(heights.get(i).getHeight()));
                     //Log.d("-진우-", String.valueOf(heights.get(i+1).getHeight()));
                     //Log.d("-진우-",  String.valueOf(heights.get(i).getHeight() - heights.get(i+1).getHeight()) );
                     //Log.d("-진우-", String.format("%.1d", heights.get(i).getHeight() - heights.get(i+1).getHeight()) );  //에러
-                    heights.get(i).setGrow(String.format("%.1f", (heights.get(i).getHeight() - heights.get(i+1).getHeight()) ));
+                    heightList.get(i).setGrow(String.format("%.1f", (heightList.get(i).getHeight() - heightList.get(i+1).getHeight()) ));
                 }
-                heights.get(heights.size()-1).setGrow("0");
-                heightListRecordAdapter.setHeights(heights);
-                heightList = heights;
+                heights.get(heights.size()- 1).setGrow("0");
+
+                heightListRecordAdapter.setHeights(heightList);
+                pageCnt = pageCntTask+1;
             } else {
                 Log.d("-진우-", "성공했으나 목록이 없습니다.");
             }
@@ -291,4 +298,29 @@ public class RecordActivity extends BaseActivity {
             super.onPostExecute(heights);
         }
     }
+
+    //더보기 - 스크롤리스너
+    private AbsListView.OnScrollListener scrollListener = new AbsListView.OnScrollListener() {
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
+            //OnScrollListener.SCROLL_STATE_IDLE은 스크롤이 이동하다가 멈추었을 때 발생되는 스크롤상태입니다.
+            //즉 스크롤이 바닦에 닿아 멈춘 상태에 처리를 하겠다는 뜻
+            if(scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastListViewVisible){
+                //화면에 바닦에 닿았고, 스크롤이 멈추었다.
+                Log.d("-진우-", "추가데이터 불러오기");
+                String dateFrom = et_datepickFrom.getText().toString();
+                String dateTo = et_datepickTo.getText().toString();
+                String user_seq = String.valueOf(nowUsers.getUser_seq());
+                FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
+                task.execute();
+            }
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            //현재 화면에 보이는 첫번째 리스트 아이템의 번호(firstVisibleItem) + 현재 화면에 보이는 리스트 아이템의 갯수(visibleItemCount)가
+            //리스트 전체의 갯수(totalItemCount) - 1 보다 크거나 같을 때
+            lastListViewVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount);
+        }
+    };
 }

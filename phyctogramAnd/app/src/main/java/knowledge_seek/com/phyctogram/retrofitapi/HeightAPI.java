@@ -15,8 +15,8 @@ import retrofit.http.Query;
 public interface HeightAPI {
 
     @POST("/rest/height/findHeightByUserSeqFT")
-    Call<List<Height>> findHeightByUserSeqFT(@Query("user_seq") String user_seq,
-                                             @Query("dateFrom") String dateFrom, @Query("dateTo") String dateTo);
+    Call<List<Height>> findHeightByUserSeqFT(@Query("user_seq") String user_seq, @Query("dateFrom") String dateFrom
+            , @Query("dateTo") String dateTo, @Query("pageCnt") int pageCnt);
 
     @DELETE("/rest/height/delHeightByHeightSeq")
     Call<String> delHeightByHeightSeq(@Query("height_seq") String height_seq);

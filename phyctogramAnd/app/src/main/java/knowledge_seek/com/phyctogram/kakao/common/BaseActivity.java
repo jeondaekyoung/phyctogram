@@ -337,8 +337,9 @@ public class BaseActivity extends Activity {
 
         @Override
         protected void onPostExecute(List<Users> userses) {
-            Log.d("-진우-", "내 아이는 몇명? " + userses.size());
+
             if (userses != null && userses.size() > 0) {
+                Log.d("-진우-", "내 아이는 몇명? " + userses.size());
                 for (Users u : userses) {
                     Log.d("-진우-", "내아이 : " + u.toString());
                 }

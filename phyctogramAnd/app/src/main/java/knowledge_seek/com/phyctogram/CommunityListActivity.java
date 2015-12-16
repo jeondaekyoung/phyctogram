@@ -46,8 +46,8 @@ public class CommunityListActivity extends BaseActivity {
     //데이터정의
     private List<SqlCommntyListView> sqlCommntyListViewList = new ArrayList<SqlCommntyListView>();
     private String mCurrentListViewState;        //현재 리스트뷰 상태(최신-latest, 인기-popular)
-    boolean lastListViewVisible = false;        //화면에 리스트의 마지막 아이템이 보여지는지 체크
-    private int pageCnt = 0;
+    private boolean lastListViewVisible = false;        //화면에 리스트의 마지막 아이템이 보여지는지 체크
+    private int pageCnt = 0;                            //리스트뷰의 목록 페이지 번호
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -261,9 +261,9 @@ public class CommunityListActivity extends BaseActivity {
             //현재 화면에 보이는 첫번째 리스트 아이템의 번호(firstVisibleItem) + 현재 화면에 보이는 리스트 아이템의 갯수(visibleItemCount)가
             //리스트 전제의 갯수(totalItemCount) - 1 보다 크거나 같을 때
             lastListViewVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount);
-            if(lastListViewVisible){
+            /*if(lastListViewVisible){
                 Log.d("-진우-", "끝이다.");
-            }
+            }*/
         }
     };
 }
