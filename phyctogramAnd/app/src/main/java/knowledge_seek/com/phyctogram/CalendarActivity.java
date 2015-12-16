@@ -89,7 +89,7 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
         ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
 
         // init ui
-        bt_left = (Button) findViewById(R.id.bt_left);
+        bt_left = (Button) findViewById(R.id.btn_left);
         bt_left.setOnClickListener(this);
 
         btn2 = (Button) findViewById(R.id.btn_usersManage);
@@ -163,7 +163,7 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
         int childCount = viewGroup.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = viewGroup.getChildAt(i);
-            if (view.getId() != R.id.bt_left) {
+            if (view.getId() != R.id.btn_left) {
                 view.setEnabled(enabled);
                 if (view instanceof ViewGroup) {
                     enableDisableViewGroup((ViewGroup) view, enabled);
@@ -176,7 +176,7 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.bt_left:
+            case R.id.btn_left:
                 menuLeftSlideAnimationToggle();
                 break;
             case R.id.btn_usersManage:
