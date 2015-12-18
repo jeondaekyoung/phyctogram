@@ -1,7 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -59,7 +58,6 @@ import retrofit.Retrofit;
  * 세션을 오픈한 후 action을 override해서 사용한다.
  */
 public class LoginActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://117.52.89.181";
 
     private SessionCallback callback;
 
@@ -79,8 +77,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
+
 
         //카카오 로그인 세션 검사
         callback = new SessionCallback();
@@ -270,7 +268,7 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
+                Intent memberlogin = new Intent(getApplicationContext(), Sitemap.class);
                 startActivity(memberlogin);
             }
         });

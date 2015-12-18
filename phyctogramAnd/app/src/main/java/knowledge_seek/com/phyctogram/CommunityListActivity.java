@@ -14,11 +14,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;

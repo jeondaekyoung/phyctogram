@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,25 +18,17 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.HeightListRecordAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.HeightAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -197,7 +188,7 @@ public class RecordActivity extends BaseActivity {
         updateScreenSlide();
 
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
-        Log.d("-진우-", "RecordActivity 에 onResume() : " + nowUsers.toString());
+//        Log.d("-진우-", "RecordActivity 에 onResume() : " + nowUsers.toString());
     }
 
     //날짜 입력

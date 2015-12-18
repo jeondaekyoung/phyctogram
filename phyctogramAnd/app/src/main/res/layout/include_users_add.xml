@@ -52,24 +52,27 @@
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:text="이니셜" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="제품에 표시될 이름입니다. 예:AAA, AAA1 (영문 3자, 숫자 1자 제한)"
-                    android:textSize="10dp"
-                    android:textColor="#ff0000"/>
+                    android:textColor="#ff0000"
+                    android:textSize="10dp" />
 
                 <EditText
                     android:id="@+id/et_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
                     android:maxLength="4" />
 
                 <TextView
@@ -115,6 +118,7 @@
 
             </LinearLayout>
         </ScrollView>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

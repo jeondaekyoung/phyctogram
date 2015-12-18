@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,35 +18,39 @@
             android:layout_alignParentLeft="true"
             android:background="#00000000"
             android:src="@drawable/btn_menu" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="직접 입력"
-            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"/>
+            android:inputType="numberDecimal"
+            android:text="직접 입력"
+            android:textColor="#ffffff" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="키 직접 입력하기"/>
+            android:text="키 직접 입력하기" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numeric="decimal"/>
+            android:numeric="decimal" />
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="등록"
             android:background="#c1abe1"
-            android:textColor="#ffffff"/>
+            android:text="등록"
+            android:textColor="#ffffff" />
     </LinearLayout>
 </LinearLayout>

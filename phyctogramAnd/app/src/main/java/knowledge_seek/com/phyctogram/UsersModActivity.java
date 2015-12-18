@@ -13,8 +13,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import java.io.IOException;
-
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
@@ -22,7 +20,6 @@ import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 

@@ -52,7 +52,8 @@
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,6 +65,7 @@
                     android:id="@+id/et_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
                     android:maxLength="4" />
 
                 <TextView
@@ -104,7 +106,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="남자" />
-
                 </RadioGroup>
 
             </LinearLayout>

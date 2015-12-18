@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,7 +32,7 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
     public static FrameLayout.LayoutParams leftMenuLayoutPrams;
     public static int leftMenuWidth;
     public static boolean isLeftExpanded;
-    public static Button bt_left;
+    public static ImageButton bt_left;
     public static Button btn2;
     public static Button btn3;
     public static Button btn4;
@@ -91,7 +92,7 @@ public class CalendarActivity extends FragmentActivity implements View.OnClickLi
         ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
 
         // init ui
-        bt_left = (Button) findViewById(R.id.btn_left);
+        bt_left = (ImageButton) findViewById(R.id.btn_left);
         bt_left.setOnClickListener(this);
 
         btn2 = (Button) findViewById(R.id.btn_usersManage);

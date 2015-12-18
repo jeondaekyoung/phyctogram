@@ -6,32 +6,36 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@drawable/menu"
-        android:orientation="horizontal"
-        android:paddingBottom="15dp">
-        <ImageView
-            android:id="@+id/img_profile"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/sample" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="12dp"
-            android:layout_toRightOf="@id/img_profile"
-            android:text="아이디 님"
-            android:textColor="#ffffff" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/menu"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp">
+
+            <knowledge_seek.com.phyctogram.LeftSlideBitmap
+                android:id="@+id/img_profile"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/sample" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="8dp"
+                android:textSize="14dp"
+                android:layout_toRightOf="@id/img_profile"
+                android:text="아이디 님"
+                android:textColor="#ffffff" />
+        </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:divider="#e0e0e0"
                 android:dividerHeight="1dp" />
+
             <Button
                 android:id="@+id/btn_usersManage"
                 android:layout_width="match_parent"
@@ -51,6 +56,7 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="내 아이 관리" />
+
             <Button
                 android:id="@+id/btn_usersDiary"
                 android:layout_width="match_parent"
@@ -59,6 +65,7 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="육아일기" />
+
             <Button
                 android:id="@+id/btn_dataInput"
                 android:layout_width="match_parent"
@@ -67,6 +74,7 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="직접 입력" />
+
             <Button
                 android:id="@+id/btn_setup"
                 android:layout_width="match_parent"

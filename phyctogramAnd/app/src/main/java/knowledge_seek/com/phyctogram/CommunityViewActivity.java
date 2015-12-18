@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -34,6 +34,7 @@ public class CommunityViewActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드 메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
+    private EditText reply;
 
     //레이아웃 정의
     private TextView tv_title;              //제목
