@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import knowledge_seek.com.phyctogram.domain.Comment;
 import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
@@ -44,6 +45,10 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
         } else if("CommunityListActivity".equals(gubun)){
             gsonBuilder.registerTypeAdapter(SqlCommntyListView.class, new SqlCommntyListViewDes());
+        } else if("CommunityViewActivity".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
+        } else if("Comment".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Comment.class, new CommentDes());
         }
 
         Gson gson = gsonBuilder.create();

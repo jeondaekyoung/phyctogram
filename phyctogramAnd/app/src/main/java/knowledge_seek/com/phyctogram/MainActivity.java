@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ public class MainActivity extends BaseActivity {
     //데이터정의
 
     //레이아웃정의 - 슬라이드메뉴
-    private Button btn_left;
+    private ImageButton btn_left;
     private LinearLayout ic_screen;
 
     //레이아웃정의
@@ -38,7 +39,7 @@ public class MainActivity extends BaseActivity {
         initSildeMenu();
 
         //레이아웃 정의
-        btn_left = (Button)findViewById(R.id.btn_left);
+        btn_left = (ImageButton)findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

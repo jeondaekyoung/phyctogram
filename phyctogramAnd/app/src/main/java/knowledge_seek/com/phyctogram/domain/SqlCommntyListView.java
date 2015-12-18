@@ -1,11 +1,12 @@
 package knowledge_seek.com.phyctogram.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by sjw on 2015-12-15.
  */
-public class SqlCommntyListView {
+public class SqlCommntyListView implements Serializable {
 
     private int commnty_seq;        //커뮤니티(수다방)_seq
     private String title;                   //제목

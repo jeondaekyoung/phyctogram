@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -33,7 +34,7 @@ import retrofit.Call;
 public class CommunityListActivity extends BaseActivity {
 
     //레이아웃정의 - 슬라이드메뉴
-    private Button btn_left;
+    private ImageButton btn_left;
     private LinearLayout ic_screen;
 
     //레이아웃정의
@@ -60,7 +61,7 @@ public class CommunityListActivity extends BaseActivity {
         initSildeMenu();
 
         //레이아웃 정의
-        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +108,20 @@ public class CommunityListActivity extends BaseActivity {
         sqlCommntyListViewListAdapter = new SqlCommntyListViewListAdapter(this, sqlCommntyListViewList, R.layout.list_community );
         lv_sqlcommntyList_communityList.setAdapter(sqlCommntyListViewListAdapter);
         lv_sqlcommntyList_communityList.setOnScrollListener(scrollListenerLatest);
+        //리스트뷰 클릭 -> 글 보기로 이동
+        lv_sqlcommntyList_communityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                SqlCommntyListView sqlCommntyListView = (SqlCommntyListView)sqlCommntyListViewListAdapter.getItem(position);
+
+                Intent intent = new Intent(getApplicationContext(), CommunityViewActivity.class);
+                intent.putExtra("member", member);
+                intent.putExtra("sqlCommntyListView", sqlCommntyListView);
+                startActivity(intent);
+                finish();
+
+            }
+        });
 
     }
 

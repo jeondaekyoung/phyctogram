@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -21,7 +22,7 @@ public class EquipmentActivity extends BaseActivity {
 
     //레이아웃정의
     private LinearLayout ic_screen;
-    private Button btn_left;
+    private ImageButton btn_left;
 
     private GoogleApiClient client;
 
@@ -36,7 +37,7 @@ public class EquipmentActivity extends BaseActivity {
         initSildeMenu();
 
         //레이아웃 정의
-        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +45,7 @@ public class EquipmentActivity extends BaseActivity {
             }
         });
     }
+
 
     public void onClickAddequip(){
         final EditText et = new EditText(this);
@@ -66,7 +68,93 @@ public class EquipmentActivity extends BaseActivity {
                 .show();
     }
 
-    @Override
+    /*@Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.bt_left:
+                menuLeftSlideAnimationToggle();
+                break;
+            *//*case R.id.btn1:
+                Intent main = new Intent(this, MainActivity.class);
+                startActivity(main);
+                break;
+            case R.id.btn2:
+
+                break;*//*
+            case R.id.btn3:
+
+                break;
+            case R.id.btn4:
+
+                break;
+
+            case R.id.addEquip:
+
+                final EditText et = new EditText(this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("기기 추가")
+                        .setMessage("일련번호를 입력하세요.")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setView(et)
+                        .show();
+                break;
+        }
+
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.bt_left:
+                menuLeftSlideAnimationToggle();
+                break;
+            case R.id.btn1:
+                Intent main = new Intent(this, MainActivity.class);
+                startActivity(main);
+                break;
+            case R.id.btn2:
+
+                break;
+            case R.id.btn3:
+
+                break;
+            case R.id.btn4:
+
+                break;
+
+            case R.id.addEquip:
+
+                final EditText et = new EditText(this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setTitle("기기 추가")
+                        .setMessage("일련번호를 입력하세요.")
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        })
+                        .setView(et)
+                        .show();
+                break;
+        }*/
+
     protected void onResume() {
         super.onResume();
     }

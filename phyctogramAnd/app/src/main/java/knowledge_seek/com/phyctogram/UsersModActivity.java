@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -31,7 +32,7 @@ import retrofit.Retrofit;
 public class UsersModActivity extends BaseActivity {
 
     //레이아웃정의 - 슬라이드메뉴
-    private Button btn_left;
+    private ImageButton btn_left;
     private LinearLayout ic_screen;
 
     //데이터
@@ -68,7 +69,7 @@ public class UsersModActivity extends BaseActivity {
 
 
         //사이드 메뉴
-        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

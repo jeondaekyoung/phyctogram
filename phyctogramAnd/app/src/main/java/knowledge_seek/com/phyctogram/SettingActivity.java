@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class SettingActivity extends BaseActivity {
     //데이터정의
 
     //레이아웃정의 - 슬라이드메뉴
-    private Button btn_left;
+    private ImageButton btn_left;
     private LinearLayout ic_screen;
 
     //레이아웃정의
@@ -48,7 +49,7 @@ public class SettingActivity extends BaseActivity {
         initSildeMenu();
 
         //레이아웃 정의
-        btn_left = (Button)findViewById(R.id.btn_left);
+        btn_left = (ImageButton)findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

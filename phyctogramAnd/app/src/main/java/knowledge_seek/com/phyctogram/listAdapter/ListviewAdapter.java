@@ -137,9 +137,9 @@ class ListviewAdapter_reply extends BaseAdapter {
         }
         Listviewitem_reply listviewitem_reply = data.get(position);
         TextView userId = (TextView) convertView.findViewById(R.id.community_userid);
-        TextView replyContent = (TextView) convertView.findViewById(R.id.community_reply_content);
+        //TextView replyContent = (TextView) convertView.findViewById(R.id.community_reply_content);
         userId.setText(listviewitem_reply.getUserid());
-        replyContent.setText(listviewitem_reply.getReply_content());
+        //replyContent.setText(listviewitem_reply.getReply_content());
         return convertView;
     }
 }

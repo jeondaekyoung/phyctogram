@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -33,7 +34,7 @@ public class UsersManageActivity extends BaseActivity {
     //public static final String HTTPADDR = "http://117.52.89.181";
 
     //레이아웃정의 - 슬라이드메뉴
-    private Button btn_left;
+    private ImageButton btn_left;
     private LinearLayout ic_screen;
 
     //레이아웃정의
@@ -50,7 +51,7 @@ public class UsersManageActivity extends BaseActivity {
         LayoutInflater.from(this).inflate(R.layout.include_users_manage, ic_screen, true);
         //슬라이드메뉴 셋팅
         initSildeMenu();
-        btn_left = (Button) findViewById(R.id.btn_left);
+        btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
@@ -16,7 +17,7 @@ public class PwfindActivity extends BaseActivity {
 
     //레이아웃정의
     private LinearLayout ic_screen;
-    private Button btn_left;
+    private ImageButton btn_left;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class PwfindActivity extends BaseActivity {
         initSildeMenu();
 
         //레이아웃 정의
-        btn_left = (Button)findViewById(R.id.btn_left);
+        btn_left = (ImageButton)findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

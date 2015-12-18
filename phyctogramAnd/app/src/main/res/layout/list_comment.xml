@@ -5,16 +5,16 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/community_userid"
+        android:id="@+id/tv_member_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="아이디"
+        android:text="이름"
         android:textColor="#000000" />
 
     <TextView
-        android:id="@+id/community_reply_content"
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="댓글내용 ㅎㅎ" />
+        android:text="댓글내용" />
 
 </LinearLayout>
