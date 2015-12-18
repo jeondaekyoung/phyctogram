@@ -1,4 +1,4 @@
-package knowledge_seek.com.phyctogram;
+package knowledge_seek.com.phyctogram.cal;
 
 /**
  * Default App Config

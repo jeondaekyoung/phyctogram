@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import charting.DemoBase;
 import charting.charts.CombinedChart;
 import charting.charts.CombinedChart.DrawOrder;
 import charting.components.XAxis;

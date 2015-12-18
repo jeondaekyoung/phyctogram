@@ -26,7 +26,6 @@ import android.widget.TextView;
 
 import java.util.Calendar;
 
-import knowledge_seek.com.phyctogram.MConfig;
 import knowledge_seek.com.phyctogram.R;
 
 /**

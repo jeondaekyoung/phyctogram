@@ -24,8 +24,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import knowledge_seek.com.phyctogram.MConfig;
-
 /**
  * View to display a month
  */

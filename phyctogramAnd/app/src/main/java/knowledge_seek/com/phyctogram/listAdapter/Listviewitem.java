@@ -1,4 +1,4 @@
-package knowledge_seek.com.phyctogram;
+package knowledge_seek.com.phyctogram.listAdapter;
 
 /**
  * Created by dkfka on 2015-12-04.

@@ -1,4 +1,4 @@
-package knowledge_seek.com.phyctogram;
+package knowledge_seek.com.phyctogram.listAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import knowledge_seek.com.phyctogram.R;
 
 /**
  * Created by dkfka on 2015-12-04.

@@ -14,6 +14,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import knowledge_seek.com.phyctogram.cal.MConfig;
+import knowledge_seek.com.phyctogram.cal.MonthlyFragment;
 import knowledge_seek.com.phyctogram.util.AnimationClose;
 import knowledge_seek.com.phyctogram.util.AnimationOpen;
 

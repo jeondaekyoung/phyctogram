@@ -1,5 +1,5 @@
 
-package knowledge_seek.com.phyctogram;
+package charting;
 
 import android.support.v4.app.FragmentActivity;
 

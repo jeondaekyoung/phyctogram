@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package knowledge_seek.com.phyctogram;
+package knowledge_seek.com.phyctogram.cal;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,7 +28,7 @@ import android.view.ViewGroup;
 
 import java.util.Calendar;
 
-import knowledge_seek.com.phyctogram.cal.OneMonthView;
+import knowledge_seek.com.phyctogram.R;
 import verticalviewpager.VerticalViewPager;
 
 
