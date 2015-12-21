@@ -352,9 +352,11 @@ public class BaseActivity extends Activity {
             super.onBackPressed();
         } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")) {
             super.onBackPressed();
-        }/* else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityListActivity")) {
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityViewActivity")) {
             super.onBackPressed();
-        }*/ else {
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityCommentActivity")) {
+            super.onBackPressed();
+        } else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);

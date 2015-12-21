@@ -147,7 +147,7 @@ public class CommunityWriteActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage("잠시만 기달려주세요");
             dialog.show();
             super.onPreExecute();
         }
@@ -168,12 +168,13 @@ public class CommunityWriteActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            dialog.dismiss();
             if(result != null && result.equals("success")){
                 Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("-진우-", "저장하는데 실패하였습니다");
             }
+
+            dialog.dismiss();
             super.onPostExecute(result);
         }
     }

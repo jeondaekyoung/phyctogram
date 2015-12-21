@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -151,15 +152,20 @@ public class UsersManageActivity extends BaseActivity {
 
         FindUsersByMemberTask1 task = new FindUsersByMemberTask1();
         task.execute();
-        usersListManageAdapter.notifyDataSetChanged();
+
     }
 
 
+    //내아이 목록가져오기
     private class FindUsersByMemberTask1 extends AsyncTask<Void, Void, List<Users>> {
         private List<Users> usersTask;
+        private ProgressDialog dialog = new ProgressDialog(UsersManageActivity.this);
 
         @Override
         protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
             super.onPreExecute();
         }
 
@@ -186,21 +192,16 @@ public class UsersManageActivity extends BaseActivity {
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
+
             int height = getListViewHeight(lv_usersList_manage);
             lv_usersList_manage.getLayoutParams().height = height;
+            usersListManageAdapter.notifyDataSetChanged();
+
+            dialog.dismiss();
+            super.onPostExecute(userses);
         }
+
     }
 
 
-    /*
-    * 리스트뷰의 높이를 구함
-    * */
-    /*private int getListViewHeight(ListView listView){
-        ListAdapter adapter = listView.getAdapter();
-        int listViewHeight = 0;
-        listView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED),
-                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-        listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
-        return listViewHeight;
-    }*/
 }

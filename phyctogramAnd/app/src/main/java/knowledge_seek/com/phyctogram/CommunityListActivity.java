@@ -115,7 +115,7 @@ public class CommunityListActivity extends BaseActivity {
                 intent.putExtra("member", member);
                 intent.putExtra("sqlCommntyListView", sqlCommntyListView);
                 startActivity(intent);
-                finish();
+
 
             }
         });
@@ -131,6 +131,8 @@ public class CommunityListActivity extends BaseActivity {
 
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
 
+        //새로읽어오기
+        pageCnt = 0;
         FindCommntyLatestTask task = new FindCommntyLatestTask(pageCnt);
         task.execute();
 
@@ -158,7 +160,7 @@ public class CommunityListActivity extends BaseActivity {
         @Override
         protected List<SqlCommntyListView> doInBackground(Void... params) {
             SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "CommunityListActivity");
-            Call<List<SqlCommntyListView>> call = service.findCommntyLatest(pageCnt);
+            Call<List<SqlCommntyListView>> call = service.findCommntyLatest(pageCntTask);
             try {
                 sqlCommntyListViewTask = call.execute().body();
             } catch (IOException e){
@@ -175,6 +177,9 @@ public class CommunityListActivity extends BaseActivity {
                 }
                 Log.d("-진우-", "읽어온 목록은 " + sqlCommntyListViews.size() + " 개 있습니다");
 
+                if(pageCntTask == 0){
+                    sqlCommntyListViewList.clear();
+                }
                 //sqlCommntyListViewList = sqlCommntyListViews;
                 sqlCommntyListViewList.addAll(sqlCommntyListViews);
                 Log.d("-진우-", "총 목록은 " + sqlCommntyListViewList.size() + " 개 입니다");

@@ -61,7 +61,7 @@ public class UsersModActivity extends BaseActivity {
             users = (Users) bundle.getSerializable("users");
             Log.d("-진우-", "UsersModActivity 에서 " + users.toString());
         } else {
-            Log.d("-진우-", "UsersModActivity 에 users가 없다.");
+            Log.d("-진우-", "UsersModActivity 에 users가 없다");
         }
 
 

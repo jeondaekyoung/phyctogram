@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,6 +46,7 @@ public class CommunityViewActivity extends BaseActivity {
     private TextView tv_contents;       //내용
     private ListView lv_comments;        //댓글 리스트
     private CommentListAdapter commentListAdapter;
+    private EditText et_comment;        //댓글 쓰기
 
     //데이터정의
     private SqlCommntyListView sqlCommntyListView = new SqlCommntyListView();
@@ -96,17 +98,21 @@ public class CommunityViewActivity extends BaseActivity {
         commentListAdapter = new CommentListAdapter(this, CommentList, R.layout.list_comment);
         lv_comments.setAdapter(commentListAdapter);
 
+        //댓글쓰기로 가기
+        et_comment = (EditText)findViewById(R.id.et_comment);
+        et_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(CommunityViewActivity.this, "댓글쓰기로 가자", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), CommunityCommentActivity.class);
+                intent.putExtra("member", member);
+                intent.putExtra("sqlCommntyListView", sqlCommntyListView);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
-
-    /*public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.reply:
-                Intent intent = new Intent(this, CommunityReplyActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }*/
 
     @Override
     protected void onResume() {
@@ -180,6 +186,9 @@ public class CommunityViewActivity extends BaseActivity {
                 commentListAdapter.setComments(commentListTask);
 
             }
+
+            int height = getListViewHeight(lv_comments);
+            lv_comments.getLayoutParams().height = height;
 
             commentListAdapter.notifyDataSetChanged();
 

@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import knowledge_seek.com.phyctogram.domain.Comment;
 import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -50,6 +51,10 @@ public class Utility {
     public static String users2json(Users users){
         String json = new Gson().toJson(users);
         return json;
+    }
+
+    public static String comment2json(Comment comment){
+        return new Gson().toJson(comment);
     }
 
     public static String commnty2json(Commnty commnty){
