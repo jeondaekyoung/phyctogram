@@ -64,6 +64,29 @@ public class CommntyRestController {
 		return commntyService.findCommntyPopular(pageCnt);
 	}
 	
+	/**
+	 * 커뮤니티(수다방) 글 조회하기
+	 * @param commnty_seq
+	 * @return
+	 */
+	@RequestMapping(value = "findCommntyByCommntySeq", method = RequestMethod.GET)
+	public Commnty findCommntyByCommntySeq(@RequestParam("commnty_seq") int commnty_seq){
+		logger.info("findCommntyByCommntySeq 실행 " + commnty_seq);
+		
+		//조회하기
+		Commnty commnty = commntyService.findCommntyByCommntySeq(commnty_seq);
+		if(commnty == null){
+			System.out.println("수다방에 없는 내용입니다");
+			return null;
+		}
+		//조회 카운트하기
+		int result = commntyService.increaseHitsCoByCommnty(commnty);
+		if(result == 1){
+			return commnty;
+		} else {
+			return null;
+		}
+	}
 	
 	
 }

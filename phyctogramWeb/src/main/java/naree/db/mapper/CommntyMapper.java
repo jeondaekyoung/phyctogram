@@ -13,4 +13,8 @@ public interface CommntyMapper {
 
 	List<SqlCommntyListView> selectCommntyPopular(int pageCntFirstIndex);
 
+	Commnty selectCommntyByCommntySeq(int commnty_seq);
+
+	int updateHitsCoByCommnty(Commnty commnty);
+
 }

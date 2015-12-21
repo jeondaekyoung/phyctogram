@@ -8,6 +8,7 @@ public class Comment {
 	private String content;
 	private Timestamp writng_de;
 	private int member_seq;
+	private String member_name;
 	private int commnty_seq;
 	public int getComment_seq() {
 		return comment_seq;
@@ -33,6 +34,12 @@ public class Comment {
 	public void setMember_seq(int member_seq) {
 		this.member_seq = member_seq;
 	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	public int getCommnty_seq() {
 		return commnty_seq;
 	}
@@ -42,7 +49,6 @@ public class Comment {
 	@Override
 	public String toString() {
 		return "Comment [comment_seq=" + comment_seq + ", content=" + content + ", writng_de=" + writng_de
-				+ ", member_seq=" + member_seq + ", commnty_seq=" + commnty_seq + "]";
+				+ ", member_seq=" + member_seq + ", member_name=" + member_name + ", commnty_seq=" + commnty_seq + "]";
 	}
-	
 }

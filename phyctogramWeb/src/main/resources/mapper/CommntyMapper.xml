@@ -42,5 +42,16 @@
 		ORDER BY a1.hits_co DESC
 		LIMIT #{pageCntFirstIndex}, 10
 	</select>
+	
+	<select id="selectCommntyByCommntySeq" parameterType="Integer" resultType="Commnty">
+		SELECT commnty_seq, title, contents, image_nm, image_server_nm, writng_de, hits_co, member_seq
+		  FROM commnty_tb
+		 WHERE commnty_seq = #{commnty_seq}
+	</select>
+	
+	<update id="updateHitsCoByCommnty" parameterType="Commnty">
+		UPDATE commnty_tb SET hits_co = hits_co+1
+		 WHERE commnty_seq = #{commnty_seq}
+	</update>
 
 </mapper>

@@ -26,4 +26,18 @@ public interface CommntyDao {
 	 */
 	List<SqlCommntyListView> selectCommntyPopular(int pageCntFirstIndex);
 
+	/**
+	 * 커뮤니티(수다방) 글 조회하기
+	 * @param commnty_seq
+	 * @return
+	 */
+	Commnty selectCommntyByCommntySeq(int commnty_seq);
+
+	/**
+	 * 커뮤니티(수다방) 조회 카운트하기
+	 * @param commnty
+	 * @return
+	 */
+	int updateHitsCoByCommnty(Commnty commnty);
+
 }

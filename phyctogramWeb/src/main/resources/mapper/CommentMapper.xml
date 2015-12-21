@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.CommentMapper">
+
+	<select id="selectCommentByCommntySeq" parameterType="Integer" resultType="Comment">
+		SELECT c.comment_seq, c.content, c.writng_de, c.member_seq,
+					(SELECT case m.join_route when 'phyctogram' then m.name
+					            when 'facebook' then m.facebook_name when 'kakao' then m.kakao_nickname end
+       				    FROM member_tb m WHERE m.member_seq = c.member_seq) as member_name, c.commnty_seq
+		  FROM comment_tb c
+        WHERE c.commnty_seq = #{commnty_seq}
+        ORDER BY c.writng_de DESC
+	</select>
+	
+	<insert id="insertComment" parameterType="Comment">
+		INSERT INTO comment_tb (
+							content,
+							writng_de,
+							member_seq,
+							commnty_seq ) VALUES (
+							#{content},
+							now(),
+							#{member_seq},
+							#{ commnty_seq} )
+	</insert>
+
+</mapper>

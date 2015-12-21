@@ -36,5 +36,17 @@ public class CommntyServiceImpl implements CommntyService {
 		
 		return commntyDao.selectCommntyPopular(pageCnt*10);
 	}
+
+	@Override
+	public Commnty findCommntyByCommntySeq(int commnty_seq) {
+		
+		return commntyDao.selectCommntyByCommntySeq(commnty_seq);
+	}
+
+	@Override
+	public int increaseHitsCoByCommnty(Commnty commnty) {
+		
+		return commntyDao.updateHitsCoByCommnty(commnty);
+	}
 	
 }

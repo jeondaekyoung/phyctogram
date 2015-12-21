@@ -53,4 +53,31 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	@Override
+	public Commnty selectCommntyByCommntySeq(int commnty_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Commnty result;
+		try {
+			CommntyMapper commntyMapper = sqlSession.getMapper(CommntyMapper.class);
+			result = commntyMapper.selectCommntyByCommntySeq(commnty_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateHitsCoByCommnty(Commnty commnty) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			CommntyMapper commntyMapper = sqlSession.getMapper(CommntyMapper.class);
+			result = commntyMapper.updateHitsCoByCommnty(commnty);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }
