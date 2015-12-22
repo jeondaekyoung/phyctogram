@@ -84,4 +84,54 @@ public class HeightServiceImpl implements HeightService {
 		return heightDao.delectHeightByHeightSeq(height_seq);
 	}
 
+	@Override
+	public String nextHeightSeq() {
+		String nowHeightSeq = heightDao.selectHeightSeq();
+		String nextHeightSeq = null;
+		System.out.println("현재 키 시퀀스 : " + nowHeightSeq);
+		
+		//현재 날짜 계산
+		Calendar cal = java.util.Calendar.getInstance();
+		int nYear = cal.get(Calendar.YEAR);
+		int nMonth = cal.get(Calendar.MONTH)+1;
+		int nDay = cal.get(Calendar.DAY_OF_MONTH);
+		String year = String.valueOf(nYear);
+		String month = String.valueOf(nMonth);
+		String day = String.valueOf(nDay);
+		
+		if(month.length() == 1){
+			month = "0".concat(month);
+		}
+		if(day.length() == 1){
+			day = "0".concat(day);
+		}
+		//키 시퀀스 만들기
+		if(nowHeightSeq == null){
+			nextHeightSeq = "".concat(year).concat(month).concat(day).concat("#").concat(String.format("%09d", 1));
+		} else {
+			String nowYear = nowHeightSeq.substring(0, 4);
+			String nowMonth = nowHeightSeq.substring(4, 6);
+			String nowDay = nowHeightSeq.substring(6, 8);
+			if(!year.equals(nowYear)){
+				nextHeightSeq = "".concat(year).concat(month).concat(day).concat("#").concat(String.format("%09d", 1));
+			} else if(!month.equals(nowMonth)){
+				nextHeightSeq = "".concat(nowYear).concat(month).concat(day).concat("#").concat(String.format("%09d", 1));
+			} else if(!day.equals(nowDay)){
+				nextHeightSeq = "".concat(nowYear).concat(nowMonth).concat(day).concat("#").concat(String.format("%09d", 1));
+			} else {
+				int no = Integer.parseInt(nowHeightSeq.substring(9));
+				nextHeightSeq = "".concat(nowYear).concat(nowMonth).concat(nowDay).concat("#").concat(String.format("%09d", no+1));
+			}
+		}
+		
+		System.out.println("다음 키 시퀀스 : " + nextHeightSeq);
+		return nextHeightSeq;
+	}
+
+	@Override
+	public int registerHeightAnd(Height height) {
+		
+		return heightDao.insertHeightAnd(height);
+	}
+
 }

@@ -56,5 +56,27 @@ public class HeightRestController {
 			return "fail";
 		}
 	}
+	
+	/**
+	 * (안드로이드에서) 키 저장하기
+	 * @param height
+	 * @return
+	 */
+	@RequestMapping(value = "registerHeight", method = RequestMethod.POST)
+	public String registerHeight(@RequestBody Height height){
+		logger.info("registerHeight 실행 : " + height.toString());
+		
+		String nextHeightSeq = heightService.nextHeightSeq();
+		height.setHeight_seq(nextHeightSeq);
+		logger.info("registerHeight 실행 : " + height.toString());
+		
+		int result = heightService.registerHeightAnd(height);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 
 }

@@ -7,6 +7,12 @@ import naree.db.domain.Height;
 public interface HeightService {
 
 	/**
+	 * 키 시퀀스 만들기
+	 * @return
+	 */
+	String nextHeightSeq();
+	
+	/**
 	 * 키정보 저장하기
 	 * @param insHeight
 	 */
@@ -34,4 +40,13 @@ public interface HeightService {
 	 * @return
 	 */
 	int delHeightByHeightSeq(String height_seq);
+
+	/**
+	 * (안드로이드에서) 키 저장하기
+	 * @param height
+	 * @return
+	 */
+	int registerHeightAnd(Height height);
+	
+	
 }

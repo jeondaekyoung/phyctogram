@@ -104,4 +104,18 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	@Override
+	public int insertHeightAnd(Height height) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			result = heightMapper.insertHeightAnd(height);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

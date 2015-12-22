@@ -57,5 +57,17 @@
 		DELETE FROM height_tb
 		WHERE height_seq = #{height_seq}
 	</delete>
+	
+	<insert id="insertHeightAnd" parameterType="Height">
+		INSERT INTO height_tb (
+							height_seq
+							,height
+							,mesure_date
+							,user_seq) VALUES (
+							#{height_seq}
+							,#{height}
+							,now()
+							,#{user_seq} )
+	</insert>
 
 </mapper>
