@@ -31,6 +31,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
 
+    //이미지 둥글게 그려준다
+    compile 'com.pkmmte.view:circularimageview:1.1'
+
     // 페이스북
     compile 'com.facebook.android:facebook-android-sdk:4.7.0'
 
