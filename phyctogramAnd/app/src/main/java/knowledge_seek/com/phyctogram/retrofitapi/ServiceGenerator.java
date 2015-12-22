@@ -49,6 +49,8 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
         } else if("Comment".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Comment.class, new CommentDes());
+        } else if("Height".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Height.class, new HeightDes());
         }
 
         Gson gson = gsonBuilder.create();

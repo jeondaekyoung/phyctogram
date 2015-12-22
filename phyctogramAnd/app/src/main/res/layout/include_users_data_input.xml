@@ -20,12 +20,13 @@
             android:src="@drawable/btn_menu" />
 
         <TextView
+            android:id="@+id/tv_users_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:inputType="numberDecimal"
-            android:text="직접 입력"
+            android:text="내 아이 관리에서 아이를 등록해주세요"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -42,11 +43,13 @@
             android:text="키 직접 입력하기" />
 
         <EditText
+            android:id="@+id/et_input_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:numeric="decimal" />
 
         <Button
+            android:id="@+id/btn_users_height"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="#c1abe1"

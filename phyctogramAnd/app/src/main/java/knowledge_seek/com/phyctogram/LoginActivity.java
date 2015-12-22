@@ -168,14 +168,15 @@ public class LoginActivity extends BaseActivity {
         }
 
         //페이스북 - This class can be extended to receive notifications of access token changes
+        //액세스토큰이 변경시 실행
         callbackManager = CallbackManager.Factory.create();
         accessTokenTracker = new AccessTokenTracker() {
             @Override
             protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
                 Log.d("-진우-", "onCurrentAccessTokenChanged() 실행");
                 if(currentAccessToken != null){
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                    /*startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();*/
                 } else {
                     setContentView(R.layout.activity_login);
                 }
@@ -201,12 +202,12 @@ public class LoginActivity extends BaseActivity {
         facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d("-진우-", "로그인 성공");
+                Log.d("-진우-", "페이스북 로그인 성공");
                 //AccessToken : This class represents an immutable access token for using Facebook APIs. It also includes associated metadata such as expiration date and permissions.
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(JSONObject object, GraphResponse response) {
-                        Log.d("-진우-", "로그인1 : " + response.toString());
+                        Log.d("-진우-", "페이스북 로그인1 : " + response.toString());
                         if (!"".equals(object)) {
                             String id = "";
                             String name = "";
@@ -228,7 +229,7 @@ public class LoginActivity extends BaseActivity {
                                 member.setFacebook_birthday(object.getString("birthday"));
                                 member.setJoin_route("facebook");
 
-                                Log.d("-진우-", "로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
+                                Log.d("-진우-", "페이스북 로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
                                 Log.d("-진우-", "멤버는 " + member.toString());
 
                                 registerMember(member);
@@ -268,7 +269,7 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent memberlogin = new Intent(getApplicationContext(), Sitemap.class);
+                Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
                 startActivity(memberlogin);
             }
         });

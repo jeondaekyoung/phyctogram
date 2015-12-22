@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,16 +61,19 @@ public class BaseActivity extends Activity {
     public static Users nowUsers = null;
 
     //레이아웃 정의
-    private ListView lv_usersList;
-    private UsersListSlideAdapter usersListSlideAdapter;
+    public ListView lv_usersList;
+    public UsersListSlideAdapter usersListSlideAdapter;
     private Button btn_usersManage;     //내아이관리
     private Button btn_usersDiary;          //육아일기
     private Button btn_dataInput;           //직접입력
     private Button btn_setup;               //설정
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("-진우-", "BaseActivity.onCreate() 실행");
         setContentView(R.layout.activity_main);
 
         //데이터셋팅
@@ -83,9 +87,12 @@ public class BaseActivity extends Activity {
         }
 
         //레이아웃 정의
+        //슬라이드 내 아이 목록(ListView)
         lv_usersList = (ListView) findViewById(R.id.lv_usersList);
         usersListSlideAdapter = new UsersListSlideAdapter(this);
         lv_usersList.setAdapter(usersListSlideAdapter);
+
+        //슬라이드 내 이동 버튼 정의
         btn_usersManage = (Button) findViewById(R.id.btn_usersManage);
         btn_usersManage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +109,7 @@ public class BaseActivity extends Activity {
         btn_usersDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
@@ -114,7 +121,7 @@ public class BaseActivity extends Activity {
         btn_dataInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
@@ -126,7 +133,7 @@ public class BaseActivity extends Activity {
         btn_setup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(BaseActivity.this, "설정페이지 가기", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
@@ -139,8 +146,10 @@ public class BaseActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("-진우-", "BaseActivity.onResume() 실행");
         GlobalApplication.setCurrentActivity(this);
         self = BaseActivity.this;
+
     }
 
     @Override
@@ -280,15 +289,25 @@ public class BaseActivity extends Activity {
         }
     }
 
+    //지울 것임 BaseActivity에서 통신을 하면, 페이지마다 초기 데이터를 가져오는 통신까지 2번 통신하게 된다.
+    //그래서 페이지마다 한 번만 통신하도록 하자.
     public void updateScreenSlide() {
         FindUsersByMemberTask task = new FindUsersByMemberTask();
         task.execute();
-        usersListSlideAdapter.notifyDataSetChanged();
+        //usersListSlideAdapter.notifyDataSetChanged();
     }
-
-
     private class FindUsersByMemberTask extends AsyncTask<Void, Void, List<Users>> {
+
         private List<Users> usersTask;
+        //private ProgressDialog dialog = new ProgressDialog(BaseActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            //dialog.setMessage("BaseActivity - 내 아이 목록 가져오기");
+            //dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected List<Users> doInBackground(Void... params) {
@@ -318,14 +337,22 @@ public class BaseActivity extends Activity {
                     nowUsers = userses.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+                /*if(tv_users_name != null){
+                    tv_users_name.setText(nowUsers.getName());
+                }*/
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
+            usersListSlideAdapter.notifyDataSetChanged();
+
+            //dialog.dismiss();
+            super.onPostExecute(userses);
         }
     }
+    // --> 여기까지 지울 것임
 
     /*
     * 리스트뷰의 높이를 구함

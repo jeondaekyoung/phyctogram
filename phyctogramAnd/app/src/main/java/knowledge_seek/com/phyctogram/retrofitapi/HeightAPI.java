@@ -20,4 +20,7 @@ public interface HeightAPI {
 
     @DELETE("/rest/height/delHeightByHeightSeq")
     Call<String> delHeightByHeightSeq(@Query("height_seq") String height_seq);
+
+    @POST("/rest/height/registerHeight")
+    Call<String> registerHeight(@Body Height height);
 }

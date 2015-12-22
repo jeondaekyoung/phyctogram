@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import knowledge_seek.com.phyctogram.domain.Comment;
 import knowledge_seek.com.phyctogram.domain.Commnty;
+import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 
@@ -61,4 +62,7 @@ public class Utility {
         return new Gson().toJson(commnty);
     }
 
+    public static String height2json(Height height){
+        return new Gson().toJson(height);
+    }
 }

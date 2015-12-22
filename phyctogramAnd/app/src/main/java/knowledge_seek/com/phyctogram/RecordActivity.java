@@ -17,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,10 +27,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Height;
+import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.HeightListRecordAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.HeightAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -50,6 +54,7 @@ public class RecordActivity extends BaseActivity {
     private Button btn_findHeight;
     private ListView lv_record;
     private HeightListRecordAdapter heightListRecordAdapter;
+    private TextView tv_users_name;     //아이 이름 출력
 
     //데이터정의
     int year, month, day;
@@ -68,6 +73,23 @@ public class RecordActivity extends BaseActivity {
         LayoutInflater.from(this).inflate(R.layout.include_record, ic_screen, true);
         //슬라이드메뉴 셋팅
         initSildeMenu();
+
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        tv_users_name = (TextView) findViewById(R.id.tv_users_name);
+        lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                nowUsers = (Users) usersListSlideAdapter.getItem(position);
+                Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+
+                if (tv_users_name != null) {
+                    tv_users_name.setText(nowUsers.getName());
+                }
+
+                //메인페이지에 출력할 아이에 관한 데이터(분석포함)를 가져와야한다.
+            }
+        });
 
         //레이아웃 정의
         btn_left = (ImageButton)findViewById(R.id.btn_left);
@@ -185,7 +207,9 @@ public class RecordActivity extends BaseActivity {
         //요건되는데, BaseActivity.onResume()에 있으면 안되네..
         //login, join등의 member이 없는 activity가 있기 때문에 안된다.
         //슬라이드메뉴에 있는 내 아이 목록
-        updateScreenSlide();
+        //updateScreenSlide();
+        RecordDataTask task = new RecordDataTask();
+        task.execute();
 
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
 //        Log.d("-진우-", "RecordActivity 에 onResume() : " + nowUsers.toString());
@@ -216,6 +240,64 @@ public class RecordActivity extends BaseActivity {
         return s;
     }
 
+    //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록)
+    private class RecordDataTask extends AsyncTask<Void, Void, List<Users>> {
+
+        private ProgressDialog dialog = new ProgressDialog(RecordActivity.this);
+        private List<Users> usersTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<Users> doInBackground(Void... params) {
+            //슬라이드메뉴에 있는 내 아이 목록
+            //updateScreenSlide();  //내 아이 목록을 가져오기전에 MainDataTask가 끝난다.
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
+            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+            try {
+                usersTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "내 아이 목록 가져오기 실패");
+            }
+
+            return usersTask;
+        }
+
+        @Override
+        protected void onPostExecute(List<Users> userses) {
+            if (userses != null && userses.size() > 0) {
+                Log.d("-진우-", "내 아이는 몇명? " + userses.size());
+                for (Users u : userses) {
+                    Log.d("-진우-", "내아이 : " + u.toString());
+                }
+                usersList = userses;
+
+                usersListSlideAdapter.setUsersList(usersList);
+                if (nowUsers == null) {
+                    nowUsers = userses.get(0);
+                }
+                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+                tv_users_name.setText(nowUsers.getName());
+            } else {
+                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
+            }
+
+            int height = getListViewHeight(lv_usersList);
+            lv_usersList.getLayoutParams().height = height;
+            usersListSlideAdapter.notifyDataSetChanged();
+
+            dialog.dismiss();
+            super.onPostExecute(userses);
+        }
+    }
+
+    //기록조회
     private class FindHeightByUserSeqFTTask extends AsyncTask<Void, Void, List<Height>>{
 
         private String user_seq;

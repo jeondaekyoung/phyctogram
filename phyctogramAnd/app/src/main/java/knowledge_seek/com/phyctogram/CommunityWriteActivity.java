@@ -161,7 +161,7 @@ public class CommunityWriteActivity extends BaseActivity {
             try {
                 result = call.execute().body();
             } catch (IOException e){
-                Log.d("-진우-", "글저장 실패");
+                Log.d("-진우-", "글 저장 실패");
             }
             return result;
         }
