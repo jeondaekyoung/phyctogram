@@ -18,4 +18,7 @@ public interface SqlCommntyListViewAPI {
     @GET("/rest/commnty/findCommntyPopular")
     Call<List<SqlCommntyListView>> findCommntyPopular(@Query("pageCnt") int pageCnt);
 
+    @GET("/rest/commnty/findCommntyPopularTop3")
+    Call<List<SqlCommntyListView>> findCommntyPopularTop3();
+
 }

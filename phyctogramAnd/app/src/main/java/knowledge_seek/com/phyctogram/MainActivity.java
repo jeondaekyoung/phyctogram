@@ -25,9 +25,11 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import knowledge_seek.com.phyctogram.retrofitapi.SqlCommntyListViewAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
 
@@ -48,6 +50,14 @@ public class MainActivity extends BaseActivity {
     private TextView tv_users_name;     //아이 이름 출력
     private CircularImageView img_profile;      //슬라이드 내 이미지
     private TextView tv_member_name;            //슬라이드 내 이름
+
+    private TextView tv_popularTop1_title;          //커뮤니티(수다방) 인기 Top3
+    private TextView tv_popularTop1_name;
+    private TextView tv_popularTop2_title;
+    private TextView tv_popularTop2_name;
+    private TextView tv_popularTop3_title;
+    private TextView tv_popularTop3_name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +124,14 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
+        //커뮤니티(수다방) 인기 Top3
+        tv_popularTop1_title = (TextView)findViewById(R.id.tv_popularTop1_title);
+        tv_popularTop1_name = (TextView)findViewById(R.id.tv_popularTop1_name);
+        tv_popularTop2_title = (TextView)findViewById(R.id.tv_popularTop2_title);
+        tv_popularTop2_name = (TextView)findViewById(R.id.tv_popularTop2_name);
+        tv_popularTop3_title = (TextView)findViewById(R.id.tv_popularTop3_title);
+        tv_popularTop3_name = (TextView)findViewById(R.id.tv_popularTop3_name);
+
     }
 
     @Override
@@ -148,6 +166,7 @@ public class MainActivity extends BaseActivity {
         private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
+        private List<SqlCommntyListView> sqlCommntyListViewTask = null;
 
         @Override
         protected void onPreExecute() {
@@ -208,10 +227,24 @@ public class MainActivity extends BaseActivity {
                 }
             }
 
-            if(image_url != null){
+            //커뮤니티(수다방) 인기 Top3 읽어오기
+            SqlCommntyListViewAPI service1 = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
+            Call<List<SqlCommntyListView>> call1 = service1.findCommntyPopularTop3();
+            try {
+                List<SqlCommntyListView> resultList1 = call1.execute().body();
+                if(resultList1 != null){
+                    for(SqlCommntyListView s : resultList1){
+                        Log.d("-진우-", "인기 Top3 : " + s.toString());
+                    }
+                    sqlCommntyListViewTask = resultList1;
+
+                }
 
 
+            } catch (IOException e){
+                Log.d("-진우-", "수다방 목록 조회 실패");
             }
+
 
             return mBitmap;
         }
@@ -242,6 +275,17 @@ public class MainActivity extends BaseActivity {
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
             usersListSlideAdapter.notifyDataSetChanged();
+
+            //커뮤니티(수다방) 인기 Top3 셋팅
+            if(sqlCommntyListViewTask != null){
+                tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
+                tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
+                tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
+                tv_popularTop2_name.setText(sqlCommntyListViewTask.get(1).getName());
+                tv_popularTop3_title.setText(sqlCommntyListViewTask.get(2).getTitle());
+                tv_popularTop3_name.setText(sqlCommntyListViewTask.get(2).getName());
+            }
+
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

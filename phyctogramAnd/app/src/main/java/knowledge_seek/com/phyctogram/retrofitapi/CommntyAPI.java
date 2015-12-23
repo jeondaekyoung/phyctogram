@@ -20,5 +20,4 @@ public interface CommntyAPI {
     @GET("/rest/commnty/findCommntyByCommntySeq")
     Call<Commnty> findCommntyByCommntySeq(@Query("commnty_seq") int commnty_seq);
 
-
 }

@@ -213,6 +213,7 @@
                         android:paddingBottom="15dp">
 
                         <TextView
+                            android:id="@+id/tv_popularTop1_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -221,11 +222,12 @@
                             android:textColor="#333333" />
 
                         <TextView
+                            android:id="@+id/tv_popularTop1_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_margin="2dp"
-                            android:text="아이디"
+                            android:text="이름"
                             android:textColor="#333333" />
                     </RelativeLayout>
 
@@ -237,6 +239,7 @@
                         android:paddingBottom="15dp">
 
                         <TextView
+                            android:id="@+id/tv_popularTop2_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -245,11 +248,12 @@
                             android:textColor="#333333" />
 
                         <TextView
+                            android:id="@+id/tv_popularTop2_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_margin="2dp"
-                            android:text="아이디"
+                            android:text="이름"
                             android:textColor="#333333" />
                     </RelativeLayout>
 
@@ -259,6 +263,7 @@
                         android:layout_marginTop="15dp">
 
                         <TextView
+                            android:id="@+id/tv_popularTop3_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -267,11 +272,12 @@
                             android:textColor="#333333" />
 
                         <TextView
+                            android:id="@+id/tv_popularTop3_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_margin="2dp"
-                            android:text="아이디"
+                            android:text="이름"
                             android:textColor="#333333" />
                     </RelativeLayout>
 

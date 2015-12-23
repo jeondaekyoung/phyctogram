@@ -51,6 +51,8 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(Comment.class, new CommentDes());
         } else if("Height".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Height.class, new HeightDes());
+        } else if("SqlCommntyListView".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(SqlCommntyListView.class, new SqlCommntyListViewDes());
         }
 
         Gson gson = gsonBuilder.create();
