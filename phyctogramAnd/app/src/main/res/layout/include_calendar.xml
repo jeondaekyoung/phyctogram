@@ -38,33 +38,32 @@
 
         <Button
             android:id="@+id/btn_monthPrevious"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentLeft="true"
-            android:text="이전 달" />
+            android:background="@drawable/btn_arrow_left" />
 
         <TextView
             android:id="@+id/tv_monthText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btn_monthPrevious"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_alignBaseline="@+id/btn_monthPrevious"
             android:text="MonthView" />
 
         <Button
             android:id="@+id/btn_monthNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:text="다음 달" />
+            android:background="@drawable/btn_arrow_right" />
 
         <LinearLayout
             android:id="@+id/weekLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_monthPrevious"
-            android:layout_marginTop="4dp"
             android:orientation="horizontal">
 
             <TextView
