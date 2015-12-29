@@ -48,5 +48,11 @@ public class CommntyServiceImpl implements CommntyService {
 		
 		return commntyDao.updateHitsCoByCommnty(commnty);
 	}
+
+	@Override
+	public List<SqlCommntyListView> findCommntyPopularTop3() {
+		
+		return commntyDao.selectCommntyPopularTop3();
+	}
 	
 }

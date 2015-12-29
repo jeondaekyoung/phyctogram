@@ -88,5 +88,16 @@ public class CommntyRestController {
 		}
 	}
 	
+	/**
+	 * 커뮤니티(수다방) 인기 Top3 목록 읽어오기
+	 * @return
+	 */
+	@RequestMapping(value = "findCommntyPopularTop3", method = RequestMethod.GET)
+	public List<SqlCommntyListView> findCommntyPopularTop3(){
+		logger.info("findCommntyPopularTop3 실행 ");
+		
+		return commntyService.findCommntyPopularTop3();
+	}
+	
 	
 }

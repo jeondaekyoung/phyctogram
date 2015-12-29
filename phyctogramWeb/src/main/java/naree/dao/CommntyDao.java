@@ -40,4 +40,10 @@ public interface CommntyDao {
 	 */
 	int updateHitsCoByCommnty(Commnty commnty);
 
+	/**
+	 * 커뮤니티(수다방) 인기 Top3 목록 읽어오기
+	 * @return
+	 */
+	List<SqlCommntyListView> selectCommntyPopularTop3();
+
 }

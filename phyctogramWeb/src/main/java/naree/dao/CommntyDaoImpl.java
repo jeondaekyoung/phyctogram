@@ -80,4 +80,17 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	@Override
+	public List<SqlCommntyListView> selectCommntyPopularTop3() {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<SqlCommntyListView> result;
+		try {
+			CommntyMapper commntyMapper = sqlSession.getMapper(CommntyMapper.class);
+			result = commntyMapper.selectCommntyPopularTop3();
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

@@ -17,4 +17,6 @@ public interface CommntyMapper {
 
 	int updateHitsCoByCommnty(Commnty commnty);
 
+	List<SqlCommntyListView> selectCommntyPopularTop3();
+
 }

@@ -40,4 +40,10 @@ public interface CommntyService {
 	 */
 	int increaseHitsCoByCommnty(Commnty commnty);
 
+	/**
+	 * 커뮤니티(수다방) 인기 Top3 목록 읽어오기
+	 * @return
+	 */
+	List<SqlCommntyListView> findCommntyPopularTop3();
+
 }
