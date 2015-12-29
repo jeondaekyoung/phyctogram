@@ -13,7 +13,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
  * Created by dkfka on 2015-12-08.
  */
 public class DiaryViewActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://117.52.89.181";
+    public static final String HTTPADDR = "http://www.phyctogram.com";
 
     //레이아웃정의
     private LinearLayout ic_screen;

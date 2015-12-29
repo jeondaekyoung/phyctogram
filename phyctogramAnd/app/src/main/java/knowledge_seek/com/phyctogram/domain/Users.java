@@ -16,6 +16,21 @@ public class Users implements Serializable {
     private String sexdstn;
     private int member_seq;
 
+    public Users() {
+
+    }
+
+    public Users(int user_seq, String name, String initials, String lifyea, String mt, String de, String sexdstn, int member_seq) {
+        this.user_seq = user_seq;
+        this.name = name;
+        this.initials = initials;
+        this.lifyea = lifyea;
+        this.mt = mt;
+        this.de = de;
+        this.sexdstn = sexdstn;
+        this.member_seq = member_seq;
+    }
+
     public int getUser_seq() {
         return user_seq;
     }

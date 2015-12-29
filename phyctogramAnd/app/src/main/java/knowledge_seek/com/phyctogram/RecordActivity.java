@@ -221,13 +221,25 @@ public class RecordActivity extends BaseActivity {
 
         //요건되는데, BaseActivity.onResume()에 있으면 안되네..
         //login, join등의 member이 없는 activity가 있기 때문에 안된다.
-        //슬라이드메뉴에 있는 내 아이 목록
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
         //updateScreenSlide();
         RecordDataTask task = new RecordDataTask();
         task.execute(img_profile);
 
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
-//        Log.d("-진우-", "RecordActivity 에 onResume() : " + nowUsers.toString());
+
+        String name = null;
+        if(member.getJoin_route().equals("kakao")){
+            name = member.getKakao_nickname() + " 님";
+        } else if(member.getJoin_route().equals("facebook")){
+            name = member.getFacebook_name() + " 님";
+        } else {
+            name = member.getName() + " 님";
+        }
+        if(name != null){
+            tv_member_name.setText(name);
+        }
+        Log.d("-진우-", "MainActivity.onResume() 끝");
     }
 
     //날짜 입력
@@ -271,9 +283,9 @@ public class RecordActivity extends BaseActivity {
         }
 
         @Override
-        protected Bitmap doInBackground(Object... objects) {
+        protected Bitmap doInBackground(Object... params) {
             Bitmap mBitmap = null;
-            img_profileTask = (CircularImageView)objects[0];
+            img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
             //updateScreenSlide();  //내 아이 목록을 가져오기전에 MainDataTask가 끝난다.
@@ -333,7 +345,7 @@ public class RecordActivity extends BaseActivity {
             if (usersTask != null && usersTask.size() > 0) {
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
                 for (Users u : usersTask) {
-                    Log.d("-진우-", "내아이 : " + u.toString());
+                    Log.d("-진우-", "내 아이 : " + u.toString());
                 }
                 usersList = usersTask;
 
