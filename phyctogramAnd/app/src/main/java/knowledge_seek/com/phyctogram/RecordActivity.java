@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +22,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pkmmte.view.CircularImageView;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -55,6 +63,8 @@ public class RecordActivity extends BaseActivity {
     private ListView lv_record;
     private HeightListRecordAdapter heightListRecordAdapter;
     private TextView tv_users_name;     //아이 이름 출력
+    private CircularImageView img_profile;      //슬라이드 내 이미지
+    private TextView tv_member_name;            //슬라이드 내 이름
 
     //데이터정의
     int year, month, day;
@@ -73,6 +83,11 @@ public class RecordActivity extends BaseActivity {
         LayoutInflater.from(this).inflate(R.layout.include_record, ic_screen, true);
         //슬라이드메뉴 셋팅
         initSildeMenu();
+
+        //슬라이드 내 이미지
+        img_profile = (CircularImageView)findViewById(R.id.img_profile);
+        //슬라이드 내 이름
+        tv_member_name = (TextView)findViewById(R.id.tv_member_name);
 
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
@@ -209,7 +224,7 @@ public class RecordActivity extends BaseActivity {
         //슬라이드메뉴에 있는 내 아이 목록
         //updateScreenSlide();
         RecordDataTask task = new RecordDataTask();
-        task.execute();
+        task.execute(img_profile);
 
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
 //        Log.d("-진우-", "RecordActivity 에 onResume() : " + nowUsers.toString());
@@ -241,10 +256,11 @@ public class RecordActivity extends BaseActivity {
     }
 
     //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록)
-    private class RecordDataTask extends AsyncTask<Void, Void, List<Users>> {
+    private class RecordDataTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(RecordActivity.this);
         private List<Users> usersTask;
+        private CircularImageView img_profileTask;
 
         @Override
         protected void onPreExecute() {
@@ -255,7 +271,10 @@ public class RecordActivity extends BaseActivity {
         }
 
         @Override
-        protected List<Users> doInBackground(Void... params) {
+        protected Bitmap doInBackground(Object... objects) {
+            Bitmap mBitmap = null;
+            img_profileTask = (CircularImageView)objects[0];
+
             //슬라이드메뉴에 있는 내 아이 목록
             //updateScreenSlide();  //내 아이 목록을 가져오기전에 MainDataTask가 끝난다.
             UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
@@ -266,21 +285,61 @@ public class RecordActivity extends BaseActivity {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
             }
 
-            return usersTask;
+            String image_url = null;
+            if(member.getJoin_route().equals("kakao")){
+                image_url = member.getKakao_thumbnailimagepath();
+                //이미지 불러오기
+                InputStream in = null;
+                try {
+                    Log.d("-진우-", "이미지 주소 : " + image_url);
+                    in = new URL(image_url).openStream();
+                    mBitmap = BitmapFactory.decodeStream(in);
+                    in.close();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            } else if(member.getJoin_route().equals("facebook")){
+                image_url = "http://graph.facebook.com/" + member.getFacebook_id() + "/picture?type=large";
+                //이미지 불러오기
+                InputStream in = null;
+                try {
+                    //페이스북은 jpg파일이 링크 걸린 것이 아니다.
+                    //http://graph.facebook.com/userid/picture?type=large
+                    Log.d("-진우-", "이미지 주소 : " + image_url);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(image_url)
+                            .build();
+                    com.squareup.okhttp.Response response = client.newCall(request).execute();
+                    in = response.body().byteStream();
+                    mBitmap = BitmapFactory.decodeStream(in);
+                    in.close();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            return mBitmap;
         }
 
         @Override
-        protected void onPostExecute(List<Users> userses) {
-            if (userses != null && userses.size() > 0) {
-                Log.d("-진우-", "내 아이는 몇명? " + userses.size());
-                for (Users u : userses) {
+        protected void onPostExecute(Bitmap bitmap) {
+            if(bitmap != null){
+                Log.d("-진우-", "이미지읽어옴");
+                img_profileTask.setImageBitmap(bitmap);
+            }
+
+            if (usersTask != null && usersTask.size() > 0) {
+                Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
+                for (Users u : usersTask) {
                     Log.d("-진우-", "내아이 : " + u.toString());
                 }
-                usersList = userses;
+                usersList = usersTask;
 
                 usersListSlideAdapter.setUsersList(usersList);
                 if (nowUsers == null) {
-                    nowUsers = userses.get(0);
+                    nowUsers = usersTask.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
                 tv_users_name.setText(nowUsers.getName());
@@ -293,7 +352,7 @@ public class RecordActivity extends BaseActivity {
             usersListSlideAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
-            super.onPostExecute(userses);
+            super.onPostExecute(bitmap);
         }
     }
 

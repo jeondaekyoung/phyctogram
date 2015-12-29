@@ -22,7 +22,7 @@ import retrofit.Retrofit;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL =  "http://117.52.89.181";
+    public static final String API_BASE_URL =  "http://www.phyctogram.com";
 
     private static OkHttpClient httpClient = new OkHttpClient();
 

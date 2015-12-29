@@ -31,7 +31,7 @@ import retrofit.Retrofit;
  * Created by dkfka on 2015-11-24.
  */
 public class LoginActivity2 extends Activity {
-    public static final String HTTPADDR = "http://117.52.89.181";
+    public static final String HTTPADDR = "http://www.phyctogram.com";
     private Member memberActivity;
     private Member member;
 

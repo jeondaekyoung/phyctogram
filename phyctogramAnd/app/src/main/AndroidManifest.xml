@@ -117,10 +117,17 @@
             android:name=".EquipmentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+		<!-- CalendarActivity는 삭제예정 -->
         <activity
             android:name=".CalendarActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".UsersDiaryActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".SettingActivity"
             android:screenOrientation="portrait"

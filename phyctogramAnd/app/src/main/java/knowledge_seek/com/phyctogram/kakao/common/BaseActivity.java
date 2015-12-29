@@ -27,6 +27,7 @@ import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.R;
 import knowledge_seek.com.phyctogram.SettingActivity;
 import knowledge_seek.com.phyctogram.UsersDataInputActivity;
+import knowledge_seek.com.phyctogram.UsersDiaryActivity;
 import knowledge_seek.com.phyctogram.UsersManageActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -42,7 +43,7 @@ import retrofit.Call;
  * Created by sjw on 2015-11-26.
  */
 public class BaseActivity extends Activity {
-    public static final String HTTPADDR = "http://117.52.89.181";
+    public static final String HTTPADDR = "http://www.phyctogram.com";
 
     protected static Activity self;
 
@@ -110,7 +111,8 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                //Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                Intent intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
                 menuLeftSlideAnimationToggle();

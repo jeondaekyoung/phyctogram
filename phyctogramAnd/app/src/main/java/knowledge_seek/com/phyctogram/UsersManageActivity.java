@@ -32,7 +32,6 @@ import retrofit.Retrofit;
  * Created by dkfka on 2015-12-07.
  */
 public class UsersManageActivity extends BaseActivity {
-    //public static final String HTTPADDR = "http://117.52.89.181";
 
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
