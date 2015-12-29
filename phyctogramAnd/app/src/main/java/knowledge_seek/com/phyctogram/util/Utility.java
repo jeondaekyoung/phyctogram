@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import knowledge_seek.com.phyctogram.domain.Comment;
 import knowledge_seek.com.phyctogram.domain.Commnty;
+import knowledge_seek.com.phyctogram.domain.Diary;
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -44,17 +45,17 @@ public class Utility {
         return txt!=null && txt.trim().length()>0 ? true: false;
     }
 
-    public static String member2json(Member member){
+    public static String member2json(Member member) {
         String json = new Gson().toJson(member);
         return json;
     }
 
-    public static String users2json(Users users){
+    public static String users2json(Users users) {
         String json = new Gson().toJson(users);
         return json;
     }
 
-    public static String comment2json(Comment comment){
+    public static String comment2json(Comment comment) {
         return new Gson().toJson(comment);
     }
 
@@ -64,5 +65,9 @@ public class Utility {
 
     public static String height2json(Height height){
         return new Gson().toJson(height);
+    }
+
+    public static String diary2json(Diary diary) {
+        return new Gson().toJson(diary);
     }
 }

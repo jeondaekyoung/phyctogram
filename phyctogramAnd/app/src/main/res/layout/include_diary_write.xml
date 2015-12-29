@@ -20,11 +20,12 @@
             android:src="@drawable/btn_menu" />
 
         <TextView
+            android:id="@+id/tv_users_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="지민이"
+            android:text="내 아이 관리에서 아이를 등록해주세요"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -35,19 +36,21 @@
         android:orientation="vertical"
         android:background="#ffffffff">
 
-        <!--<EditText
+        <EditText
+            android:id="@+id/et_diary_date"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:hint="날 짜"
             android:editable="false"
-            android:gravity="left|center"
-            android:text="2015-11-26" />-->
+            android:textSize="14dp"/>
 
         <EditText
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:hint=" 제목"
+            android:hint=" 제 목"
             android:inputType="text"
             android:textSize="14dp" />
 
@@ -57,9 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="top|left"
-            android:hint=" 내용"
+            android:hint=" 내 용"
             android:inputType="textMultiLine"
-            android:lines="24"
+            android:lines="21"
             android:maxWidth="5.0dip"
             android:minWidth="10.0dip"
             android:scrollHorizontally="false"
@@ -91,7 +94,7 @@
                 android:background="@drawable/write_mov" />
 
             <Button
-                android:id="@+id/btn_community_save"
+                android:id="@+id/btn_diary_save"
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
@@ -105,5 +108,4 @@
 
         </RelativeLayout>
     </LinearLayout>
-
 </LinearLayout>

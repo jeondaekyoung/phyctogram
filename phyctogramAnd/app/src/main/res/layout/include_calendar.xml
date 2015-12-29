@@ -50,6 +50,9 @@
             android:layout_alignBaseline="@+id/btn_monthPrevious"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@color/color7"
             android:text="MonthView" />
 
         <Button

@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -54,6 +55,7 @@ public class UsersDiaryActivity extends BaseActivity {
     private TextView tv_monthText;          //년월 출력
     private Button btn_monthPrevious;       //이전달가기
     private Button btn_monthNext;           //다음달가기
+    private ImageButton imBtn_diary_write;  //일기쓰기
 
     int curYear;
     int curMonth;
@@ -106,12 +108,12 @@ public class UsersDiaryActivity extends BaseActivity {
         //그리드뷰 객체 참조 및 설정
         gv_monthView = (GridView)findViewById(R.id.gv_monthView);
         calendarMonthAdapter = new CalendarMonthAdapter(this);
-        //gv_monthView.setAdapter(calendarMonthAdapter);
+        gv_monthView.setAdapter(calendarMonthAdapter);
         //그리드뷰(달력) 리스너 설정
         gv_monthView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MonthItem curItem = (MonthItem)calendarMonthAdapter.getItem(position);
+                MonthItem curItem = (MonthItem) calendarMonthAdapter.getItem(position);
                 int day = curItem.getDay();
 
                 Toast.makeText(getApplicationContext(), day + " 일이 선택되었습니다", Toast.LENGTH_LONG).show();
@@ -158,6 +160,18 @@ public class UsersDiaryActivity extends BaseActivity {
             }
         });
 
+        //일기쓰기
+        imBtn_diary_write = (ImageButton)findViewById(R.id.imBtn_diary_write);
+        imBtn_diary_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getApplicationContext(), "일기 쓰기 클릭", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), DiaryWriteActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         curPosition = -1;
@@ -186,10 +200,6 @@ public class UsersDiaryActivity extends BaseActivity {
         if(name != null){
             tv_member_name.setText(name);
         }
-
-        //달력셋팅
-        gv_monthView.setAdapter(calendarMonthAdapter);
-
 
         Log.d("-진우-", "UsersDiaryActivity.onResume() 끝");
     }

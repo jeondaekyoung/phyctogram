@@ -58,7 +58,6 @@
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:inputType="date"
                     android:textColor="#000000" />
 
                 <TextView
@@ -72,7 +71,6 @@
                     android:layout_width="180dp"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:inputType="date"
                     android:textColor="#000000" />
 
             </LinearLayout>
