@@ -1,5 +1,8 @@
 package naree.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -19,6 +22,23 @@ public class DiaryDaoImpl implements DiaryDao {
 			result = diaryMapper.insertDiary(diary);
 		} finally {
 			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public List<Diary> selectDiaryByUserSeqYearMt(int user_seq, String writng_year, String writng_mt) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Diary> result = new ArrayList<Diary>();
+		Diary diary = new Diary();
+		diary.setUser_seq(user_seq);
+		diary.setWritng_year(writng_year);
+		diary.setWritng_mt(writng_mt);
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.selectDiaryByUserSeqYearMt(diary);
+		} finally {
 			sqlSession.close();
 		}
 		return result;

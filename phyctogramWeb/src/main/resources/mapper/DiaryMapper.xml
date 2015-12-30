@@ -20,5 +20,13 @@
 						  #{writng_de},
 						  #{user_seq} )
 	</insert>
+	
+	<select id="selectDiaryByUserSeqYearMt" parameterType="Diary" resultType="Diary">
+		SELECT diary_seq, title, contents, writng_year, writng_mt, writng_de, image_nm, image_server_nm, user_seq
+		  FROM diary_tb
+		WHERE user_seq = #{user_seq}
+		    AND writng_year = #{writng_year}
+		    AND writng_mt = #{writng_mt}
+	</select>
 
 </mapper>

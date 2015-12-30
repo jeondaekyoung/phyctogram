@@ -37,7 +37,7 @@ public class HeightDaoImpl implements HeightDao {
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
 			heights = heightMapper.selectHeightByUser_seq(user_seq);
 		}finally{
-			sqlSession.commit();
+			sqlSession.close();
 		}
 
 		return heights;
@@ -70,7 +70,7 @@ public class HeightDaoImpl implements HeightDao {
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
 			heights = heightMapper.selectHeightByUserSeqFT(terms);
 		}finally{
-			sqlSession.commit();
+			sqlSession.close();
 		}
 
 		return heights;
@@ -84,7 +84,7 @@ public class HeightDaoImpl implements HeightDao {
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
 			height_seq = heightMapper.selectHeightSeq();
 		}finally{
-			sqlSession.commit();
+			sqlSession.close();
 		}
 
 		return height_seq;
