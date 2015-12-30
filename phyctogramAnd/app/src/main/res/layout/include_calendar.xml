@@ -50,10 +50,10 @@
             android:layout_alignBaseline="@+id/btn_monthPrevious"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:textStyle="bold"
+            android:text="MonthView"
+            android:textColor="#747474"
             android:textSize="18dp"
-            android:textColor="@color/color7"
-            android:text="MonthView" />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_monthNext"
@@ -71,93 +71,86 @@
 
             <TextView
                 android:id="@+id/sundayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="일"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/mondayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="월"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/tuesdayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="화"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/wednesdayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="수"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/thursdayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="목"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/fridayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="금"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/saturdayTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#ff333333"
+                android:background="#747474"
                 android:gravity="center"
                 android:text="토"
                 android:textColor="#ffffffff"
-                android:textSize="16dp"
-                android:textStyle="bold" />
+                android:textSize="16dp" />
         </LinearLayout>
 
         <GridView
@@ -165,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/weekLayout"
-            android:background="#ff888888"
+            android:background="#ffD6D6D6"
             android:horizontalSpacing="1dp"
             android:numColumns="7"
             android:stretchMode="columnWidth"

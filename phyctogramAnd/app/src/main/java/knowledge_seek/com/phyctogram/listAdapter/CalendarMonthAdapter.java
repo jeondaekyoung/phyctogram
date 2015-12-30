@@ -13,7 +13,6 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Diary;
@@ -240,11 +239,11 @@ public class CalendarMonthAdapter extends BaseAdapter {
         itemView.setGravity(Gravity.LEFT);
 
         if(columnIndex == 0){
-            itemView.setDayColor(Color.RED);       //일요일은 빨강색 글씨
+            itemView.setDayColor(Color.rgb(255,98,98));       //일요일은 빨강색 글씨
         } else if(columnIndex == 6){
-            itemView.setDayColor(Color.BLUE);       //토요일은 파란색 글씨
+            itemView.setDayColor(Color.rgb(41,98,252));       //토요일은 파란색 글씨
         } else {
-            itemView.setDayColor(Color.BLACK);
+            itemView.setDayColor(Color.rgb(182,182,182));
         }
 
         if(position == getSelectedPosition()){
