@@ -26,12 +26,15 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.domain.Diary;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.CalendarMonthAdapter;
 import knowledge_seek.com.phyctogram.listAdapter.MonthItem;
+import knowledge_seek.com.phyctogram.retrofitapi.DiaryAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
@@ -57,9 +60,12 @@ public class UsersDiaryActivity extends BaseActivity {
     private Button btn_monthNext;           //다음달가기
     private ImageButton imBtn_diary_write;  //일기쓰기
 
-    int curYear;
-    int curMonth;
+
+    //데이터 정의
+    int curYear, curMonth;
+    String curYearStr, curMonthStr;
     int curPosition;
+    List<Diary> diaryList = new ArrayList<Diary>();
 
 
     @Override
@@ -92,6 +98,13 @@ public class UsersDiaryActivity extends BaseActivity {
                 }
 
                 //달력페이지에 출력할 아이에 관한 데이터(일기)를 가져와야한다.
+                //calendarMonthAdapter.setPreviousMonth();
+                //setMonthText();
+
+                //일기 불러오기
+                ReUserDiaryTask task = new ReUserDiaryTask();
+                task.execute();
+
             }
         });
 
@@ -116,11 +129,11 @@ public class UsersDiaryActivity extends BaseActivity {
                 MonthItem curItem = (MonthItem) calendarMonthAdapter.getItem(position);
                 int day = curItem.getDay();
 
-                Toast.makeText(getApplicationContext(), day + " 일이 선택되었습니다", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), day + " 일이 선택되었습니다", Toast.LENGTH_LONG).show();
 
                 //선택한 날짜 저장하여 배경색을 준다
-                curPosition = position;
-                calendarMonthAdapter.setSelectedPosition(position);
+                //curPosition = position;
+                //calendarMonthAdapter.setSelectedPosition(position);
 
                 /*//저장된 일정 불러오기
                 String outSchedule = calendarMonthAdapter.getDiary(position);
@@ -130,7 +143,7 @@ public class UsersDiaryActivity extends BaseActivity {
                     scheduleInput.setText("");
                 }*/
 
-                calendarMonthAdapter.notifyDataSetChanged();
+                //calendarMonthAdapter.notifyDataSetChanged();
             }
         });
 
@@ -143,20 +156,32 @@ public class UsersDiaryActivity extends BaseActivity {
         btn_monthPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarMonthAdapter.setPreviousMonth();
-                calendarMonthAdapter.notifyDataSetChanged();
 
+                calendarMonthAdapter.setPreviousMonth();
                 setMonthText();
+
+                //일기 불러오기
+                ReUserDiaryTask task = new ReUserDiaryTask();
+                task.execute();
+
+                //calendarMonthAdapter.notifyDataSetChanged();
+
             }
         });
         btn_monthNext = (Button)findViewById(R.id.btn_monthNext);
         btn_monthNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calendarMonthAdapter.setNextMonth();
-                calendarMonthAdapter.notifyDataSetChanged();
 
+                calendarMonthAdapter.setNextMonth();
                 setMonthText();
+
+                //일기 불러오기
+                ReUserDiaryTask task = new ReUserDiaryTask();
+                task.execute();
+
+                //calendarMonthAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -183,7 +208,7 @@ public class UsersDiaryActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersDiaryActivity.onResume() 실행");
 
-        //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지, 일기 목록)
         UsersDiaryTask task = new UsersDiaryTask();
         task.execute(img_profile);
 
@@ -210,14 +235,22 @@ public class UsersDiaryActivity extends BaseActivity {
         curYear = calendarMonthAdapter.getCurYear();
         curMonth = calendarMonthAdapter.getCurMonth();
         tv_monthText.setText(curYear + "년 " + (curMonth+1) + "월");
+
+        curYearStr = String.valueOf(curYear);
+        curMonthStr = String.valueOf(curMonth+1);
+        if(curMonthStr.length() == 1){
+            curMonthStr = "0".concat(curMonthStr);
+        }
+
     }
 
-    //달력페이지 초기 데이터조회(슬라이드 내 아이 목록)
+    //달력페이지 초기 데이터조회(슬라이드 내 아이 목록, 내 이미지, 일기 목록)
     private class UsersDiaryTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(UsersDiaryActivity.this);
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
+        private List<Diary> diarysTask;
 
         @Override
         protected void onPreExecute() {
@@ -241,10 +274,19 @@ public class UsersDiaryActivity extends BaseActivity {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
             }
 
+            //일기 목록 읽어오기
+            DiaryAPI service1 = ServiceGenerator.createService(DiaryAPI.class, "Diary");
+            Call<List<Diary>> call1 = service1.findDiaryByUserSeqYearMt(nowUsers.getUser_seq(), curYearStr, curMonthStr);
+            try {
+                diarysTask = call1.execute().body();
+            } catch (IOException e){
+                Log.d("-진우-", "일기 목록 읽어오기 실패");
+            }
+
+            //이미지 불러오기
             String image_url = null;
             if(member.getJoin_route().equals("kakao")){
                 image_url = member.getKakao_thumbnailimagepath();
-                //이미지 불러오기
                 InputStream in = null;
                 try {
                     Log.d("-진우-", "이미지 주소 : " + image_url);
@@ -306,8 +348,72 @@ public class UsersDiaryActivity extends BaseActivity {
             lv_usersList.getLayoutParams().height = height;
             usersListSlideAdapter.notifyDataSetChanged();
 
+
+            //일기
+            if(diarysTask != null && diarysTask.size() > 0){
+                diaryList = diarysTask;
+                Log.d("-진우-", "일기 갯수 : " + diaryList.size());
+                for(Diary d : diaryList) {
+                    Log.d("-진우-", "일기 : " + d.toString());
+                }
+            } else {
+                diaryList.clear();
+            }
+
+            //일기를 달력에 뿌려주기
+            calendarMonthAdapter.setDiaryList(diaryList);
+            calendarMonthAdapter.notifyDataSetChanged();
+
+
             dialog.dismiss();
             super.onPostExecute(bitmap);
+        }
+    }
+
+    //일기 목록 다시 읽어오기
+    private class ReUserDiaryTask extends AsyncTask<Void, Void, Void>{
+
+        private ProgressDialog dialog = new ProgressDialog(UsersDiaryActivity.this);
+        private List<Diary> diarysTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //일기 목록 읽어오기
+            DiaryAPI service = ServiceGenerator.createService(DiaryAPI.class, "Diary");
+            Call<List<Diary>> call = service.findDiaryByUserSeqYearMt(nowUsers.getUser_seq(), curYearStr, curMonthStr);
+            try {
+                diarysTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "일기 목록 읽어오기 실패");
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            //일기
+            diaryList.clear();
+            if(diarysTask != null && diarysTask.size() > 0){
+                diaryList.addAll(diarysTask);
+                Log.d("-진우-", "일기 갯수 : " + diaryList.size());
+                for(Diary d : diaryList){
+                    Log.d("-진우-", "일기 : " + d.toString());
+                }
+            }
+            //일기를 달력에 뿌려주기
+            calendarMonthAdapter.setDiaryList(diaryList);
+            calendarMonthAdapter.notifyDataSetChanged();
+
+            dialog.dismiss();
+            super.onPostExecute(aVoid);
         }
     }
 }

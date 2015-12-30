@@ -11,8 +11,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
+
+import knowledge_seek.com.phyctogram.domain.Diary;
 
 /**
  * Created by sjw on 2015-12-29.
@@ -23,8 +27,8 @@ public class CalendarMonthAdapter extends BaseAdapter {
 
     Context mContext;
 
-    public static int oddColor = Color.rgb(225, 225, 225);
-    public static int headColor = Color.rgb(12, 32, 158);
+    //public static int oddColor = Color.rgb(225, 225, 225);
+    //public static int headColor = Color.rgb(12, 32, 158);
 
     private int selectedPosition = -1;
 
@@ -42,10 +46,12 @@ public class CalendarMonthAdapter extends BaseAdapter {
     int lastDay;
 
     Calendar mCalendar;
-    boolean recreateItems = false;
+    //boolean recreateItems = false;
 
     //일기 데이터
-    HashMap<String, String> diaryHash;
+    List<Diary> diaryList;
+    //HashMap<String, String> diaryHash;
+
 
     public CalendarMonthAdapter(Context context){
         super();
@@ -64,7 +70,8 @@ public class CalendarMonthAdapter extends BaseAdapter {
         mCalendar = Calendar.getInstance();
         recalculate();
         resetDayNumbers();
-        diaryHash = new HashMap<String, String>();
+        diaryList = new ArrayList<Diary>();
+        //diaryHash = new HashMap<String, String>();
     }
 
     public void recalculate(){
@@ -203,14 +210,19 @@ public class CalendarMonthAdapter extends BaseAdapter {
         return position;
     }
 
+    public void setDiaryList(List<Diary> diarys) {
+        this.diaryList = diarys;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Log.d(TAG, "현재 선택 : " + position);
+        //Log.d(TAG, "현재 선택 : " + position);
         MonthItemView itemView;
         if(convertView == null){
             itemView = new MonthItemView(mContext);
         } else {
             itemView = (MonthItemView)convertView;
+            itemView.setTitleClear();
         }
 
         //params 셋팅
@@ -219,7 +231,7 @@ public class CalendarMonthAdapter extends BaseAdapter {
         //달력의 행과 열 계산, 인텍스값 계산
         int rowIndex = position / countColumn;
         int columnIndex = position % countColumn;
-        Log.d(TAG, "달력(그리드)에서 위치(row,column) : " + rowIndex + ", " + columnIndex);
+        //Log.d(TAG, "달력(그리드)에서 위치(row,column) : " + rowIndex + ", " + columnIndex);
 
         //현재 날짜의 MonthItem 객체 설정
         itemView.setItem(items[position]);
@@ -228,9 +240,11 @@ public class CalendarMonthAdapter extends BaseAdapter {
         itemView.setGravity(Gravity.LEFT);
 
         if(columnIndex == 0){
-            itemView.setTextColor(Color.RED);       //일요일은 빨강색 글씨
+            itemView.setDayColor(Color.RED);       //일요일은 빨강색 글씨
+        } else if(columnIndex == 6){
+            itemView.setDayColor(Color.BLUE);       //토요일은 파란색 글씨
         } else {
-            itemView.setTextColor(Color.BLACK);
+            itemView.setDayColor(Color.BLACK);
         }
 
         if(position == getSelectedPosition()){
@@ -240,6 +254,18 @@ public class CalendarMonthAdapter extends BaseAdapter {
         }
         //-> 현재 날짜의 MonthItem 객체 설정
 
+        //일기 출력
+        for(Diary d : diaryList){
+            int diary_writng_de = Integer.parseInt(d.getWritng_de());
+            int day = itemView.getItem().getDay();
+            if(diary_writng_de == day){
+                Log.d("-진우-", "CalendarMonthAdapter.getView() : " + d.toString());
+                Log.d("-진우-", "위치 : " + position + ", (" + rowIndex +"," + columnIndex + ") ");
+                Log.d("-진우-", "diary_writng_de :" + diary_writng_de + ", MonthItem.day : " + day);
+                itemView.setTitle(d.getTitle());
+            }
+
+        }
 
         return itemView;
     }
@@ -252,8 +278,14 @@ public class CalendarMonthAdapter extends BaseAdapter {
         return selectedPosition;
     }
 
-    //일기 데이터 입력 및 출력, diaryHash
-    public String getDiary(int year, int month, int position){
+    //일기 데이터 출력
+    /*public void setDiaryTitle(List<Diary> diarys) {
+        for(Diary d : diarys) {c
+
+        }
+    }*/
+
+    /*public String getDiary(int year, int month, int position){
         String keyStr = year + "-" + month + "-" + position;
         String outStr = diaryHash.get(keyStr);
         return outStr;
@@ -270,6 +302,6 @@ public class CalendarMonthAdapter extends BaseAdapter {
     public void putDiary(int position, String diaryStr){
         String keyStr = curYear + "-" + curMonth + "-" + position;
         diaryHash.put(keyStr, diaryStr);
-    }
+    }*/
 
 }

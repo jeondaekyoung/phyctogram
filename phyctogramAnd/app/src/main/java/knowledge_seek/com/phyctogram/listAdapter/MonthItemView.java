@@ -3,31 +3,46 @@ package knowledge_seek.com.phyctogram.listAdapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import knowledge_seek.com.phyctogram.R;
 
 /**
  * Created by sjw on 2015-12-29.
  */
-public class MonthItemView extends TextView {
+public class MonthItemView extends RelativeLayout {
 
+    private Context mContext;
     private MonthItem item;
+
+    private RelativeLayout rl_month_item_container;
+    private TextView tv_month_item_day;
+    private TextView tv_month_item_title;
 
     public MonthItemView(Context context) {
         super(context);
-        // TODO Auto-generated constructor stub
-
+        mContext = context;
         init();
     }
 
     public MonthItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        // TODO Auto-generated constructor stub
-
+        mContext = context;
         init();
     }
 
     private void init() {
-        setBackgroundColor(Color.WHITE);
+        LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.list_month_item, this, true);
+
+        rl_month_item_container = (RelativeLayout)findViewById(R.id.rl_month_item_container);
+        tv_month_item_day = (TextView)findViewById(R.id.tv_month_item_day);
+        tv_month_item_title = (TextView)findViewById(R.id.tv_month_item_title);
+
+        rl_month_item_container.setBackgroundColor(Color.WHITE);
     }
 
     public MonthItem getItem() {
@@ -39,10 +54,26 @@ public class MonthItemView extends TextView {
 
         int day = item.getDay();
         if (day != 0) {
-            setText(String.valueOf(day));
+            tv_month_item_day.setText(String.valueOf(day));
         } else {
-            setText("");
+            tv_month_item_day.setText("");
         }
 
+    }
+
+    public void setDayColor(int color) {
+        tv_month_item_day.setTextColor(color);
+    }
+
+    public void setTitle(String title) {
+        tv_month_item_title.setText(title);
+        tv_month_item_title.setBackgroundColor(Color.YELLOW);
+        tv_month_item_title.setVisibility(View.VISIBLE);
+    }
+
+    public void setTitleClear() {
+        tv_month_item_title.setText("");
+        tv_month_item_title.setBackgroundColor(Color.WHITE);
+        tv_month_item_title.setVisibility(View.GONE);
     }
 }

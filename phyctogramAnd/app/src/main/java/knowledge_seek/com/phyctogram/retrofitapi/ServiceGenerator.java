@@ -12,6 +12,7 @@ import java.util.Date;
 
 import knowledge_seek.com.phyctogram.domain.Comment;
 import knowledge_seek.com.phyctogram.domain.Commnty;
+import knowledge_seek.com.phyctogram.domain.Diary;
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -56,6 +57,8 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(SqlCommntyListView.class, new SqlCommntyListViewDes());
         } else if("Users".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Users.class, new UsersDes());
+        } else if("Diary".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Diary.class, new DiaryDes());
         }
 
         Gson gson = gsonBuilder.create();
