@@ -44,4 +44,18 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	@Override
+	public int deleteDiaryByUserSeq(int user_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.deleteDiaryByUserSeq(user_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

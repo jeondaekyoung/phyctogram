@@ -1,12 +1,21 @@
 package naree.service;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import naree.dao.CommentDao;
+import naree.dao.CommntyDao;
+import naree.dao.DiaryDao;
+import naree.dao.HeightDao;
 import naree.dao.MemberDao;
+import naree.dao.UsersDao;
+import naree.db.domain.Commnty;
 import naree.db.domain.Member;
+import naree.db.domain.Users;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -15,6 +24,21 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private CommentDao commentDao;
+	
+	@Autowired
+	private CommntyDao commntyDao;
+	
+	@Autowired
+	private UsersDao usersDao;
+	
+	@Autowired
+	private HeightDao heightDao;
+	
+	@Autowired
+	private DiaryDao diaryDao;
 	
 	@Override
 	public int registerMember(Member member) {
@@ -84,5 +108,48 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.selectMemberByPhycto(member);
 	}
+
+	@Override
+	public int findMemberByMemberSeqPw(Member member) {
+		
+		return memberDao.selectMemberByMemberSeqPw(member);
+	}
+
+	@Override
+	public int deleteCommntyCommentByMemberSeq(int member_seq) {
+		//멤버가 쓴 댓글 지우기
+		int result = commentDao.deleteCommentByMemberSeq(member_seq);
+		//멤버가 쓴 수다방 목록 읽어오기
+		List<Commnty> commntys = commntyDao.selectCommntyByMemberSeq(member_seq);
+		for(Commnty c : commntys) {
+			//멤버가 쓴 수다방 목록의 댓글지우기
+			commentDao.deleteCommentByCommntySeq(c.getCommnty_seq());
+		}
+		//멤버가 쓴 수다방 목록 지우기
+		int result1 = commntyDao.deleteCommntyByMemberSeq(member_seq);
+		
+		return result1;
+	}
+
+	@Override
+	public int deleteUsersHeightDiaryByMemberSeq(int member_seq) {
+		//멤버의 내 아이 목록 가져오기
+		List<Users> userss = usersDao.selectUsersByMemberSeq(String.valueOf(member_seq));
+		for(Users u : userss) {
+			//내 아이 키 지우기
+			heightDao.deleteHeightByUserSeq(String.valueOf(u.getUser_seq()));
+			//내 아이 일기 지우기
+			diaryDao.deleteDiaryByUserSeq(u.getUser_seq());
+		}
+		//내 아이 지우기
+		int result = usersDao.deleteUsersByMemberSeq(member_seq);
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 
 }

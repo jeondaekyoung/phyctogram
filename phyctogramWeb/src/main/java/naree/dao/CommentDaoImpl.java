@@ -28,7 +28,7 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public int insertComment(Comment comment) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
-		int result = 0;;
+		int result = 0;
 		try {
 			CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
 			result = commentMapper.insertComment(comment);
@@ -38,5 +38,37 @@ public class CommentDaoImpl implements CommentDao {
 		}
 		return result;
 	}
+
+	@Override
+	public int deleteCommentByMemberSeq(int member_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+			result = commentMapper.deleteCommentByMemberSeq(member_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteCommentByCommntySeq(int commnty_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			CommentMapper commentMapper = sqlSession.getMapper(CommentMapper.class);
+			result = commentMapper.deleteCommentByCommntySeq(commnty_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+	
+	
+	
+	
 
 }

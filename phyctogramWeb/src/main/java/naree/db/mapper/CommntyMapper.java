@@ -19,4 +19,8 @@ public interface CommntyMapper {
 
 	List<SqlCommntyListView> selectCommntyPopularTop3();
 
+	List<Commnty> selectCommntyByMemberSeq(int member_seq);
+
+	int deleteCommntyByMemberSeq(int member_seq);
+
 }

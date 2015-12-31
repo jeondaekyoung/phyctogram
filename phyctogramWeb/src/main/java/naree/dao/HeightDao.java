@@ -45,7 +45,7 @@ public interface HeightDao {
 	 * @param height_seq
 	 * @return
 	 */
-	int delectHeightByHeightSeq(String height_seq);
+	int deleteHeightByHeightSeq(String height_seq);
 
 	/**
 	 * (안드로이드에서) 키 저장하기

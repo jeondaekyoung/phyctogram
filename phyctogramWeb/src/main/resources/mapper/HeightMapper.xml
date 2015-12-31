@@ -53,7 +53,7 @@
 		SELECT max(height_seq) as height_seq FROM height_tb
 	</select>
 	
-	<delete id="delectHeightByHeightSeq" parameterType="String">
+	<delete id="deleteHeightByHeightSeq" parameterType="String">
 		DELETE FROM height_tb
 		WHERE height_seq = #{height_seq}
 	</delete>

@@ -17,7 +17,7 @@ public interface HeightMapper {
 
 	String selectHeightSeq();
 
-	int delectHeightByHeightSeq(String height_seq);
+	int deleteHeightByHeightSeq(String height_seq);
 
 	int insertHeightAnd(Height height);
 }

@@ -129,5 +129,12 @@
 		   AND email = #{email}
 		   AND password = password(#{password})
 	</select>
+	
+	<select id="selectMemberByMemberSeqPw" parameterType="Member" resultType="Integer">
+		SELECT count(*)
+		  FROM member_tb
+		WHERE member_seq = #{member_seq}
+            AND password = password(#{password})
+	</select>
 
 </mapper>

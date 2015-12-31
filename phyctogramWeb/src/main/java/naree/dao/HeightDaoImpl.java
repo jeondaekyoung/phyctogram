@@ -91,12 +91,12 @@ public class HeightDaoImpl implements HeightDao {
 	}
 
 	@Override
-	public int delectHeightByHeightSeq(String height_seq) {
+	public int deleteHeightByHeightSeq(String height_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result = 0;
 		try{
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
-			result = heightMapper.delectHeightByHeightSeq(height_seq);
+			result = heightMapper.deleteHeightByHeightSeq(height_seq);
 		}finally{
 			sqlSession.commit();
 			sqlSession.close();

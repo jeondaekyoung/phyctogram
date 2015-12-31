@@ -40,12 +40,12 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public int delectUsersByUserSeq(String user_seq) {
+	public int deleteUsersByUserSeq(String user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
 		int result = 0;
 		try{
 			UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
-			result = usersMapper.delectUsersByUserSeq(user_seq);
+			result = usersMapper.deleteUsersByUserSeq(user_seq);
 		}finally{
 			sqlSession.commit();
 			sqlSession.close();
@@ -60,6 +60,20 @@ public class UsersDaoImpl implements UsersDao {
 		try{
 			UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
 			result = usersMapper.updateUsersByUsers(users);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteUsersByMemberSeq(int member_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
+			result = usersMapper.deleteUsersByMemberSeq(member_seq);
 		}finally{
 			sqlSession.commit();
 			sqlSession.close();

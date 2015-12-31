@@ -10,8 +10,10 @@ public interface UsersMapper {
 
 	List<Users> selectUsersByMemberSeq(String member_seq);
 
-	int delectUsersByUserSeq(String user_seq);
+	int deleteUsersByUserSeq(String user_seq);
 
 	int updateUsersByUsers(Users users);
+
+	int deleteUsersByMemberSeq(int member_seq);
 
 }

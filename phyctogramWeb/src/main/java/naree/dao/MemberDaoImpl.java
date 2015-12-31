@@ -172,4 +172,17 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public int selectMemberByMemberSeqPw(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.selectMemberByMemberSeqPw(member);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

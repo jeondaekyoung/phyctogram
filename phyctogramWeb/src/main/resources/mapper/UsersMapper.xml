@@ -29,7 +29,7 @@
 	     WHERE member_seq = #{member_seq}
 	</select>
 	
-	<delete id="delectUsersByUserSeq" parameterType="String">
+	<delete id="deleteUsersByUserSeq" parameterType="String">
 		DELETE FROM users_tb 
 		WHERE user_seq = #{user_seq}
 	</delete>
@@ -44,5 +44,11 @@
 					sexdstn = #{sexdstn}
 		  WHERE user_seq = #{user_seq}
 	</update>
+	
+	<delete id="deleteUsersByMemberSeq" parameterType="Integer">
+		DELETE FROM users_tb
+		         WHERE member_seq = #{member_seq}
+	</delete>
+
 
 </mapper>

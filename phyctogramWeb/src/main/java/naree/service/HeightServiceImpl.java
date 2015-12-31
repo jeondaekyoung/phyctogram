@@ -81,7 +81,7 @@ public class HeightServiceImpl implements HeightService {
 	@Override
 	public int delHeightByHeightSeq(String height_seq) {
 		
-		return heightDao.delectHeightByHeightSeq(height_seq);
+		return heightDao.deleteHeightByHeightSeq(height_seq);
 	}
 
 	@Override

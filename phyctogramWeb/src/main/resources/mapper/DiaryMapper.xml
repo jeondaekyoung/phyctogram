@@ -28,5 +28,10 @@
 		    AND writng_year = #{writng_year}
 		    AND writng_mt = #{writng_mt}
 	</select>
+	
+	<delete id="deleteDiaryByUserSeq" parameterType="Integer">
+		DELETE FROM diary_tb
+			     WHERE user_seq = #{user_seq}
+	</delete>
 
 </mapper>

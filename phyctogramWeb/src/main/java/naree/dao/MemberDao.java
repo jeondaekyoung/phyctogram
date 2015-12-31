@@ -89,4 +89,11 @@ public interface MemberDao {
 	 */
 	Member selectMemberByPhycto(Member member);
 
+	/**
+	 * member_seq와  pw로 멤버찾기
+	 * @param member
+	 * @return
+	 */
+	int selectMemberByMemberSeqPw(Member member);
+
 }

@@ -10,4 +10,8 @@ public interface CommentMapper {
 
 	int insertComment(Comment comment);
 
+	int deleteCommentByMemberSeq(int member_seq);
+
+	int deleteCommentByCommntySeq(int commnty_seq);
+
 }

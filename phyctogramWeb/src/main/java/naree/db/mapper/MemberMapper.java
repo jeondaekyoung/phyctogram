@@ -27,6 +27,8 @@ public interface MemberMapper {
 	Member selectMemberByFacebookInfo(Member memberResult);
 
 	Member selectMemberByPhycto(Member member);
+
+	int selectMemberByMemberSeqPw(Member member);
 }
 
 

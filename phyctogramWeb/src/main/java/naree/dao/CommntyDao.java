@@ -46,4 +46,20 @@ public interface CommntyDao {
 	 */
 	List<SqlCommntyListView> selectCommntyPopularTop3();
 
+	/**
+	 * 멤버가 쓴 수다방글 읽어오기
+	 * @param member_seq
+	 * @return
+	 */
+	List<Commnty> selectCommntyByMemberSeq(int member_seq);
+
+	/**
+	 * 멤버가 쓴 수다방글 지우기
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteCommntyByMemberSeq(int member_seq);
+
+
+
 }

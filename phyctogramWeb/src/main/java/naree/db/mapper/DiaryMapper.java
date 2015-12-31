@@ -11,4 +11,6 @@ public interface DiaryMapper {
 
 	List<Diary> selectDiaryByUserSeqYearMt(Diary diary);
 
+	int deleteDiaryByUserSeq(int user_seq);
+
 }

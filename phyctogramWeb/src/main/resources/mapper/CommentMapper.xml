@@ -26,5 +26,15 @@
 							#{member_seq},
 							#{ commnty_seq} )
 	</insert>
+	
+	<delete id="deleteCommentByMemberSeq" parameterType="Integer">
+		DELETE FROM comment_tb
+		         WHERE member_seq = #{member_seq}
+	</delete>
+	
+	<delete id="deleteCommentByCommntySeq" parameterType="Integer">
+		DELETE FROM comment_tb
+		         WHERE commnty_seq = #{commnty_seq}
+	</delete>
 
 </mapper>

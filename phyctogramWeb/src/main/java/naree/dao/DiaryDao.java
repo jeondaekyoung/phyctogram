@@ -22,4 +22,10 @@ public interface DiaryDao {
 	 */
 	List<Diary> selectDiaryByUserSeqYearMt(int user_seq, String writng_year, String writng_mt);
 
+	/**
+	 * 내 아이 일기 지우기
+	 * @param user_seq
+	 */
+	int deleteDiaryByUserSeq(int user_seq);
+
 }

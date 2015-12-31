@@ -106,6 +106,24 @@ public class MemberRestController {
 	public String withrawMember(@RequestParam("member_seq") int member_seq, @RequestParam("pw") String pw){
 		logger.info("멤버 탈퇴하기 : " + member_seq + ", " + pw);
 		
+		Member member = new Member();
+		member.setMember_seq(member_seq);
+		member.setPassword(pw);
+		
+		//비밀번호가 맞는지 확인
+		int result = memberService.findMemberByMemberSeqPw(member);
+		if(result != 1) {
+			return "wrongPw";
+		}
+		
+		
+		//수다방, 댓글 데이터 삭제
+		int result1 = memberService.deleteCommntyCommentByMemberSeq(member_seq);
+		
+		//내아이 지우기
+		int result2 = memberService.deleteUsersHeightDiaryByMemberSeq(member_seq);
+		
+		
 		return null;
 	}
 	

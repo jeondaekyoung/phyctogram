@@ -41,7 +41,7 @@ public class UsersServiceImpl implements UsersService {
 		//키 삭제 후 내아이(유저) 삭제
 		heightDao.deleteHeightByUserSeq(user_seq);
 		
-		return usersDao.delectUsersByUserSeq(user_seq);
+		return usersDao.deleteUsersByUserSeq(user_seq);
 	}
 
 	@Override

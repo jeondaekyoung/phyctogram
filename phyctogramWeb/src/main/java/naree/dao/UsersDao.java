@@ -25,7 +25,7 @@ public interface UsersDao {
 	 * @param user_seq
 	 * @return
 	 */
-	int delectUsersByUserSeq(String user_seq);
+	int deleteUsersByUserSeq(String user_seq);
 
 	/**
 	 * 내 아이(유저) 수정
@@ -33,5 +33,12 @@ public interface UsersDao {
 	 * @return
 	 */
 	int updateUsersByUsers(Users users);
+
+	/**
+	 * 멤버의 내 아이(유저) 삭제
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteUsersByMemberSeq(int member_seq);
 
 }

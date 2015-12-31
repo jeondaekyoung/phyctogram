@@ -66,5 +66,20 @@
 		ORDER BY a1.hits_co DESC
 		LIMIT 3
 	</select>
+	
+	<select id="selectCommntyByMemberSeq" parameterType="Integer" resultType="Commnty">
+		SELECT commnty_seq, title, contents, image_nm, image_server_nm, writng_de, hits_co, member_seq 
+          FROM commnty_tb
+        WHERE member_seq = #{member_seq}
+	</select>
 
+	<delete id="deleteCommntyByMemberSeq" parameterType="Integer">
+		DELETE FROM commnty_tb
+		         WHERE member_seq = #{member_seq}
+	</delete>
+	
+	
+	
+	
+	
 </mapper>

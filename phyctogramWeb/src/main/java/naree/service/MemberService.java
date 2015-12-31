@@ -38,6 +38,27 @@ public interface MemberService {
 	 * @return
 	 */
 	Member loginMemberByPhycto(Member member);
+
+	/**
+	 * member_seq와 pw로 멤버 찾기
+	 * @param member
+	 * @return
+	 */
+	int findMemberByMemberSeqPw(Member member);
+
+	/**
+	 * 멤버가 쓴 댓글, 수다방 지우기
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteCommntyCommentByMemberSeq(int member_seq);
+
+	/**
+	 * 멤버의 내 아이 지우기(키, 일기 포함)
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteUsersHeightDiaryByMemberSeq(int member_seq);
 	
 	
 }
