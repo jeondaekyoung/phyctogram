@@ -49,6 +49,7 @@ public class MemberRestController {
 			Member m = new Member();
 			//m = 멤버찾기
 			m = memberService.findMemberByJoinRoute(member);
+			m.setPassword(null);
 			return m;
 		} else {
 			//그 밖의 에러상황, 발생할 이유가 없다.
@@ -93,6 +94,19 @@ public class MemberRestController {
 		logger.info("멤버 로그인 하기 : " + member.toString());
 		
 		return memberService.loginMemberByPhycto(member);
+	}
+	
+	/**
+	 * 멤버 탈퇴하기
+	 * @param member_seq
+	 * @param pw
+	 * @return
+	 */
+	@RequestMapping(value = "withdrawMember", method = RequestMethod.DELETE)
+	public String withrawMember(@RequestParam("member_seq") int member_seq, @RequestParam("pw") String pw){
+		logger.info("멤버 탈퇴하기 : " + member_seq + ", " + pw);
+		
+		return null;
 	}
 	
 }
