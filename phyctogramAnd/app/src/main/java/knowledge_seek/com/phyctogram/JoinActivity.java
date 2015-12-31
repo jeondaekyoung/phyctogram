@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +22,13 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
@@ -171,9 +174,9 @@ public class JoinActivity extends Activity {
     }
 
     //멤버저장
-    private void registerMember(final Member member){
+    private void registerMember(Member member){
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
+        /*GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
         Gson gson = gsonBuilder.create();
@@ -205,7 +208,10 @@ public class JoinActivity extends Activity {
             public void onFailure(Throwable t) {
                 Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
             }
-        });
+        });*/
+
+        RegisterMemberTask task = new RegisterMemberTask();
+        task.execute(member);
 
     }
 
@@ -214,6 +220,42 @@ public class JoinActivity extends Activity {
         intent.putExtra("member", member);
         startActivity(intent);
         finish();
+    }
+
+    //멤버 읽어오기
+    private class RegisterMemberTask extends AsyncTask<Object, Void, Member> {
+
+        private Member memberTask;
+
+        @Override
+        protected Member doInBackground(Object... params) {
+            Member member = null;
+            memberTask = (Member)params[0];
+            Log.d("-진우-", "멤버 읽어오기 : " + memberTask.toString());
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            Call<Member> call = service.registerMember(memberTask);
+            try {
+                member = call.execute().body();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            return member;
+        }
+
+        @Override
+        protected void onPostExecute(Member member) {
+            if(member != null) {
+                Log.d("-진우-", "픽토그램 가입 성공 결과1 : " + member.toString());
+                memberActivity = member;
+                //가입완료후 로그인유지를 위해 preference를 사용한다.
+                SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
+                redirectMainActivity(memberActivity);
+            } else {
+                Toast.makeText(getApplicationContext(), "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
+            }
+
+            super.onPostExecute(member);
+        }
     }
 
 }

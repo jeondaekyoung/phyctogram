@@ -70,7 +70,6 @@ public class BaseActivity extends Activity {
     private Button btn_setup;               //설정
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -298,6 +297,7 @@ public class BaseActivity extends Activity {
         task.execute();
         //usersListSlideAdapter.notifyDataSetChanged();
     }
+
     private class FindUsersByMemberTask extends AsyncTask<Void, Void, List<Users>> {
 
         private List<Users> usersTask;
@@ -335,7 +335,7 @@ public class BaseActivity extends Activity {
                 usersList = userses;
 
                 usersListSlideAdapter.setUsersList(usersList);
-                if(nowUsers == null) {
+                if (nowUsers == null) {
                     nowUsers = userses.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
@@ -384,6 +384,10 @@ public class BaseActivity extends Activity {
         } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityViewActivity")) {
             super.onBackPressed();
         } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityCommentActivity")) {
+            super.onBackPressed();
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
+            super.onBackPressed();
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("WithdrawActivity")) {
             super.onBackPressed();
         } else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

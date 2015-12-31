@@ -13,7 +13,6 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
  * Created by dkfka on 2015-12-08.
  */
 public class DiaryViewActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://www.phyctogram.com";
 
     //레이아웃정의
     private LinearLayout ic_screen;
@@ -22,7 +21,6 @@ public class DiaryViewActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);

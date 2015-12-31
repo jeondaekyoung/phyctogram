@@ -46,11 +46,11 @@ public class DiaryWriteActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
+    private CircularImageView img_profile;      //슬라이드 내 이미지
+    private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃 정의
     private TextView tv_users_name;     //아이 이름 출력
-    private CircularImageView img_profile;      //슬라이드 내 이미지
-    private TextView tv_member_name;            //슬라이드 내 이름
 
     private EditText et_diary_date;     //날짜
     private Button btn_diary_save;
@@ -206,7 +206,7 @@ public class DiaryWriteActivity extends BaseActivity {
         return s;
     }
 
-    //일기쓰기 페이지 초기 데이터조회(슬라이드 내 아이 목록)
+    //일기쓰기 페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이름, 계정이미지)
     private class DiaryWriteTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(DiaryWriteActivity.this);

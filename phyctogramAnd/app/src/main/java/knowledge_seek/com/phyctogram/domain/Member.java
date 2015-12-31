@@ -14,7 +14,8 @@ public class Member implements Serializable {
     private String id;
     private String domain;
     private String password;
-    private Timestamp join_de;
+    //private Timestamp join_de;
+    private String join_de;
     private String kakao_id;
     private String kakao_nickname;
     private String kakao_thumbnailimagepath;
@@ -24,6 +25,28 @@ public class Member implements Serializable {
     private String facebook_name;
     private String facebook_gender;
     private String join_route;
+
+    public Member() {
+
+    }
+
+    public Member(int member_seq, String email, String name, String id, String domain, String join_de, String kakao_id, String kakao_nickname, String kakao_thumbnailimagepath, String facebook_id, String facebook_email, String facebook_birthday, String facebook_name, String facebook_gender, String join_route) {
+        this.member_seq = member_seq;
+        this.email = email;
+        this.name = name;
+        this.id = id;
+        this.domain = domain;
+        this.join_de = join_de;
+        this.kakao_id = kakao_id;
+        this.kakao_nickname = kakao_nickname;
+        this.kakao_thumbnailimagepath = kakao_thumbnailimagepath;
+        this.facebook_id = facebook_id;
+        this.facebook_email = facebook_email;
+        this.facebook_birthday = facebook_birthday;
+        this.facebook_name = facebook_name;
+        this.facebook_gender = facebook_gender;
+        this.join_route = join_route;
+    }
 
     public int getMember_seq() {
         return member_seq;
@@ -73,11 +96,11 @@ public class Member implements Serializable {
         this.password = password;
     }
 
-    public Timestamp getJoin_de() {
+    public String getJoin_de() {
         return join_de;
     }
 
-    public void setJoin_de(Timestamp join_de) {
+    public void setJoin_de(String join_de) {
         this.join_de = join_de;
     }
 
@@ -162,7 +185,7 @@ public class Member implements Serializable {
                 ", id='" + id + '\'' +
                 ", domain='" + domain + '\'' +
                 ", password='" + password + '\'' +
-                ", join_de=" + join_de +
+                ", join_de='" + join_de + '\'' +
                 ", kakao_id='" + kakao_id + '\'' +
                 ", kakao_nickname='" + kakao_nickname + '\'' +
                 ", kakao_thumbnailimagepath='" + kakao_thumbnailimagepath + '\'' +

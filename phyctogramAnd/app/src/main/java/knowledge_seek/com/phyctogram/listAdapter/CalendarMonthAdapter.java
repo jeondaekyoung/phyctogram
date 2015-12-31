@@ -253,14 +253,14 @@ public class CalendarMonthAdapter extends BaseAdapter {
         }
         //-> 현재 날짜의 MonthItem 객체 설정
 
-        //일기 출력
+        //일기 제목을 달력에 출력
         for(Diary d : diaryList){
             int diary_writng_de = Integer.parseInt(d.getWritng_de());
             int day = itemView.getItem().getDay();
             if(diary_writng_de == day){
-                Log.d("-진우-", "CalendarMonthAdapter.getView() : " + d.toString());
-                Log.d("-진우-", "위치 : " + position + ", (" + rowIndex +"," + columnIndex + ") ");
-                Log.d("-진우-", "diary_writng_de :" + diary_writng_de + ", MonthItem.day : " + day);
+                //Log.d("-진우-", "CalendarMonthAdapter.getView() : " + d.toString());
+                //Log.d("-진우-", "위치 : " + position + ", (" + rowIndex +"," + columnIndex + ") ");
+                //Log.d("-진우-", "diary_writng_de :" + diary_writng_de + ", MonthItem.day : " + day);
                 itemView.setTitle(d.getTitle());
             }
 
@@ -276,31 +276,5 @@ public class CalendarMonthAdapter extends BaseAdapter {
     public int getSelectedPosition(){
         return selectedPosition;
     }
-
-    //일기 데이터 출력
-    /*public void setDiaryTitle(List<Diary> diarys) {
-        for(Diary d : diarys) {c
-
-        }
-    }*/
-
-    /*public String getDiary(int year, int month, int position){
-        String keyStr = year + "-" + month + "-" + position;
-        String outStr = diaryHash.get(keyStr);
-        return outStr;
-    }
-    public String getDiary(int position){
-        String keyStr = curYear + "-" + curMonth + "-" + position;
-        String outStr = diaryHash.get(keyStr);
-        return outStr;
-    }
-    public void putDiary(int year, int month, int position, String diaryStr){
-        String keyStr = year + "-" + month + "-" + position;
-        diaryHash.put(keyStr, diaryStr);
-    }
-    public void putDiary(int position, String diaryStr){
-        String keyStr = curYear + "-" + curMonth + "-" + position;
-        diaryHash.put(keyStr, diaryStr);
-    }*/
 
 }

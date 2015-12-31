@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -37,6 +38,7 @@ import com.kakao.util.helper.TalkProtocol;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +48,7 @@ import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
 import retrofit.Call;
 import retrofit.Callback;
@@ -128,6 +131,8 @@ public class LoginActivity extends BaseActivity {
                 }
             });
 
+        } else {
+            Log.d("-진우-", "페이스북 로그인 체크 안됨");
         }
 
         //픽토그램 로그인 검사
@@ -278,7 +283,7 @@ public class LoginActivity extends BaseActivity {
     //유저저장
     private void registerMember(Member member){
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
+        /*GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
         Gson gson = gsonBuilder.create();
@@ -302,7 +307,10 @@ public class LoginActivity extends BaseActivity {
             public void onFailure(Throwable t) {
                 Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
             }
-        });
+        });*/
+
+        RegisterMemberTask task = new RegisterMemberTask();
+        task.execute(member);
 
     }
 
@@ -476,4 +484,38 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    //멤버 읽어오기
+    private class RegisterMemberTask extends AsyncTask<Object, Void, Member> {
+
+        private Member memberTask;
+
+        @Override
+        protected Member doInBackground(Object... params) {
+            Member member = null;
+            memberTask = (Member)params[0];
+
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            Call<Member> call = service.registerMember(memberTask);
+            try {
+                member = call.execute().body();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            return member;
+        }
+
+        @Override
+        protected void onPostExecute(Member member) {
+            if(member != null) {
+                Log.d("-진우-", "카카오 가입 성공 결과1 : " + member.toString());
+                memberActivity = member;
+            } else {
+                Log.d("-진우-", "카카오 가입 정보 없음");
+            }
+            Log.d("-진우-", "카카오 가입 성공 결과2 : " + memberActivity.toString());
+            redirectMainActivity(memberActivity);
+
+            super.onPostExecute(member);
+        }
+    }
 }

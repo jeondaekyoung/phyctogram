@@ -33,19 +33,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="#ffffffff"
         android:padding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디" />
+            android:text="가입경로"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="left|center"
-            android:text="mail@mail.com"
-            android:textColor="#aaa" />
+            android:id="@+id/tv_join_route"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="카카오,페이스북,픽토그램"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="이름" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="카카오닉네임,페이스북이름,픽토그램이름"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,6 +68,7 @@
             android:text="비밀번호" />
 
         <EditText
+            android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -67,6 +82,7 @@
             android:text="비밀번호 확인" />
 
         <EditText
+            android:id="@+id/et_pw1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -78,7 +94,7 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btn_dropout"
+                android:id="@+id/btn_withdraw"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_alignParentBottom="true"

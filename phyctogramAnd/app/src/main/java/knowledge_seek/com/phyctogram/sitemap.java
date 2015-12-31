@@ -55,7 +55,7 @@ public class sitemap extends AppCompatActivity {
                 break;
 
             case R.id.btn_userdrop:
-                Intent btn9 = new Intent(this, UsersDropActivity.class);
+                Intent btn9 = new Intent(this, WithdrawActivity.class);
                 startActivity(btn9);
                 break;
 
