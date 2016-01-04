@@ -277,13 +277,34 @@ public class MainActivity extends BaseActivity {
             usersListSlideAdapter.notifyDataSetChanged();
 
             //커뮤니티(수다방) 인기 Top3 셋팅
-            if(sqlCommntyListViewTask != null){
+            if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3){
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
                 tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
                 tv_popularTop2_name.setText(sqlCommntyListViewTask.get(1).getName());
                 tv_popularTop3_title.setText(sqlCommntyListViewTask.get(2).getTitle());
                 tv_popularTop3_name.setText(sqlCommntyListViewTask.get(2).getName());
+            } else if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() ==2){
+                tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
+                tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
+                tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
+                tv_popularTop2_name.setText(sqlCommntyListViewTask.get(1).getName());
+                tv_popularTop3_title.setText(null);
+                tv_popularTop3_name.setText(null);
+            } else if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() ==1){
+                tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
+                tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
+                tv_popularTop2_title.setText(null);
+                tv_popularTop2_name.setText(null);
+                tv_popularTop3_title.setText(null);
+                tv_popularTop3_name.setText(null);
+            } else {
+                tv_popularTop1_title.setText(null);
+                tv_popularTop1_name.setText(null);
+                tv_popularTop2_title.setText(null);
+                tv_popularTop2_name.setText(null);
+                tv_popularTop3_title.setText(null);
+                tv_popularTop3_name.setText(null);
             }
 
 

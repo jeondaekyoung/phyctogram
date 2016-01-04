@@ -161,7 +161,7 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //Log.d("-진우-", "회원탈퇴");
-                Toast.makeText(getApplicationContext(), "회원탈퇴", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "회원탈퇴", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);

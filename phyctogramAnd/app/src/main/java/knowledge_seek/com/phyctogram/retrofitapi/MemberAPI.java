@@ -3,7 +3,9 @@ package knowledge_seek.com.phyctogram.retrofitapi;
 import knowledge_seek.com.phyctogram.domain.Member;
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.DELETE;
 import retrofit.http.POST;
+import retrofit.http.Query;
 
 /**
  * Created by sjw on 2015-12-01.
@@ -53,4 +55,8 @@ public interface MemberAPI {
 
     @POST("/rest/member/loginMemberByPhycto")
     Call<Member> loginMemberByPhycto(@Body Member member);
+
+    @DELETE("/rest/member/withdrawMember")
+    Call<String> withdrawMember(@Query("member_seq") int member_seq, @Query("pw") String pw,
+                                @Query("join_route") String join_route);
 }

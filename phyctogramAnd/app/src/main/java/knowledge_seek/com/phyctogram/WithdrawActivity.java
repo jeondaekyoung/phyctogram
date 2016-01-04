@@ -17,6 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.pkmmte.view.CircularImageView;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -28,6 +32,8 @@ import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
@@ -48,7 +54,9 @@ public class WithdrawActivity extends BaseActivity {
     //레이아웃정의
     private TextView tv_join_route;     //가입경로
     private TextView tv_name;           //이름
+    private TextView tv_pw;
     private EditText et_pw;
+    private TextView tv_pw1;
     private EditText et_pw1;
     private Button btn_withdraw;
 
@@ -79,17 +87,22 @@ public class WithdrawActivity extends BaseActivity {
 
         tv_join_route = (TextView) findViewById(R.id.tv_join_route);
         tv_name = (TextView) findViewById(R.id.tv_name);
+        tv_pw = (TextView)findViewById(R.id.tv_pw);
         et_pw = (EditText) findViewById(R.id.et_pw);
+        tv_pw1 = (TextView)findViewById(R.id.tv_pw1);
         et_pw1 = (EditText) findViewById(R.id.et_pw1);
         btn_withdraw = (Button) findViewById(R.id.btn_withdraw);
         btn_withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 final String pw = et_pw.getText().toString();
                 String pw1 = et_pw1.getText().toString();
 
-                if (!checkPW(pw, pw1)) {
-                    return;
+                if(member.getJoin_route().equals("phyctogram")) {
+                    if (!checkPW(pw, pw1)) {
+                        return;
+                    }
                 }
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(WithdrawActivity.this);
@@ -98,8 +111,31 @@ public class WithdrawActivity extends BaseActivity {
                         .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                Log.d("-진우-", "탈퇴하기 : " + member.getMember_seq() + ", " + pw);
+                                Log.d("-진우-", "탈퇴하기 : " + member.getMember_seq() + ", " + pw + ", " + member.getJoin_route());
+                                //로그아웃하기
+                                if(member.getJoin_route().equals("facebook")){
+                                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                                    //accessToken 값이 있다면 로그인 상태라고 판단
+                                    if (accessToken != null) {
+                                        Log.d("-진우-", "페이스북 로그아웃 실행");
+                                        LoginManager.getInstance().logOut();
 
+                                    }
+                                } else if(member.getJoin_route().equals("kakao")){
+                                    UserManagement.requestLogout(new LogoutResponseCallback() {
+                                        @Override
+                                        public void onCompleteLogout() {
+                                            Log.d("-진우-", "카카오 로그아웃 실행");
+                                        }
+                                    });
+                                } else if(member.getJoin_route().equals("phyctogram")){
+                                    Log.d("-진우-", "픽토그램 로그아웃 실행");
+
+
+                                }
+
+                                DeleteMemberTask task = new DeleteMemberTask(member.getMember_seq(), pw, member.getJoin_route());
+                                task.execute();
 
                             }
                         })
@@ -131,10 +167,18 @@ public class WithdrawActivity extends BaseActivity {
             name = member.getKakao_nickname() + " 님";
             tv_join_route.setText("카카오");
             tv_name.setText(member.getKakao_nickname());
+            tv_pw.setVisibility(View.GONE);
+            et_pw.setVisibility(View.GONE);
+            tv_pw1.setVisibility(View.GONE);
+            et_pw1.setVisibility(View.GONE);
         } else if (member.getJoin_route().equals("facebook")) {
             name = member.getFacebook_name() + " 님";
             tv_join_route.setText("페이스북");
             tv_name.setText(member.getFacebook_name());
+            tv_pw.setVisibility(View.GONE);
+            et_pw.setVisibility(View.GONE);
+            tv_pw1.setVisibility(View.GONE);
+            et_pw1.setVisibility(View.GONE);
         } else {
             name = member.getName() + " 님";
             tv_join_route.setText("픽토그램");
@@ -258,6 +302,69 @@ public class WithdrawActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
+        }
+    }
+
+    //멤버삭제하기
+    private class DeleteMemberTask extends AsyncTask<Void, Void, String>{
+
+        private ProgressDialog dialog = new ProgressDialog(WithdrawActivity.this);
+        private int member_seqTask;
+        private String pwTask;
+        private String join_routeTask;
+
+        public DeleteMemberTask(int member_seqTask, String pwTask, String join_routeTask) {
+            this.member_seqTask = member_seqTask;
+            this.pwTask = pwTask;
+            this.join_routeTask = join_routeTask;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String result = null;
+
+            //멤버 지우기
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class);
+            Call<String> call = service.withdrawMember(member_seqTask, pwTask, join_routeTask);
+            try {
+                result = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "멤버 삭제 실패");
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if("wrongPw".equals(s)){
+                Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            } else if("fail".equals(s)) {
+                Log.d("-진우-", "멤버 삭제 실패");
+            } else if("success".equals(s)) {
+
+                Log.d("-진우-", "멤버 삭제 성공");
+                Toast.makeText(getApplicationContext(), "회원 탈퇴했습니다", Toast.LENGTH_SHORT).show();
+                if(join_routeTask.equals("phyctogram")){
+                    SaveSharedPreference.clearMemberSeq(getApplicationContext());
+                }
+                finish();
+                redirectLoginActivity();
+
+            } else {
+                Log.d("-진우-", "멤버 삭제 중 에러가 발생하였습니다");
+            }
+
+            dialog.dismiss();
+            super.onPostExecute(s);
         }
     }
 }
