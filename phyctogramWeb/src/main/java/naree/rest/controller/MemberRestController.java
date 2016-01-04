@@ -103,17 +103,21 @@ public class MemberRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "withdrawMember", method = RequestMethod.DELETE)
-	public String withrawMember(@RequestParam("member_seq") int member_seq, @RequestParam("pw") String pw){
-		logger.info("멤버 탈퇴하기 : " + member_seq + ", " + pw);
+	public String withrawMember(@RequestParam("member_seq") int member_seq, @RequestParam("pw") String pw,
+			@RequestParam("join_route") String join_route){
+		logger.info("멤버 탈퇴하기 : " + member_seq + ", " + pw + ", " + join_route);
 		
 		Member member = new Member();
 		member.setMember_seq(member_seq);
 		member.setPassword(pw);
+		member.setJoin_route(join_route);
 		
-		//비밀번호가 맞는지 확인
-		int result = memberService.findMemberByMemberSeqPw(member);
-		if(result != 1) {
-			return "wrongPw";
+		if(member.getJoin_route().equals("phyctogram")){
+			//비밀번호가 맞는지 확인
+			int result = memberService.findMemberByMemberSeqPw(member);
+			if(result != 1) {
+				return "wrongPw";
+			}
 		}
 		
 		
@@ -123,8 +127,22 @@ public class MemberRestController {
 		//내아이 지우기
 		int result2 = memberService.deleteUsersHeightDiaryByMemberSeq(member_seq);
 		
+		//가입동의 지우기
+		int result3 = memberService.deleteJoinAgreByMemberSeq(member_seq);
 		
-		return null;
+		//문의 지우기(쓰지않으니깐 패스)
+		int result4 = 0;
+		
+		//멤버 지우기
+		int result5 = memberService.deleteMemberByMemberSeq(member_seq); 
+		
+		if(result5 == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+		
 	}
 	
 }

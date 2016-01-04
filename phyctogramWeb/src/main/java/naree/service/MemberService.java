@@ -59,6 +59,20 @@ public interface MemberService {
 	 * @return
 	 */
 	int deleteUsersHeightDiaryByMemberSeq(int member_seq);
+
+	/**
+	 * 멤버의 가입동의 지우기
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteJoinAgreByMemberSeq(int member_seq);
+
+	/**
+	 * 멤버 지우기
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteMemberByMemberSeq(int member_seq);
 	
 	
 }

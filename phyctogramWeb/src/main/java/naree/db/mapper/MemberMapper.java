@@ -29,6 +29,10 @@ public interface MemberMapper {
 	Member selectMemberByPhycto(Member member);
 
 	int selectMemberByMemberSeqPw(Member member);
+
+	int deleteJoinAgreByMemberSeq(int member_seq);
+
+	int deleteMemberByMemberSeq(int member_seq);
 }
 
 

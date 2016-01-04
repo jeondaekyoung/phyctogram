@@ -118,14 +118,17 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int deleteCommntyCommentByMemberSeq(int member_seq) {
 		//멤버가 쓴 댓글 지우기
+		logger.info("멤버가 쓴 댓글 지우기");
 		int result = commentDao.deleteCommentByMemberSeq(member_seq);
 		//멤버가 쓴 수다방 목록 읽어오기
 		List<Commnty> commntys = commntyDao.selectCommntyByMemberSeq(member_seq);
+		logger.info("멤버가 쓴 수다방 목록의 댓글지우기");
 		for(Commnty c : commntys) {
 			//멤버가 쓴 수다방 목록의 댓글지우기
 			commentDao.deleteCommentByCommntySeq(c.getCommnty_seq());
 		}
 		//멤버가 쓴 수다방 목록 지우기
+		logger.info("멤버가 쓴 수다방 목록 지우기");
 		int result1 = commntyDao.deleteCommntyByMemberSeq(member_seq);
 		
 		return result1;
@@ -135,15 +138,31 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteUsersHeightDiaryByMemberSeq(int member_seq) {
 		//멤버의 내 아이 목록 가져오기
 		List<Users> userss = usersDao.selectUsersByMemberSeq(String.valueOf(member_seq));
+		logger.info("멤버의 내 아이 키, 일기 지우기");
 		for(Users u : userss) {
 			//내 아이 키 지우기
 			heightDao.deleteHeightByUserSeq(String.valueOf(u.getUser_seq()));
 			//내 아이 일기 지우기
 			diaryDao.deleteDiaryByUserSeq(u.getUser_seq());
 		}
-		//내 아이 지우기
+		//멤버의 내 아이 지우기
+		logger.info("멤버의 내 아이 지우기");
 		int result = usersDao.deleteUsersByMemberSeq(member_seq);
 		return result;
+	}
+
+	@Override
+	public int deleteJoinAgreByMemberSeq(int member_seq) {
+		//멤버의 가입동의 지우기
+		logger.info("멤버의 가입동의 지우기");
+		return memberDao.deleteJoinAgreByMemberSeq(member_seq);
+	}
+
+	@Override
+	public int deleteMemberByMemberSeq(int member_seq) {
+		//멤버 지우기
+		logger.info("멤버 지우기");
+		return memberDao.deleteMemberByMemberSeq(member_seq);
 	}
 	
 	
