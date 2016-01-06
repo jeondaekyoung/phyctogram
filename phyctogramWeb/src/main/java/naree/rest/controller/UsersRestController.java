@@ -54,7 +54,7 @@ public class UsersRestController {
 	}
 	
 	/**
-	 * 내 아이(유저) 삭제(키도 삭제)
+	 * 내 아이(유저) 삭제(키, 일기도 삭제)
 	 * @param user_seq
 	 * @return
 	 */
