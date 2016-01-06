@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -225,7 +226,16 @@ public class JoinActivity extends Activity {
     //멤버 읽어오기
     private class RegisterMemberTask extends AsyncTask<Object, Void, Member> {
 
+        private ProgressDialog dialog = new ProgressDialog(JoinActivity.this);
         private Member memberTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Member doInBackground(Object... params) {
@@ -254,6 +264,7 @@ public class JoinActivity extends Activity {
                 Toast.makeText(getApplicationContext(), "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
             }
 
+            dialog.dismiss();
             super.onPostExecute(member);
         }
     }

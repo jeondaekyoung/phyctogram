@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -194,7 +195,7 @@ public class LoginActivity extends BaseActivity {
         btn_login_kko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("-진우-", "카카오 계정으로 로그인");
+                Log.d("-진우-", "카카오 계정으로 로그인, LoginActivity");
                 kakaoLogin();
             }
         });
@@ -318,7 +319,7 @@ public class LoginActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("-진우-", "LoginActivity.onActivityResult() " + requestCode + ", " + resultCode);
         if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)){
-            Log.d("-진우-", "세션 없다.");
+            Log.d("-진우-", "세션 없다. LoginActivity.onActivityResult()");
             return;
         }
         callbackManager.onActivityResult(requestCode, resultCode, data);
@@ -487,7 +488,16 @@ public class LoginActivity extends BaseActivity {
     //멤버 읽어오기
     private class RegisterMemberTask extends AsyncTask<Object, Void, Member> {
 
+        private ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
         private Member memberTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Member doInBackground(Object... params) {
@@ -507,14 +517,15 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Member member) {
             if(member != null) {
-                Log.d("-진우-", "카카오 가입 성공 결과1 : " + member.toString());
+                Log.d("-진우-", "페이스북 가입 성공 결과1 : " + member.toString());
                 memberActivity = member;
+                redirectMainActivity(memberActivity);
             } else {
-                Log.d("-진우-", "카카오 가입 정보 없음");
+                Log.d("-진우-", "페이스북 가입 정보 없음, LoginActivity");
             }
-            Log.d("-진우-", "카카오 가입 성공 결과2 : " + memberActivity.toString());
-            redirectMainActivity(memberActivity);
+            //Log.d("-진우-", "페이스북 가입 성공 결과2 : " + memberActivity.toString());
 
+            dialog.dismiss();
             super.onPostExecute(member);
         }
     }

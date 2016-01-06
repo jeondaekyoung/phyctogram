@@ -194,7 +194,7 @@ public class WithdrawActivity extends BaseActivity {
 
     //패스워드 입력 체크
     private boolean checkPW(String pw, String pw1) {
-        Log.d("-진우-", "pw :" + pw + ", pw1 : " + pw1);
+        //Log.d("-진우-", "pw :" + pw + ", pw1 : " + pw1);
         if (pw.length() <= 0 || pw1.length() <= 0) {
             Toast.makeText(getApplicationContext(), "패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();
             return false;
@@ -207,7 +207,7 @@ public class WithdrawActivity extends BaseActivity {
     }
 
 
-    //탈퇴페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이름, 계정이미지)
+    //탈퇴페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class WithdrawTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(WithdrawActivity.this);

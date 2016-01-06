@@ -50,12 +50,11 @@ public class UsersDiaryActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
-
-    //레이아웃 정의
-    private TextView tv_users_name;     //아이 이름 출력
     private CircularImageView img_profile;      //슬라이드 내 이미지
     private TextView tv_member_name;            //슬라이드 내 이름
 
+    //레이아웃 정의
+    private TextView tv_users_name;     //아이 이름 출력
     private GridView gv_monthView;
     private CalendarMonthAdapter calendarMonthAdapter;
     private TextView tv_monthText;          //년월 출력
@@ -63,13 +62,11 @@ public class UsersDiaryActivity extends BaseActivity {
     private Button btn_monthNext;           //다음달가기
     private ImageButton imBtn_diary_write;  //일기쓰기
 
-
     //데이터 정의
     int curYear, curMonth;
     String curYearStr, curMonthStr;
     int curPosition;
     List<Diary> diaryList = new ArrayList<Diary>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

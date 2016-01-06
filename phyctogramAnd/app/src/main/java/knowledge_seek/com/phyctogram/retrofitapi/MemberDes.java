@@ -29,7 +29,7 @@ public class MemberDes implements JsonDeserializer<Member> {
 
         Member member =  new Gson().fromJson(json.getAsJsonObject(), Member.class);
         member.setJoin_de(join_de);
-        Log.d("-진우-", "MemberDes에서 member확인 : " + member.toString());
+        //Log.d("-진우-", "MemberDes에서 member확인 : " + member.toString());
         return member;
     }
 }

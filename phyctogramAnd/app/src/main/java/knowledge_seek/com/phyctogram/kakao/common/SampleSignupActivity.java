@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram.kakao.common;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -151,7 +152,16 @@ public class SampleSignupActivity extends BaseActivity {
     //멤버 읽어오기
     private class RegisterMemberTask extends AsyncTask<Object, Void, Member>{
 
+        private ProgressDialog dialog = new ProgressDialog(SampleSignupActivity.this);
         private Member memberTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
 
         @Override
         protected Member doInBackground(Object... params) {
@@ -171,14 +181,15 @@ public class SampleSignupActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Member member) {
             if(member != null) {
-                Log.d("-진우-", "카카오 가입 성공 결과1 : " + member.toString());
+                Log.d("-진우-", "SampleSignupActivity에서 카카오 가입 성공 결과1 : " + member.toString());
                 memberActivity = member;
+                redirectMainActivity(memberActivity);
             } else {
-                Log.d("-진우-", "카카오 가입 정보 없음");
+                Log.d("-진우-", "SampleSignupActivity에서 카카오 가입 정보 없음, SampleSignupActivity");
             }
-            Log.d("-진우-", "카카오 가입 성공 결과2 : " + memberActivity.toString());
-            redirectMainActivity(memberActivity);
+            //Log.d("-진우-", "SampleSignupActivity에서 카카오 가입 성공 결과2 : " + memberActivity.toString());
 
+            dialog.dismiss();
             super.onPostExecute(member);
         }
     }

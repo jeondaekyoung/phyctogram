@@ -184,10 +184,20 @@ public class RecordActivity extends BaseActivity {
             public void onClick(View v) {
                 String dateFrom = et_datepickFrom.getText().toString();
                 String dateTo = et_datepickTo.getText().toString();
+
+                if(!checkDate(dateFrom, dateTo)){
+                    return;
+                }
+                if(usersList == null || usersList.size() == 0){
+                    Toast.makeText(getApplicationContext(), "내 아이가 없습니다.", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+
                 String user_seq = String.valueOf(nowUsers.getUser_seq());
                 //Log.d("-진우-", "검색 : " + dateFrom + " ~ " + dateTo + ", " + user_seq);
                 heightList.clear();     //리스트 초기화
                 pageCnt = 0;            //페이지수 초기화
+
                 FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
                 task.execute();
                 //heightListRecordAdapter.notifyDataSetChanged();
@@ -368,6 +378,16 @@ public class RecordActivity extends BaseActivity {
         }
     }
 
+    //날짜 입력 체크
+    private boolean checkDate(String dateFrom, String dateTo){
+        if(dateFrom.length() <= 0 || dateTo.length() <= 0){
+            Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
     //기록조회
     private class FindHeightByUserSeqFTTask extends AsyncTask<Void, Void, List<Height>>{
 
@@ -467,4 +487,5 @@ public class RecordActivity extends BaseActivity {
             lastListViewVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount);
         }
     };
+
 }

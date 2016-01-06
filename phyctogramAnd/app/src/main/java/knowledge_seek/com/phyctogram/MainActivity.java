@@ -160,7 +160,7 @@ public class MainActivity extends BaseActivity {
         Log.d("-진우-", "MainActivity.onResume() 끝");
     }
 
-    //메인페이지 초기 데이터조회(슬라이드 내 아이 목록)
+    //메인페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지, 수다방인기Top3)
     private class MainDataTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
@@ -182,7 +182,6 @@ public class MainActivity extends BaseActivity {
             img_profileTask = (CircularImageView)objects[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            //updateScreenSlide();  //내 아이 목록을 가져오기전에 MainDataTask가 끝난다.
             UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
