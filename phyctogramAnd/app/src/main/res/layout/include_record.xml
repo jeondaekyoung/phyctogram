@@ -51,27 +51,40 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-                <EditText
-                    android:id="@+id/et_datepickFrom"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:textColor="#000000" />
+                <TextView
+                    android:id="@+id/tv_datepickFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:hint="날짜입력하세요"
+                    android:layout_weight="1"
+                    android:background="@drawable/linedate"
+                    android:gravity="center"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:text="-"
+                    android:textSize="24dp"
                     android:textColor="#000000" />
 
-                <EditText
-                    android:id="@+id/et_datepickTo"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content"
-                    android:editable="false"
-                    android:textColor="#000000" />
+                <TextView
+                    android:id="@+id/tv_datepickTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:textSize="20dp"
+                    android:textColor="#000000"
+                    android:hint="날짜입력하세요"
+                    android:layout_weight="1"
+                    android:background="@drawable/linedate"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
@@ -79,6 +92,7 @@
                 android:id="@+id/btn_findHeight"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginTop="10dp"
                 android:background="#c1abe1"
                 android:text="검색"
                 android:textColor="#ffffff" />

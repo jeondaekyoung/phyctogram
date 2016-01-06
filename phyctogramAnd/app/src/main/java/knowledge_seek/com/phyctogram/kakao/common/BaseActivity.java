@@ -53,7 +53,7 @@ public class BaseActivity extends Activity {
     public static LinearLayout ll_menuLayout;
     public static FrameLayout.LayoutParams leftMenuLayoutPrams;
     public static int leftMenuWidth;
-    public static boolean isLeftExpanded = false;
+    public boolean isLeftExpanded = false;
     public LinearLayout ll_empty;
 
     //데이터정의
@@ -101,7 +101,7 @@ public class BaseActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                menuLeftSlideAnimationToggle();
+                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -111,10 +111,10 @@ public class BaseActivity extends Activity {
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
                 //Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -123,10 +123,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -135,10 +135,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "설정페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -372,29 +372,43 @@ public class BaseActivity extends Activity {
     @Override
     public void onBackPressed() {
         Activity nowActivity = GlobalApplication.getCurrentActivity();
+        //String nowActivity = GlobalApplication.getCurrentActivity().getClass().getSimpleName();
         //Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
+
+        Intent intent = null;
         if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
             finish();
+        }
+        //내 아이 관리 관련 페이지 이동
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity")) {
+            intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
+            intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        } else {
+            //메인으로 가는 페이지 : 기록조회
+            intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }
+
+
+        /*if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
+            finish();
         } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity2")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("JoinActivity")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityViewActivity")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityCommentActivity")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
-            super.onBackPressed();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("WithdrawActivity")) {
             super.onBackPressed();
         } else {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }
+        }*/
     }
 
 }

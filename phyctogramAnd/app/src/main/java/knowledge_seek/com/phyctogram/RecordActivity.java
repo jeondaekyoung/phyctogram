@@ -55,16 +55,17 @@ public class RecordActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
+    private CircularImageView img_profile;      //슬라이드 내 이미지
+    private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private EditText et_datepickFrom;
-    private EditText et_datepickTo;
+    private TextView tv_datepickFrom;
+    private TextView tv_datepickTo;
     private Button btn_findHeight;
     private ListView lv_record;
     private HeightListRecordAdapter heightListRecordAdapter;
     private TextView tv_users_name;     //아이 이름 출력
-    private CircularImageView img_profile;      //슬라이드 내 이미지
-    private TextView tv_member_name;            //슬라이드 내 이름
+
 
     //데이터정의
     int year, month, day;
@@ -88,7 +89,6 @@ public class RecordActivity extends BaseActivity {
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
-
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,11 +98,10 @@ public class RecordActivity extends BaseActivity {
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
-                if (tv_users_name != null) {
-                    tv_users_name.setText(nowUsers.getName());
-                }
-
-                //메인페이지에 출력할 아이에 관한 데이터(분석포함)를 가져와야한다.
+                tv_users_name.setText(nowUsers.getName());
+                heightList.clear();
+                heightListRecordAdapter.setHeights(heightList);
+                heightListRecordAdapter.notifyDataSetChanged();
             }
         });
 
@@ -115,8 +114,8 @@ public class RecordActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
-        et_datepickFrom = (EditText)findViewById(R.id.et_datepickFrom);
-        et_datepickTo = (EditText)findViewById(R.id.et_datepickTo);
+        tv_datepickFrom = (TextView)findViewById(R.id.tv_datepickFrom);
+        tv_datepickTo = (TextView)findViewById(R.id.tv_datepickTo);
 
         //기록 조회 리스트뷰 셋팅
         lv_record = (ListView)findViewById(R.id.lv_record);
@@ -143,13 +142,15 @@ public class RecordActivity extends BaseActivity {
                         call.enqueue(new Callback<String>() {
                             @Override
                             public void onResponse(Response<String> response, Retrofit retrofit) {
-                                Log.d("-진우-", "키 삭제 성공 결과1 : " + response.body());
+                                Log.d("-진우-", "키 삭제 성공 결과 : " + response.body());
+                                Toast.makeText(getApplicationContext(), "키 삭제에 성공하였습니다", Toast.LENGTH_LONG).show();
                                 //Log.d("-진우-", "삭제전 : " + heightList.size());
                                 heightList.remove(height);
                                 //Log.d("-진우-", "삭제후 : " + heightList.size());
-                                /*for(Height h : heightList){
-                                    Log.d("-진우-", "기록 : " + h.toString());
-                                }*/
+                                for(int i =0; i < heightList.size()-1 ; i++){
+                                    heightList.get(i).setGrow(String.format("%.1f", (heightList.get(i).getHeight() - heightList.get(i+1).getHeight()) ));
+                                }
+                                heightList.get(heightList.size()- 1).setGrow("0");
                                 heightListRecordAdapter.setHeights(heightList);
                                 heightListRecordAdapter.notifyDataSetChanged();
 
@@ -161,7 +162,6 @@ public class RecordActivity extends BaseActivity {
                             }
                         });
 
-                        Log.d("-진우-", "삭제");
                     }
 
                 });
@@ -182,8 +182,8 @@ public class RecordActivity extends BaseActivity {
         btn_findHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dateFrom = et_datepickFrom.getText().toString();
-                String dateTo = et_datepickTo.getText().toString();
+                String dateFrom = tv_datepickFrom.getText().toString();
+                String dateTo = tv_datepickTo.getText().toString();
 
                 if(!checkDate(dateFrom, dateTo)){
                     return;
@@ -200,7 +200,6 @@ public class RecordActivity extends BaseActivity {
 
                 FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
                 task.execute();
-                //heightListRecordAdapter.notifyDataSetChanged();
             }
         });
 
@@ -209,17 +208,29 @@ public class RecordActivity extends BaseActivity {
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
-        et_datepickFrom.setOnClickListener(new View.OnClickListener() {
+        tv_datepickFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, year, month, day).show();
+                String datepickFrom = tv_datepickFrom.getText().toString();
+                if(datepickFrom == null || datepickFrom.length() <= 0) {
+                    new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, year, month, day).show();
+                } else {
+                    new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, Integer.valueOf(datepickFrom.substring(0,4)),
+                            Integer.valueOf(datepickFrom.substring(5,7))-1, Integer.valueOf(datepickFrom.substring(8))).show();
+                }
                 setTheme(R.style.AppTheme);
             }
         });
-        et_datepickTo.setOnClickListener(new View.OnClickListener() {
+        tv_datepickTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(RecordActivity.this, dateSetListenerTo, year, month, day).show();
+                String datepickTo = tv_datepickTo.getText().toString();
+                if(datepickTo == null || datepickTo.length() <= 0){
+                    new DatePickerDialog(RecordActivity.this, dateSetListenerTo, year, month, day).show();
+                } else {
+                    new DatePickerDialog(RecordActivity.this, dateSetListenerTo, Integer.valueOf(datepickTo.substring(0,4)),
+                            Integer.valueOf(datepickTo.substring(5,7))-1, Integer.valueOf(datepickTo.substring(8))).show();
+                }
                 setTheme(R.style.AppTheme);
             }
         });
@@ -257,14 +268,14 @@ public class RecordActivity extends BaseActivity {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String msg = String.valueOf(year).concat("-").concat(dateFormat(monthOfYear + 1)).concat("-").concat(dateFormat(dayOfMonth));
             //String msg = String.format("%d-%d-%d", year, dateFormat(monthOfYear + 1), dateFormat(dayOfMonth));
-            et_datepickFrom.setText(msg);
+            tv_datepickFrom.setText(msg);
         }
     };
     private DatePickerDialog.OnDateSetListener dateSetListenerTo = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String msg = String.valueOf(year).concat("-").concat(dateFormat(monthOfYear+1)).concat("-").concat(dateFormat(dayOfMonth));
             //String msg = String.format("%d-%d-%d", year, dateFormat(monthOfYear + 1), dateFormat(dayOfMonth));
-            et_datepickTo.setText(msg);
+            tv_datepickTo.setText(msg);
         }
     };
 
@@ -430,9 +441,9 @@ public class RecordActivity extends BaseActivity {
         @Override
         protected void onPostExecute(List<Height> heights) {
             if(heights != null && heights.size() > 0){
-                for(Height h : heights){
+                /*for(Height h : heights){
                     Log.d("-진우-", "목록 : " + h.toString());
-                }
+                }*/
                 Log.d("-진우-", "읽어온 목록은 " + heights.size() + " 개 있습니다");
                 heightList.addAll(heights);
                 Log.d("-진우-", "총 목록은 " + heightList.size() + " 개 입니다");
@@ -442,10 +453,10 @@ public class RecordActivity extends BaseActivity {
                     //Log.d("-진우-", String.valueOf(heights.get(i).getHeight()));
                     //Log.d("-진우-", String.valueOf(heights.get(i+1).getHeight()));
                     //Log.d("-진우-",  String.valueOf(heights.get(i).getHeight() - heights.get(i+1).getHeight()) );
-                    //Log.d("-진우-", String.format("%.1d", heights.get(i).getHeight() - heights.get(i+1).getHeight()) );  //에러
+                    //키변화 저장
                     heightList.get(i).setGrow(String.format("%.1f", (heightList.get(i).getHeight() - heightList.get(i+1).getHeight()) ));
                 }
-                heights.get(heights.size()- 1).setGrow("0");
+                heightList.get(heightList.size()- 1).setGrow("0");
 
                 heightListRecordAdapter.setHeights(heightList);
                 pageCnt = pageCntTask+1;
@@ -472,8 +483,8 @@ public class RecordActivity extends BaseActivity {
             if(scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastListViewVisible){
                 //화면에 바닦에 닿았고, 스크롤이 멈추었다.
                 Log.d("-진우-", "추가데이터 불러오기");
-                String dateFrom = et_datepickFrom.getText().toString();
-                String dateTo = et_datepickTo.getText().toString();
+                String dateFrom = tv_datepickFrom.getText().toString();
+                String dateTo = tv_datepickTo.getText().toString();
                 String user_seq = String.valueOf(nowUsers.getUser_seq());
                 FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
                 task.execute();

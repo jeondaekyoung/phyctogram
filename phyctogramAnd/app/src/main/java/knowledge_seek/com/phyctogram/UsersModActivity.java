@@ -1,17 +1,31 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pkmmte.view.CircularImageView;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
@@ -31,18 +45,21 @@ public class UsersModActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
+    private CircularImageView img_profile;      //슬라이드 내 이미지
+    private TextView tv_member_name;            //슬라이드 내 이름
 
-    //데이터
-    private Users users = null;
 
     //레이아웃 정의
     private EditText et_name;
     private EditText et_initials;
     private DatePicker dp_lifedate;
-    private RadioGroup rg_sexdstn;
+    //private RadioGroup rg_sexdstn;
     private RadioButton rb_female;
     private RadioButton rb_male;
     private Button btn_usersmod;
+
+    //데이터
+    private Users users = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +71,6 @@ public class UsersModActivity extends BaseActivity {
         //슬라이드메뉴 셋팅
         initSildeMenu();
 
-
         //데이터셋팅
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
@@ -64,8 +80,24 @@ public class UsersModActivity extends BaseActivity {
             Log.d("-진우-", "UsersModActivity 에 users가 없다");
         }
 
+        //슬라이드 내 이미지
+        img_profile = (CircularImageView) findViewById(R.id.img_profile);
+        //슬라이드 내 이름
+        tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                nowUsers = (Users) usersListSlideAdapter.getItem(position);
+                users = nowUsers;
+                Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
-        //사이드 메뉴
+                init();
+            }
+        });
+
+        //사이드 메뉴 버튼
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +111,7 @@ public class UsersModActivity extends BaseActivity {
         et_name = (EditText)findViewById(R.id.et_name);
         et_initials = (EditText)findViewById(R.id.et_initials);
         dp_lifedate = (DatePicker)findViewById(R.id.dp_lifedate);
-        rg_sexdstn = (RadioGroup)findViewById(R.id.rg_sexdstn);
+        //rg_sexdstn = (RadioGroup)findViewById(R.id.rg_sexdstn);
         rb_female = (RadioButton)findViewById(R.id.rb_female);
         rb_male = (RadioButton)findViewById(R.id.rb_male);
         btn_usersmod = (Button)findViewById(R.id.btn_usersmod);
@@ -110,8 +142,11 @@ public class UsersModActivity extends BaseActivity {
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         Log.d("-진우-", "내 아이 수정 성공 결과 : " + response.body());
                         if (response.body().equals("success")) {
-                            Toast.makeText(UsersModActivity.this, "수정하였습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UsersModActivity.this, "수정하였습니다", Toast.LENGTH_LONG).show();
                         }
+                        FindUsersTask task = new FindUsersTask();
+                        task.execute();
+
                     }
 
                     @Override
@@ -122,7 +157,11 @@ public class UsersModActivity extends BaseActivity {
             }
         });
 
-        //화면에 데이터 셋팅
+        init();
+    }
+
+    //화면에 데이터 셋팅
+    private void init() {
         if(users != null){
             et_name.setText(users.getName());
             et_initials.setText(users.getInitials());
@@ -135,10 +174,33 @@ public class UsersModActivity extends BaseActivity {
                 rb_male.setChecked(false);
             }
         }
-
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("-진우-", "UsersModActivity.onResume() 실행");
+
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
+        UsersModTask task = new UsersModTask();
+        task.execute(img_profile);
+
+        Log.d("-진우-", "UsersModActivity.onResume() : " + member.toString());
+
+        String name = null;
+        if (member.getJoin_route().equals("kakao")) {
+            name = member.getKakao_nickname() + " 님";
+        } else if (member.getJoin_route().equals("facebook")) {
+            name = member.getFacebook_name() + " 님";
+        } else {
+            name = member.getName() + " 님";
+        }
+        if (name != null) {
+            tv_member_name.setText(name);
+        }
+
+        Log.d("-진우-", "UsersModActivity.onResume() 끝");
+    }
 
     //users의 내용 체크
     private boolean checkUsers(Users users){
@@ -147,5 +209,161 @@ public class UsersModActivity extends BaseActivity {
             return false;
         }
         return true;
+    }
+
+    //내아이수정페이지 초기 데이터조회(슬라이드 내 아이 목록, 내 이미지)
+    private class UsersModTask extends AsyncTask<Object, Void, Bitmap> {
+
+        private ProgressDialog dialog = new ProgressDialog(UsersModActivity.this);
+        private List<Users> usersTask;
+        private CircularImageView img_profileTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Bitmap doInBackground(Object... params) {
+            Bitmap mBitmap = null;
+            img_profileTask = (CircularImageView) params[0];
+
+            //슬라이드메뉴에 있는 내 아이 목록
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+            try {
+                usersTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "내 아이 목록 가져오기 실패");
+            }
+
+            //이미지 불러오기
+            String image_url = null;
+            if (member.getJoin_route().equals("kakao")) {
+                image_url = member.getKakao_thumbnailimagepath();
+                InputStream in = null;
+                try {
+                    Log.d("-진우-", "이미지 주소 : " + image_url);
+                    in = new URL(image_url).openStream();
+                    mBitmap = BitmapFactory.decodeStream(in);
+                    in.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else if (member.getJoin_route().equals("facebook")) {
+                image_url = "http://graph.facebook.com/" + member.getFacebook_id() + "/picture?type=large";
+                //이미지 불러오기
+                InputStream in = null;
+                try {
+                    //페이스북은 jpg파일이 링크 걸린 것이 아니다.
+                    //http://graph.facebook.com/userid/picture?type=large
+                    Log.d("-진우-", "이미지 주소 : " + image_url);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(image_url)
+                            .build();
+                    com.squareup.okhttp.Response response = client.newCall(request).execute();
+                    in = response.body().byteStream();
+                    mBitmap = BitmapFactory.decodeStream(in);
+                    in.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return mBitmap;
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            if (bitmap != null) {
+                Log.d("-진우-", "이미지읽어옴");
+                img_profileTask.setImageBitmap(bitmap);
+            }
+
+            if (usersTask != null && usersTask.size() > 0) {
+                Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
+                for (Users u : usersTask) {
+                    Log.d("-진우-", "내 아이 : " + u.toString());
+                }
+                usersList = usersTask;
+
+                usersListSlideAdapter.setUsersList(usersList);
+                if (nowUsers == null) {
+                    nowUsers = usersTask.get(0);
+                }
+                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+            } else {
+                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다");
+            }
+
+            int height = getListViewHeight(lv_usersList);
+            lv_usersList.getLayoutParams().height = height;
+            usersListSlideAdapter.notifyDataSetChanged();
+
+            dialog.dismiss();
+            super.onPostExecute(bitmap);
+        }
+    }
+
+    //내 아이 목록 읽어오기
+    private class FindUsersTask extends AsyncTask<Void, Void, Void>{
+
+        private ProgressDialog dialog = new ProgressDialog(UsersModActivity.this);
+        private List<Users> usersTask;
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기달려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            //내 아이 목록
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+            try {
+                usersTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "내 아이 목록 가져오기 실패");
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            if(usersTask != null && usersTask.size() > 0){
+                Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
+                for(Users u : usersTask) {
+                    Log.d("-진우-", "내 아이 : " + u.toString());
+                }
+                usersList = usersTask;
+                usersListSlideAdapter.setUsersList(usersList);
+
+                for(Users s : usersList){
+                    //nowUsers를 수정한 아이라면 수정한 후의 데이터로 교체
+                    if(s.getUser_seq() == users.getUser_seq()){
+                        nowUsers = s;
+                    }
+                }
+                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+            } else {
+                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
+            }
+            int height = getListViewHeight(lv_usersList);
+            lv_usersList.getLayoutParams().height = height;
+            usersListSlideAdapter.notifyDataSetChanged();
+
+            dialog.dismiss();
+            super.onPostExecute(aVoid);
+        }
     }
 }

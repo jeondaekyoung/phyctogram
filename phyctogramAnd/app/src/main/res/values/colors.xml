@@ -14,4 +14,8 @@
     <color name="color7">#000000</color>
     <color name="color8">#4A4A4C</color>
     <color name="color9">#BDD1DC</color>
+
+    <!-- 픽토그램 보라색 -->
+    <color name="color10">#C1ABE1</color>
+
 </resources>

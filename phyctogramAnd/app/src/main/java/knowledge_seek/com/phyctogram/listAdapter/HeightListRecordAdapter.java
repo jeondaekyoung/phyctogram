@@ -61,7 +61,7 @@ public class HeightListRecordAdapter extends BaseAdapter {
         if(Double.valueOf(height.getGrow()) >= 0){
             recordSa.setText("+");
         } else {
-            recordSa.setText("-");
+            recordSa.setText("");
         }
 
         return convertView;

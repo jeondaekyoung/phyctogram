@@ -161,6 +161,7 @@ public class MainActivity extends BaseActivity {
     }
 
     //메인페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지, 수다방인기Top3)
+    //해야할 일 : 메인페이지에 출력할 아이에 관한 데이터(분석포함)를 가져와야한다.
     private class MainDataTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
