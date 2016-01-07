@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -71,7 +72,16 @@ public class SettingActivity extends BaseActivity {
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                nowUsers = (Users) usersListSlideAdapter.getItem(position);
+                Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
+            }
+        });
         //레이아웃 정의
         btn_left = (ImageButton)findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +96,7 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //Log.d("-진우-", "공지사항 클릭");
-                Toast.makeText(getApplicationContext(), "공지사항", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "준비중입니다", Toast.LENGTH_LONG).show();
             }
         });
         //내기기
@@ -95,9 +105,11 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //Log.d("-진우-", "내기기 클릭");
-                Toast.makeText(getApplicationContext(), "내기기", Toast.LENGTH_SHORT).show();
-                /*Intent equip = new Intent(this, EquipmentActivity.class);
-                startActivity(equip);*/
+                //Toast.makeText(getApplicationContext(), "내기기", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), EquipmentActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
             }
         });
         //로그아웃
@@ -150,9 +162,11 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //Log.d("-진우-", "비밀번호 변경");
-                Toast.makeText(getApplicationContext(), "비밀번호 변경", Toast.LENGTH_SHORT).show();
-                /*Intent pwmod = new Intent(this, PwmodActivity.class);
-                startActivity(pwmod);*/
+                //Toast.makeText(getApplicationContext(), "비밀번호 변경", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(), PwmodActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
             }
         });
         //회원탈퇴
@@ -165,6 +179,7 @@ public class SettingActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
+                finish();
             }
         });
     }

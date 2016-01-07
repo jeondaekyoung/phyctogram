@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -75,7 +76,15 @@ public class WithdrawActivity extends BaseActivity {
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
-
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                nowUsers = (Users) usersListSlideAdapter.getItem(position);
+                Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+            }
+        });
         //레이아웃 정의
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
@@ -113,13 +122,12 @@ public class WithdrawActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Log.d("-진우-", "탈퇴하기 : " + member.getMember_seq() + ", " + pw + ", " + member.getJoin_route());
                                 //로그아웃하기
-                                if(member.getJoin_route().equals("facebook")){
+                                /*if(member.getJoin_route().equals("facebook")){
                                     AccessToken accessToken = AccessToken.getCurrentAccessToken();
                                     //accessToken 값이 있다면 로그인 상태라고 판단
                                     if (accessToken != null) {
                                         Log.d("-진우-", "페이스북 로그아웃 실행");
                                         LoginManager.getInstance().logOut();
-
                                     }
                                 } else if(member.getJoin_route().equals("kakao")){
                                     UserManagement.requestLogout(new LogoutResponseCallback() {
@@ -130,10 +138,9 @@ public class WithdrawActivity extends BaseActivity {
                                     });
                                 } else if(member.getJoin_route().equals("phyctogram")){
                                     Log.d("-진우-", "픽토그램 로그아웃 실행");
+                                }*/
 
-
-                                }
-
+                                //멤버 관련 데이터 삭제(멤버, 아이등)
                                 DeleteMemberTask task = new DeleteMemberTask(member.getMember_seq(), pw, member.getJoin_route());
                                 task.execute();
 
@@ -156,7 +163,7 @@ public class WithdrawActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "WithdrawActivity.onResume() 실행");
 
-        //슬라이드메뉴 셋팅(내 아이목록, 계정이름, 계정이미지)
+        //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
         WithdrawTask task = new WithdrawTask();
         task.execute(img_profile);
 
@@ -352,12 +359,31 @@ public class WithdrawActivity extends BaseActivity {
             } else if("success".equals(s)) {
 
                 Log.d("-진우-", "멤버 삭제 성공");
-                Toast.makeText(getApplicationContext(), "회원 탈퇴했습니다", Toast.LENGTH_SHORT).show();
-                if(join_routeTask.equals("phyctogram")){
+                //로그아웃하기
+                if(member.getJoin_route().equals("facebook")){
+                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                    //accessToken 값이 있다면 로그인 상태라고 판단
+                    if (accessToken != null) {
+                        Log.d("-진우-", "페이스북 로그아웃 실행");
+                        LoginManager.getInstance().logOut();
+                    }
+                    finish();
+                    redirectLoginActivity();
+                } else if(member.getJoin_route().equals("kakao")){
+                    UserManagement.requestLogout(new LogoutResponseCallback() {
+                        @Override
+                        public void onCompleteLogout() {
+                            Log.d("-진우-", "카카오 로그아웃 실행");
+                            finish();
+                            redirectLoginActivity();
+                        }
+                    });
+                } else if(member.getJoin_route().equals("phyctogram")){
                     SaveSharedPreference.clearMemberSeq(getApplicationContext());
+                    Log.d("-진우-", "픽토그램 로그아웃 실행");
+                    finish();
+                    redirectLoginActivity();
                 }
-                finish();
-                redirectLoginActivity();
 
             } else {
                 Log.d("-진우-", "멤버 삭제 중 에러가 발생하였습니다");

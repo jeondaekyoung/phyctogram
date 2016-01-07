@@ -240,11 +240,8 @@ public class RecordActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        //요건되는데, BaseActivity.onResume()에 있으면 안되네..
-        //login, join등의 member이 없는 activity가 있기 때문에 안된다.
-        //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
-        //updateScreenSlide();
-        RecordDataTask task = new RecordDataTask();
+        //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
+        RecordTask task = new RecordTask();
         task.execute(img_profile);
 
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
@@ -288,8 +285,8 @@ public class RecordActivity extends BaseActivity {
         return s;
     }
 
-    //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록)
-    private class RecordDataTask extends AsyncTask<Object, Void, Bitmap> {
+    //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
+    private class RecordTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(RecordActivity.this);
         private List<Users> usersTask;
@@ -309,7 +306,6 @@ public class RecordActivity extends BaseActivity {
             img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            //updateScreenSlide();  //내 아이 목록을 가져오기전에 MainDataTask가 끝난다.
             UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {

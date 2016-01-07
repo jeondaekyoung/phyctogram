@@ -123,10 +123,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
-                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
+                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -135,10 +135,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "설정페이지 가기", Toast.LENGTH_SHORT).show();
-                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
+                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -181,6 +181,10 @@ public class BaseActivity extends Activity {
     }
 
     protected void redirectLoginActivity() {
+        //데이터초기화
+        member = null;
+        usersList = null;
+        nowUsers = null;
         final Intent intent = new Intent(this, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
@@ -390,7 +394,28 @@ public class BaseActivity extends Activity {
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } else {
+        }
+        //설정 관련 페이지 이동
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("EquipmentActivity")) {
+            intent = new Intent(getApplicationContext(), SettingActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
+            intent = new Intent(getApplicationContext(), SettingActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("WithdrawActivity")) {
+            intent = new Intent(getApplicationContext(), SettingActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }
+
+        else {
             //메인으로 가는 페이지 : 기록조회
             intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);

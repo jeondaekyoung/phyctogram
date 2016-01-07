@@ -94,7 +94,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/float_button_03"
-                android:onClick="onClickAddequip"
                 android:padding="5dp" />
         </RelativeLayout>
     </LinearLayout>
