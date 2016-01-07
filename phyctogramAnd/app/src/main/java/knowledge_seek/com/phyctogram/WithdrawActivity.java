@@ -121,24 +121,6 @@ public class WithdrawActivity extends BaseActivity {
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Log.d("-진우-", "탈퇴하기 : " + member.getMember_seq() + ", " + pw + ", " + member.getJoin_route());
-                                //로그아웃하기
-                                /*if(member.getJoin_route().equals("facebook")){
-                                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                                    //accessToken 값이 있다면 로그인 상태라고 판단
-                                    if (accessToken != null) {
-                                        Log.d("-진우-", "페이스북 로그아웃 실행");
-                                        LoginManager.getInstance().logOut();
-                                    }
-                                } else if(member.getJoin_route().equals("kakao")){
-                                    UserManagement.requestLogout(new LogoutResponseCallback() {
-                                        @Override
-                                        public void onCompleteLogout() {
-                                            Log.d("-진우-", "카카오 로그아웃 실행");
-                                        }
-                                    });
-                                } else if(member.getJoin_route().equals("phyctogram")){
-                                    Log.d("-진우-", "픽토그램 로그아웃 실행");
-                                }*/
 
                                 //멤버 관련 데이터 삭제(멤버, 아이등)
                                 DeleteMemberTask task = new DeleteMemberTask(member.getMember_seq(), pw, member.getJoin_route());

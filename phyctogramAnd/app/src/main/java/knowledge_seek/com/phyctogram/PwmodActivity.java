@@ -28,9 +28,13 @@ import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-11-25.
@@ -46,7 +50,7 @@ public class PwmodActivity extends BaseActivity {
     //레이아웃정의
     private LinearLayout ll_phyctogram;
     private LinearLayout ll_no_phyctogram;
-    private TextView tv_join_route;
+    private TextView tv_join_route;                 //"카카오, 페이스북 가입자입니다"
     private EditText et_now_pw;
     private EditText et_pw;
     private EditText et_pw1;
@@ -95,7 +99,34 @@ public class PwmodActivity extends BaseActivity {
         btn_pw_mod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("-진우-", "수정클릭");
+                String nowpw = et_now_pw.getText().toString();
+                String newpw = et_pw.getText().toString();
+                String pw1 = et_pw1.getText().toString();
+
+                if(!checkpw(nowpw, newpw, pw1)){
+                    return;
+                }
+
+                //Log.d("-진우-", "변경하기 클릭");
+                MemberAPI service = ServiceGenerator.createService(MemberAPI.class);
+                Call<String> call = service.modifyPwBymember(member.getMember_seq(), nowpw, newpw);
+                call.enqueue(new Callback<String>() {
+                    @Override
+                    public void onResponse(Response<String> response, Retrofit retrofit) {
+                        String result = response.body();
+                        if("wrongPw".equals(result)){
+                            Toast.makeText(getApplicationContext(), "비밀번호가 잘못되었습니다", Toast.LENGTH_SHORT).show();
+                        } else if("fail".equals(result)){
+                            Toast.makeText(getApplicationContext(), "비밀번호 변경에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                        } else if("success".equals(result)){
+                            Toast.makeText(getApplicationContext(), "비밀번호가 변경되었습니다", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                    }
+                });
             }
         });
     }
@@ -133,6 +164,23 @@ public class PwmodActivity extends BaseActivity {
 
         Log.d("-진우-", "PwmodActivity.onResume() 끝");
     }
+
+
+    //패스워드체크
+    private boolean checkpw(String nowpw, String newpw, String pw1) {
+        //Log.d("-진우-", nowpw + ", " + newpw + ", " + pw1);
+        if(nowpw.length() <= 0 || newpw.length() <= 0 || pw1.length() <= 0){
+            Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!newpw.equals(pw1)) {
+            Toast.makeText(getApplicationContext(), "변경할 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
+
 
     //탈퇴페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class PwmodTask extends AsyncTask<Object, Void, Bitmap> {

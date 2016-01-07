@@ -59,4 +59,8 @@ public interface MemberAPI {
     @DELETE("/rest/member/withdrawMember")
     Call<String> withdrawMember(@Query("member_seq") int member_seq, @Query("pw") String pw,
                                 @Query("join_route") String join_route);
+
+    @POST("/rest/member/modifyPwByMember")
+    Call<String> modifyPwBymember(@Query("member_seq") int member_seq, @Query("nowpw") String nowpw,
+                                  @Query("newpw") String newpw);
 }
