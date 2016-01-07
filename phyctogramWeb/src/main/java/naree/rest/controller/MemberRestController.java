@@ -120,7 +120,6 @@ public class MemberRestController {
 			}
 		}
 		
-		
 		//수다방, 댓글 데이터 삭제
 		int result1 = memberService.deleteCommntyCommentByMemberSeq(member_seq);
 		
@@ -141,8 +140,37 @@ public class MemberRestController {
 		} else {
 			return "fail";
 		}
-		
-		
 	}
+	
+	/**
+	 * 비밀번호 변경하기
+	 * @param member_seq
+	 * @param nowpw
+	 * @param pw
+	 * @param pw1
+	 * @return
+	 */
+	@RequestMapping(value = "modifyPwByMember", method = RequestMethod.POST)
+	public String modifyPwByMember(@RequestParam("member_seq") int member_seq, @RequestParam("nowpw") String nowpw, 
+			@RequestParam("newpw") String newpw){
+		logger.info("비밀번호 변경하기 : " + nowpw + " -> " + newpw + ", 멤버시퀀스 : " + member_seq);
+		
+		Member member = new Member();
+		member.setMember_seq(member_seq);
+		member.setPassword(nowpw);
+		int result = memberService.findMemberByMemberSeqPw(member);
+		if(result != 1) {
+			return "wrongPw";
+		}
+		
+		member.setPassword(newpw);
+		result = memberService.modifyPwByMember(member);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
 	
 }

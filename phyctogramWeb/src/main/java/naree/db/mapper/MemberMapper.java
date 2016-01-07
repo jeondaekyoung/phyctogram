@@ -33,6 +33,8 @@ public interface MemberMapper {
 	int deleteJoinAgreByMemberSeq(int member_seq);
 
 	int deleteMemberByMemberSeq(int member_seq);
+
+	int updatePwByMember(Member member);
 }
 
 

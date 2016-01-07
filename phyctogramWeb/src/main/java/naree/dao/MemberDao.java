@@ -110,4 +110,11 @@ public interface MemberDao {
 	 */
 	int deleteMemberByMemberSeq(int member_seq);
 
+	/**
+	 * 비밀번호 변경
+	 * @param member
+	 * @return
+	 */
+	int updatePwByMember(Member member);
+
 }

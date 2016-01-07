@@ -73,6 +73,13 @@ public interface MemberService {
 	 * @return
 	 */
 	int deleteMemberByMemberSeq(int member_seq);
+
+	/**
+	 * 비빌번호 변경
+	 * @param member
+	 * @return
+	 */
+	int modifyPwByMember(Member member);
 	
 	
 }

@@ -147,5 +147,9 @@
 		         WHERE member_seq = #{member_seq}
 	</delete>
 	
+	<update id="updatePwByMember" parameterType="Member">
+		UPDATE member_tb SET password = password(#{password})
+		 WHERE member_seq = #{member_seq}
+	</update>
 
 </mapper>

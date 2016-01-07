@@ -164,6 +164,12 @@ public class MemberServiceImpl implements MemberService{
 		logger.info("멤버 지우기");
 		return memberDao.deleteMemberByMemberSeq(member_seq);
 	}
+
+	@Override
+	public int modifyPwByMember(Member member) {
+		
+		return memberDao.updatePwByMember(member);
+	}
 	
 	
 	
