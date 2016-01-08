@@ -3,27 +3,21 @@ package knowledge_seek.com.phyctogram;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.sql.Timestamp;
 
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
-import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
-import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
@@ -31,14 +25,18 @@ import retrofit.Retrofit;
  * Created by dkfka on 2015-11-24.
  */
 public class LoginActivity2 extends Activity {
-    public static final String HTTPADDR = "http://www.phyctogram.com";
+
+    //데이터정의
     private Member memberActivity;
     private Member member;
 
-    //정의
+    //레이아웃 정의
     private EditText et_email;
     private EditText et_pw;
-    private Button btn_member_login;
+    private Button btn_member_login;        //회원 로그인
+    private TextView tv_join_member;            //회원가입
+
+    private ScrollView sv_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +47,18 @@ public class LoginActivity2 extends Activity {
         et_email = (EditText)findViewById(R.id.et_email);
         et_pw = (EditText)findViewById(R.id.et_pw);
         btn_member_login = (Button)findViewById(R.id.btn_member_login);
+        sv_layout = (ScrollView)findViewById(R.id.sv_layout);
+        sv_layout.setVerticalScrollBarEnabled(false);
+        sv_layout.setHorizontalScrollBarEnabled(false);
+        tv_join_member = (TextView)findViewById(R.id.tv_join_member);
+        tv_join_member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+            }
+        });
 
         //로그인
         btn_member_login.setOnClickListener(new View.OnClickListener() {
@@ -86,21 +96,12 @@ public class LoginActivity2 extends Activity {
     //멤버로그인
     private void loginMember(Member member){
 
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-        Gson gson = gsonBuilder.create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        MemberAPI service = retrofit.create(MemberAPI.class);
+        MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
         Call<Member> call = service.loginMemberByPhycto(member);
         call.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Response<Member> response, Retrofit retrofit) {
-                Log.d("-진우-", "로그인 성공 결과1 : " + response.body());
+                Log.d("-진우-", "로그인 성공 결과 : " + response.body());
                 memberActivity = (Member)response.body();
                 if(memberActivity == null){
                     Toast.makeText(getApplicationContext(), "이메일과 패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();

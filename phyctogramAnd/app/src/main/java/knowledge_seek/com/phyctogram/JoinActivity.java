@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.google.gson.FieldNamingPolicy;
@@ -42,17 +43,20 @@ import retrofit.Retrofit;
  * Created by dkfka on 2015-11-26.
  */
 public class JoinActivity extends Activity {
-    public static final String HTTPADDR = "http://www.phyctogram.com";
+
+    //데이터
     private Member memberActivity;
     private Member member;
 
+    //레이아웃정의
     private EditText et_name;
     private EditText et_email;
     private EditText et_pw;
     private EditText et_pw1;
     private Button btn_join_member;
-
     CheckBox agreement1, agreement2;
+    private ScrollView sv_layout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,9 @@ public class JoinActivity extends Activity {
         et_pw = (EditText)findViewById(R.id.et_pw);
         et_pw1 = (EditText)findViewById(R.id.et_pw1);
         btn_join_member = (Button)findViewById(R.id.btn_join_member);
+        sv_layout = (ScrollView)findViewById(R.id.sv_layout);
+        sv_layout.setVerticalScrollBarEnabled(false);
+        sv_layout.setHorizontalScrollBarEnabled(false);
 
         //가입
         btn_join_member.setOnClickListener(new View.OnClickListener() {
@@ -177,40 +184,6 @@ public class JoinActivity extends Activity {
     //멤버저장
     private void registerMember(Member member){
 
-        /*GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-        Gson gson = gsonBuilder.create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<Member> call = service.registerMember(member);
-        call.enqueue(new Callback<Member>() {
-            @Override
-            public void onResponse(Response<Member> response, Retrofit retrofit) {
-                Log.d("-진우-", "성공 결과1 : " + response.body());
-                memberActivity = (Member)response.body();
-                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
-
-                if(memberActivity == null){
-                    Toast.makeText(getApplicationContext(), "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
-                } else {
-                    //가입완료후 로그인유지를 위해 preference를 사용한다.
-                    SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
-                    redirectMainActivity(memberActivity);
-                }
-
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
-            }
-        });*/
-
         RegisterMemberTask task = new RegisterMemberTask();
         task.execute(member);
 
@@ -256,6 +229,7 @@ public class JoinActivity extends Activity {
         protected void onPostExecute(Member member) {
             if(member != null) {
                 Log.d("-진우-", "픽토그램 가입 성공 결과1 : " + member.toString());
+                Toast.makeText(getApplicationContext(), "픽토그램 회원이 되셨습니다", Toast.LENGTH_SHORT).show();
                 memberActivity = member;
                 //가입완료후 로그인유지를 위해 preference를 사용한다.
                 SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));

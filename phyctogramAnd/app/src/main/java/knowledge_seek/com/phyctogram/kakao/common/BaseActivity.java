@@ -228,7 +228,7 @@ public class BaseActivity extends Activity {
      * left menu toggle
      */
     public void menuLeftSlideAnimationToggle() {
-        Log.d("-진우-", "슬라이드 : " + isLeftExpanded);
+        //Log.d("-진우-", "슬라이드 : " + isLeftExpanded);
         if (!isLeftExpanded) {
             isLeftExpanded = true;
 
@@ -375,65 +375,59 @@ public class BaseActivity extends Activity {
     //백버튼 클릭시
     @Override
     public void onBackPressed() {
-        Activity nowActivity = GlobalApplication.getCurrentActivity();
-        //String nowActivity = GlobalApplication.getCurrentActivity().getClass().getSimpleName();
+        //Activity nowActivity = GlobalApplication.getCurrentActivity();
+        String nowActivity = GlobalApplication.getCurrentActivity().getClass().getSimpleName();
         //Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
 
         Intent intent = null;
-        if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
+        if (nowActivity != null && nowActivity.equals("MainActivity")) {
             finish();
         }
         //내 아이 관리 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity")) {
+        else if (nowActivity != null && nowActivity.equals("UsersAddActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
+        } else if (nowActivity != null && nowActivity.equals("UsersModActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
         }
         //설정 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("EquipmentActivity")) {
+        else if (nowActivity != null && nowActivity.equals("EquipmentActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
         }
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
+        else if (nowActivity != null && nowActivity.equals("PwmodActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
         }
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("WithdrawActivity")) {
+        else if (nowActivity != null && nowActivity.equals("WithdrawActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
         }
-
-        else {
-            //메인으로 가는 페이지 : 기록조회
+        //메인으로 가는 페이지 : 내아이관리, 기록조회, 설정
+        else if (nowActivity != null && nowActivity.equals("UsersManageActivity") ||
+                nowActivity != null && nowActivity.equals("RecordActivity") ||
+                nowActivity != null && nowActivity.equals("SettingActivity") ){
             intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
+        } else {
+            //회원로그인(LoginActivity2), 회원가입(JoinActivity)
+            super.onBackPressed();
         }
 
 
-        /*if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
-            finish();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("LoginActivity")) {
-            super.onBackPressed();
-        } else {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("member", member);
-            startActivity(intent);
-            finish();
-        }*/
     }
 
 }

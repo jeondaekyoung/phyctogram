@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -65,11 +66,13 @@ public class LoginActivity extends BaseActivity {
 
     private SessionCallback callback;
 
+    //레이아웃 정의
     private com.facebook.login.widget.LoginButton facebookLoginButton;
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private Button btn_login_kko;
     private Button btn_login;
+    private Button btn_sitemap;         //테스트버튼 삭제해야함
 
     //데이터
     private Member memberActivity = new Member();
@@ -106,16 +109,7 @@ public class LoginActivity extends BaseActivity {
             member.setJoin_route("facebook");
             member.setFacebook_id(profile.getId());
 
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-            gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-            Gson gson = gsonBuilder.create();
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(HTTPADDR)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-            MemberAPI service = retrofit.create(MemberAPI.class);
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
             Call<Member> call = service.findMemberByFacebookInfo(member);
             call.enqueue(new Callback<Member>() {
                 @Override
@@ -145,16 +139,7 @@ public class LoginActivity extends BaseActivity {
             String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
             Log.d("-진우-", "픽토그램 로그인 됨 : " + member_seq);
 
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-            gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-            Gson gson = gsonBuilder.create();
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(HTTPADDR)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build();
-            MemberAPI service = retrofit.create(MemberAPI.class);
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
             Call<Member> call = service.findMemberByMemberSeq(Integer.valueOf(member_seq));
             call.enqueue(new Callback<Member>() {
                 @Override
@@ -275,6 +260,14 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent memberlogin = new Intent(getApplicationContext(), LoginActivity2.class);
+                startActivity(memberlogin);
+            }
+        });
+        btn_sitemap = (Button)findViewById(R.id.btn_sitemap);
+        btn_sitemap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 Intent memberlogin = new Intent(getApplicationContext(), sitemap.class);
                 startActivity(memberlogin);
             }
@@ -283,32 +276,6 @@ public class LoginActivity extends BaseActivity {
 
     //유저저장
     private void registerMember(Member member){
-
-        /*GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-        Gson gson = gsonBuilder.create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<Member> call = service.registerMember(member);
-        call.enqueue(new Callback<Member>() {
-            @Override
-            public void onResponse(Response<Member> response, Retrofit retrofit) {
-                Log.d("-진우-", "성공 결과1 : " + response.body());
-                memberActivity = (Member)response.body();
-                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
-                redirectMainActivity(memberActivity);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.d("-진우-", "member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
-            }
-        });*/
 
         RegisterMemberTask task = new RegisterMemberTask();
         task.execute(member);
