@@ -188,8 +188,8 @@ public class RecordActivity extends BaseActivity {
                 if(!checkDate(dateFrom, dateTo)){
                     return;
                 }
-                if(usersList == null || usersList.size() == 0){
-                    Toast.makeText(getApplicationContext(), "내 아이가 없습니다.", Toast.LENGTH_SHORT).show();
+                if(nowUsers == null){
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                     return ;
                 }
 

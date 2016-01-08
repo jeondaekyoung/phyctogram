@@ -55,6 +55,7 @@ public class UsersDiaryActivity extends BaseActivity {
 
     //레이아웃 정의
     private TextView tv_users_name;     //아이 이름 출력
+
     private GridView gv_monthView;
     private CalendarMonthAdapter calendarMonthAdapter;
     private TextView tv_monthText;          //년월 출력
@@ -83,7 +84,6 @@ public class UsersDiaryActivity extends BaseActivity {
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
-
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,13 +97,11 @@ public class UsersDiaryActivity extends BaseActivity {
                     tv_users_name.setText(nowUsers.getName());
                 }
 
-                //달력페이지에 출력할 아이에 관한 데이터(일기)를 가져와야한다.
-                //calendarMonthAdapter.setPreviousMonth();
-                //setMonthText();
-
-                //일기 불러오기
-                ReUserDiaryTask task = new ReUserDiaryTask();
-                task.execute();
+                //달력페이지에 출력할 일기 불러오기
+                if(nowUsers != null){
+                    ReUserDiaryTask task = new ReUserDiaryTask();
+                    task.execute();
+                }
 
             }
         });
@@ -113,7 +111,6 @@ public class UsersDiaryActivity extends BaseActivity {
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
             }
         });
@@ -139,12 +136,12 @@ public class UsersDiaryActivity extends BaseActivity {
                         dialog.setPositiveButton("네", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "일기보기", Toast.LENGTH_SHORT).show();
-
+                                //Toast.makeText(getApplicationContext(), "일기보기", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), DiaryViewActivity.class);
                                 intent.putExtra("member", member);
                                 intent.putExtra("diary", d);
                                 startActivity(intent);
+                                finish();
                             }
                         });
                         dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
@@ -159,22 +156,6 @@ public class UsersDiaryActivity extends BaseActivity {
                     }
                 }
 
-
-                //Toast.makeText(getApplicationContext(), day + " 일이 선택되었습니다", Toast.LENGTH_LONG).show();
-
-                //선택한 날짜 저장하여 배경색을 준다
-                //curPosition = position;
-                //calendarMonthAdapter.setSelectedPosition(position);
-
-                /*//저장된 일정 불러오기
-                String outSchedule = calendarMonthAdapter.getDiary(position);
-                if (outSchedule != null) {
-                    scheduleInput.setText(outSchedule);
-                } else {
-                    scheduleInput.setText("");
-                }*/
-
-                //calendarMonthAdapter.notifyDataSetChanged();
             }
         });
 
@@ -192,10 +173,10 @@ public class UsersDiaryActivity extends BaseActivity {
                 setMonthText();
 
                 //일기 불러오기
-                ReUserDiaryTask task = new ReUserDiaryTask();
-                task.execute();
-
-                //calendarMonthAdapter.notifyDataSetChanged();
+                if(nowUsers != null) {
+                    ReUserDiaryTask task = new ReUserDiaryTask();
+                    task.execute();
+                }
 
             }
         });
@@ -208,10 +189,10 @@ public class UsersDiaryActivity extends BaseActivity {
                 setMonthText();
 
                 //일기 불러오기
-                ReUserDiaryTask task = new ReUserDiaryTask();
-                task.execute();
-
-                //calendarMonthAdapter.notifyDataSetChanged();
+                if(nowUsers != null) {
+                    ReUserDiaryTask task = new ReUserDiaryTask();
+                    task.execute();
+                }
 
             }
         });
@@ -222,10 +203,14 @@ public class UsersDiaryActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getApplicationContext(), "일기 쓰기 클릭", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), DiaryWriteActivity.class);
-                intent.putExtra("member", member);
-                startActivity(intent);
-                finish();
+                if(nowUsers != null) {
+                    Intent intent = new Intent(getApplicationContext(), DiaryWriteActivity.class);
+                    intent.putExtra("member", member);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -306,13 +291,16 @@ public class UsersDiaryActivity extends BaseActivity {
             }
 
             //일기 목록 읽어오기
-            DiaryAPI service1 = ServiceGenerator.createService(DiaryAPI.class, "Diary");
-            Call<List<Diary>> call1 = service1.findDiaryByUserSeqYearMt(nowUsers.getUser_seq(), curYearStr, curMonthStr);
-            try {
-                diarysTask = call1.execute().body();
-            } catch (IOException e) {
-                Log.d("-진우-", "일기 목록 읽어오기 실패");
+            if(nowUsers != null) {
+                DiaryAPI service1 = ServiceGenerator.createService(DiaryAPI.class, "Diary");
+                Call<List<Diary>> call1 = service1.findDiaryByUserSeqYearMt(nowUsers.getUser_seq(), curYearStr, curMonthStr);
+                try {
+                    diarysTask = call1.execute().body();
+                } catch (IOException e) {
+                    Log.d("-진우-", "일기 목록 읽어오기 실패");
+                }
             }
+
 
             //이미지 불러오기
             String image_url = null;

@@ -350,18 +350,21 @@ public class UsersManageActivity extends BaseActivity {
                     Log.d("-진우-", "내 아이 : " + u.toString());
                 }
                 usersList = usersTask;
-                usersListSlideAdapter.setUsersList(usersList);
-                usersListManageAdapter.setUsersList(usersList);
                 if (nowUsers == null) {
                     nowUsers = usersTask.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
+                usersList.clear();
             }
+
+            usersListSlideAdapter.setUsersList(usersList);
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
             usersListSlideAdapter.notifyDataSetChanged();
+
+            usersListManageAdapter.setUsersList(usersList);
             height = getListViewHeight(lv_usersList_manage);
             lv_usersList_manage.getLayoutParams().height = height;
             usersListManageAdapter.notifyDataSetChanged();

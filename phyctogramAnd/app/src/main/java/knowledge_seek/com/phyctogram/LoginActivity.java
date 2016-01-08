@@ -204,23 +204,24 @@ public class LoginActivity extends BaseActivity {
                             String name = "";
                             String email = "";
                             String gender = "";
-                            String birthday = "";
+                            //String birthday = "";
                             try {
                                 id = object.getString("id");
                                 name = object.getString("name");
                                 email = object.getString("email");
                                 gender = object.getString("gender");
-                                birthday = object.getString("birthday");
+                                //birthday = object.getString("birthday");
 
                                 Member member = new Member();
                                 member.setFacebook_id(object.getString("id"));
                                 member.setFacebook_name(object.getString("name"));
                                 member.setFacebook_email(object.getString("email"));
                                 member.setFacebook_gender(object.getString("gender"));
-                                member.setFacebook_birthday(object.getString("birthday"));
+                                //member.setFacebook_birthday(object.getString("birthday"));
                                 member.setJoin_route("facebook");
 
-                                Log.d("-진우-", "페이스북 로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
+                                //Log.d("-진우-", "페이스북 로그인2 : " + id + ", " + name + ", " + email + ", " + gender + ", " + birthday);
+                                Log.d("-진우-", "페이스북 로그인2 : " + id + ", " + name + ", " + email + ", " + gender);
                                 Log.d("-진우-", "멤버는 " + member.toString());
 
                                 registerMember(member);

@@ -53,7 +53,7 @@ public class DiaryWriteActivity extends BaseActivity {
     private TextView tv_users_name;     //아이 이름 출력
 
     private EditText et_diary_date;     //날짜
-    private Button btn_diary_save;
+    private Button btn_diary_save;      //일기 저장
     private EditText et_title;
     private EditText et_contents;
 
@@ -76,7 +76,6 @@ public class DiaryWriteActivity extends BaseActivity {
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
-
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -90,7 +89,6 @@ public class DiaryWriteActivity extends BaseActivity {
                     tv_users_name.setText(nowUsers.getName());
                 }
 
-                //달력페이지에 출력할 아이에 관한 데이터(일기)를 가져와야한다.
             }
         });
 
@@ -99,7 +97,6 @@ public class DiaryWriteActivity extends BaseActivity {
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
             }
         });
@@ -128,7 +125,7 @@ public class DiaryWriteActivity extends BaseActivity {
                 //Log.d("-진우-", "저장하기");
 
                 if(nowUsers == null){
-                    Log.d("-진우-", "현재 선택된 아이가 없습니다");
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -155,7 +152,7 @@ public class DiaryWriteActivity extends BaseActivity {
                     return;
                 }
 
-                //Log.d("-진우-", "저장 : " + Utility.diary2json(diary));
+                Log.d("-진우-", "저장 : " + Utility.diary2json(diary));
                 RegisterDiaryTask task = new RegisterDiaryTask(diary);
                 task.execute();
             }
@@ -196,7 +193,6 @@ public class DiaryWriteActivity extends BaseActivity {
             et_diary_date.setText(msg);
         }
     };
-
     //날짜가 한자리일때 앞에 0을 붙이자.
     private String dateFormat(int x){
         String s = String.valueOf(x);
@@ -314,6 +310,7 @@ public class DiaryWriteActivity extends BaseActivity {
         return true;
     }
 
+    //일기 저장
     private class RegisterDiaryTask extends AsyncTask<Void, Void, String>{
 
         private Diary diaryTask;
@@ -333,7 +330,6 @@ public class DiaryWriteActivity extends BaseActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            Log.d("-진우-", Utility.diary2json(diaryTask));
             String result = null;
             DiaryAPI service = ServiceGenerator.createService(DiaryAPI.class);
             Call<String> call = service.registerDiary(diaryTask);
@@ -350,8 +346,10 @@ public class DiaryWriteActivity extends BaseActivity {
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
                 Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
+            } else if(result != null && result.equals("exist")){
+                Toast.makeText(getApplicationContext(), "이미 일기를 작성하였습니다", Toast.LENGTH_LONG).show();
             } else {
-                Log.d("-진우-", "저장하는데 실패하였습니다");
+                Log.d("-진우-", "일기 저장에 실패하였습니다");
             }
 
             dialog.dismiss();

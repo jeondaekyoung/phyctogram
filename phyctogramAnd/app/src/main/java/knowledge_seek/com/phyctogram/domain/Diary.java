@@ -1,5 +1,7 @@
 package knowledge_seek.com.phyctogram.domain;
 
+import android.util.Log;
+
 import java.io.Serializable;
 
 /**
@@ -116,5 +118,20 @@ public class Diary implements Serializable {
                 ", image_server_nm='" + image_server_nm + '\'' +
                 ", user_seq=" + user_seq +
                 '}';
+    }
+
+    //일기 시퀀스는 비교하지 않는다.
+    public boolean equals(Diary d) {
+        Log.d("-일기 비교 전-", this.toString());
+        Log.d("-일기 비교 후-", d.toString());
+        if(this.getTitle().equals(d.getTitle()) &&
+                this.getContents().equals(d.getContents()) &&
+                (this.getUser_seq() == d.getUser_seq()) &&
+                this.getWritng_year().equals(d.getWritng_year()) &&
+                this.getWritng_mt().equals(d.getWritng_mt()) &&
+                this.getWritng_de().equals(d.getWritng_de()) ){
+            return true;
+        }
+        return false;
     }
 }

@@ -118,7 +118,7 @@ public class WithdrawActivity extends BaseActivity {
                 dialog.setTitle("탈퇴하기")
                         .setMessage("회원 탈퇴시 모든 데이터가 삭제되므로 복구가 되지 않습니다. 탈퇴 하시겠습니까?")
                         .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("탈퇴", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 Log.d("-진우-", "탈퇴하기 : " + member.getMember_seq() + ", " + pw + ", " + member.getJoin_route());
 

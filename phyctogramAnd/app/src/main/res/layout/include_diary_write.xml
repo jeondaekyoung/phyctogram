@@ -33,17 +33,17 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#ffffffff">
+        android:background="#ffffffff"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/et_diary_date"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:hint="날 짜"
             android:editable="false"
-            android:textSize="14dp"/>
+            android:hint="날 짜"
+            android:textSize="14dp" />
 
         <EditText
             android:id="@+id/et_title"
