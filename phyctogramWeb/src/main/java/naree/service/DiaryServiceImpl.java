@@ -29,4 +29,22 @@ public class DiaryServiceImpl implements DiaryService {
 		
 		return diaryDao.selectDiaryByUserSeqYearMt(user_seq, writng_year, writng_mt);
 	}
+
+	@Override
+	public int existDiaryByDiary(Diary diary) {
+		
+		return diaryDao.selectDiaryByDiary(diary);
+	}
+
+	@Override
+	public int modifyDiaryByDiary(Diary diary) {
+		
+		return diaryDao.updateDiaryByDiary(diary);
+	}
+
+	@Override
+	public int deleteDiaryByDiary(int diary_seq) {
+		
+		return diaryDao.deleteDiaryByDiary(diary_seq);
+	}
 }

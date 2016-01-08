@@ -58,4 +58,46 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	@Override
+	public int selectDiaryByDiary(Diary diary) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.selectDiaryByDiary(diary);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateDiaryByDiary(Diary diary) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.updateDiaryByDiary(diary);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteDiaryByDiary(int diary_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.deleteDiaryByDiary(diary_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

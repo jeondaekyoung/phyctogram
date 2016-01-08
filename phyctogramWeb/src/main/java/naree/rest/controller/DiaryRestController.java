@@ -32,7 +32,14 @@ public class DiaryRestController {
 	public String registerDiary(@RequestBody Diary diary){
 		logger.info("registerDiary 실행 : " + diary.toString());
 		
-		int result = diaryService.registerDiary(diary);
+		//입력된 일기가 있는지 확인
+		int result = diaryService.existDiaryByDiary(diary);
+		if(result >= 1){
+			return "exist";
+		}
+		
+		//없으면 저장
+		result = diaryService.registerDiary(diary);
 		if(result == 1){
 			return "success";
 		} else {
@@ -55,5 +62,44 @@ public class DiaryRestController {
 		return diaryService.findDiaryByUserSeqYearMt(user_seq, writng_year, writng_mt);
 	}
 	
+	/**
+	 * 일기 수정하기
+	 * @param diary
+	 * @return
+	 */
+	@RequestMapping(value = "modifyDiaryByDiary", method = RequestMethod.POST)
+	public String modifyDiaryByDiary(@RequestBody Diary diary){
+		logger.info("modifyDiaryByDiary 실행 : " + diary.toString());
+		
+		//입력된 일기인지 확인한다.
+		/*int result = diaryService.existDiaryByDiary(diary);
+		if(result == 0){
+			return "notexist";
+		}*/
+		//일기 수정하기
+		int result = diaryService.modifyDiaryByDiary(diary);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	/**
+	 * 일기 삭제하기
+	 * @param diary
+	 * @return
+	 */
+	@RequestMapping(value = "deleteDiaryByDiary", method = RequestMethod.DELETE)
+	public String deleteDiaryByDiary(@RequestParam("diary_seq") int diary_seq){
+		logger.info("deleteDiaryByDiary 실행 : " + diary_seq);
+		
+		int result = diaryService.deleteDiaryByDiary(diary_seq);
+		if(result == 1){
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
 	
 }

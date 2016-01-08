@@ -28,4 +28,25 @@ public interface DiaryDao {
 	 */
 	int deleteDiaryByUserSeq(int user_seq);
 
+	/**
+	 * 저장된 일기 찾기
+	 * @param diary
+	 * @return
+	 */
+	int selectDiaryByDiary(Diary diary);
+
+	/**
+	 * 일기 수정하기
+	 * @param diary
+	 * @return
+	 */
+	int updateDiaryByDiary(Diary diary);
+
+	/**
+	 * 일기 삭제하기
+	 * @param diary_seq
+	 * @return
+	 */
+	int deleteDiaryByDiary(int diary_seq);
+
 }

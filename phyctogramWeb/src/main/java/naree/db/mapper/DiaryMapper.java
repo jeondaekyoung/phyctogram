@@ -13,4 +13,10 @@ public interface DiaryMapper {
 
 	int deleteDiaryByUserSeq(int user_seq);
 
+	int selectDiaryByDiary(Diary diary);
+
+	int updateDiaryByDiary(Diary diary);
+
+	int deleteDiaryByDiary(int diary_seq);
+
 }

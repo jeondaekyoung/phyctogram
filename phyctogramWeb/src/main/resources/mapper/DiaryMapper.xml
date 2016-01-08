@@ -33,5 +33,26 @@
 		DELETE FROM diary_tb
 			     WHERE user_seq = #{user_seq}
 	</delete>
+	
+	<select id="selectDiaryByDiary" parameterType="Diary" resultType="Integer">
+		SELECT count(*) as cnt
+		  FROM diary_tb
+		WHERE user_seq = #{user_seq}
+		    AND writng_year = #{writng_year}
+		    AND writng_mt = #{writng_mt}
+		    AND writng_de = #{writng_de} 
+	</select>
+
+	<update id="updateDiaryByDiary" parameterType="Diary">
+		UPDATE diary_tb 
+		     SET title = #{title},
+		           contents = #{contents} 
+         WHERE diary_seq = #{diary_seq}
+	</update>
+	
+	<delete id="deleteDiaryByDiary" parameterType="Integer">
+		DELETE FROM diary_tb
+		         WHERE diary_seq = #{diary_seq}
+	</delete>
 
 </mapper>
