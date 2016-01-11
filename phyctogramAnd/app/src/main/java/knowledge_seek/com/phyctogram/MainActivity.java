@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,11 +59,17 @@ public class MainActivity extends BaseActivity {
     private TextView tv_popularTop3_title;
     private TextView tv_popularTop3_name;
 
+//백버튼두번눌러닫기
+    private BackPressCloseHandler backPressCloseHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("-진우-", "MainActivity.onCreate() 실행");
+
+//백버튼두번눌러닫기
+        backPressCloseHandler = new BackPressCloseHandler(this);
 
         //화면 페이지
         ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
@@ -134,6 +141,13 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    //백버튼두번눌러닫기
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        backPressCloseHandler.onBackPressed();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -172,7 +186,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기달려주세요");
+            dialog.setMessage("잠시만 기다려주세요");
             dialog.show();
             super.onPreExecute();
         }
@@ -180,7 +194,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected Bitmap doInBackground(Object... objects) {
             Bitmap mBitmap = null;
-            img_profileTask = (CircularImageView)objects[0];
+            img_profileTask = (CircularImageView) objects[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
             UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
@@ -193,7 +207,7 @@ public class MainActivity extends BaseActivity {
 
 
             String image_url = null;
-            if(member.getJoin_route().equals("kakao")){
+            if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
                 InputStream in = null;
@@ -202,10 +216,10 @@ public class MainActivity extends BaseActivity {
                     in = new URL(image_url).openStream();
                     mBitmap = BitmapFactory.decodeStream(in);
                     in.close();
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else if(member.getJoin_route().equals("facebook")){
+            } else if (member.getJoin_route().equals("facebook")) {
                 image_url = "http://graph.facebook.com/" + member.getFacebook_id() + "/picture?type=large";
                 //이미지 불러오기
                 InputStream in = null;
@@ -222,7 +236,7 @@ public class MainActivity extends BaseActivity {
                     in = response.body().byteStream();
                     mBitmap = BitmapFactory.decodeStream(in);
                     in.close();
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -232,8 +246,8 @@ public class MainActivity extends BaseActivity {
             Call<List<SqlCommntyListView>> call1 = service1.findCommntyPopularTop3();
             try {
                 List<SqlCommntyListView> resultList1 = call1.execute().body();
-                if(resultList1 != null){
-                    for(SqlCommntyListView s : resultList1){
+                if (resultList1 != null) {
+                    for (SqlCommntyListView s : resultList1) {
                         Log.d("-진우-", "인기 Top3 : " + s.toString());
                     }
                     sqlCommntyListViewTask = resultList1;
@@ -241,7 +255,7 @@ public class MainActivity extends BaseActivity {
                 }
 
 
-            } catch (IOException e){
+            } catch (IOException e) {
                 Log.d("-진우-", "수다방 목록 조회 실패");
             }
 
@@ -251,7 +265,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if(bitmap != null){
+            if (bitmap != null) {
                 Log.d("-진우-", "이미지 읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -277,21 +291,21 @@ public class MainActivity extends BaseActivity {
             usersListSlideAdapter.notifyDataSetChanged();
 
             //커뮤니티(수다방) 인기 Top3 셋팅
-            if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3){
+            if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3) {
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
                 tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
                 tv_popularTop2_name.setText(sqlCommntyListViewTask.get(1).getName());
                 tv_popularTop3_title.setText(sqlCommntyListViewTask.get(2).getTitle());
                 tv_popularTop3_name.setText(sqlCommntyListViewTask.get(2).getName());
-            } else if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() ==2){
+            } else if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() == 2) {
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
                 tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
                 tv_popularTop2_name.setText(sqlCommntyListViewTask.get(1).getName());
                 tv_popularTop3_title.setText(null);
                 tv_popularTop3_name.setText(null);
-            } else if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() ==1){
+            } else if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() == 1) {
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
                 tv_popularTop2_title.setText(null);
@@ -310,6 +324,37 @@ public class MainActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
+        }
+    }
+
+    //메인에서 백 버튼 두 번 눌러 종료
+    public class BackPressCloseHandler {
+
+        private long backKeyPressedTime = 0;
+        private Toast toast;
+
+        private Activity activity;
+
+        public BackPressCloseHandler(Activity context) {
+            this.activity = context;
+        }
+
+        public void onBackPressed() {
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                showGuide();
+                return;
+            }
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                activity.finish();
+                toast.cancel();
+            }
+        }
+
+        public void showGuide() {
+            toast = Toast.makeText(activity,
+                    "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }

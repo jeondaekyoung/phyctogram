@@ -2,33 +2,40 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
     android:orientation="horizontal"
     android:padding="20dp">
 
     <TextView
         android:id="@+id/recordDate"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="80dp"
-        android:text="2015.11.13" />
+        android:text="2015.11.13"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/recordHeight"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="80dp"
-        android:text="157.3cm" />
+        android:text="157.3cm"
+        android:textSize="16dp" />
 
     <TextView
+        android:id="@+id/record_sa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/record_sa"
-        android:text="+" />
+        android:text="+"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/record_grow"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="3cm" />
+        android:text="3cm"
+        android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:text="3%"
+        android:textSize="16dp" />
 </LinearLayout>

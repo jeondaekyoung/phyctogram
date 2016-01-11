@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.kakao.auth.ErrorCode;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
@@ -17,20 +14,12 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
-import knowledge_seek.com.phyctogram.retrofitapi.MemberDes;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.TimestampDes;
-import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
-import retrofit.Callback;
-import retrofit.GsonConverterFactory;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * 유효한 세션이 있다는 검증 후
@@ -158,7 +147,7 @@ public class SampleSignupActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기달려주세요");
+            dialog.setMessage("잠시만 기다달려주세요");
             dialog.show();
             super.onPreExecute();
         }
@@ -171,7 +160,7 @@ public class SampleSignupActivity extends BaseActivity {
             MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
             Call<Member> call = service.registerMember(memberTask);
             try {
-                member = call.execute().body();
+               member = call.execute().body();
             } catch (IOException e){
                 e.printStackTrace();
             }

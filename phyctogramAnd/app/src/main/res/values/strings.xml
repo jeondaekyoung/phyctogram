@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Phyctogram</string>
+    <string name="app_name">픽토그램</string>
 
     <!-- kakao -->
     <string name="text_kakaotalk">KakaoTalk</string>

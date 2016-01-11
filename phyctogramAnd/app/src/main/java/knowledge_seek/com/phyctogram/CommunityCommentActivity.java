@@ -128,7 +128,7 @@ public class CommunityCommentActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기달려주세요");
+            dialog.setMessage("잠시만 기다려주세요");
             dialog.show();
             super.onPreExecute();
         }
@@ -157,6 +157,7 @@ public class CommunityCommentActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(result);
+            finish();
         }
     }
 }

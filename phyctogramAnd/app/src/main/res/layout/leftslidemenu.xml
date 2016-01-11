@@ -57,6 +57,14 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="내 아이 관리" />
+            <Button
+                android:id="@+id/btn_dataInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderbottom"
+                android:gravity="fill_vertical"
+                android:paddingLeft="15dp"
+                android:text="직접 키 입력" />
 
             <Button
                 android:id="@+id/btn_usersDiary"
@@ -67,22 +75,14 @@
                 android:paddingLeft="15dp"
                 android:text="육아일기" />
 
-            <Button
-                android:id="@+id/btn_dataInput"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/borderbottom"
-                android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
-                android:text="직접 입력" />
 
             <Button
                 android:id="@+id/btn_setup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
+                android:paddingLeft="10dp"
                 android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
                 android:text="설정" />
         </LinearLayout>
     </ScrollView>

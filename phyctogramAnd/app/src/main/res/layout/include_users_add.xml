@@ -74,7 +74,7 @@
                     android:id="@+id/et_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textCapCharacters"
+                    android:inputType="textCapCharacters|textUri"
                     android:maxLength="4" />
 
                 <TextView
