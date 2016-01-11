@@ -16,9 +16,9 @@ public class AnimationOpen extends TranslateAnimation implements
 		Animation.AnimationListener {
 
 	private LinearLayout mainLayout;
-	int panelWidth;
+	int panelWidth, displayWidth;
 
-	public AnimationOpen(LinearLayout layout, int width, int fromXType,
+	public AnimationOpen(LinearLayout layout, int width, int dWidth, int fromXType,
 						 float fromXValue, int toXType, float toXValue, int fromYType,
 						 float fromYValue, int toYType, float toYValue) {
 
@@ -28,8 +28,9 @@ public class AnimationOpen extends TranslateAnimation implements
 		// init
 		mainLayout = layout;
 		panelWidth = width;
+		displayWidth = dWidth;
 		setDuration(250);
-		setFillAfter(false);
+		setFillAfter(true);
 		setInterpolator(new AccelerateDecelerateInterpolator());
 		setAnimationListener(this);
 		mainLayout.startAnimation(this);
@@ -39,6 +40,7 @@ public class AnimationOpen extends TranslateAnimation implements
 
 		LayoutParams params = (LayoutParams) mainLayout.getLayoutParams();
 		params.leftMargin = panelWidth;
+		params.width = displayWidth;
 		params.gravity = Gravity.LEFT;
 		mainLayout.clearAnimation();
 		mainLayout.setLayoutParams(params);

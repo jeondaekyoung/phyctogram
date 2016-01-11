@@ -223,6 +223,8 @@ public class BaseActivity extends Activity {
 
         LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
         enableDisableViewGroup(viewGroup, false);
+
+
     }
 
     /**
@@ -234,7 +236,14 @@ public class BaseActivity extends Activity {
             isLeftExpanded = true;
 
             // Expand
-            new AnimationOpen(ll_mainLayout, leftMenuWidth,
+            //DisplayMetrics displaymetrics = new DisplayMetrics();
+            //getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+            //int displayWidth = displaymetrics.widthPixels;
+            metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int displayHeight = metrics.heightPixels;
+            int displayWidth = metrics.widthPixels;
+            new AnimationOpen(ll_mainLayout, leftMenuWidth, displayWidth,
                     Animation.RELATIVE_TO_SELF, 0.0f,
                     Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);
 
@@ -441,17 +450,4 @@ public class BaseActivity extends Activity {
         }
 
     }
-
-    // 영문만 허용 (숫자 포함)
-    protected InputFilter filterAlphaNum = new InputFilter() {
-        public CharSequence filter(CharSequence source, int start, int end,
-                                   Spanned dest, int dstart, int dend) {
-
-            Pattern ps = Pattern.compile("^[a-zA-Z0-9]+$");
-            if (!ps.matcher(source).matches()) {
-                return "";
-            }
-            return null;
-        }
-    };
 }

@@ -241,7 +241,9 @@ public abstract class DemoBase extends FragmentActivity {
             isLeftExpanded = true;
 
             // Expand
-            new AnimationOpen(ll_mainLayout, leftMenuWidth,
+            DisplayMetrics displaymetrics = new DisplayMetrics();
+            int displayWidth = displaymetrics.widthPixels;
+            new AnimationOpen(ll_mainLayout, leftMenuWidth, displayWidth,
                     Animation.RELATIVE_TO_SELF, 0.0f,
                     Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);
 
