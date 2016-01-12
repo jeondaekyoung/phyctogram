@@ -40,11 +40,10 @@
             android:layout_height="wrap_content"
             android:background="#C0AAE1"
             android:orientation="horizontal"
-            android:padding="20dp"
-            android:gravity="center">
+            android:gravity="center"
+            android:padding="20dp">
 
             <ImageView
-                android:id="@+id/iv_animal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="#fff"
@@ -160,16 +159,16 @@
 
                     <ImageButton
                         android:id="@+id/btn_record"
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/main1" />
 
                     <ImageButton
                         android:id="@+id/btn_users_analysis"
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/main2" />
                 </LinearLayout>
