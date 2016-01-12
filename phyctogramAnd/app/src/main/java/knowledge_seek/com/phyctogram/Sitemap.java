@@ -8,7 +8,7 @@ import android.view.View;
 /**
  * Created by dkfka on 2015-11-25.
  */
-public class sitemap extends AppCompatActivity {
+public class Sitemap extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
