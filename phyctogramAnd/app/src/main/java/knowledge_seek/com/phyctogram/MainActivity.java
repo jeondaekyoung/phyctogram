@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class MainActivity extends BaseActivity {
     private ImageButton imBtn_community_list;      //수다방 리스트
     private TextView tv_users_name;                 //아이 이름 출력
     private ImageButton btn_users_analysis;     //분석리포트
+    private ImageView iv_animal;                        //캐릭터
 
 
     private TextView tv_popularTop1_title;          //커뮤니티(수다방) 인기 Top3
@@ -102,6 +104,17 @@ public class MainActivity extends BaseActivity {
             }
         });
 
+        //캐릭터
+        iv_animal = (ImageView)findViewById(R.id.iv_animal);
+        iv_animal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CharacterActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
+            }
+        });
         //기록조회
         btn_record = (ImageButton) findViewById(R.id.btn_record);
         btn_record.setOnClickListener(new View.OnClickListener() {

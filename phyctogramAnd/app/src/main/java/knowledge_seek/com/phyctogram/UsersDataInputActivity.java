@@ -203,7 +203,6 @@ public class UsersDataInputActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(result);
-            finish();
         }
     }
 

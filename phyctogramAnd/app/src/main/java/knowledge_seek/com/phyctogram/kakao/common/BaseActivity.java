@@ -18,11 +18,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import knowledge_seek.com.phyctogram.CommunityListActivity;
+import knowledge_seek.com.phyctogram.CommunityViewActivity;
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.R;
@@ -62,6 +65,8 @@ public class BaseActivity extends Activity {
     public static List<Users> usersList = null;
     public static Users nowUsers = null;
 
+    long backKeyPressedTime = 0;
+
     //레이아웃 정의
     public ListView lv_usersList;
     public UsersListSlideAdapter usersListSlideAdapter;
@@ -69,6 +74,8 @@ public class BaseActivity extends Activity {
     private Button btn_usersDiary;          //육아일기
     private Button btn_dataInput;           //직접입력
     private Button btn_setup;               //설정
+
+
 
 
     @Override
@@ -388,30 +395,43 @@ public class BaseActivity extends Activity {
         Activity nowActivity = GlobalApplication.getCurrentActivity();
         //String nowActivity = GlobalApplication.getCurrentActivity().getClass().getSimpleName();
         Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
+        Log.d("-진우-", "시간 : " + backKeyPressedTime);
+
 
         Intent intent = null;
         if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
-            finish();
+            //두번 클릭시 종료
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                Toast.makeText(getApplicationContext(), "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                finish();
+            }
         }
         //내 아이 관리 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity")) {
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
+        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }
+        }*/
         //설정 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("EquipmentActivity")) {
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("EquipmentActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("WithdrawActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
+        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
@@ -421,25 +441,45 @@ public class BaseActivity extends Activity {
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }
+        }*/
         //육아일기 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryWriteActivity")) {
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryWriteActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
             intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
+        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
             intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        }*/
+        //수다방 관련 페이지 이동
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityWriteActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityViewActivity")) {
+            intent = new Intent(getApplicationContext(), CommunityListActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
         }
-        //메인으로 가는 페이지 : 내아이관리, 기록조회, 설정, 직접입력, 육아일기
+        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityCommentActivity")) {
+            /*intent = new Intent(getApplicationContext(), CommunityViewActivity.class);
+            intent.putExtra("member", member);
+            //intent.putExtra("sqlCommntyListView", sqlCommntyListView);
+            startActivity(intent);
+            finish();*/
+            super.onBackPressed();
+        }
+        //메인으로 가는 페이지 : 내아이관리, 기록조회, 설정, 직접입력, 육아일기, 수다방리스트, 분석리포트, 캐릭터
         else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersManageActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("RecordActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("SettingActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersDataInputActivity") ||
-                nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersDiaryActivity") ){
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersDiaryActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityListActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAnalysisActivity") ||
+                nowActivity != null && nowActivity.getClass().getSimpleName().equals("CharacterActivity")){
             intent = new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);

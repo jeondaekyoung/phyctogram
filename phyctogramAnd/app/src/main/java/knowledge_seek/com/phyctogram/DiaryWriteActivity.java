@@ -354,7 +354,6 @@ public class DiaryWriteActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(result);
-            finish();
         }
     }
 }

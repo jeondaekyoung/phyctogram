@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/linear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -21,11 +20,12 @@
             android:src="@drawable/btn_menu" />
 
         <TextView
+            android:id="@+id/tv_users_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="지민이"
+            android:text="내 아이 관리에서 아이를 등록해주세요"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -36,7 +36,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/capture"
+            android:id="@+id/ll_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -49,8 +49,9 @@
                 android:gravity="center"
                 android:padding="20dp">
 
-                //캐릭터 이미지
+                <!--캐릭터 이미지-->
                 <ImageView
+                    android:id="@+id/iv_animal"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="#fff"
@@ -63,7 +64,7 @@
                     android:orientation="vertical"
                     android:paddingLeft="10dp">
 
-                    //최종신장
+                    <!--최종신장-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -89,7 +90,7 @@
                             android:textColor="#ffffff" />
                     </LinearLayout>
 
-                    //+성장값
+                    <!--성장값-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -113,7 +114,7 @@
                             android:textColor="#ffffff" />
                     </LinearLayout>
 
-                    //상위
+                    <!--상위-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -148,7 +149,7 @@
                 android:paddingBottom="20dp"
                 android:paddingTop="20dp">
 
-                //평균
+                <!--평균-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -179,7 +180,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                //성장
+                <!--성장-->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -222,7 +223,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                //분석글
+                <!--분석글-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -247,7 +248,7 @@
                     android:text="Tanner 분류법 (바로가기 링크)"
                     android:textColor="#ff0000" />
 
-                //공유버튼
+                <!--공유버튼-->
                 <ImageButton
                     android:id="@+id/btn_share"
                     android:layout_width="wrap_content"
@@ -257,7 +258,7 @@
                     android:background="#00000000"
                     android:onClick="onClick" />
 
-                //그래프
+                <!--그래프-->
                 <com.github.mikephil.charting.charts.CombinedChart
                     android:id="@+id/chart1"
                     android:layout_width="match_parent"
