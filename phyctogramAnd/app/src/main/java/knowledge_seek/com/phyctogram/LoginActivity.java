@@ -254,7 +254,6 @@ public class LoginActivity extends BaseActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent memberlogin = new Intent(getApplicationContext(), LoginActivity2.class);
                 startActivity(memberlogin);
             }
@@ -264,6 +263,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent memberlogin = new Intent(getApplicationContext(), Sitemap.class);
+                startActivity(memberlogin);
             }
         });
     }

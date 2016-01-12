@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
-public class CombinedChartActivity extends BaseActivity {
+public class UsersAnalysisActivity extends BaseActivity {
 
     private CombinedChart mChart;
     private final int itemcount = 12;

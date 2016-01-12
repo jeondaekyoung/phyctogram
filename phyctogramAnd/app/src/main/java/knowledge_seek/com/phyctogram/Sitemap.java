@@ -94,7 +94,7 @@ public class Sitemap extends AppCompatActivity {
                 startActivity(btn17);
                 break;
             case R.id.btn_report:
-                Intent btn18 = new Intent(this, CombinedChartActivity.class);
+                Intent btn18 = new Intent(this, UsersAnalysisActivity.class);
                 startActivity(btn18);
                 break;
             case R.id.btn_character:

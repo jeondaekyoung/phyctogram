@@ -44,13 +44,15 @@ public class MainActivity extends BaseActivity {
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
     private LinearLayout ic_screen;
+    private CircularImageView img_profile;           //슬라이드 내 이미지
+    private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private ImageButton btn_record;  //기록조회
+    private ImageButton btn_record;                     //기록조회
     private ImageButton imBtn_community_list;      //수다방 리스트
-    private TextView tv_users_name;     //아이 이름 출력
-    private CircularImageView img_profile;      //슬라이드 내 이미지
-    private TextView tv_member_name;            //슬라이드 내 이름
+    private TextView tv_users_name;                 //아이 이름 출력
+    private ImageButton btn_users_analysis;     //분석리포트
+
 
     private TextView tv_popularTop1_title;          //커뮤니티(수다방) 인기 Top3
     private TextView tv_popularTop1_name;
@@ -59,17 +61,10 @@ public class MainActivity extends BaseActivity {
     private TextView tv_popularTop3_title;
     private TextView tv_popularTop3_name;
 
-//백버튼두번눌러닫기
-    private BackPressCloseHandler backPressCloseHandler;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("-진우-", "MainActivity.onCreate() 실행");
-
-//백버튼두번눌러닫기
-        backPressCloseHandler = new BackPressCloseHandler(this);
 
         //화면 페이지
         ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
@@ -81,17 +76,16 @@ public class MainActivity extends BaseActivity {
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
         //슬라이드 내 이름
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
-
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nowUsers = (Users)usersListSlideAdapter.getItem(position);
+                nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
-                if(tv_users_name != null){
+                if (tv_users_name != null) {
                     tv_users_name.setText(nowUsers.getName());
                 }
 
@@ -104,7 +98,6 @@ public class MainActivity extends BaseActivity {
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
             }
         });
@@ -120,7 +113,22 @@ public class MainActivity extends BaseActivity {
                 finish();
             }
         });
-        //수다방(community) 글 작성
+        //분석리포트
+        btn_users_analysis = (ImageButton)findViewById(R.id.btn_users_analysis);
+        btn_users_analysis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(usersList == null || usersList.size() <= 0){
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    return ;
+                }
+                Intent intent = new Intent(getApplicationContext(), UsersAnalysisActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //수다방(community)
         imBtn_community_list = (ImageButton) findViewById(R.id.imBtn_community_list);
         imBtn_community_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,21 +149,12 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    //백버튼두번눌러닫기
-    @Override
-    public void onBackPressed() {
-        //super.onBackPressed();
-        backPressCloseHandler.onBackPressed();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         Log.d("-진우-", "MainActivity.onResume() 실행");
-        //요건되는데, BaseActivity.onResume()에 있으면 안되네..
-        //login, join등의 member이 없는 activity가 있기 때문에 안된다.
-        //슬라이드메뉴에 있는 내 아이 목록
-        //updateScreenSlide();
+
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3)
         MainDataTask task = new MainDataTask();
         task.execute(img_profile);
 
@@ -253,12 +252,9 @@ public class MainActivity extends BaseActivity {
                     sqlCommntyListViewTask = resultList1;
 
                 }
-
-
             } catch (IOException e) {
                 Log.d("-진우-", "수다방 목록 조회 실패");
             }
-
 
             return mBitmap;
         }
@@ -321,40 +317,10 @@ public class MainActivity extends BaseActivity {
                 tv_popularTop3_name.setText(null);
             }
 
-
             dialog.dismiss();
             super.onPostExecute(bitmap);
         }
     }
 
-    //메인에서 백 버튼 두 번 눌러 종료
-    public class BackPressCloseHandler {
 
-        private long backKeyPressedTime = 0;
-        private Toast toast;
-
-        private Activity activity;
-
-        public BackPressCloseHandler(Activity context) {
-            this.activity = context;
-        }
-
-        public void onBackPressed() {
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis();
-                showGuide();
-                return;
-            }
-            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-                activity.finish();
-                toast.cancel();
-            }
-        }
-
-        public void showGuide() {
-            toast = Toast.makeText(activity,
-                    "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }
 }
