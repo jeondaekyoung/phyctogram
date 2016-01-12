@@ -189,18 +189,11 @@ public class DiaryWriteActivity extends BaseActivity {
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String msg = String.valueOf(year).concat("-").concat(dateFormat(monthOfYear + 1)).concat("-").concat(dateFormat(dayOfMonth));
+            String msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(monthOfYear + 1)).concat("-").concat(Utility.dateFormat(dayOfMonth));
             et_diary_date.setText(msg);
         }
     };
-    //날짜가 한자리일때 앞에 0을 붙이자.
-    private String dateFormat(int x){
-        String s = String.valueOf(x);
-        if(s.length() == 1){
-            s = "0".concat(s);
-        }
-        return s;
-    }
+
 
     //일기쓰기 페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이름, 계정이미지)
     private class DiaryWriteTask extends AsyncTask<Object, Void, Bitmap> {

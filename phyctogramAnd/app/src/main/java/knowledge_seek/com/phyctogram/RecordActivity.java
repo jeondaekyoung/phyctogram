@@ -40,6 +40,7 @@ import knowledge_seek.com.phyctogram.listAdapter.HeightListRecordAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.HeightAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -262,27 +263,18 @@ public class RecordActivity extends BaseActivity {
     //날짜 입력
     private DatePickerDialog.OnDateSetListener dateSetListenerFrom = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String msg = String.valueOf(year).concat("-").concat(dateFormat(monthOfYear + 1)).concat("-").concat(dateFormat(dayOfMonth));
+            String msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(monthOfYear + 1)).concat("-").concat(Utility.dateFormat(dayOfMonth));
             //String msg = String.format("%d-%d-%d", year, dateFormat(monthOfYear + 1), dateFormat(dayOfMonth));
             tv_datepickFrom.setText(msg);
         }
     };
     private DatePickerDialog.OnDateSetListener dateSetListenerTo = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            String msg = String.valueOf(year).concat("-").concat(dateFormat(monthOfYear+1)).concat("-").concat(dateFormat(dayOfMonth));
+            String msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(monthOfYear + 1)).concat("-").concat(Utility.dateFormat(dayOfMonth));
             //String msg = String.format("%d-%d-%d", year, dateFormat(monthOfYear + 1), dateFormat(dayOfMonth));
             tv_datepickTo.setText(msg);
         }
     };
-
-    //날짜가 한자리일때 앞에 0을 붙이자.
-    private String dateFormat(int x){
-        String s = String.valueOf(x);
-        if(s.length() == 1){
-            s = "0".concat(s);
-        }
-        return s;
-    }
 
     //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class RecordTask extends AsyncTask<Object, Void, Bitmap> {

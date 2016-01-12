@@ -121,8 +121,8 @@ public class UsersModActivity extends BaseActivity {
                 users.setName(et_name.getText().toString());
                 users.setInitials(et_initials.getText().toString());
                 users.setLifyea(String.valueOf(dp_lifedate.getYear()));
-                users.setMt(String.valueOf((dp_lifedate.getMonth() + 1)));
-                users.setDe(String.valueOf(dp_lifedate.getDayOfMonth()));
+                users.setMt(Utility.dateFormat(dp_lifedate.getMonth() + 1));
+                users.setDe(Utility.dateFormat(dp_lifedate.getDayOfMonth()));
                 if (rb_female.isChecked()) {
                     users.setSexdstn("female");
                 } else if (rb_male.isChecked()) {

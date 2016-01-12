@@ -44,6 +44,7 @@
             android:padding="20dp">
 
             <ImageView
+                android:id="@+id/iv_animal"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:background="#fff"

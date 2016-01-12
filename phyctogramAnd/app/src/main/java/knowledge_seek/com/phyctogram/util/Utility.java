@@ -45,14 +45,21 @@ public class Utility {
         return txt!=null && txt.trim().length()>0 ? true: false;
     }
 
+    //날짜가 한자리일때 앞에 0을 붙이자.
+    public static String dateFormat(int x){
+        String s = String.valueOf(x);
+        if(s.length() == 1){
+            s = "0".concat(s);
+        }
+        return s;
+    }
+
     public static String member2json(Member member) {
-        String json = new Gson().toJson(member);
-        return json;
+        return new Gson().toJson(member);
     }
 
     public static String users2json(Users users) {
-        String json = new Gson().toJson(users);
-        return json;
+        return new Gson().toJson(users);
     }
 
     public static String comment2json(Comment comment) {
