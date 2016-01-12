@@ -15,32 +15,32 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
+
+import com.github.mikephil.charting.charts.CombinedChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.BubbleData;
+import com.github.mikephil.charting.data.BubbleDataSet;
+import com.github.mikephil.charting.data.BubbleEntry;
+import com.github.mikephil.charting.data.CandleData;
+import com.github.mikephil.charting.data.CandleDataSet;
+import com.github.mikephil.charting.data.CandleEntry;
+import com.github.mikephil.charting.data.CombinedData;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.data.ScatterData;
+import com.github.mikephil.charting.data.ScatterDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
 import java.util.ArrayList;
 
-import charting.DemoBase;
-import charting.charts.CombinedChart;
-import charting.charts.CombinedChart.DrawOrder;
-import charting.components.XAxis;
-import charting.components.XAxis.XAxisPosition;
-import charting.components.YAxis;
-import charting.data.BarData;
-import charting.data.BarDataSet;
-import charting.data.BarEntry;
-import charting.data.BubbleData;
-import charting.data.BubbleDataSet;
-import charting.data.BubbleEntry;
-import charting.data.CandleData;
-import charting.data.CandleDataSet;
-import charting.data.CandleEntry;
-import charting.data.CombinedData;
-import charting.data.Entry;
-import charting.data.LineData;
-import charting.data.LineDataSet;
-import charting.data.ScatterData;
-import charting.data.ScatterDataSet;
-import charting.utils.ColorTemplate;
+import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
-public class CombinedChartActivity extends DemoBase {
+public class CombinedChartActivity extends BaseActivity {
 
     private CombinedChart mChart;
     private final int itemcount = 12;
@@ -50,6 +50,11 @@ public class CombinedChartActivity extends DemoBase {
     private ImageButton btn_share;
     //캡쳐
     private LinearLayout container;
+
+    //데이터
+    protected String[] mMonths = new String[] {
+            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +70,8 @@ public class CombinedChartActivity extends DemoBase {
         mChart.setDrawBarShadow(false);
 
         // draw bars behind lines
-        mChart.setDrawOrder(new DrawOrder[]{
-                DrawOrder.BAR, DrawOrder.BUBBLE, DrawOrder.CANDLE, DrawOrder.LINE, DrawOrder.SCATTER
+        mChart.setDrawOrder(new CombinedChart.DrawOrder[]{
+                CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.BUBBLE, CombinedChart.DrawOrder.CANDLE, CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.SCATTER
         });
 
         YAxis rightAxis = mChart.getAxisRight();
@@ -76,7 +81,7 @@ public class CombinedChartActivity extends DemoBase {
         leftAxis.setDrawGridLines(false);
 
         XAxis xAxis = mChart.getXAxis();
-        xAxis.setPosition(XAxisPosition.BOTH_SIDED);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
         CombinedData data = new CombinedData(mMonths);
 

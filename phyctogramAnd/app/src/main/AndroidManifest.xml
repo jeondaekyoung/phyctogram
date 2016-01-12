@@ -185,7 +185,7 @@
 
         <!-- sitemap는 삭제예정 -->
         <activity
-            android:name=".sitemap"
+            android:name=".Sitemap"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     </application>

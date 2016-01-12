@@ -7,6 +7,8 @@ android {
 
     repositories {
         mavenCentral()
+        maven { url "https://jitpack.io" }
+
     }
 
     project.ext.set("defaultDeployPhase", "${project.hasProperty('deploy_phase') ? deploy_phase.toString() : "$DEFAULT_PHASE"}")
@@ -30,6 +32,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
+
+    //분석리포트-그래프라이브러리
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
 
     //이미지 둥글게 그려준다
     compile 'com.pkmmte.view:circularimageview:1.1'
