@@ -91,7 +91,7 @@ public class UsersRestController {
 	
 	
 	/**
-	 * 개월수, 캐릭터 계산하기
+	 * 개월수, 캐릭터 계산하기(안드로이드 캐릭터페이지)
 	 * @param users
 	 * @return
 	 */
@@ -99,14 +99,7 @@ public class UsersRestController {
 	public Analysis findMonthNumAnimalByUserSeq(@RequestParam int user_seq){
 		logger.info("findMonthNumAnimalByUserSeq 실행 : " + user_seq);
 		
-		Analysis analysis = null;
-		
-		
-		usersService.findMonthNumAnimalByUserSeq(user_seq);
-		
-		
-		
-		return null;
+		return usersService.findMonthNumAnimalByUserSeq(user_seq);
 	}
 	
 }

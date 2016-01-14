@@ -78,8 +78,9 @@ public class HeightServiceImpl implements HeightService {
 		List<Height> heights = heightDao.selectHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCnt*10);
 		for(Height h : heights){
 			//각각의 데이터(키를잰날, 키)로 상위를 조회함(user_seq로 생일을 알수있음)
+			//나이가 19세초과, 229개월 초과시 228개월로 계산(쿼리계산)
+			//키가 커서 데이터가 없을 경우 상위3%가져온다
 			h.setRank(heightDao.selectRankByHeight(h));
-			//System.out.println(h.toString());
 		}
 		
 		return heights;

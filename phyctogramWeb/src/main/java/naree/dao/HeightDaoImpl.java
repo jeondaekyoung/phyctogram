@@ -138,8 +138,10 @@ public class HeightDaoImpl implements HeightDao {
 		int result = 0;
 		try{
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			//나이가 19세초과, 229개월 초과시 228개월로 계산(쿼리계산)
 			String rank = heightMapper.selectRankByHeight(h);
 			if(rank == null){
+				//키가 커서 데이터가 없을 경우 상위3%가져온다
 				result = heightMapper.selectMaxRankByHeight(h);
 			} else {
 				result = Integer.valueOf(rank);
@@ -157,7 +159,21 @@ public class HeightDaoImpl implements HeightDao {
 		double result = 0;
 		try{
 			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			//나이가 19세초과, 229개월 초과시 228개월로 계산(쿼리계산), 키는 상관이없음
 			result = heightMapper.selectAveHeightByHeight(h);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int selectExistHeightByUserSeq(int user_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			result = heightMapper.selectExistHeightByUserSeq(user_seq);
 		}finally{
 			sqlSession.close();
 		}

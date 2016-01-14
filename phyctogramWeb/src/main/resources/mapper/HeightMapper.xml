@@ -79,35 +79,55 @@
 	</select>
 	
 	<select id="selectRankByHeight" parameterType="Height" resultType="String">
+	<![CDATA[
 		SELECT rank
 		  FROM analysis_2007_tb
-        WHERE month_num = (                    
-                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
+                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+                                         , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
             AND height >= #{height}
      ORDER BY analysis_seq
            LIMIT 1
+    ]]>
 	</select>
 	
 	<select id="selectMaxRankByHeight" parameterType="Height" resultType="Integer">
+	<![CDATA[
 		SELECT rank
 		  FROM analysis_2007_tb
-        WHERE month_num = (                    
-                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
+                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+                                         , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
      ORDER BY analysis_seq DESC
            LIMIT 1
+    ]]>
 	</select>
 	
 	<select id="selectAveHeightByHeight" parameterType="Height" resultType="Double">
+	<![CDATA[
 		SELECT height
 		  FROM analysis_2007_tb
-        WHERE month_num = (                    
-                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+        WHERE month_num = IF(PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                           (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229,
+                                         PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                           (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+                                         , 228 )
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
             AND rank = 50
+    ]]>
 	</select>
 	
+	<select id="selectExistHeightByUserSeq" parameterType="Integer" resultType="Integer">
+		SELECT count(*)
+		  FROM height_tb
+		WHERE user_seq = #{user_seq}
+	</select>
 	
 	
 

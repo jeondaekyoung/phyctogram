@@ -2,6 +2,7 @@ package naree.dao;
 
 import java.util.List;
 
+import naree.db.domain.Analysis;
 import naree.db.domain.Users;
 
 public interface UsersDao {
@@ -40,5 +41,12 @@ public interface UsersDao {
 	 * @return
 	 */
 	int deleteUsersByMemberSeq(int member_seq);
+
+	/**
+	 * 개월 및 캐릭터이미지파일 계산하기 
+	 * @param user_seq
+	 * @return
+	 */
+	Analysis selectMonthNumAnimalByUserSeq(int user_seq);
 
 }

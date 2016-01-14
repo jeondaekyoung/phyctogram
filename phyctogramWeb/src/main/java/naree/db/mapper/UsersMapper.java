@@ -2,6 +2,7 @@ package naree.db.mapper;
 
 import java.util.List;
 
+import naree.db.domain.Analysis;
 import naree.db.domain.Users;
 
 public interface UsersMapper {
@@ -15,5 +16,9 @@ public interface UsersMapper {
 	int updateUsersByUsers(Users users);
 
 	int deleteUsersByMemberSeq(int member_seq);
+
+	Analysis selectMonthNumAnimalByUserSeq(int user_seq);
+	
+	Analysis selectMaxMonthNumAnimalByUserSeq(int user_seq);
 
 }

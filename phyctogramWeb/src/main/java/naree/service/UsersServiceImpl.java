@@ -60,8 +60,8 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public Analysis findMonthNumAnimalByUserSeq(int user_seq) {
-		//최근 키 기록 가져오기(12개)
-		List<Height> heights = heightDao.selectHeightForGraphByUserSeq(user_seq);
+		//그래프 그리기 : 최근 키 기록 가져오기(12개)
+		/*List<Height> heights = heightDao.selectHeightForGraphByUserSeq(user_seq);
 		for(Height h : heights){
 			//상위 가져오기
 			int rank = heightDao.selectRankByHeight(h);
@@ -72,9 +72,18 @@ public class UsersServiceImpl implements UsersService {
 		}
 		for(Height h : heights){
 			System.out.println("키 목록 : " + h.toString());
-		}
+		}*/
 		
-		return null;
+		//데이터가 없을 때 표시할 이미지가 없다. 
+		/*int result = heightDao.selectExistHeightByUserSeq(user_seq);
+		if(result == 0){
+			Analysis analysis = new Analysis();
+			//입력된 데이터가 없음을 500을 넣어준다
+			analysis.setMonth_num(500);
+			return analysis;
+		}*/
+		
+		return usersDao.selectMonthNumAnimalByUserSeq(user_seq);
 	}
 
 

@@ -28,4 +28,6 @@ public interface HeightMapper {
 	int selectMaxRankByHeight(Height h);
 
 	double selectAveHeightByHeight(Height h);
+
+	int selectExistHeightByUserSeq(int user_seq);
 }

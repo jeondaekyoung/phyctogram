@@ -17,6 +17,7 @@
 		<typeAlias type="naree.db.domain.SqlCommntyListView" alias="SqlCommntyListView"/>
 		<typeAlias type="naree.db.domain.Comment" alias="Comment"/>
 		<typeAlias type="naree.db.domain.Diary" alias="Diary"/>
+		<typeAlias type="naree.db.domain.Analysis" alias="Analysis"/>
 		
 	</typeAliases>
 

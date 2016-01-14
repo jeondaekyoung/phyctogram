@@ -62,7 +62,8 @@ public interface HeightDao {
 	List<Height> selectHeightForGraphByUserSeq(int user_seq);
 
 	/**
-	 * 상위가져오기
+	 * 상위가져오기(나이가 19세초과,개월로 228개월초과시, 19세를 기준으로 상위를가져온다)
+	 * 키가 커서 데이터가 없을 경우 상위3%가져온다
 	 * @param h
 	 */
 	int selectRankByHeight(Height h);
@@ -73,4 +74,11 @@ public interface HeightDao {
 	 * @return
 	 */
 	double selectAveHeightByHeight(Height h);
+
+	/**
+	 * 입력된 키가 있는지 확인
+	 * @param user_seq
+	 * @return
+	 */
+	int selectExistHeightByUserSeq(int user_seq);
 }
