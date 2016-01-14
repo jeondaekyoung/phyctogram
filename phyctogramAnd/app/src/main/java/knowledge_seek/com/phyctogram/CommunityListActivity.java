@@ -335,8 +335,8 @@ public class CommunityListActivity extends BaseActivity {
 
             sqlCommntyListViewListAdapter.notifyDataSetChanged();
             mCurrentListViewState = "latest";
-            dialog.dismiss();
 
+            dialog.dismiss();
             super.onPostExecute(sqlCommntyListViews);
         }
     }
