@@ -408,14 +408,13 @@ public class RecordActivity extends BaseActivity {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
             dialog.setMessage("잠시만 기다려주세요");
             dialog.show();
-
             super.onPreExecute();
         }
 
         @Override
         protected List<Height> doInBackground(Void... params) {
             Log.d("-진우-", user_seq + ", " + dateFrom + ", " + dateTo);
-            HeightAPI service = ServiceGenerator.createService(HeightAPI.class, "RecordActivity");
+            HeightAPI service = ServiceGenerator.createService(HeightAPI.class, "Height");
             Call<List<Height>> call = service.findHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCntTask);
             try {
                 heightTask = call.execute().body();

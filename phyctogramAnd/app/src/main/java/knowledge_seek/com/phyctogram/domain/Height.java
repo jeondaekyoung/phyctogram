@@ -13,17 +13,21 @@ public class Height {
     //private Timestamp mesure_date;
     private String mesure_date;
     private double height;
-    private String grow;
+    private String grow;        //전기록과의 차이
+    private int rank;               //상위
+    private double height_50;   //평균키
 
     public Height() {
 
     }
 
-    public Height(String height_seq, int user_seq, String mesure_utilDate, double height) {
+    public Height(String height_seq, int user_seq, String mesure_date, double height, int rank, double height_50) {
         this.height_seq = height_seq;
         this.user_seq = user_seq;
-        this.mesure_date = mesure_utilDate;
+        this.mesure_date = mesure_date;
         this.height = height;
+        this.rank = rank;
+        this.height_50 = height_50;
     }
 
     public String getHeight_seq() {
@@ -66,6 +70,22 @@ public class Height {
         this.grow = grow;
     }
 
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public double getHeight_50() {
+        return height_50;
+    }
+
+    public void setHeight_50(double height_50) {
+        this.height_50 = height_50;
+    }
+
     @Override
     public String toString() {
         return "Height{" +
@@ -74,6 +94,8 @@ public class Height {
                 ", mesure_date='" + mesure_date + '\'' +
                 ", height=" + height +
                 ", grow='" + grow + '\'' +
+                ", rank=" + rank +
+                ", height_50=" + height_50 +
                 '}';
     }
 }
