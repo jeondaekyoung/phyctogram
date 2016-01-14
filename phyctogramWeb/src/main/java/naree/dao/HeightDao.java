@@ -53,4 +53,24 @@ public interface HeightDao {
 	 * @return
 	 */
 	int insertHeightAnd(Height height);
+
+	/**
+	 * 최근 키 기록 가져오기(12개)
+	 * @param user_seq
+	 * @return
+	 */
+	List<Height> selectHeightForGraphByUserSeq(int user_seq);
+
+	/**
+	 * 상위가져오기
+	 * @param h
+	 */
+	int selectRankByHeight(Height h);
+
+	/**
+	 * 평균키가져오기(아이 생일, 마지막킨잰날)
+	 * @param h
+	 * @return
+	 */
+	double selectAveHeightByHeight(Height h);
 }

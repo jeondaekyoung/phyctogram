@@ -69,5 +69,46 @@
 							,now()
 							,#{user_seq} )
 	</insert>
+	
+	<select id="selectHeightForGraphByUserSeq" parameterType="Integer" resultType="Height">
+		SELECT height_seq, height, mesure_date, user_seq
+		  FROM  height_tb 
+	     WHERE user_seq = #{user_seq} 
+	 ORDER BY mesure_date DESC
+           LIMIT 12
+	</select>
+	
+	<select id="selectRankByHeight" parameterType="Height" resultType="String">
+		SELECT rank
+		  FROM analysis_2007_tb
+        WHERE month_num = (                    
+                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+            AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
+            AND height >= #{height}
+     ORDER BY analysis_seq
+           LIMIT 1
+	</select>
+	
+	<select id="selectMaxRankByHeight" parameterType="Height" resultType="Integer">
+		SELECT rank
+		  FROM analysis_2007_tb
+        WHERE month_num = (                    
+                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+            AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
+     ORDER BY analysis_seq DESC
+           LIMIT 1
+	</select>
+	
+	<select id="selectAveHeightByHeight" parameterType="Height" resultType="Double">
+		SELECT height
+		  FROM analysis_2007_tb
+        WHERE month_num = (                    
+                 (select PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'), (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}))) )
+            AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
+            AND rank = 50
+	</select>
+	
+	
+	
 
 </mapper>

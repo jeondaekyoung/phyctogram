@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import naree.db.domain.Analysis;
 import naree.db.domain.Users;
 import naree.service.UsersService;
 
@@ -82,6 +83,30 @@ public class UsersRestController {
 		} else {
 			return "fail";
 		}
+	}
+	
+	//개월수 -> 19세(228개월)초과시 표준성장도표에 없다
+	//19살 넘는얘들은 어떻하지? 19세로하자
+	//분석 -> rank가 3%초과시 안나옴
+	
+	
+	/**
+	 * 개월수, 캐릭터 계산하기
+	 * @param users
+	 * @return
+	 */
+	@RequestMapping(value = "findMonthNumAnimalByUserSeq", method = RequestMethod.GET)
+	public Analysis findMonthNumAnimalByUserSeq(@RequestParam int user_seq){
+		logger.info("findMonthNumAnimalByUserSeq 실행 : " + user_seq);
+		
+		Analysis analysis = null;
+		
+		
+		usersService.findMonthNumAnimalByUserSeq(user_seq);
+		
+		
+		
+		return null;
 	}
 	
 }

@@ -8,6 +8,8 @@ public class Height {
 	private int user_seq;
 	private Timestamp mesure_date;
 	private double height;
+	private int rank;
+	private double height_50;
 	public String getHeight_seq() {
 		return height_seq;
 	}
@@ -32,11 +34,22 @@ public class Height {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+	public int getRank() {
+		return rank;
+	}
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+	public double getHeight_50() {
+		return height_50;
+	}
+	public void setHeight_50(double height_50) {
+		this.height_50 = height_50;
+	}
 	@Override
 	public String toString() {
 		return "Height [height_seq=" + height_seq + ", user_seq=" + user_seq + ", mesure_date=" + mesure_date
-				+ ", height=" + height + "]";
+				+ ", height=" + height + ", rank=" + rank + ", height_50=" + height_50 + "]";
 	}
-	
 	
 }

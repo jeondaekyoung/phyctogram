@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import naree.dao.DiaryDao;
 import naree.dao.HeightDao;
 import naree.dao.UsersDao;
+import naree.db.domain.Analysis;
+import naree.db.domain.Height;
 import naree.db.domain.Users;
 
 @Service
@@ -54,6 +56,25 @@ public class UsersServiceImpl implements UsersService {
 	public int modifyUsersByUsers(Users users) {
 		
 		return usersDao.updateUsersByUsers(users);
+	}
+
+	@Override
+	public Analysis findMonthNumAnimalByUserSeq(int user_seq) {
+		//최근 키 기록 가져오기(12개)
+		List<Height> heights = heightDao.selectHeightForGraphByUserSeq(user_seq);
+		for(Height h : heights){
+			//상위 가져오기
+			int rank = heightDao.selectRankByHeight(h);
+			h.setRank(rank);
+			//평균키 가져오기
+			double height_50 = heightDao.selectAveHeightByHeight(h);
+			h.setHeight_50(height_50);
+		}
+		for(Height h : heights){
+			System.out.println("키 목록 : " + h.toString());
+		}
+		
+		return null;
 	}
 
 

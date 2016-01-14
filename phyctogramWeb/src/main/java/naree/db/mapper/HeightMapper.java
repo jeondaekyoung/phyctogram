@@ -20,4 +20,12 @@ public interface HeightMapper {
 	int deleteHeightByHeightSeq(String height_seq);
 
 	int insertHeightAnd(Height height);
+	
+	List<Height> selectHeightForGraphByUserSeq(int user_seq);
+
+	String selectRankByHeight(Height h);
+	
+	int selectMaxRankByHeight(Height h);
+
+	double selectAveHeightByHeight(Height h);
 }

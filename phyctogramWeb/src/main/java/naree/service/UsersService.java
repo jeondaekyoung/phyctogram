@@ -2,6 +2,7 @@ package naree.service;
 
 import java.util.List;
 
+import naree.db.domain.Analysis;
 import naree.db.domain.Users;
 
 public interface UsersService {
@@ -33,5 +34,12 @@ public interface UsersService {
 	 * @return
 	 */
 	int modifyUsersByUsers(Users users);
+
+	/**
+	 * 아이의 개월수와 캐릭터 계산하기
+	 * @param users
+	 * @return
+	 */
+	Analysis findMonthNumAnimalByUserSeq(int user_seq);
 
 }

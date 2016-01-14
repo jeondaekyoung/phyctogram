@@ -74,8 +74,15 @@ public class HeightServiceImpl implements HeightService {
 
 	@Override
 	public List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCnt) {
+		//기록조회
+		List<Height> heights = heightDao.selectHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCnt*10);
+		for(Height h : heights){
+			//각각의 데이터(키를잰날, 키)로 상위를 조회함(user_seq로 생일을 알수있음)
+			h.setRank(heightDao.selectRankByHeight(h));
+			//System.out.println(h.toString());
+		}
 		
-		return heightDao.selectHeightByUserSeqFT(user_seq, dateFrom, dateTo, pageCnt*10);
+		return heights;
 	}
 
 	@Override

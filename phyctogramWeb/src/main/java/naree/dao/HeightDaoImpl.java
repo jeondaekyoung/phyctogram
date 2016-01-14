@@ -118,4 +118,50 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	@Override
+	public List<Height> selectHeightForGraphByUserSeq(int user_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Height> heights = new ArrayList<Height>();
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			heights = heightMapper.selectHeightForGraphByUserSeq(user_seq);
+		}finally{
+			sqlSession.close();
+		}
+
+		return heights;
+	}
+
+	@Override
+	public int selectRankByHeight(Height h) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			String rank = heightMapper.selectRankByHeight(h);
+			if(rank == null){
+				result = heightMapper.selectMaxRankByHeight(h);
+			} else {
+				result = Integer.valueOf(rank);
+			}
+			
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public double selectAveHeightByHeight(Height h) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		double result = 0;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			result = heightMapper.selectAveHeightByHeight(h);
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }

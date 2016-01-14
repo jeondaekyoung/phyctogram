@@ -25,8 +25,8 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <!-- <property name="url" value="jdbc:mysql://182.162.143.24:3306/alanglang_db"/> -->
         <property name="url" value="jdbc:mysql://localhost:3306/phyctogram_db"/>
+        <!-- <property name="url" value="jdbc:mysql://117.52.89.228:3306/phyctogram_db"/> -->
         <property name="username" value="phyctogram"/>
         <property name="password" value="phyctogram123"/>
         <property name="poolPingQuery" value="select 1"/>
