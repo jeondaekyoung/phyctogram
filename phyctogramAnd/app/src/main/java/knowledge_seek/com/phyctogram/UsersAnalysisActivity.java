@@ -50,6 +50,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Height;
@@ -85,12 +86,8 @@ public class UsersAnalysisActivity extends BaseActivity {
     private TextView tv_analysis_height_diff;
 
 
-    //데이터
-    protected String[] mMonths = new String[] {
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    };
+    //그래프 레이아웃
     private CombinedChart mChart;
-    private final int itemcount = 12;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +170,7 @@ public class UsersAnalysisActivity extends BaseActivity {
             }
         });
 
+        //그래프 셋팅
         mChart = (CombinedChart) findViewById(R.id.chart1);
         mChart.setDescription("");
         mChart.setBackgroundColor(Color.WHITE);
@@ -181,8 +179,11 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         // draw bars behind lines
         mChart.setDrawOrder(new CombinedChart.DrawOrder[]{
-                CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.BUBBLE, CombinedChart.DrawOrder.CANDLE, CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.SCATTER
+                CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.LINE
         });
+        /*mChart.setDrawOrder(new CombinedChart.DrawOrder[]{
+                CombinedChart.DrawOrder.BAR, CombinedChart.DrawOrder.BUBBLE, CombinedChart.DrawOrder.CANDLE, CombinedChart.DrawOrder.LINE, CombinedChart.DrawOrder.SCATTER
+        });*/
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setDrawGridLines(false);
@@ -192,17 +193,6 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
-
-        CombinedData data = new CombinedData(mMonths);
-
-        data.setData(generateLineData());
-        data.setData(generateBarData());
-//      data.setData(generateBubbleData());
-//      data.setData(generateScatterData());
-//      data.setData(generateCandleData());
-
-        mChart.setData(data);
-        mChart.invalidate();
 
         //내 아이 메인(분석) 정보 등
         iv_my_animal = (ImageView)findViewById(R.id.iv_my_animal);
@@ -244,20 +234,44 @@ public class UsersAnalysisActivity extends BaseActivity {
         Log.d("-진우-", "UsersAnalysisActivity.onResume() 끝");
     }
 
+    //그래프에 데이터 셋팅
+    private void drawGraph(List<Height> heights){
+
+        Collections.reverse(heights);                                      //역순정렬
+
+        List<String> xAxis = new ArrayList<String>();                        //x축
+        ArrayList<BarEntry> height50 = new ArrayList<BarEntry>();      //평균
+        ArrayList<Entry> heightMy = new ArrayList<Entry>();              //내키
+
+        for (int index = 0 ; index < heights.size(); index++){
+            //Log.d("-진우-", "키 데이터 : " + heights.get(index).toString());
+
+            String str = heights.get(index).getMesure_date();
+            xAxis.add(String.valueOf(new StringBuilder().append(str.substring(5, 7)).append("/").append(str.substring(8, 10))));
+
+            height50.add(new BarEntry(Float.parseFloat(String.format("%.1f", heights.get(index).getHeight_50())), index));
+            heightMy.add(new Entry(Float.parseFloat(String.format("%.1f", heights.get(index).getHeight())), index));
+            //Log.d("-진우-", "소수점 확인 : " + Float.parseFloat(String.format("%.1f", heights.get(index).getHeight_50())) + ", " + heights.get(index).getHeight_50());
+        }
+
+        CombinedData data = new CombinedData(xAxis);
+        data.setData(generateLineData(heightMy));
+        data.setData(generateBarData(height50));
+        mChart.setData(data);
+        mChart.invalidate();
+    }
 
 
 
-    //<--그래프그리기
-    private LineData generateLineData() {
+    /**
+     * 내 아이 성장곡선
+     * @return
+     */
+    private LineData generateLineData(ArrayList<Entry> my) {
 
         LineData d = new LineData();
 
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index < itemcount; index++)
-            entries.add(new Entry(getRandom(15, 10), index));
-
-        LineDataSet set = new LineDataSet(entries, "내 아이 성장곡선");
+        LineDataSet set = new LineDataSet(my, "내 아이 성장곡선");
         set.setColor(Color.rgb(151, 118, 197));
         set.setLineWidth(2.5f);
         set.setCircleColor(Color.rgb(151, 118, 197));
@@ -266,130 +280,33 @@ public class UsersAnalysisActivity extends BaseActivity {
         set.setDrawCubic(true);
         set.setDrawValues(true);
         set.setValueTextSize(10f);
-        set.setValueTextColor(Color.rgb(0, 0, 0));
-
+        //set.setValueTextColor(Color.rgb(0, 0, 0));
+        set.setValueTextColor(Color.rgb(151, 118, 197));
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         d.addDataSet(set);
-
         return d;
     }
 
-    private BarData generateBarData() {
+    /**
+     * 평균 성장 그래프
+     * @return
+     */
+    private BarData generateBarData(ArrayList<BarEntry> ave) {
 
         BarData d = new BarData();
 
-        ArrayList<BarEntry> entries = new ArrayList<BarEntry>();
-
-        for (int index = 0; index < itemcount; index++)
-            entries.add(new BarEntry(getRandom(15, 30), index));
-
-        BarDataSet set = new BarDataSet(entries, "평균 성장 그래프");
+        BarDataSet set = new BarDataSet(ave, "평균 성장 그래프");
         set.setColor(Color.rgb(220, 220, 220));
         set.setValueTextColor(Color.rgb(220, 220, 220));
         set.setValueTextSize(10f);
+
         d.addDataSet(set);
 
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
 
         return d;
     }
-
-    protected ScatterData generateScatterData() {
-
-        ScatterData d = new ScatterData();
-
-        ArrayList<Entry> entries = new ArrayList<Entry>();
-
-        for (int index = 0; index < itemcount; index++)
-            entries.add(new Entry(getRandom(20, 15), index));
-
-        ScatterDataSet set = new ScatterDataSet(entries, "Scatter DataSet");
-        set.setColor(Color.GREEN);
-        set.setScatterShapeSize(7.5f);
-        set.setDrawValues(false);
-        set.setValueTextSize(10f);
-        d.addDataSet(set);
-
-        return d;
-    }
-
-    protected CandleData generateCandleData() {
-
-        CandleData d = new CandleData();
-
-        ArrayList<CandleEntry> entries = new ArrayList<CandleEntry>();
-
-        for (int index = 0; index < itemcount; index++)
-            entries.add(new CandleEntry(index, 20f, 10f, 13f, 17f));
-
-        CandleDataSet set = new CandleDataSet(entries, "Candle DataSet");
-        set.setColor(Color.rgb(80, 80, 80));
-        set.setBodySpace(0.3f);
-        set.setValueTextSize(10f);
-        set.setDrawValues(false);
-        d.addDataSet(set);
-
-        return d;
-    }
-
-    protected BubbleData generateBubbleData() {
-
-        BubbleData bd = new BubbleData();
-
-        ArrayList<BubbleEntry> entries = new ArrayList<BubbleEntry>();
-
-        for (int index = 0; index < itemcount; index++) {
-            float rnd = getRandom(20, 30);
-            entries.add(new BubbleEntry(index, rnd, rnd));
-        }
-
-        BubbleDataSet set = new BubbleDataSet(entries, "Bubble DataSet");
-        set.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        set.setValueTextSize(10f);
-        set.setValueTextColor(Color.WHITE);
-        set.setHighlightCircleWidth(1.5f);
-        set.setDrawValues(true);
-        bd.addDataSet(set);
-
-        return bd;
-    }
-
-    private float getRandom(float range, float startsfrom) {
-        return (float) (Math.random() * range) + startsfrom;
-    }
-
-    //-> 그래프기리기
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.combined, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.actionToggleLineValues: {
-                for (DataSet<?> set : mChart.getData().getDataSets()) {
-                    if (set instanceof LineDataSet)
-                        set.setDrawValues(!set.isDrawValuesEnabled());
-                }
-
-                mChart.invalidate();
-                break;
-            }
-            case R.id.actionToggleBarValues: {
-                for (DataSet<?> set : mChart.getData().getDataSets()) {
-                    if (set instanceof BarDataSet)
-                        set.setDrawValues(!set.isDrawValuesEnabled());
-                }
-
-                mChart.invalidate();
-                break;
-            }
-        }
-        return true;
-    }*/
 
     //분석페이지 초기 데이터조회(슬라이드 내 아이 목록, 내 이미지)
     private class UsersAnalysisTask extends AsyncTask<Object, Void, Bitmap> {
@@ -552,6 +469,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                 tv_analysis_height50_diff.setText("-");
                 tv_analysis_height.setText("-");
                 tv_analysis_height_diff.setText("-");
+                mChart.clear();
                 dialog.dismiss();
                 super.onPostExecute(aVoid);
                 return;
@@ -581,6 +499,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                 tv_analysis_height50_diff.setText("-");
                 tv_analysis_height.setText("-");
                 tv_analysis_height_diff.setText("-");
+                mChart.clear();
                 dialog.dismiss();
                 super.onPostExecute(aVoid);
                 return;
@@ -607,6 +526,8 @@ public class UsersAnalysisActivity extends BaseActivity {
             if(analysisSize == 1){
                 tv_analysis_height.setText("-");
                 tv_analysis_height_diff.setText("-");
+                //그래프그리기
+                drawGraph(analysisTask);
                 dialog.dismiss();
                 super.onPostExecute(aVoid);
                 return;
@@ -637,6 +558,8 @@ public class UsersAnalysisActivity extends BaseActivity {
             }
             tv_analysis_height_diff.setText(String.valueOf(Math.abs(diff)));
 
+            //그래프그리기
+            drawGraph(analysisTask);
 
             dialog.dismiss();
             super.onPostExecute(aVoid);
