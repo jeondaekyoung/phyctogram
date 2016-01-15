@@ -1,6 +1,5 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -25,8 +24,10 @@ import com.squareup.okhttp.Response;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
@@ -49,11 +50,14 @@ public class MainActivity extends BaseActivity {
     private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private ImageButton btn_record;                     //기록조회
+    private ImageButton btn_users_record;                     //기록조회
     private ImageButton imBtn_community_list;      //수다방 리스트
     private TextView tv_users_name;                 //아이 이름 출력
     private ImageButton btn_users_analysis;     //분석리포트
-    private ImageView iv_animal;                        //캐릭터
+    private ImageView iv_my_animal;                        //캐릭터
+    private TextView tv_height;                         //최종신장
+    private TextView tv_grow;                           //성장 값
+    private TextView tv_rank;                           //상위
 
 
     private TextView tv_popularTop1_title;          //커뮤니티(수다방) 인기 Top3
@@ -75,9 +79,9 @@ public class MainActivity extends BaseActivity {
         initSildeMenu();
 
         //슬라이드 내 이미지
-        img_profile = (CircularImageView)findViewById(R.id.img_profile);
+        img_profile = (CircularImageView) findViewById(R.id.img_profile);
         //슬라이드 내 이름
-        tv_member_name = (TextView)findViewById(R.id.tv_member_name);
+        tv_member_name = (TextView) findViewById(R.id.tv_member_name);
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -91,7 +95,9 @@ public class MainActivity extends BaseActivity {
                     tv_users_name.setText(nowUsers.getName());
                 }
 
-                //메인페이지에 출력할 아이에 관한 데이터(분석포함)를 가져와야한다.
+                //내 아이 메인(분석) 정보 계산하기
+                FindUsersMainInfoTask task = new FindUsersMainInfoTask();
+                task.execute();
             }
         });
 
@@ -105,8 +111,8 @@ public class MainActivity extends BaseActivity {
         });
 
         //캐릭터
-        iv_animal = (ImageView)findViewById(R.id.iv_animal);
-        iv_animal.setOnClickListener(new View.OnClickListener() {
+        iv_my_animal = (ImageView) findViewById(R.id.iv_my_animal);
+        iv_my_animal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CharacterActivity.class);
@@ -116,10 +122,14 @@ public class MainActivity extends BaseActivity {
             }
         });
         //기록조회
-        btn_record = (ImageButton) findViewById(R.id.btn_record);
-        btn_record.setOnClickListener(new View.OnClickListener() {
+        btn_users_record = (ImageButton) findViewById(R.id.btn_users_record);
+        btn_users_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (usersList == null || usersList.size() <= 0) {
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
@@ -127,13 +137,13 @@ public class MainActivity extends BaseActivity {
             }
         });
         //분석리포트
-        btn_users_analysis = (ImageButton)findViewById(R.id.btn_users_analysis);
+        btn_users_analysis = (ImageButton) findViewById(R.id.btn_users_analysis);
         btn_users_analysis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(usersList == null || usersList.size() <= 0){
+                if (usersList == null || usersList.size() <= 0) {
                     Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
-                    return ;
+                    return;
                 }
                 Intent intent = new Intent(getApplicationContext(), UsersAnalysisActivity.class);
                 intent.putExtra("member", member);
@@ -153,12 +163,17 @@ public class MainActivity extends BaseActivity {
             }
         });
         //커뮤니티(수다방) 인기 Top3
-        tv_popularTop1_title = (TextView)findViewById(R.id.tv_popularTop1_title);
-        tv_popularTop1_name = (TextView)findViewById(R.id.tv_popularTop1_name);
-        tv_popularTop2_title = (TextView)findViewById(R.id.tv_popularTop2_title);
-        tv_popularTop2_name = (TextView)findViewById(R.id.tv_popularTop2_name);
-        tv_popularTop3_title = (TextView)findViewById(R.id.tv_popularTop3_title);
-        tv_popularTop3_name = (TextView)findViewById(R.id.tv_popularTop3_name);
+        tv_popularTop1_title = (TextView) findViewById(R.id.tv_popularTop1_title);
+        tv_popularTop1_name = (TextView) findViewById(R.id.tv_popularTop1_name);
+        tv_popularTop2_title = (TextView) findViewById(R.id.tv_popularTop2_title);
+        tv_popularTop2_name = (TextView) findViewById(R.id.tv_popularTop2_name);
+        tv_popularTop3_title = (TextView) findViewById(R.id.tv_popularTop3_title);
+        tv_popularTop3_name = (TextView) findViewById(R.id.tv_popularTop3_name);
+
+        //내 아이 메인(분석) 정보
+        tv_height = (TextView)findViewById(R.id.tv_height);
+        tv_grow = (TextView)findViewById(R.id.tv_grow);
+        tv_rank = (TextView)findViewById(R.id.tv_rank);
 
     }
 
@@ -167,27 +182,28 @@ public class MainActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "MainActivity.onResume() 실행");
 
-        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3)
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
         MainDataTask task = new MainDataTask();
         task.execute(img_profile);
 
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
         String name = null;
-        if(member.getJoin_route().equals("kakao")){
+        if (member.getJoin_route().equals("kakao")) {
             name = member.getKakao_nickname() + " 님";
-        } else if(member.getJoin_route().equals("facebook")){
+        } else if (member.getJoin_route().equals("facebook")) {
             name = member.getFacebook_name() + " 님";
         } else {
             name = member.getName() + " 님";
         }
-        if(name != null){
+        if (name != null) {
             tv_member_name.setText(name);
         }
+
+
         Log.d("-진우-", "MainActivity.onResume() 끝");
     }
 
-    //메인페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지, 수다방인기Top3)
-    //해야할 일 : 메인페이지에 출력할 아이에 관한 데이터(분석포함)를 가져와야한다.
+    //메인페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
     private class MainDataTask extends AsyncTask<Object, Void, Bitmap> {
 
         private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
@@ -291,6 +307,9 @@ public class MainActivity extends BaseActivity {
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
                 tv_users_name.setText(nowUsers.getName());
+                //내 아이 메인(분석) 정보 계산하기
+                FindUsersMainInfoTask task = new FindUsersMainInfoTask();
+                task.execute();
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
@@ -335,5 +354,73 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    //내 아이 메인(분석) 정보 계산하기
+    private class FindUsersMainInfoTask extends AsyncTask<Void, Void, Void> {
 
+        private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
+        private List<Height> heightTask = new ArrayList<Height>();
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기다려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //내 아이 메인(분석)정보 계산하기
+            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Height");
+            Call<List<Height>> call = service.findUsersMainInfoByUserSeq(nowUsers.getUser_seq());
+            try {
+                heightTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "내 아이 메인(분석) 정보 실패");
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            Log.d("-진우-", heightTask.size() + " 개 조회(메인분석)");
+            for (Height h : heightTask) {
+                Log.d("-진우-", "최근신장 : " + h.toString());
+            }
+            //성장키 계산
+            for (int i = 0; i < heightTask.size()-1; i++) {
+                heightTask.get(i).setGrow(String.format("%.1f", (heightTask.get(i).getHeight() - heightTask.get(i + 1).getHeight()) ));
+            }
+
+            if(heightTask.size() == 0){
+                //기록이 없으면 끝
+                iv_my_animal.setImageResource(R.drawable.sample);
+                tv_height.setText("-");
+                tv_grow.setText("-");
+                tv_rank.setText("-");
+                dialog.dismiss();
+                super.onPostExecute(aVoid);
+                return;
+            }
+
+            //내 아이 이미지
+            String imgName = "@drawable/" + heightTask.get(0).getAnimal_img().substring(0,12);
+            String packName = self.getPackageName();
+            Log.d("-진우-", "확인 : " + imgName);
+            iv_my_animal.setImageResource(getResources().getIdentifier(imgName, "drawable", packName));
+            //최종신장
+            tv_height.setText(String.valueOf(heightTask.get(0).getHeight()));
+            //성장키
+            if(heightTask.size() == 2) {
+                if (Double.valueOf(heightTask.get(0).getGrow()) >= 0) {
+                    tv_grow.setText("+" + heightTask.get(0).getGrow());
+                }
+            }
+            //상위
+            tv_rank.setText(String.valueOf(heightTask.get(0).getRank()));
+
+            dialog.dismiss();
+            super.onPostExecute(aVoid);
+        }
+    }
 }

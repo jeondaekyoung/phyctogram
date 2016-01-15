@@ -2,6 +2,8 @@ package knowledge_seek.com.phyctogram.retrofitapi;
 
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.domain.Analysis;
+import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 import retrofit.Call;
@@ -26,5 +28,11 @@ public interface UsersAPI {
 
     @POST("/rest/users/modUsersByUsers")
     Call<String> modUsersByUsers(@Body Users users);
+
+    @GET("/rest/users/findUsersMainInfoByUserSeq")
+    Call<List<Height>> findUsersMainInfoByUserSeq(@Query("user_seq") int user_seq);
+
+    @GET("/rest/users/findUsersAnalysisByUserSeq")
+    Call<List<Height>> findUsersAnalysisByUserSeq(@Query("user_seq") int user_seq);
 
 }

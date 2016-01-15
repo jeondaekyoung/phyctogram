@@ -45,13 +45,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#C0AAE1"
-                android:orientation="horizontal"
                 android:gravity="center"
+                android:orientation="horizontal"
                 android:padding="20dp">
 
                 <!--캐릭터 이미지-->
                 <ImageView
-                    android:id="@+id/iv_animal"
+                    android:id="@+id/iv_my_animal"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:background="#fff"
@@ -69,20 +69,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:gravity="center"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="최종신장"
                             android:textColor="#ffffff" />
+
                         <TextView
+                            android:id="@+id/tv_height"
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:text="142.5"
+                            android:gravity="right"
+                            android:paddingRight="5dp"
+                            android:text="-"
                             android:textColor="#ffffff"
-                            android:textSize="26dp" />
+                            android:textSize="24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -95,18 +100,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:gravity="center"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:textColor="#ffffff" />
+
                         <TextView
+                            android:id="@+id/tv_grow"
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:text="+2.5"
+                            android:gravity="right"
+                            android:paddingRight="5dp"
+                            android:text="-"
                             android:textColor="#ffffff"
-                            android:textSize="26dp" />
+                            android:textSize="24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -118,20 +128,25 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:orientation="horizontal">
+
                         <TextView
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="상위"
                             android:textColor="#ffffff" />
+
                         <TextView
+                            android:id="@+id/tv_rank"
                             android:layout_width="70dp"
                             android:layout_height="wrap_content"
-                            android:text="14"
+                            android:gravity="right"
+                            android:paddingRight="5dp"
+                            android:text="-"
                             android:textColor="#ffffff"
-                            android:textSize="26dp" />
+                            android:textSize="24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -156,7 +171,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tv_analysis_height50"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"
@@ -167,12 +184,16 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="horizontal">
+
                         <ImageView
+                            android:id="@+id/iv_analysis_height50_diff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="5dp"
                             android:src="@drawable/icon_report_down" />
+
                         <TextView
+                            android:id="@+id/tv_analysis_height50_diff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="4.5cm"
@@ -187,7 +208,9 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
+
                     <TextView
+                        android:id="@+id/tv_analysis_height"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="5dp"
@@ -200,11 +223,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/iv_analysis_height_diff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingRight="5dp"
                             android:src="@drawable/icon_report_up" />
+
                         <TextView
+                            android:id="@+id/tv_analysis_height_diff"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="2.5cm"
@@ -229,18 +255,21 @@
                     android:layout_height="wrap_content"
                     android:padding="10dp"
                     android:text="분석:" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다." />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다." />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -254,9 +283,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:src="@drawable/btn_share"
                     android:background="#00000000"
-                    android:onClick="onClick" />
+                    android:onClick="onClick"
+                    android:src="@drawable/btn_share" />
 
                 <!--그래프-->
                 <com.github.mikephil.charting.charts.CombinedChart

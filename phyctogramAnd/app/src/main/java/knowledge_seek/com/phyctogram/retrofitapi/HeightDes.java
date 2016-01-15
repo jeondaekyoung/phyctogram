@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram.retrofitapi;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -35,6 +36,10 @@ public class HeightDes implements JsonDeserializer<Height> {
         int rank = json.getAsJsonObject().get("rank").getAsInt();
         double height_50 = json.getAsJsonObject().get("height_50").getAsDouble();
 
-        return new Height(height_seq, user_seq, date, height, rank, height_50);
+        String animal_img = null;
+        if(!json.getAsJsonObject().get("animal_img").isJsonNull()){
+            animal_img = json.getAsJsonObject().get("animal_img").getAsString();
+        }
+        return new Height(height_seq, user_seq, date, height, rank, height_50, animal_img);
     }
 }

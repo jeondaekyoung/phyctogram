@@ -16,18 +16,20 @@ public class Height {
     private String grow;        //전기록과의 차이
     private int rank;               //상위
     private double height_50;   //평균키
+    private String animal_img;      //내 아이 캐릭터 이미지
 
     public Height() {
 
     }
 
-    public Height(String height_seq, int user_seq, String mesure_date, double height, int rank, double height_50) {
+    public Height(String height_seq, int user_seq, String mesure_date, double height, int rank, double height_50, String animal_img) {
         this.height_seq = height_seq;
         this.user_seq = user_seq;
         this.mesure_date = mesure_date;
         this.height = height;
         this.rank = rank;
         this.height_50 = height_50;
+        this.animal_img = animal_img;
     }
 
     public String getHeight_seq() {
@@ -86,6 +88,14 @@ public class Height {
         this.height_50 = height_50;
     }
 
+    public String getAnimal_img() {
+        return animal_img;
+    }
+
+    public void setAnimal_img(String animal_img) {
+        this.animal_img = animal_img;
+    }
+
     @Override
     public String toString() {
         return "Height{" +
@@ -96,6 +106,7 @@ public class Height {
                 ", grow='" + grow + '\'' +
                 ", rank=" + rank +
                 ", height_50=" + height_50 +
+                ", animal_img='" + animal_img + '\'' +
                 '}';
     }
 }
