@@ -30,4 +30,10 @@ public interface HeightMapper {
 	double selectAveHeightByHeight(Height h);
 
 	int selectExistHeightByUserSeq(int user_seq);
+
+	List<Height> selectMax2HeightByUserSeq(int user_seq);
+
+	String selectAnimalByHeight(Height h);
+
+	String selectMaxAnimalByHeight(Height h);
 }

@@ -109,6 +109,37 @@
     ]]>
 	</select>
 	
+	<select id="selectAnimalByHeight" parameterType="Height" resultType="String">
+	<![CDATA[
+		SELECT animal_img
+		  FROM analysis_2007_tb
+        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
+                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+                                         , 228)
+            AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
+            AND height >= #{height}
+     ORDER BY analysis_seq
+           LIMIT 1
+    ]]>
+	</select>
+	
+	<select id="selectMaxAnimalByHeight" parameterType="Height" resultType="String">
+	<![CDATA[
+		SELECT animal_img
+		  FROM analysis_2007_tb
+        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
+                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
+                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+                                         , 228)
+            AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
+     ORDER BY analysis_seq DESC
+           LIMIT 1
+    ]]>
+	</select>
+	
 	<select id="selectAveHeightByHeight" parameterType="Height" resultType="Double">
 	<![CDATA[
 		SELECT height
@@ -128,6 +159,21 @@
 		  FROM height_tb
 		WHERE user_seq = #{user_seq}
 	</select>
+	
+	<select id="selectMax2HeightByUserSeq" parameterType="Integer" resultType="Height">
+		SELECT height_seq, height, mesure_date, user_seq
+		  FROM height_tb
+		WHERE user_seq = #{user_seq}
+	 ORDER BY mesure_date DESC
+	      LIMIT 2 
+	</select>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

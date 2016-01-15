@@ -10,6 +10,7 @@ public class Height {
 	private double height;
 	private int rank;
 	private double height_50;
+	private String animal_img;
 	public String getHeight_seq() {
 		return height_seq;
 	}
@@ -46,10 +47,17 @@ public class Height {
 	public void setHeight_50(double height_50) {
 		this.height_50 = height_50;
 	}
+	public String getAnimal_img() {
+		return animal_img;
+	}
+	public void setAnimal_img(String animal_img) {
+		this.animal_img = animal_img;
+	}
 	@Override
 	public String toString() {
 		return "Height [height_seq=" + height_seq + ", user_seq=" + user_seq + ", mesure_date=" + mesure_date
-				+ ", height=" + height + ", rank=" + rank + ", height_50=" + height_50 + "]";
+				+ ", height=" + height + ", rank=" + rank + ", height_50=" + height_50 + ", animal_img=" + animal_img
+				+ "]";
 	}
 	
 }

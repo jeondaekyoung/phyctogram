@@ -81,4 +81,19 @@ public interface HeightDao {
 	 * @return
 	 */
 	int selectExistHeightByUserSeq(int user_seq);
+
+	/**
+	 * 최근신장 2개 불러오기
+	 * @param user_seq
+	 * @return
+	 */
+	List<Height> selectMax2HeightByUserSeq(int user_seq);
+
+	/**
+	 * 캐릭터가져오기(나이가 19세초과,개월로 228개월초과시, 19세를 기준으로 상위를가져온다)
+	 * 키가 커서 데이터가 없을 경우 상위3%가져온다
+	 * @param h
+	 * @return
+	 */
+	String selectAnimalByHeight(Height h);
 }

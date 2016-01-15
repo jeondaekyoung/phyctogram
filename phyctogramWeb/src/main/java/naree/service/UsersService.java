@@ -3,6 +3,7 @@ package naree.service;
 import java.util.List;
 
 import naree.db.domain.Analysis;
+import naree.db.domain.Height;
 import naree.db.domain.Users;
 
 public interface UsersService {
@@ -41,5 +42,19 @@ public interface UsersService {
 	 * @return
 	 */
 	Analysis findMonthNumAnimalByUserSeq(int user_seq);
+
+	/**
+	 * 메인페이지 내 아이 메인(분석)정보 계산하기
+	 * @param user_seq
+	 * @return
+	 */
+	List<Height> findUsersMainInfoByUserSeq(int user_seq);
+
+	/**
+	 * 분석페이지 내 아이 키성장 분석
+	 * @param user_seq
+	 * @return
+	 */
+	List<Height> findUsersAnalysisByUserSeq(int user_seq);
 
 }

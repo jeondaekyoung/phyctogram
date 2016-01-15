@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import naree.db.domain.Analysis;
+import naree.db.domain.Height;
 import naree.db.domain.Users;
 import naree.service.UsersService;
 
@@ -100,6 +101,30 @@ public class UsersRestController {
 		logger.info("findMonthNumAnimalByUserSeq 실행 : " + user_seq);
 		
 		return usersService.findMonthNumAnimalByUserSeq(user_seq);
+	}
+	
+	/**
+	 * 메인페이지 내 아이 메인(분석)정보 계산하기
+	 * @param user_seq
+	 * @return
+	 */
+	@RequestMapping(value = "findUsersMainInfoByUserSeq", method = RequestMethod.GET)
+	public List<Height> findUsersMainInfoByUserSeq(@RequestParam int user_seq){
+		logger.info("findUsersMainInfoByUserSeq 실행 : " + user_seq);
+		
+		return usersService.findUsersMainInfoByUserSeq(user_seq);
+	}
+	
+	/**
+	 * 내 아이 키성장 분석
+	 * @param user_seq
+	 * @return
+	 */
+	@RequestMapping(value = "findUsersAnalysisByUserSeq", method = RequestMethod.GET)
+	public List<Height> findUsersAnalysisByUserSeq(@RequestParam int user_seq){
+		logger.info("findUsersAnalysisByUserSeq 실행 : " + user_seq);
+		
+		return usersService.findUsersAnalysisByUserSeq(user_seq);
 	}
 	
 }

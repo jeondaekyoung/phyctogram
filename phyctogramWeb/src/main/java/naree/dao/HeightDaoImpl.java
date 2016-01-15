@@ -180,4 +180,37 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	@Override
+	public List<Height> selectMax2HeightByUserSeq(int user_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		List<Height> heights = new ArrayList<Height>();
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			heights = heightMapper.selectMax2HeightByUserSeq(user_seq);
+		}finally{
+			sqlSession.close();
+		}
+
+		return heights;
+	}
+
+	@Override
+	public String selectAnimalByHeight(Height h) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		String result ;
+		try{
+			HeightMapper heightMapper = sqlSession.getMapper(HeightMapper.class);
+			//나이가 19세초과, 229개월 초과시 228개월로 계산(쿼리계산)
+			result = heightMapper.selectAnimalByHeight(h);
+			if(result == null){
+				//키가 커서 데이터가 없을 경우 상위3%가져온다
+				result = heightMapper.selectMaxAnimalByHeight(h);
+			}
+			
+		}finally{
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }
