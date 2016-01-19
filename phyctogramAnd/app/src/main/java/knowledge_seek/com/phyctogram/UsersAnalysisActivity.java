@@ -73,6 +73,7 @@ public class UsersAnalysisActivity extends BaseActivity {
     private ImageButton btn_share;
 
     private LinearLayout ll_capture;                   //캡쳐화면
+    private Bitmap captureView;                         //캡처화면 저장할 비트맵
     private TextView tv_users_name;               //아이 이름 출력
     private ImageView iv_my_animal;                        //캐릭터
     private TextView tv_height;                         //최종신장
@@ -142,15 +143,12 @@ public class UsersAnalysisActivity extends BaseActivity {
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ll_capture.buildDrawingCache();
-                Bitmap captureView = ll_capture.getDrawingCache();
-                //FileOutputStream fos;
-                /*try {
-                    fos = new FileOutputStream(Environment.getExternalStorageDirectory().toString()+"/capture.jpeg");
-                    captureView.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }*/
+                //뷰가 업데이트 될 때마다 그 때의 뷰 이미지를 Drawing cache에 저장할지 여부를 결정합니다.
+                ll_capture.setDrawingCacheEnabled(true);
+                //뷰 이미지를 Drawing cache에 저장합니다. Drawing cache enabled 속성이 활성화되어 있다면 이 메서드를 호출하지 않아도 자동으로 Drawing cache에 뷰의 이미지가 저장됩니다.
+                //ll_capture.buildDrawingCache();
+                //Drawing cache에 저장된 뷰의 이미지를 Bitmap 형태로 반환합니다.
+                Bitmap cache = ll_capture.getDrawingCache();
 
                 View popupView = getLayoutInflater().inflate(R.layout.activity_report_share, null);
                 //레이아웃 정의
@@ -162,11 +160,37 @@ public class UsersAnalysisActivity extends BaseActivity {
                     }
                 });
                 ImageView iv_capture= (ImageView)popupView.findViewById(R.id.iv_capture);
+                captureView = Bitmap.createBitmap(cache);
                 iv_capture.setImageBitmap(captureView);
+
+                ImageButton imBtn_fb = (ImageButton)popupView.findViewById(R.id.imBtn_fb);
+                imBtn_fb.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "페이스북에 공유하기", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton imBtn_ks = (ImageButton)popupView.findViewById(R.id.imBtn_ks);
+                imBtn_ks.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "카카오스트리에 공유하기", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                ImageButton imBtn_kt = (ImageButton)popupView.findViewById(R.id.imBtn_kt);
+                imBtn_kt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(), "카카오톡에 공유하기", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 popup = new PopupWindow(popupView,
                         RelativeLayout.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                 popup.setAnimationStyle(-1); // 애니메이션 설정(-1:설정, 0:설정안함)
                 popup.showAtLocation(popupView, Gravity.CENTER, 0, -100);
+
+                ll_capture.setDrawingCacheEnabled(false);
             }
         });
 

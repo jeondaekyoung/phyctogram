@@ -46,18 +46,21 @@
             android:padding="10dp">
 
             <ImageButton
+                android:id="@+id/imBtn_fb"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/icon_fb" />
 
             <ImageButton
+                android:id="@+id/imBtn_ks"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="40dp"
                 android:background="@drawable/icon_ks" />
 
             <ImageButton
+                android:id="@+id/imBtn_kt"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/icon_kt" />
