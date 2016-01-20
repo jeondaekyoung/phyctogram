@@ -41,6 +41,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/borderbottom"
+                android:gravity="fill_vertical"
+                android:paddingLeft="15dp"
+                android:text="HOME" />
 
             <ListView
                 android:id="@+id/lv_usersList"

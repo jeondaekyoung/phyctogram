@@ -65,7 +65,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="최종신장"
@@ -96,8 +96,10 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="52dp"
                         android:layout_height="wrap_content"
+                        android:text="("
+                        android:gravity="right"
                         android:textColor="#ffffff" />
 
                     <TextView
@@ -113,7 +115,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="cm"
+                        android:text="cm)"
                         android:textColor="#ffffff" />
                 </LinearLayout>
 
@@ -124,7 +126,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="70dp"
+                        android:layout_width="50dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="상위"
@@ -169,17 +171,15 @@
 
                     <ImageButton
                         android:id="@+id/btn_users_record"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
                         android:background="@drawable/main1" />
 
                     <ImageButton
                         android:id="@+id/btn_users_analysis"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_width="165dp"
+                        android:layout_height="165dp"
                         android:background="@drawable/main2" />
                 </LinearLayout>
 
