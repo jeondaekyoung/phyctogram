@@ -6,32 +6,32 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:background="@drawable/menu"
-            android:orientation="horizontal"
-            android:paddingBottom="15dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/menu"
+        android:orientation="horizontal"
+        android:paddingBottom="15dp">
 
-            <com.pkmmte.view.CircularImageView
-                android:id="@+id/img_profile"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/sample" />
+        <com.pkmmte.view.CircularImageView
+            android:id="@+id/img_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:src="@drawable/sample" />
 
-            <TextView
-                android:id="@+id/tv_member_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="8dp"
-                android:textSize="14dp"
-                android:layout_toRightOf="@id/img_profile"
-                android:text="아이디 님"
-                android:textColor="#ffffff" />
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:layout_toRightOf="@id/img_profile"
+            android:text="아이디 님"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,7 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <Button
+                android:id="@+id/btn_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
@@ -57,13 +59,14 @@
                 android:dividerHeight="1dp" />
 
             <Button
-                android:id="@+id/btn_usersManage"
+                android:id="@+id/btn_usersDiary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
-                android:text="내 아이 관리" />
+                android:text="육아일기" />
+
             <Button
                 android:id="@+id/btn_dataInput"
                 android:layout_width="match_parent"
@@ -74,22 +77,21 @@
                 android:text="직접 키 입력" />
 
             <Button
-                android:id="@+id/btn_usersDiary"
+                android:id="@+id/btn_usersManage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
-                android:text="육아일기" />
-
+                android:paddingLeft="10dp"
+                android:text="내 아이 관리" />
 
             <Button
                 android:id="@+id/btn_setup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
-                android:paddingLeft="10dp"
                 android:gravity="fill_vertical"
+                android:paddingLeft="10dp"
                 android:text="설정" />
         </LinearLayout>
     </ScrollView>

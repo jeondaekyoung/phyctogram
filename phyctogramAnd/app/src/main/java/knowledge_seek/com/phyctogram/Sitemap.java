@@ -70,7 +70,7 @@ public class Sitemap extends AppCompatActivity {
                 break;
 
             case R.id.btn_calendar:
-                Intent btn12 = new Intent(this, CalendarActivity.class);
+                Intent btn12 = new Intent(this, UsersDiaryActivity.class);
                 startActivity(btn12);
                 break;
             case R.id.btn_set:

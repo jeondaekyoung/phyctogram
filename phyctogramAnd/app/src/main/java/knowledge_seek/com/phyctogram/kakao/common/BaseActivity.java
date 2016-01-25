@@ -70,9 +70,10 @@ public class BaseActivity extends Activity {
     //레이아웃 정의
     public ListView lv_usersList;
     public UsersListSlideAdapter usersListSlideAdapter;
-    private Button btn_usersManage;     //내아이관리
+    private Button btn_home;                //메인으로가기
     private Button btn_usersDiary;          //육아일기
     private Button btn_dataInput;           //직접입력
+    private Button btn_usersManage;     //내아이관리
     private Button btn_setup;               //설정
 
 
@@ -101,15 +102,14 @@ public class BaseActivity extends Activity {
         lv_usersList.setAdapter(usersListSlideAdapter);
 
         //슬라이드 내 이동 버튼 정의
-        btn_usersManage = (Button) findViewById(R.id.btn_usersManage);
-        btn_usersManage.setOnClickListener(new View.OnClickListener() {
+        btn_home = (Button)findViewById(R.id.btn_home);
+        btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
+            //Toast.makeText(BaseActivity.this, "메인페이지 가기", Toast.LENGTH_SHORT).show();
             public void onClick(View v) {
-                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -118,11 +118,9 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
                 Intent intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
@@ -134,7 +132,17 @@ public class BaseActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                //menuLeftSlideAnimationToggle();
+                finish();
+            }
+        });
+        btn_usersManage = (Button) findViewById(R.id.btn_usersManage);
+        btn_usersManage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
                 finish();
             }
         });
@@ -146,7 +154,6 @@ public class BaseActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
-                //menuLeftSlideAnimationToggle();
                 finish();
             }
         });
