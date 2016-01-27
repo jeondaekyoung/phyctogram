@@ -75,7 +75,7 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("-진우-", "BaseActivity.onCreate() 실행");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_base);
 
         //데이터셋팅
         /*Bundle bundle = this.getIntent().getExtras();
