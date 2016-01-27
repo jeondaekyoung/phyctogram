@@ -64,13 +64,19 @@ public class SettingActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_setting, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,7 +100,6 @@ public class SettingActivity extends BaseActivity {
         tv_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("-진우-", "공지사항 클릭");
                 Toast.makeText(getApplicationContext(), "준비중입니다", Toast.LENGTH_LONG).show();
             }
         });
@@ -103,12 +108,11 @@ public class SettingActivity extends BaseActivity {
         tv_equip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("-진우-", "내기기 클릭");
                 //Toast.makeText(getApplicationContext(), "내기기", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), EquipmentActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         //로그아웃
@@ -116,7 +120,6 @@ public class SettingActivity extends BaseActivity {
         tv_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("-진우-", "로그아웃 클릭");
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
                 builder.setMessage("로그아웃 하시겠습니까?")
                         .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
@@ -128,20 +131,17 @@ public class SettingActivity extends BaseActivity {
                                     if (accessToken != null) {
                                         LoginManager.getInstance().logOut();
                                     }
-                                    finish();
                                     redirectLoginActivity();
                                 } else if(member.getJoin_route().equals("kakao")){
                                     UserManagement.requestLogout(new LogoutResponseCallback() {
                                         @Override
                                         public void onCompleteLogout() {
-                                            finish();
                                             redirectLoginActivity();
                                         }
                                     });
 
                                 } else if(member.getJoin_route().equals("phyctogram")){
                                     SaveSharedPreference.clearMemberSeq(getApplicationContext());
-                                    finish();
                                     redirectLoginActivity();
                                 }
                             }
@@ -160,12 +160,11 @@ public class SettingActivity extends BaseActivity {
         tv_pwmod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("-진우-", "비밀번호 변경");
                 //Toast.makeText(getApplicationContext(), "비밀번호 변경", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), PwmodActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         //회원탈퇴
@@ -173,12 +172,11 @@ public class SettingActivity extends BaseActivity {
         tv_withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d("-진우-", "회원탈퇴");
                 //Toast.makeText(getApplicationContext(), "회원탈퇴", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }
@@ -188,23 +186,20 @@ public class SettingActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "SettingActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이목록, 계정이름, 계정이미지)
-        SettingTask task = new SettingTask();
-        task.execute(img_profile);
+        //SettingTask task = new SettingTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "SettingActivity 에서 onResume() : " + member.toString());
-
-        String name = null;
-        if(member.getJoin_route().equals("kakao")){
-            name = member.getKakao_nickname() + " 님";
-        } else if(member.getJoin_route().equals("facebook")){
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if(name != null){
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "SettingActivity.onResume() 끝");
     }
@@ -230,15 +225,15 @@ public class SettingActivity extends BaseActivity {
             img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e){
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if(member.getJoin_route().equals("kakao")){
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -271,13 +266,13 @@ public class SettingActivity extends BaseActivity {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if(bitmap != null){
+            /*if(bitmap != null){
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -300,7 +295,7 @@ public class SettingActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

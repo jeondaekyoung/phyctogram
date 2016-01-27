@@ -35,6 +35,7 @@ import knowledge_seek.com.phyctogram.listAdapter.SqlCommntyListViewListAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.SqlCommntyListViewAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 
 /**
@@ -68,13 +69,19 @@ public class CommunityListActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_community_list, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -99,9 +106,9 @@ public class CommunityListActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CommunityWriteActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         //최신 글 목록 읽어오기
@@ -140,10 +147,10 @@ public class CommunityListActivity extends BaseActivity {
                 SqlCommntyListView sqlCommntyListView = (SqlCommntyListView)sqlCommntyListViewListAdapter.getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(), CommunityViewActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 intent.putExtra("sqlCommntyListView", sqlCommntyListView);
                 startActivity(intent);
-                finish();
+                //finish();
 
             }
         });
@@ -155,25 +162,20 @@ public class CommunityListActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "CommunityListActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
-        CommunityListTask task = new CommunityListTask();
-        task.execute(img_profile);
+        /*CommunityListTask task = new CommunityListTask();
+        task.execute(img_profile);*/
 
         Log.d("-진우-", "CommunityListActivity.onResume() : " + member.toString());
-
-        //슬라이드메뉴 계정이름 셋팅
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
-
 
         //새로읽어오기
         pageCnt = 0;
@@ -204,15 +206,15 @@ public class CommunityListActivity extends BaseActivity {
             img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -245,13 +247,13 @@ public class CommunityListActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if(bitmap != null) {
+            /*if(bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -261,19 +263,22 @@ public class CommunityListActivity extends BaseActivity {
                 for (Users u : usersTask) {
                     Log.d("-진우-", "내 아이 : " + u.toString());
                 }
-                usersList = usersTask;
-                usersListSlideAdapter.setUsersList(usersList);
+
                 if (nowUsers == null) {
                     nowUsers = usersTask.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+                usersList = usersTask;
+                //현재 선택된 내 아이를 맨 뒤로 이동
+                usersList = Utility.seqChange(usersList, nowUsers.getUser_seq());
+                usersListSlideAdapter.setUsersList(usersList);
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

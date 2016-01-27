@@ -70,8 +70,6 @@ public class DiaryViewActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_diary_view, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
         //데이터셋팅
         Bundle bundle = this.getIntent().getExtras();
@@ -82,12 +80,25 @@ public class DiaryViewActivity extends BaseActivity {
             Log.d("-진우-", "DiaryViewActivity 에 diary가 없다");
         }
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
-        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
+        //메인페이지 내 아이 이름 출력
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
+        if (nowUsers != null) {
+            tv_users_name.setText(nowUsers.getName());
+        }
+
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -141,8 +152,6 @@ public class DiaryViewActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), "삭제할 일기가 없습니다", Toast.LENGTH_LONG).show();
                     return;
                 }
-
-
 
                 String diary_date = et_diary_date.getText().toString();
 
@@ -202,7 +211,7 @@ public class DiaryViewActivity extends BaseActivity {
 
                 //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString().length());
                 if(et_diary_date.getText().toString().length() <= 0){
-                    Toast.makeText(getApplicationContext(), "삭제할 일기가 없습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "수정할 일기가 없습니다", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString());
@@ -251,23 +260,20 @@ public class DiaryViewActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "DiaryViewActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
-        DiaryViewTask task = new DiaryViewTask();
-        task.execute(img_profile);
+        //DiaryViewTask task = new DiaryViewTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "DiaryViewActivity.onResume() : " + member.toString());
-
-        String name = null;
-        if(member.getJoin_route().equals("kakao")){
-            name = member.getKakao_nickname() + " 님";
-        } else if(member.getJoin_route().equals("facebook")){
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if(name != null){
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "DiaryViewActivity.onResume() 끝");
     }
@@ -319,15 +325,15 @@ public class DiaryViewActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -360,13 +366,13 @@ public class DiaryViewActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -390,7 +396,7 @@ public class DiaryViewActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

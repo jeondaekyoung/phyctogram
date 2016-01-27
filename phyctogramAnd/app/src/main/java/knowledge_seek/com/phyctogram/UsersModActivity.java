@@ -53,7 +53,6 @@ public class UsersModActivity extends BaseActivity {
     private EditText et_name;
     private EditText et_initials;
     private DatePicker dp_lifedate;
-    //private RadioGroup rg_sexdstn;
     private RadioButton rb_female;
     private RadioButton rb_male;
     private Button btn_usersmod;
@@ -68,8 +67,7 @@ public class UsersModActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_users_mod, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
+
 
         //데이터셋팅
         Bundle bundle = this.getIntent().getExtras();
@@ -80,10 +78,18 @@ public class UsersModActivity extends BaseActivity {
             Log.d("-진우-", "UsersModActivity 에 users가 없다");
         }
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -92,6 +98,12 @@ public class UsersModActivity extends BaseActivity {
                 users = nowUsers;
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+
+                //선택 아이로 인한 순서 변경
+                Utility.seqChange(usersList, nowUsers.getUser_seq());
+                //내 아이 목록 셋팅
+                usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.notifyDataSetChanged();
 
                 init();
             }
@@ -111,7 +123,6 @@ public class UsersModActivity extends BaseActivity {
         et_name = (EditText)findViewById(R.id.et_name);
         et_initials = (EditText)findViewById(R.id.et_initials);
         dp_lifedate = (DatePicker)findViewById(R.id.dp_lifedate);
-        //rg_sexdstn = (RadioGroup)findViewById(R.id.rg_sexdstn);
         rb_female = (RadioButton)findViewById(R.id.rb_female);
         rb_male = (RadioButton)findViewById(R.id.rb_male);
         btn_usersmod = (Button)findViewById(R.id.btn_usersmod);
@@ -181,23 +192,20 @@ public class UsersModActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersModActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지)
-        UsersModTask task = new UsersModTask();
-        task.execute(img_profile);
+        //UsersModTask task = new UsersModTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "UsersModActivity.onResume() : " + member.toString());
-
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "UsersModActivity.onResume() 끝");
     }
@@ -232,16 +240,16 @@ public class UsersModActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
             //이미지 불러오기
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 InputStream in = null;
@@ -273,13 +281,13 @@ public class UsersModActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -302,11 +310,16 @@ public class UsersModActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     //내 아이 목록 읽어오기
@@ -342,25 +355,44 @@ public class UsersModActivity extends BaseActivity {
         protected void onPostExecute(Void aVoid) {
             if(usersTask != null && usersTask.size() > 0){
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
-                for(Users u : usersTask) {
-                    Log.d("-진우-", "내 아이 : " + u.toString());
-                }
-                usersList = usersTask;
-                usersListSlideAdapter.setUsersList(usersList);
 
-                for(Users s : usersList){
-                    //nowUsers를 수정한 아이라면 수정한 후의 데이터로 교체
-                    if(s.getUser_seq() == users.getUser_seq()){
-                        nowUsers = s;
+                //수정한 내 아이로 교체
+                for(Users ut : usersTask) {
+                    if(ut.getUser_seq() == users.getUser_seq()) {
+                        for(int i = 0; i<usersList.size(); i++) {
+                            if(usersList.get(i).getUser_seq() == users.getUser_seq()) {
+                                usersList.get(i).setMember_seq(ut.getMember_seq());
+                                usersList.get(i).setSexdstn(ut.getSexdstn());
+                                usersList.get(i).setLifyea(ut.getLifyea());
+                                usersList.get(i).setMt(ut.getMt());
+                                usersList.get(i).setDe(ut.getDe());
+                                usersList.get(i).setInitials(ut.getInitials());
+                                usersList.get(i).setName(ut.getName());
+                                break;
+                            }
+                        }
+                        break;
                     }
                 }
+
+                //nowUsers를 수정한 아이라면 수정한 후의 데이터로 교체
+                for(Users ul : usersList){
+                    if(ul.getUser_seq() == nowUsers.getUser_seq()){
+                        nowUsers = ul;
+                    }
+                }
+
+                //usersListSlideAdapter.setUsersList(usersList);
+
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
-            int height = getListViewHeight(lv_usersList);
+            /*int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
+
+            onBackPressed();
 
             dialog.dismiss();
             super.onPostExecute(aVoid);

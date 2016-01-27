@@ -63,20 +63,26 @@ public class PwmodActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_pw_modify, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nowUsers = (Users) usersListSlideAdapter.getItem(position);
+                /*nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
             }
         });
         //레이아웃 정의
@@ -128,6 +134,19 @@ public class PwmodActivity extends BaseActivity {
                 });
             }
         });
+
+        if (member.getJoin_route().equals("kakao")) {
+            ll_phyctogram.setVisibility(View.GONE);
+            ll_no_phyctogram.setVisibility(View.VISIBLE);
+            tv_join_route.setText("카카오 가입자입니다");
+        } else if (member.getJoin_route().equals("facebook")) {
+            ll_phyctogram.setVisibility(View.GONE);
+            ll_no_phyctogram.setVisibility(View.VISIBLE);
+            tv_join_route.setText("페이스북 가입자입니다");
+        } else {
+            ll_phyctogram.setVisibility(View.VISIBLE);
+            ll_no_phyctogram.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -135,31 +154,20 @@ public class PwmodActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "PwmodActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
-        PwmodTask task = new PwmodTask();
-        task.execute(img_profile);
+        //PwmodTask task = new PwmodTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "PwmodActivity 에서 onResume() : " + member.toString());
-
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-            ll_phyctogram.setVisibility(View.GONE);
-            ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("카카오 가입자입니다");
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-            ll_phyctogram.setVisibility(View.GONE);
-            ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("페이스북 가입자입니다");
-        } else {
-            name = member.getName() + " 님";
-            ll_phyctogram.setVisibility(View.VISIBLE);
-            ll_no_phyctogram.setVisibility(View.GONE);
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "PwmodActivity.onResume() 끝");
     }
@@ -202,15 +210,15 @@ public class PwmodActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -243,13 +251,13 @@ public class PwmodActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -272,7 +280,7 @@ public class PwmodActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

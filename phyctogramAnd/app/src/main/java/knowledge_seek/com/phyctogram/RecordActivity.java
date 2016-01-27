@@ -59,8 +59,8 @@ public class RecordActivity extends BaseActivity {
     private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private TextView tv_datepickFrom;
-    private TextView tv_datepickTo;
+    private TextView tv_datepickFrom;       //날짜
+    private TextView tv_datepickTo;           //날짜
     private Button btn_findHeight;
     private ListView lv_record;
     private HeightListRecordAdapter heightListRecordAdapter;
@@ -82,15 +82,26 @@ public class RecordActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_record, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView)findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView)findViewById(R.id.tv_member_name);
-        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
+        //메인페이지 내 아이 이름 출력
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
+        if (nowUsers != null) {
+            tv_users_name.setText(nowUsers.getName());
+        }
+
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,9 +110,16 @@ public class RecordActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
                 tv_users_name.setText(nowUsers.getName());
+
                 heightList.clear();
                 heightListRecordAdapter.setHeights(heightList);
                 heightListRecordAdapter.notifyDataSetChanged();
+
+                //선택 아이로 인한 순서 변경
+                Utility.seqChange(usersList, nowUsers.getUser_seq());
+                //내 아이 목록 셋팅
+                usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.notifyDataSetChanged();
             }
         });
 
@@ -110,7 +128,6 @@ public class RecordActivity extends BaseActivity {
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "슬라이드 클릭", Toast.LENGTH_SHORT).show();
                 menuLeftSlideAnimationToggle();
             }
         });
@@ -203,21 +220,22 @@ public class RecordActivity extends BaseActivity {
             }
         });
 
+        //초기디폴트 날짜 셋팅
+        datepickSetting();
         //달력 대화상자 띄우기
-        GregorianCalendar calendar = new GregorianCalendar();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
         tv_datepickFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String datepickFrom = tv_datepickFrom.getText().toString();
-                if(datepickFrom == null || datepickFrom.length() <= 0) {
+                /*if(datepickFrom == null || datepickFrom.length() <= 0) {
+                    //디폴트 1년전 날짜로 셋팅
                     new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, year, month, day).show();
                 } else {
                     new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, Integer.valueOf(datepickFrom.substring(0,4)),
                             Integer.valueOf(datepickFrom.substring(5,7))-1, Integer.valueOf(datepickFrom.substring(8))).show();
-                }
+                }*/
+                new DatePickerDialog(RecordActivity.this, dateSetListenerFrom, Integer.valueOf(datepickFrom.substring(0,4)),
+                        Integer.valueOf(datepickFrom.substring(5,7))-1, Integer.valueOf(datepickFrom.substring(8))).show();
                 setTheme(R.style.AppTheme);
             }
         });
@@ -225,12 +243,15 @@ public class RecordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 String datepickTo = tv_datepickTo.getText().toString();
-                if(datepickTo == null || datepickTo.length() <= 0){
+                /*if(datepickTo == null || datepickTo.length() <= 0){
+                    //디폴트로 오늘날짜
                     new DatePickerDialog(RecordActivity.this, dateSetListenerTo, year, month, day).show();
                 } else {
                     new DatePickerDialog(RecordActivity.this, dateSetListenerTo, Integer.valueOf(datepickTo.substring(0,4)),
                             Integer.valueOf(datepickTo.substring(5,7))-1, Integer.valueOf(datepickTo.substring(8))).show();
-                }
+                }*/
+                new DatePickerDialog(RecordActivity.this, dateSetListenerTo, Integer.valueOf(datepickTo.substring(0,4)),
+                        Integer.valueOf(datepickTo.substring(5,7))-1, Integer.valueOf(datepickTo.substring(8))).show();
                 setTheme(R.style.AppTheme);
             }
         });
@@ -240,24 +261,34 @@ public class RecordActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
-        RecordTask task = new RecordTask();
-        task.execute(img_profile);
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
 
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
+        //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
+        /*RecordTask task = new RecordTask();
+        task.execute(img_profile);*/
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
 
-        String name = null;
-        if(member.getJoin_route().equals("kakao")){
-            name = member.getKakao_nickname() + " 님";
-        } else if(member.getJoin_route().equals("facebook")){
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if(name != null){
-            tv_member_name.setText(name);
-        }
+
         Log.d("-진우-", "MainActivity.onResume() 끝");
+    }
+
+    //초기디폴트 날짜 셋팅
+    private void datepickSetting() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        String msg = String.valueOf(year-1).concat("-").concat(Utility.dateFormat(month + 1)).concat("-").concat(Utility.dateFormat(day));
+        tv_datepickFrom.setText(msg);
+        msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(month + 1)).concat("-").concat(Utility.dateFormat(day));
+        tv_datepickTo.setText(msg);
     }
 
     //날짜 입력
@@ -275,6 +306,15 @@ public class RecordActivity extends BaseActivity {
             tv_datepickTo.setText(msg);
         }
     };
+
+    //날짜 입력 체크
+    private boolean checkDate(String dateFrom, String dateTo){
+        if(dateFrom.length() <= 0 || dateTo.length() <= 0){
+            Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 
     //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class RecordTask extends AsyncTask<Object, Void, Bitmap> {
@@ -297,15 +337,15 @@ public class RecordActivity extends BaseActivity {
             img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if(member.getJoin_route().equals("kakao")){
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -338,14 +378,14 @@ public class RecordActivity extends BaseActivity {
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-            }
+            }*/
 
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if(bitmap != null){
+            /*if(bitmap != null){
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -355,36 +395,29 @@ public class RecordActivity extends BaseActivity {
                 for (Users u : usersTask) {
                     Log.d("-진우-", "내 아이 : " + u.toString());
                 }
-                usersList = usersTask;
 
-                usersListSlideAdapter.setUsersList(usersList);
                 if (nowUsers == null) {
                     nowUsers = usersTask.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
                 tv_users_name.setText(nowUsers.getName());
+                usersList = usersTask;
+                //현재 선택된 내 아이를 맨 뒤로 이동
+                usersList = Utility.seqChange(usersList, nowUsers.getUser_seq());
+                usersListSlideAdapter.setUsersList(usersList);
+
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
             }
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
         }
     }
-
-    //날짜 입력 체크
-    private boolean checkDate(String dateFrom, String dateTo){
-        if(dateFrom.length() <= 0 || dateTo.length() <= 0){
-            Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
-
 
     //기록조회
     private class FindHeightByUserSeqFTTask extends AsyncTask<Void, Void, List<Height>>{

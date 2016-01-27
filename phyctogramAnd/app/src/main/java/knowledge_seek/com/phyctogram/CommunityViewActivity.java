@@ -65,6 +65,7 @@ public class CommunityViewActivity extends BaseActivity {
     private SqlCommntyListView sqlCommntyListView = new SqlCommntyListView();
     private Commnty commnty = new Commnty();
     private List<Comment> CommentList = new ArrayList<Comment>();
+    private boolean goMain = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,22 +74,34 @@ public class CommunityViewActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_community_view, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
         //데이터셋팅
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null){
             sqlCommntyListView = (SqlCommntyListView)bundle.getSerializable("sqlCommntyListView");
             Log.d("-진우-", "CommunityViewActivity 에서 " + sqlCommntyListView.toString());
+            /*if(bundle.getSerializable("goMain") != null) {
+                goMain = (boolean)bundle.getSerializable("goMain");
+                Log.d("-진우-", "메인으로 갑니까 : " + goMain);
+            } else {
+                Log.d("-진우-", "메인으로 갑니까 : " + goMain);
+            }*/
         } else {
             Log.d("-진우-", "CommunityViewActivity 에 sqlCommntyListView가 없다.");
         }
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,7 +146,7 @@ public class CommunityViewActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CommunityCommentActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 intent.putExtra("sqlCommntyListView", sqlCommntyListView);
                 startActivity(intent);
             }
@@ -146,30 +159,39 @@ public class CommunityViewActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "CommunityViewActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지)
-        CommunityViewTask task = new CommunityViewTask();
-        task.execute(img_profile);
+        //CommunityViewTask task = new CommunityViewTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "CommunityViewActivity 에 onResume() : " + member.toString());
-
-        //슬라이드메뉴 계정이름 셋팅
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
 
         FindCommntyAndCommentTask task1 = new FindCommntyAndCommentTask(sqlCommntyListView.getCommnty_seq());
         task1.execute();
 
         Log.d("-진우-", "CommunityViewActivity.onResume() 끝");
     }
+
+    /*@Override
+    public void onBackPressed() {
+        if(goMain == true) {
+            //메인에서 왔을 경우 메인으로 간다.
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("member", member);
+            startActivity(intent);
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }*/
 
     //수다방글보기페이지 초기 데이터조회(슬라이드 내 아이 목록, 내 이미지)
     private class CommunityViewTask extends AsyncTask<Object, Void, Bitmap> {
@@ -192,16 +214,16 @@ public class CommunityViewActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
             //이미지 불러오기
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 InputStream in = null;
@@ -233,13 +255,13 @@ public class CommunityViewActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -262,7 +284,7 @@ public class CommunityViewActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

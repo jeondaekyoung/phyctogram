@@ -37,6 +37,7 @@ import knowledge_seek.com.phyctogram.listAdapter.MonthItem;
 import knowledge_seek.com.phyctogram.retrofitapi.DiaryAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 
 /**
@@ -74,15 +75,26 @@ public class UsersDiaryActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_calendar, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
-        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
+        //메인페이지 내 아이 이름 출력
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
+        if (nowUsers != null) {
+            tv_users_name.setText(nowUsers.getName());
+        }
+
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -90,9 +102,13 @@ public class UsersDiaryActivity extends BaseActivity {
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
-                if (tv_users_name != null) {
-                    tv_users_name.setText(nowUsers.getName());
-                }
+                tv_users_name.setText(nowUsers.getName());
+
+                //선택 아이로 인한 순서 변경
+                Utility.seqChange(usersList, nowUsers.getUser_seq());
+                //내 아이 목록 셋팅
+                usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.notifyDataSetChanged();
 
                 //달력페이지에 출력할 일기 불러오기
                 if(nowUsers != null){
@@ -135,10 +151,10 @@ public class UsersDiaryActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 //Toast.makeText(getApplicationContext(), "일기보기", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), DiaryViewActivity.class);
-                                intent.putExtra("member", member);
+                                //intent.putExtra("member", member);
                                 intent.putExtra("diary", d);
                                 startActivity(intent);
-                                finish();
+                                //finish();
                             }
                         });
                         dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
@@ -202,9 +218,9 @@ public class UsersDiaryActivity extends BaseActivity {
                 //Toast.makeText(getApplicationContext(), "일기 쓰기 클릭", Toast.LENGTH_SHORT).show();
                 if(nowUsers != null) {
                     Intent intent = new Intent(getApplicationContext(), DiaryWriteActivity.class);
-                    intent.putExtra("member", member);
+                    //intent.putExtra("member", member);
                     startActivity(intent);
-                    finish();
+                    //finish();
                 } else {
                     Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                 }
@@ -221,23 +237,26 @@ public class UsersDiaryActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersDiaryActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이름, 계정이미지, 일기 목록)
-        UsersDiaryTask task = new UsersDiaryTask();
-        task.execute(img_profile);
+        //UsersDiaryTask task = new UsersDiaryTask();
+        //task.execute(img_profile);
+
+        //달력페이지에 출력할 일기 불러오기
+        if(nowUsers != null){
+            ReUserDiaryTask task = new ReUserDiaryTask();
+            task.execute();
+        }
 
         Log.d("-진우-", "UsersDiaryActivity.onResume() : " + member.toString());
-
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "UsersDiaryActivity.onResume() 끝");
     }
@@ -279,13 +298,13 @@ public class UsersDiaryActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
             //일기 목록 읽어오기
             if(nowUsers != null) {
@@ -300,7 +319,7 @@ public class UsersDiaryActivity extends BaseActivity {
 
 
             //이미지 불러오기
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 InputStream in = null;
@@ -332,13 +351,13 @@ public class UsersDiaryActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -362,7 +381,7 @@ public class UsersDiaryActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
 
             //일기

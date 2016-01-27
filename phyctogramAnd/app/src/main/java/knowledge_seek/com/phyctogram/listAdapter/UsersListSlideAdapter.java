@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram.listAdapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import knowledge_seek.com.phyctogram.domain.Users;
  */
 public class UsersListSlideAdapter extends BaseAdapter {
     private Context context;
-    TextView tv;
+
 
     //리스트
     private List<Users> usersList = new ArrayList<Users>();
@@ -27,7 +28,8 @@ public class UsersListSlideAdapter extends BaseAdapter {
     }
 
     public void setUsersList(List<Users> list){
-        usersList = list;
+        usersList.clear();
+        usersList.addAll(list);
     }
 
     @Override
@@ -47,15 +49,24 @@ public class UsersListSlideAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView == null){
+        /*if(convertView == null){
             tv = (TextView) LayoutInflater.from(context).inflate(
                     android.R.layout.simple_list_item_1, parent, false);
             tv.setText(usersList.get(position).getName());
-
+            Log.d("-내아이목록 리스트 null-", "번호 " + position);
         } else {
             tv = (TextView)convertView;
             tv.setText(usersList.get(position).getName());
-        }
+            Log.d("-내아이목록 리스트-", "번호 " + position);
+        }*/
+        /*tv = (TextView) LayoutInflater.from(context).inflate(
+                android.R.layout.simple_list_item_1, parent, false);
+        tv.setText(usersList.get(position).getName());*/
+
+        //Log.d("내아이목록리스트", position + usersList.get(position).toString());
+        TextView tv = (TextView) LayoutInflater.from(context).inflate(
+                android.R.layout.simple_list_item_1, parent, false);
+        tv.setText(usersList.get(position).getName());
         return tv;
     }
 }

@@ -26,6 +26,7 @@ import com.squareup.okhttp.Request;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
@@ -33,6 +34,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.UsersListManageAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -62,23 +64,30 @@ public class UsersManageActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_users_manage, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nowUsers = (Users)usersListSlideAdapter.getItem(position);
+                /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
 
             }
         });
+
 
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
@@ -96,9 +105,9 @@ public class UsersManageActivity extends BaseActivity {
                 //Toast.makeText(UsersManageActivity.this, "내아이 추가하러 가자", Toast.LENGTH_SHORT).show();
                 //menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersAddActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         lv_usersList_manage = (ListView) findViewById(R.id.lv_usersList_manage);
@@ -110,14 +119,13 @@ public class UsersManageActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Users users = (Users) usersListManageAdapter.getItem(position);
-
                 //Log.d("-진우-", "수정할 아이 : " + users.toString());
                 //menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersModActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 intent.putExtra("users", users);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
 
@@ -127,8 +135,8 @@ public class UsersManageActivity extends BaseActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 final Users users = (Users) usersListManageAdapter.getItem(position);
-
                 //Log.d("-진우-", "삭제 : " + users.getName());
+
                 AlertDialog.Builder dialog = new AlertDialog.Builder(UsersManageActivity.this);
                 dialog.setTitle("'" + users.getName() + "' 삭제");
                 dialog.setMessage("아이를 삭제할 경우 아이의 키와 일기도 삭제됩니다. " +
@@ -152,6 +160,7 @@ public class UsersManageActivity extends BaseActivity {
                                 if(nowUsers.getUser_seq() == users.getUser_seq()){
                                     nowUsers = null;
                                 }
+
                                 FindUsersTask task = new FindUsersTask();
                                 task.execute();
 
@@ -185,28 +194,33 @@ public class UsersManageActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersManageActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //내 아이 불러오기
+        FindUsersTask task = new FindUsersTask();
+        task.execute();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        /*usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();*/
+
+        //내 아이 목록
+        /*usersListManageAdapter.setUsersList(usersList);
+        height = getListViewHeight(lv_usersList_manage);
+        lv_usersList_manage.getLayoutParams().height = height;
+        usersListManageAdapter.notifyDataSetChanged();*/
+
+
         //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
-        UsersManageTask task = new UsersManageTask();
-        task.execute(img_profile);
+        //UsersManageTask task = new UsersManageTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "UsersManageActivity.onResume() : " + member.toString());
 
-        //슬라이드메뉴 계정이름 셋팅
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
-
         Log.d("-진우-", "UsersManageActivity.onResume() 끝");
-
-
     }
 
 
@@ -231,15 +245,15 @@ public class UsersManageActivity extends BaseActivity {
             img_profileTask = (CircularImageView)params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 //이미지 불러오기
@@ -272,13 +286,13 @@ public class UsersManageActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if(bitmap != null) {
+            /*if(bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -304,7 +318,7 @@ public class UsersManageActivity extends BaseActivity {
             usersListSlideAdapter.notifyDataSetChanged();
             height = getListViewHeight(lv_usersList_manage);
             lv_usersList_manage.getLayoutParams().height = height;
-            usersListManageAdapter.notifyDataSetChanged();
+            usersListManageAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
@@ -346,14 +360,14 @@ public class UsersManageActivity extends BaseActivity {
 
             if(usersTask != null && usersTask.size() > 0){
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
-                for(Users u : usersTask) {
-                    Log.d("-진우-", "내 아이 : " + u.toString());
-                }
-                usersList = usersTask;
+                Utility.compareList(usersList, usersTask);
+
                 if (nowUsers == null) {
-                    nowUsers = usersTask.get(0);
+                    nowUsers = usersList.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+                //현재 선택된 내 아이를 맨 뒤로 이동
+                Utility.seqChange(usersList, nowUsers.getUser_seq());
             } else {
                 Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
                 usersList.clear();

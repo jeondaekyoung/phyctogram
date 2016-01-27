@@ -2,10 +2,8 @@ package knowledge_seek.com.phyctogram.kakao.common;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.Spanned;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,12 +18,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import knowledge_seek.com.phyctogram.CommunityListActivity;
-import knowledge_seek.com.phyctogram.CommunityViewActivity;
 import knowledge_seek.com.phyctogram.LoginActivity;
 import knowledge_seek.com.phyctogram.MainActivity;
 import knowledge_seek.com.phyctogram.R;
@@ -37,17 +32,13 @@ import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
 import knowledge_seek.com.phyctogram.listAdapter.UsersListSlideAdapter;
-import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import knowledge_seek.com.phyctogram.util.AnimationClose;
 import knowledge_seek.com.phyctogram.util.AnimationOpen;
-import retrofit.Call;
 
 /**
  * Created by sjw on 2015-11-26.
  */
 public class BaseActivity extends Activity {
-    public static final String HTTPADDR = "http://www.phyctogram.com";
 
     protected static Activity self;
 
@@ -56,14 +47,17 @@ public class BaseActivity extends Activity {
     public static LinearLayout ll_mainLayout;
     public static LinearLayout ll_menuLayout;
     public static FrameLayout.LayoutParams leftMenuLayoutPrams;
-    public static int leftMenuWidth;
+    public static int leftMenuWidth, displayWidth;
     public boolean isLeftExpanded = false;
-    public LinearLayout ll_empty;
+    public static LinearLayout ll_empty;
 
     //데이터정의
-    public static Member member = null;
-    public static List<Users> usersList = null;
-    public static Users nowUsers = null;
+    public static Member member = null;                 //멤버
+    public static List<Users> usersList = new ArrayList<Users>();           //내 아이 목록
+    public static Users nowUsers = null;                                        //메인유저
+    public static String memberName = null;                                 //슬라이드 멤버 이름
+    public static Bitmap memberImg = null;                                  //슬라이드 멤버 이미지
+
 
     long backKeyPressedTime = 0;
 
@@ -77,8 +71,6 @@ public class BaseActivity extends Activity {
     private Button btn_setup;               //설정
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,31 +78,31 @@ public class BaseActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         //데이터셋팅
-        Bundle bundle = this.getIntent().getExtras();
+        /*Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             member = (Member) bundle.getSerializable("member");
             Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
         } else {
             member = new Member();
             Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
-        }
+        }*/
 
-        //레이아웃 정의
         //슬라이드 내 아이 목록(ListView)
         lv_usersList = (ListView) findViewById(R.id.lv_usersList);
         usersListSlideAdapter = new UsersListSlideAdapter(this);
         lv_usersList.setAdapter(usersListSlideAdapter);
 
+
         //슬라이드 내 이동 버튼 정의
-        btn_home = (Button)findViewById(R.id.btn_home);
+        btn_home = (Button) findViewById(R.id.btn_home);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             //Toast.makeText(BaseActivity.this, "메인페이지 가기", Toast.LENGTH_SHORT).show();
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         btn_usersDiary = (Button) findViewById(R.id.btn_usersDiary);
@@ -118,10 +110,11 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         btn_dataInput = (Button) findViewById(R.id.btn_dataInput);
@@ -129,10 +122,11 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         btn_usersManage = (Button) findViewById(R.id.btn_usersManage);
@@ -140,10 +134,11 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "내아이관리페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
         btn_setup = (Button) findViewById(R.id.btn_setup);
@@ -151,10 +146,11 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "설정페이지 가기", Toast.LENGTH_SHORT).show();
+                menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-                intent.putExtra("member", member);
+                //intent.putExtra("member", member);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }
@@ -197,31 +193,35 @@ public class BaseActivity extends Activity {
 
     protected void redirectLoginActivity() {
         //데이터초기화
-        member = null;
-        usersList = null;
-        nowUsers = null;
+        member = null;                                       //멤버
+        usersList.clear();                                      //내 아이 목록
+        nowUsers = null;                                      //메인유저
+        memberName = null;                                //슬라이드 멤버 이름
+        memberImg = null;                                  //슬라이드 멤버 이미지
         final Intent intent = new Intent(this, LoginActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
     protected void redirectSignupActivity() {
         Log.d("-진우", "SampleSignupActivity 불러온다.");
         final Intent intent = new Intent(this, SampleSignupActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        finish();
+        //finish();
     }
 
 
     //슬라이딩, 메뉴
     public void initSildeMenu() {
 
+
         // init left menu width
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         leftMenuWidth = (int) ((metrics.widthPixels) * 0.65);
+        displayWidth = metrics.widthPixels;
 
         // init main view
         ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
@@ -235,8 +235,10 @@ public class BaseActivity extends Activity {
         ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
         ll_empty.setVisibility(View.GONE);
 
-        LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
-        enableDisableViewGroup(viewGroup, false);
+        if(isLeftExpanded == false) {
+            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
+            enableDisableViewGroup(viewGroup, false);
+        }
 
 
     }
@@ -245,7 +247,7 @@ public class BaseActivity extends Activity {
      * left menu toggle
      */
     public void menuLeftSlideAnimationToggle() {
-        //Log.d("-진우-", "슬라이드 : " + isLeftExpanded);
+        Log.d("-진우-", "슬라이드 : " + isLeftExpanded);
         if (!isLeftExpanded) {
             isLeftExpanded = true;
 
@@ -253,13 +255,13 @@ public class BaseActivity extends Activity {
             //DisplayMetrics displaymetrics = new DisplayMetrics();
             //getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
             //int displayWidth = displaymetrics.widthPixels;
-            metrics = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int displayHeight = metrics.heightPixels;
-            int displayWidth = metrics.widthPixels;
+            //metrics = new DisplayMetrics();
+            //getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            //int displayHeight = metrics.heightPixels;
+            //int displayWidth = metrics.widthPixels;
             new AnimationOpen(ll_mainLayout, leftMenuWidth, displayWidth,
                     Animation.RELATIVE_TO_SELF, 0.0f,
-                    Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);
+                    Animation.RELATIVE_TO_SELF, 0.65f, 0, 0.0f, 0, 0.0f);
 
             // disable all of main view
             LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
@@ -281,7 +283,7 @@ public class BaseActivity extends Activity {
 
             // close
             new AnimationClose(ll_mainLayout, leftMenuWidth,
-                    TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
+                    TranslateAnimation.RELATIVE_TO_SELF, 0.65f,
                     TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
 
             // enable all of main view
@@ -318,72 +320,6 @@ public class BaseActivity extends Activity {
         }
     }
 
-    //지울 것임 BaseActivity에서 통신을 하면, 페이지마다 초기 데이터를 가져오는 통신까지 2번 통신하게 된다.
-    //그래서 페이지마다 한 번만 통신하도록 하자.
-    public void updateScreenSlide() {
-        FindUsersByMemberTask task = new FindUsersByMemberTask();
-        task.execute();
-        //usersListSlideAdapter.notifyDataSetChanged();
-    }
-
-    private class FindUsersByMemberTask extends AsyncTask<Void, Void, List<Users>> {
-
-        private List<Users> usersTask;
-        //private ProgressDialog dialog = new ProgressDialog(BaseActivity.this);
-
-        @Override
-        protected void onPreExecute() {
-            //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            //dialog.setMessage("BaseActivity - 내 아이 목록 가져오기");
-            //dialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected List<Users> doInBackground(Void... params) {
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
-            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
-            try {
-                usersTask = call.execute().body();
-            } catch (IOException e) {
-                Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
-
-            return usersTask;
-        }
-
-        @Override
-        protected void onPostExecute(List<Users> userses) {
-
-            if (userses != null && userses.size() > 0) {
-                Log.d("-진우-", "내 아이는 몇명? " + userses.size());
-                for (Users u : userses) {
-                    Log.d("-진우-", "내아이 : " + u.toString());
-                }
-                usersList = userses;
-
-                usersListSlideAdapter.setUsersList(usersList);
-                if (nowUsers == null) {
-                    nowUsers = userses.get(0);
-                }
-                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
-                /*if(tv_users_name != null){
-                    tv_users_name.setText(nowUsers.getName());
-                }*/
-            } else {
-                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
-            }
-
-            int height = getListViewHeight(lv_usersList);
-            lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
-
-            //dialog.dismiss();
-            super.onPostExecute(userses);
-        }
-    }
-    // --> 여기까지 지울 것임
-
     /*
     * 리스트뷰의 높이를 구함
     * */
@@ -400,7 +336,6 @@ public class BaseActivity extends Activity {
     @Override
     public void onBackPressed() {
         Activity nowActivity = GlobalApplication.getCurrentActivity();
-        //String nowActivity = GlobalApplication.getCurrentActivity().getClass().getSimpleName();
         Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
         Log.d("-진우-", "시간 : " + backKeyPressedTime);
 
@@ -416,20 +351,23 @@ public class BaseActivity extends Activity {
             if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
                 finish();
             }
+        } else {
+            super.onBackPressed();
         }
+
         //내 아이 관리 관련 페이지 이동
-        else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity") ||
+        /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersAddActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
+        } *//*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("UsersModActivity")) {
             intent = new Intent(getApplicationContext(), UsersManageActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }*/
+        }*//*
         //설정 관련 페이지 이동
         else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("EquipmentActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity") ||
@@ -438,7 +376,7 @@ public class BaseActivity extends Activity {
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
+        } *//*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("PwmodActivity")) {
             intent = new Intent(getApplicationContext(), SettingActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
@@ -448,7 +386,7 @@ public class BaseActivity extends Activity {
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }*/
+        }*//*
         //육아일기 관련 페이지 이동
         else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryWriteActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
@@ -456,12 +394,12 @@ public class BaseActivity extends Activity {
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        } /*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
+        } *//*else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("DiaryViewActivity")) {
             intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
             intent.putExtra("member", member);
             startActivity(intent);
             finish();
-        }*/
+        }*//*
         //수다방 관련 페이지 이동
         else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityWriteActivity") ||
                 nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityViewActivity")) {
@@ -471,11 +409,11 @@ public class BaseActivity extends Activity {
             finish();
         }
         else if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("CommunityCommentActivity")) {
-            /*intent = new Intent(getApplicationContext(), CommunityViewActivity.class);
+            *//*intent = new Intent(getApplicationContext(), CommunityViewActivity.class);
             intent.putExtra("member", member);
             //intent.putExtra("sqlCommntyListView", sqlCommntyListView);
             startActivity(intent);
-            finish();*/
+            finish();*//*
             super.onBackPressed();
         }
         //메인으로 가는 페이지 : 내아이관리, 기록조회, 설정, 직접입력, 육아일기, 수다방리스트, 분석리포트, 캐릭터
@@ -494,7 +432,7 @@ public class BaseActivity extends Activity {
         } else {
             //회원로그인(LoginActivity2), 회원가입(JoinActivity)
             super.onBackPressed();
-        }
+        }*/
 
     }
 }

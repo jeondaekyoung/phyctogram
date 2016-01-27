@@ -58,6 +58,7 @@ import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 
 public class UsersAnalysisActivity extends BaseActivity {
@@ -95,21 +96,29 @@ public class UsersAnalysisActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         Log.d("-진우-", "UsersAnalysisActivity.onCreate() 실행");
 
-        //setContentView(R.layout.include_analysis);
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         //화면페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_analysis, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
-        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
+        //메인페이지 내 아이 이름 출력
         tv_users_name = (TextView) findViewById(R.id.tv_users_name);
+        if (nowUsers != null) {
+            tv_users_name.setText(nowUsers.getName());
+        }
+
+        //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -117,9 +126,13 @@ public class UsersAnalysisActivity extends BaseActivity {
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
 
-                if (tv_users_name != null) {
-                    tv_users_name.setText(nowUsers.getName());
-                }
+                tv_users_name.setText(nowUsers.getName());
+
+                //선택 아이로 인한 순서 변경
+                Utility.seqChange(usersList, nowUsers.getUser_seq());
+                //내 아이 목록 셋팅
+                usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.notifyDataSetChanged();
 
                 //내 아이 메인(분석) 정보 계산하기
                 FindUsersAnalysisInfoTask task = new FindUsersAnalysisInfoTask();
@@ -236,24 +249,24 @@ public class UsersAnalysisActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersAnalysisActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 내 아이 메인(분석)정보)
-        UsersAnalysisTask task = new UsersAnalysisTask();
-        task.execute(img_profile);
+        /*UsersAnalysisTask task = new UsersAnalysisTask();
+        task.execute(img_profile);*/
+
+        //내 아이 메인(분석) 정보 계산하기
+        FindUsersAnalysisInfoTask task = new FindUsersAnalysisInfoTask();
+        task.execute();
 
         Log.d("-진우-", "UsersAnalysisActivity 에 onResume() : " + member.toString());
-
-        //슬라이드메뉴 계정이름 셋팅
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
 
         Log.d("-진우-", "UsersAnalysisActivity.onResume() 끝");
     }
@@ -353,16 +366,16 @@ public class UsersAnalysisActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
             //이미지 불러오기
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 InputStream in = null;
@@ -394,13 +407,13 @@ public class UsersAnalysisActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -427,7 +440,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

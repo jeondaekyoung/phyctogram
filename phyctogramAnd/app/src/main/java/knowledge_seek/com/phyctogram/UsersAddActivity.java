@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -51,7 +52,6 @@ public class UsersAddActivity extends BaseActivity {
     //레이아웃 정의
     private EditText et_name;
     private DatePicker dp_lifedate;
-    //private RadioGroup rg_sexdstn;
     private RadioButton rb_female;
     private RadioButton rb_male;
     private Button btn_usersadd;
@@ -68,20 +68,26 @@ public class UsersAddActivity extends BaseActivity {
         //화면페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_users_add, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //슬라이드 내 이미지
+        //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
-        //슬라이드 내 이름
+        if (memberImg != null) {
+            img_profile.setImageBitmap(memberImg);
+        }
+
+        //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
+        if (memberName != null) {
+            tv_member_name.setText(memberName);
+        }
+
         //슬라이드 내 아이 목록(ListView)에서 아이 선택시
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                nowUsers = (Users)usersListSlideAdapter.getItem(position);
+                /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
 
             }
         });
@@ -94,7 +100,6 @@ public class UsersAddActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
-
 
         //데이터셋팅
         users = new Users();
@@ -143,12 +148,13 @@ public class UsersAddActivity extends BaseActivity {
                         Log.d("-진우-", "내 아이 등록 결과 : " + response.body());
                         if(response.body() != null && response.body().equals("success")){
                             Toast.makeText(getApplicationContext(), "내 아이 등록에 성공하였습니다.", Toast.LENGTH_LONG).show();
-                            /*Intent intent = new Intent(getApplicationContext(), UsersAddActivity.class);
+                            /*Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
                             intent.putExtra("member", member);
                             startActivity(intent);
                             finish();*/
-                            FindUsersTask task = new FindUsersTask();
-                            task.execute();
+                            /*FindUsersTask task = new FindUsersTask();
+                            task.execute();*/
+                            onBackPressed();
                         }
                     }
 
@@ -167,26 +173,27 @@ public class UsersAddActivity extends BaseActivity {
         super.onResume();
         Log.d("-진우-", "UsersAddActivity.onResume() 실행");
 
+        //슬라이드메뉴 셋팅
+        initSildeMenu();
+
+        //슬라이드메뉴 내 아이 목록 셋팅
+        usersListSlideAdapter.setUsersList(usersList);
+        int height = getListViewHeight(lv_usersList);
+        lv_usersList.getLayoutParams().height = height;
+        usersListSlideAdapter.notifyDataSetChanged();
+
         //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지)
-        UsersAddTask task = new UsersAddTask();
-        task.execute(img_profile);
+        //UsersAddTask task = new UsersAddTask();
+        //task.execute(img_profile);
 
         Log.d("-진우-", "UsersAddActivity 에 onResume() : " + member.toString());
 
-        //슬라이드메뉴 계정이름 셋팅
-        String name = null;
-        if (member.getJoin_route().equals("kakao")) {
-            name = member.getKakao_nickname() + " 님";
-        } else if (member.getJoin_route().equals("facebook")) {
-            name = member.getFacebook_name() + " 님";
-        } else {
-            name = member.getName() + " 님";
-        }
-        if (name != null) {
-            tv_member_name.setText(name);
-        }
-
         Log.d("-진우-", "UsersAddActivity.onResume() 끝");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     //users의 내용 체크
@@ -219,16 +226,16 @@ public class UsersAddActivity extends BaseActivity {
             img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
-            UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
+            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
             Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
             try {
                 usersTask = call.execute().body();
             } catch (IOException e) {
                 Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }
+            }*/
 
             //이미지 불러오기
-            String image_url = null;
+            /*String image_url = null;
             if (member.getJoin_route().equals("kakao")) {
                 image_url = member.getKakao_thumbnailimagepath();
                 InputStream in = null;
@@ -260,13 +267,13 @@ public class UsersAddActivity extends BaseActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
             return mBitmap;
         }
 
         @Override
         protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
+            /*if (bitmap != null) {
                 Log.d("-진우-", "이미지읽어옴");
                 img_profileTask.setImageBitmap(bitmap);
             }
@@ -289,7 +296,7 @@ public class UsersAddActivity extends BaseActivity {
 
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();
+            usersListSlideAdapter.notifyDataSetChanged();*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
