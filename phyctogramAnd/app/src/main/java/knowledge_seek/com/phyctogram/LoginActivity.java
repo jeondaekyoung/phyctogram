@@ -65,7 +65,7 @@ public class LoginActivity extends BaseActivity {
     private AccessTokenTracker accessTokenTracker;
     private Button btn_login_kko;
     private Button btn_login;
-    private Button btn_sitemap;         //테스트버튼 삭제해야함
+    //private Button btn_sitemap;         //테스트버튼 삭제해야함
 
     //데이터
     private Member memberActivity = new Member();
@@ -102,7 +102,9 @@ public class LoginActivity extends BaseActivity {
             member.setJoin_route("facebook");
             member.setFacebook_id(profile.getId());
 
-            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            FindMemberByFacebookTask task = new FindMemberByFacebookTask();
+            task.execute(member);
+            /*MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
             Call<Member> call = service.findMemberByFacebookInfo(member);
             call.enqueue(new Callback<Member>() {
                 @Override
@@ -117,7 +119,7 @@ public class LoginActivity extends BaseActivity {
                 public void onFailure(Throwable t) {
 
                 }
-            });
+            });*/
 
         } else {
             Log.d("-진우-", "페이스북 로그인 체크 안됨");
@@ -258,14 +260,14 @@ public class LoginActivity extends BaseActivity {
                 startActivity(memberlogin);
             }
         });
-        btn_sitemap = (Button)findViewById(R.id.btn_sitemap);
+        /*btn_sitemap = (Button)findViewById(R.id.btn_sitemap);
         btn_sitemap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent memberlogin = new Intent(getApplicationContext(), Sitemap.class);
                 startActivity(memberlogin);
             }
-        });
+        });*/
     }
 
     //유저저장
@@ -486,6 +488,44 @@ public class LoginActivity extends BaseActivity {
             }
             //Log.d("-진우-", "페이스북 가입 성공 결과2 : " + memberActivity.toString());
 
+            dialog.dismiss();
+            super.onPostExecute(member);
+        }
+    }
+
+    //페이스북 로그인 검사
+    private class FindMemberByFacebookTask extends AsyncTask<Object, Void, Member>{
+
+        private ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+
+        @Override
+        protected void onPreExecute() {
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage("잠시만 기다려주세요");
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Member doInBackground(Object... params) {
+            Member member = (Member)params[0];
+
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            Call<Member> call = service.findMemberByFacebookInfo(member);
+            try {
+                member = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "페이스북 가입여부 실패");
+            }
+
+            return member;
+        }
+
+        @Override
+        protected void onPostExecute(Member member) {
+            if(member != null) {
+                redirectMainActivity(member);
+            }
             dialog.dismiss();
             super.onPostExecute(member);
         }

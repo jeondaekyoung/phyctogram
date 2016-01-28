@@ -2,9 +2,13 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,6 +62,8 @@ import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.FacebookShare;
+import knowledge_seek.com.phyctogram.util.KakaoStoryShare;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 
@@ -176,25 +182,114 @@ public class UsersAnalysisActivity extends BaseActivity {
                 captureView = Bitmap.createBitmap(cache);
                 iv_capture.setImageBitmap(captureView);
 
+                //실제로 올릴 이미지 캡쳐
+                final LinearLayout ll_capture_2 = (LinearLayout) popupView.findViewById(R.id.ll_capture_2);
+
                 ImageButton imBtn_fb = (ImageButton)popupView.findViewById(R.id.imBtn_fb);
                 imBtn_fb.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "페이스북에 공유하기", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "페이스북에 공유하기", Toast.LENGTH_SHORT).show();
+
+                        //카카오스토리 설치여부 확인
+                        PackageManager pm = getPackageManager();
+                        try {
+                            String appPackage = "com.facebook.katana";
+                            PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(getApplicationContext(), "페이스북을을 설치해주세요", Toast.LENGTH_SHORT).show();
+                            return ;
+                        }
+                        //실제로 올릴 이미지 캡쳐-2
+                        ll_capture_2.setDrawingCacheEnabled(true);
+                        Bitmap cache_2 = ll_capture_2.getDrawingCache();
+                        Bitmap captureView_2 = Bitmap.createBitmap(cache_2);
+                        Uri uri = Uri.fromFile(Utility.saveBitmaptoJpeg(captureView_2));
+
+                        /*FacebookShare fb = new FacebookShare(UsersAnalysisActivity.this);
+                        fb.setImage(captureView_2);     //캡쳐이미지 셋팅
+                        fb.onClickPostPhoto();*/
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        //msg.addCategory(Intent.CATEGORY_DEFAULT);
+                        //intent.putExtra(Intent.EXTRA_SUBJECT, "픽토그램");
+                        //intent.putExtra(Intent.EXTRA_TEXT, "내 아이 성장");
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.setType("image/jpg");
+                        intent.setPackage("com.facebook.katana");
+                        //startActivity(Intent.createChooser(intent, "내 아이 성장을 공유합니다"));
+                        startActivity(intent);
                     }
                 });
                 ImageButton imBtn_ks = (ImageButton)popupView.findViewById(R.id.imBtn_ks);
                 imBtn_ks.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "카카오스트리에 공유하기", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "카카오스토리에 공유하기", Toast.LENGTH_SHORT).show();
+
+                        //카카오스토리 설치여부 확인
+                        PackageManager pm = getPackageManager();
+                        try {
+                            String appPackage = "com.kakao.story";
+                            PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(getApplicationContext(), "카카오스토리를 설치해주세요", Toast.LENGTH_SHORT).show();
+                            return ;
+                        }
+
+                        //실제로 올릴 이미지 캡쳐-2
+                        ll_capture_2.setDrawingCacheEnabled(true);
+                        Bitmap cache_2 = ll_capture_2.getDrawingCache();
+                        Bitmap captureView_2 = Bitmap.createBitmap(cache_2);
+                        Uri uri = Uri.fromFile(Utility.saveBitmaptoJpeg(captureView_2));
+
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        //msg.addCategory(Intent.CATEGORY_DEFAULT);
+                        //intent.putExtra(Intent.EXTRA_SUBJECT, "픽토그램");
+                        //intent.putExtra(Intent.EXTRA_TEXT, "내 아이 성장");
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.setType("image/*");
+                        intent.setPackage("com.kakao.story");
+                        //startActivity(Intent.createChooser(intent, "내 아이 성장을 공유합니다"));
+                        startActivity(intent);
+
                     }
                 });
                 ImageButton imBtn_kt = (ImageButton)popupView.findViewById(R.id.imBtn_kt);
                 imBtn_kt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "카카오톡에 공유하기", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "카카오톡에 공유하기", Toast.LENGTH_SHORT).show();
+
+                        //카카오톡 설치여부 확인
+                        PackageManager pm = getPackageManager();
+                        try {
+                            String appPackage = "com.kakao.talk";
+                            PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            Toast.makeText(getApplicationContext(), "카카오톡을 설치해주세요", Toast.LENGTH_SHORT).show();
+                            return ;
+                        }
+
+                        //실제로 올릴 이미지 캡쳐-2
+                        ll_capture_2.setDrawingCacheEnabled(true);
+                        Bitmap cache_2 = ll_capture_2.getDrawingCache();
+                        Bitmap captureView_2 = Bitmap.createBitmap(cache_2);
+                        Uri uri = Uri.fromFile(Utility.saveBitmaptoJpeg(captureView_2));
+
+                        //공유
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        //msg.addCategory(Intent.CATEGORY_DEFAULT);
+                        //intent.putExtra(Intent.EXTRA_SUBJECT, "픽토그램");
+                        //intent.putExtra(Intent.EXTRA_TEXT, "내 아이 성장");
+                        intent.putExtra(Intent.EXTRA_STREAM, uri);
+                        intent.setType("image/*");
+                        intent.setPackage("com.kakao.talk");
+                        //startActivity(Intent.createChooser(intent, "내 아이 성장을 공유합니다"));
+                        startActivity(intent);
+
+                        Intent market = new Intent(Intent.ACTION_VIEW);
+                        
+
                     }
                 });
 
@@ -355,7 +450,7 @@ public class UsersAnalysisActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기달려주세요");
+            dialog.setMessage("잠시만 기다려주세요");
             dialog.show();
             super.onPreExecute();
         }

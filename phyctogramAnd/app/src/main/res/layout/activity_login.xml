@@ -51,12 +51,12 @@
         android:text="회원 로그인"
         android:textColor="#ffffff"
         android:textSize="12dp" />
-    <Button
+    <!--<Button
         android:id="@+id/btn_sitemap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="테스트버튼"
-        />
+        />-->
 
     <RelativeLayout
         android:layout_width="match_parent"

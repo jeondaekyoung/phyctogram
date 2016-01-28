@@ -1,9 +1,16 @@
 package knowledge_seek.com.phyctogram.util;
 
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.util.Log;
 
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -86,14 +93,6 @@ public class Utility {
     }
 
     public static synchronized void compareList(List<Users> usersList, List<Users> usersTask) {
-        /*for(Users ul : usersList) {
-            Log.d("-진우-", "교체전 " + ul.toString());
-        }
-        for(Users ul : usersTask) {
-            Log.d("-진우-", "교체할 것 " + ul.toString());
-        }
-        Log.d("-진우-", "==========================");*/
-
 
         boolean same = false;
         List<Users> newUser = new ArrayList<Users>();
@@ -158,5 +157,38 @@ public class Utility {
 
     public static String diary2json(Diary diary) {
         return new Gson().toJson(diary);
+    }
+
+    public static File saveBitmaptoJpeg(Bitmap bitmap) {
+        String folder_name = "/phyctogram/";
+        String file_name = "phyctogram.jpg";
+        String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath() + folder_name;
+
+        File file_path = new File(ex_storage);
+        if(!file_path.isDirectory()) {
+            file_path.mkdirs();
+        }
+
+        File jpgfile = new File(ex_storage+file_name);
+        OutputStream out = null;
+        try {
+            jpgfile.createNewFile();
+            out = new FileOutputStream(jpgfile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFoundException", e.getMessage());
+        } catch (IOException e) {
+            Log.e("IOException", e.getMessage());
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Log.d("-진우-", "저장위치 : " + ex_storage + file_name);
+        return new File(ex_storage+file_name);
+
     }
 }

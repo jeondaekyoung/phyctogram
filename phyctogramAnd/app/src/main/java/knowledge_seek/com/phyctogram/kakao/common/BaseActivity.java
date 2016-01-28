@@ -100,6 +100,7 @@ public class BaseActivity extends Activity {
             //Toast.makeText(BaseActivity.this, "메인페이지 가기", Toast.LENGTH_SHORT).show();
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 //intent.putExtra("member", member);
                 startActivity(intent);
                 //finish();
@@ -349,7 +350,9 @@ public class BaseActivity extends Activity {
                 return;
             }
             if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                //moveTaskToBack(true);
                 finish();
+                //android.os.Process.killProcess(android.os.Process.myPid());
             }
         } else {
             super.onBackPressed();

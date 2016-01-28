@@ -22,6 +22,7 @@
             android:padding="10dp">
 
             <LinearLayout
+                android:id="@+id/ll_capture_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shareform">
