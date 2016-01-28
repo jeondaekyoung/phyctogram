@@ -185,12 +185,13 @@
 
                 <!-- 수다방 인기top3 -->
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="340dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="#f3f3f3"
                     android:orientation="vertical"
+                    android:layout_gravity="center"
                     android:padding="15dp">
 
                     <RelativeLayout
