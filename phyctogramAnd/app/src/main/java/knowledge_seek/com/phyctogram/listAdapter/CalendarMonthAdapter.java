@@ -22,7 +22,7 @@ import knowledge_seek.com.phyctogram.domain.Diary;
  */
 public class CalendarMonthAdapter extends BaseAdapter {
 
-    public static final String TAG = "CalendarMonthAdapter";
+    private final String TAG = getClass().getSimpleName();
 
     Context mContext;
 

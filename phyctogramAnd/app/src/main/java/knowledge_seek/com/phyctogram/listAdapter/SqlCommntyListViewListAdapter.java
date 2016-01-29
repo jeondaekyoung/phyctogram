@@ -17,6 +17,8 @@ import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
  */
 public class SqlCommntyListViewListAdapter extends BaseAdapter {
 
+    private final String TAG = getClass().getSimpleName();
+
     private LayoutInflater inflater;
     private List<SqlCommntyListView> sqlCommntyListViews;
     private int layout;

@@ -307,7 +307,7 @@ public class CommunityListActivity extends BaseActivity {
 
         @Override
         protected List<SqlCommntyListView> doInBackground(Void... params) {
-            SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "CommunityListActivity");
+            SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
             Call<List<SqlCommntyListView>> call = service.findCommntyLatest(pageCntTask);
             try {
                 sqlCommntyListViewTask = call.execute().body();
@@ -366,7 +366,7 @@ public class CommunityListActivity extends BaseActivity {
 
         @Override
         protected List<SqlCommntyListView> doInBackground(Void... params) {
-            SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "CommunityListActivity");
+            SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
             Call<List<SqlCommntyListView>> call = service.findCommntyPopular(pageCnt);
             try {
                 sqlCommntyListViewTask = call.execute().body();

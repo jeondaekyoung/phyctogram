@@ -173,7 +173,7 @@ public class CommunityWriteActivity extends BaseActivity {
         protected String doInBackground(Void... params) {
             Log.d("-진우-", Utility.commnty2json(commnty));
             String result = null;
-            CommntyAPI service = ServiceGenerator.createService(CommntyAPI.class, "CommunityWriteActivity");
+            CommntyAPI service = ServiceGenerator.createService(CommntyAPI.class);
             Call<String> call = service.registerCommnty(commnty);
             try {
                 result = call.execute().body();

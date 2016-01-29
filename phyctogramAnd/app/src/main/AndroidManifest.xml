@@ -173,10 +173,6 @@
             android:name=".UsersDataInputActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".ReportShareActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <!-- sitemap는 삭제예정 -->
         <activity

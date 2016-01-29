@@ -43,11 +43,7 @@ public class ServiceGenerator {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         //구분
-        if("CommunityWriteActivity".equals(gubun)){
-            gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
-        } else if("CommunityListActivity".equals(gubun)){
-            gsonBuilder.registerTypeAdapter(SqlCommntyListView.class, new SqlCommntyListViewDes());
-        } else if("CommunityViewActivity".equals(gubun)){
+        if("Commnty".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Commnty.class, new CommntyDes());
         } else if("Comment".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Comment.class, new CommentDes());

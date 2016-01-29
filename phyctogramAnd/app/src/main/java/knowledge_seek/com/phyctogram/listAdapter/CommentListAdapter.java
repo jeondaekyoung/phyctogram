@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram.listAdapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import knowledge_seek.com.phyctogram.domain.Comment;
  * Created by sjw on 2015-12-17.
  */
 public class CommentListAdapter extends BaseAdapter {
+
+    private final String TAG = getClass().getSimpleName();
 
     private LayoutInflater inflater;
     private List<Comment> comments;

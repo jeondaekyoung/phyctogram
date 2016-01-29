@@ -96,39 +96,9 @@ public class SampleSignupActivity extends BaseActivity {
 
     //유저저장
     private void registerMember(Member member){
-        //Member m = new Member();
-
-        /*GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(Timestamp.class, new TimestampDes());
-        Gson gson = gsonBuilder.create();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(HTTPADDR)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        MemberAPI service = retrofit.create(MemberAPI.class);
-        Call<Member> call = service.registerMember(member);
-        call.enqueue(new Callback<Member>() {
-            @Override
-            public void onResponse(Response<Member> response, Retrofit retrofit) {
-                Log.d("-진우-", "카카오 가입 성공 결과1 : " + response.body());
-                memberActivity = (Member)response.body();
-                Log.d("-진우-", "성공 결과2 : " + memberActivity.toString());
-                redirectMainActivity(memberActivity);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.d("-진우-", "카카오 가입 member를 저장하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
-            }
-        });*/
-
 
         RegisterMemberTask task = new RegisterMemberTask();
         task.execute(member);
-
-
     }
 
     private void redirectMainActivity(Member member) {

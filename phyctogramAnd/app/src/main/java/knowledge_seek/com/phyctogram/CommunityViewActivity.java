@@ -313,7 +313,7 @@ public class CommunityViewActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            CommntyAPI service = ServiceGenerator.createService(CommntyAPI.class, "CommunityViewActivity");
+            CommntyAPI service = ServiceGenerator.createService(CommntyAPI.class, "Commnty");
             Call<Commnty> call = service.findCommntyByCommntySeq(commnty_seqTask);
             try {
                 commntyTask = call.execute().body();
