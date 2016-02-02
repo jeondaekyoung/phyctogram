@@ -2,7 +2,6 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,19 +16,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pkmmte.view.CircularImageView;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -142,7 +135,7 @@ public class PwmodActivity extends BaseActivity {
         } else if (member.getJoin_route().equals("facebook")) {
             ll_phyctogram.setVisibility(View.GONE);
             ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("페이스북 가입자입니다");
+            tv_join_route.setText("페이스북 가입자입니다. 페이스북 비밀번호 변경은 해당앱을 이용해주세요.");
         } else {
             ll_phyctogram.setVisibility(View.VISIBLE);
             ll_no_phyctogram.setVisibility(View.GONE);
