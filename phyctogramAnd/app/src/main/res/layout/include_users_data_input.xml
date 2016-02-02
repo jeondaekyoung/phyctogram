@@ -42,19 +42,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="키 직접 입력하기" />
-
+            android:layout_marginBottom="10dp"
+            android:text="키" />
         <EditText
             android:id="@+id/et_input_height"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18dp"
+            android:textSize="14dp"
             android:textColor="#000000"
             android:paddingLeft="10dp"
-            android:hint="키입력하세요"
+            android:hint="키를 입력하세요"
             android:background="@drawable/linedate"
             android:numeric="decimal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="날짜" />
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:calendarViewShown="false"
+            android:spinnersShown="true"
+            android:theme="@android:style/Theme.Holo.Light"/>
 
         <Button
             android:id="@+id/btn_users_height"
