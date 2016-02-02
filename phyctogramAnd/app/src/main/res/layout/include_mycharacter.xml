@@ -69,24 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="*만 나이 기준입니다."
-                android:textSize="10dp"
-                android:textColor="#ff0000"/>
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <TableRow>
-
                     <ImageView
                         android:id="@+id/iv_animal_00"
                         android:layout_height="90dp"
@@ -379,6 +370,13 @@
 
         </RelativeLayout>
         </ScrollView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*만 나이 기준입니다."
+            android:textSize="10dp"
+            android:textColor="#ff0000"/>
     </LinearLayout>
 
 </LinearLayout>
