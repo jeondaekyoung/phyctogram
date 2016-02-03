@@ -273,6 +273,20 @@ public class RecordActivity extends BaseActivity {
         //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
         /*RecordTask task = new RecordTask();
         task.execute(img_profile);*/
+
+        //디폴트날짜로 기록조회
+        if(nowUsers == null){
+            Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+        } else {
+            String dateFrom = tv_datepickFrom.getText().toString();
+            String dateTo = tv_datepickTo.getText().toString();
+            String user_seq = String.valueOf(nowUsers.getUser_seq());
+            heightList.clear();     //리스트 초기화
+            pageCnt = 0;            //페이지수 초기화
+            FindHeightByUserSeqFTTask task = new FindHeightByUserSeqFTTask(user_seq, dateFrom, dateTo, pageCnt);
+            task.execute();
+        }
+
         Log.d("-진우-", "RecordActivity 에 onResume() : " + member.toString());
 
 

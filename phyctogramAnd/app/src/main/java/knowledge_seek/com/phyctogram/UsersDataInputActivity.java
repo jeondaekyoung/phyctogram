@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -52,6 +53,7 @@ public class UsersDataInputActivity extends BaseActivity {
     private EditText et_input_height;       //키
     private Button btn_users_height;       //키 저장
     private TextView tv_users_name;     //아이 이름 출력
+    private DatePicker dp_mesure_date;      //날짜
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +113,8 @@ public class UsersDataInputActivity extends BaseActivity {
 
 
         et_input_height = (EditText)findViewById(R.id.et_input_height);
+        dp_mesure_date = (DatePicker)findViewById(R.id.dp_mesure_date);
+
 
         //키 저장
         btn_users_height = (Button)findViewById(R.id.btn_users_height);
@@ -127,11 +131,13 @@ public class UsersDataInputActivity extends BaseActivity {
                 if(!checkHeight(height_str)){
                     return ;
                 }
-
-
                 double height = Double.valueOf(height_str);
                 usersHeight.setUser_seq(nowUsers.getUser_seq());
                 usersHeight.setHeight(height);
+
+                String mesure_date = new StringBuilder().append(dp_mesure_date.getYear()).append("-")
+                        .append(Utility.dateFormat(dp_mesure_date.getMonth() + 1)).append("-").append(Utility.dateFormat(dp_mesure_date.getDayOfMonth())).toString();
+                //usersHeight.setMesure_date(mesure_date);
 
                 Log.d("-진우-", "키 저장하기 : " + usersHeight.toString());
                 Log.d("-진우-", "json : " + Utility.height2json(usersHeight));

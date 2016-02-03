@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -59,13 +60,15 @@ public class CommunityViewActivity extends BaseActivity {
     private TextView tv_contents;       //내용
     private ListView lv_comments;        //댓글 리스트
     private CommentListAdapter commentListAdapter;
-    private EditText et_comment;        //댓글 쓰기
+    private EditText et_comment;        //댓글
+    private Button btn_comment_register;        //댓글 등록
 
     //데이터정의
     private SqlCommntyListView sqlCommntyListView = new SqlCommntyListView();
     private Commnty commnty = new Commnty();
     private List<Comment> CommentList = new ArrayList<Comment>();
-    private boolean goMain = false;
+    private Comment comment = new Comment();        //댓글객체
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,12 +83,6 @@ public class CommunityViewActivity extends BaseActivity {
         if(bundle != null){
             sqlCommntyListView = (SqlCommntyListView)bundle.getSerializable("sqlCommntyListView");
             Log.d("-진우-", "CommunityViewActivity 에서 " + sqlCommntyListView.toString());
-            /*if(bundle.getSerializable("goMain") != null) {
-                goMain = (boolean)bundle.getSerializable("goMain");
-                Log.d("-진우-", "메인으로 갑니까 : " + goMain);
-            } else {
-                Log.d("-진우-", "메인으로 갑니까 : " + goMain);
-            }*/
         } else {
             Log.d("-진우-", "CommunityViewActivity 에 sqlCommntyListView가 없다.");
         }
@@ -140,17 +137,38 @@ public class CommunityViewActivity extends BaseActivity {
         commentListAdapter = new CommentListAdapter(this, CommentList, R.layout.list_comment);
         lv_comments.setAdapter(commentListAdapter);
 
-        //댓글쓰기로 가기
+        //댓글
         et_comment = (EditText)findViewById(R.id.et_comment);
-        et_comment.setOnClickListener(new View.OnClickListener() {
+        btn_comment_register = (Button)findViewById(R.id.btn_comment_register);
+        btn_comment_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CommunityCommentActivity.class);
-                //intent.putExtra("member", member);
-                intent.putExtra("sqlCommntyListView", sqlCommntyListView);
-                startActivity(intent);
+                //내용체크
+                comment.setContent(et_comment.getText().toString());
+                comment.setMember_seq(member.getMember_seq());
+                comment.setCommnty_seq(sqlCommntyListView.getCommnty_seq());
+
+                if(!checkComment(comment)){
+                    return ;
+                }
+
+                //Log.d("-진우-", "댓글 저장하기 : " + comment.toString());
+                //Log.d("-진우-", "json : " + Utility.comment2json(comment));
+                //댓글 저장하기
+                RegisterCommentTask task = new RegisterCommentTask(comment);
+                task.execute();
+
             }
         });
+        /*et_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent intent = new Intent(getApplicationContext(), CommunityCommentActivity.class);
+                //intent.putExtra("member", member);
+                //intent.putExtra("sqlCommntyListView", sqlCommntyListView);
+                //startActivity(intent);
+            }
+        });*/
 
     }
 
@@ -180,116 +198,64 @@ public class CommunityViewActivity extends BaseActivity {
         Log.d("-진우-", "CommunityViewActivity.onResume() 끝");
     }
 
-    /*@Override
-    public void onBackPressed() {
-        if(goMain == true) {
-            //메인에서 왔을 경우 메인으로 간다.
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            intent.putExtra("member", member);
-            startActivity(intent);
-            finish();
-        } else {
-            super.onBackPressed();
+    //댓글 내용 체크
+    private boolean checkComment(Comment comment){
+        if(comment.getContent().length() <= 0){
+            Toast.makeText(getApplicationContext(), "댓글을 입력해주세요", Toast.LENGTH_SHORT).show();
+            return false;
         }
-    }*/
+        return true;
+    }
 
-    //수다방글보기페이지 초기 데이터조회(슬라이드 내 아이 목록, 내 이미지)
-    private class CommunityViewTask extends AsyncTask<Object, Void, Bitmap> {
+    //댓글 쓰기
+    private class RegisterCommentTask extends AsyncTask<Void, Void, String>{
 
-        private ProgressDialog dialog = new ProgressDialog(CommunityViewActivity.this);
-        private List<Users> usersTask;
-        private CircularImageView img_profileTask;
+        private Comment comment;
+        //private ProgressDialog dialog = new ProgressDialog(CommunityViewActivity.this);
+
+        public RegisterCommentTask(Comment comment){
+            this.comment = comment;
+        }
 
         @Override
         protected void onPreExecute() {
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
-            dialog.show();
+            //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            //dialog.setMessage("잠시만 기다려주세요");
+            //dialog.show();
             super.onPreExecute();
         }
 
         @Override
-        protected Bitmap doInBackground(Object... params) {
-            Bitmap mBitmap = null;
-            img_profileTask = (CircularImageView) params[0];
-
-            //슬라이드메뉴에 있는 내 아이 목록
-            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
-            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
+        protected String doInBackground(Void... params) {
+            String result = null;
+            CommentAPI service = ServiceGenerator.createService(CommentAPI.class, "Comment");
+            Call<String> call = service.registerComment(comment);
             try {
-                usersTask = call.execute().body();
-            } catch (IOException e) {
-                Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }*/
+                result = call.execute().body();
+            } catch (IOException e){
+                Log.d("-진우-", "댓글저장 실패");
+            }
 
-            //이미지 불러오기
-            /*String image_url = null;
-            if (member.getJoin_route().equals("kakao")) {
-                image_url = member.getKakao_thumbnailimagepath();
-                InputStream in = null;
-                try {
-                    Log.d("-진우-", "이미지 주소 : " + image_url);
-                    in = new URL(image_url).openStream();
-                    mBitmap = BitmapFactory.decodeStream(in);
-                    in.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (member.getJoin_route().equals("facebook")) {
-                image_url = "http://graph.facebook.com/" + member.getFacebook_id() + "/picture?type=large";
-                //이미지 불러오기
-                InputStream in = null;
-                try {
-                    //페이스북은 jpg파일이 링크 걸린 것이 아니다.
-                    //http://graph.facebook.com/userid/picture?type=large
-                    Log.d("-진우-", "이미지 주소 : " + image_url);
-
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url(image_url)
-                            .build();
-                    com.squareup.okhttp.Response response = client.newCall(request).execute();
-                    in = response.body().byteStream();
-                    mBitmap = BitmapFactory.decodeStream(in);
-                    in.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }*/
-            return mBitmap;
+            return result;
         }
 
         @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            /*if (bitmap != null) {
-                Log.d("-진우-", "이미지읽어옴");
-                img_profileTask.setImageBitmap(bitmap);
-            }
-
-            if (usersTask != null && usersTask.size() > 0) {
-                Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
-                for (Users u : usersTask) {
-                    Log.d("-진우-", "내 아이 : " + u.toString());
-                }
-                usersList = usersTask;
-
-                usersListSlideAdapter.setUsersList(usersList);
-                if (nowUsers == null) {
-                    nowUsers = usersTask.get(0);
-                }
-                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
+        protected void onPostExecute(String result) {
+            if(result != null && result.equals("success")){
+                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
             } else {
-                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다");
+                Log.d("-진우-", "저장하는데 실패하였습니다");
             }
 
-            int height = getListViewHeight(lv_usersList);
-            lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();*/
+            //수다방 내용 읽어오기
+            FindCommntyAndCommentTask task1 = new FindCommntyAndCommentTask(sqlCommntyListView.getCommnty_seq());
+            task1.execute();
 
-            dialog.dismiss();
-            super.onPostExecute(bitmap);
+            //dialog.dismiss();
+            super.onPostExecute(result);
         }
     }
+
 
     //수다방 내용 읽어오기
     private class FindCommntyAndCommentTask extends AsyncTask<Void, Void, Void>{

@@ -129,15 +129,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/et_comment"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="#eeeeee"
-                android:editable="false"
-                android:hint="댓글쓰기"
-                android:padding="5dp" />
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true">
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="#eeeeee"
+                    android:hint="댓글쓰기"
+                    android:padding="5dp"
+                   android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/btn_comment_register"
+                    android:layout_width="60dp"
+                    android:layout_height="35dp"
+                    android:background="#C0AAE1"
+                    android:text="등록"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
 
         </RelativeLayout>
     </RelativeLayout>

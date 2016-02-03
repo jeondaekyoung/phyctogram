@@ -213,8 +213,19 @@ public class UsersModActivity extends BaseActivity {
     //users의 내용 체크
     private boolean checkUsers(Users users){
         //Log.d("-진우-", users.toString());
-        if(users.getName().length() <= 0 || users.getInitials().length() <= 0){
+        if(users.getName().length() <= 0){
+            Toast.makeText(getApplicationContext(), "이름을 확인해주세요", Toast.LENGTH_SHORT).show();
             return false;
+        }
+        if(users.getInitials().length() <= 0 || users.getInitials().length() >= 4) {
+            Toast.makeText(getApplicationContext(), "이니셜을 확인해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            //Toast.makeText(getApplicationContext(), users.getInitials() + " : " + users.getInitials().matches("^[A-Z0-9]*$"), Toast.LENGTH_SHORT).show();
+            if(!users.getInitials().matches("^[A-Z0-9]*$")){
+                Toast.makeText(getApplicationContext(), "이니셜을 확인해주세요", Toast.LENGTH_SHORT).show();
+                return false;
+            }
         }
         return true;
     }
