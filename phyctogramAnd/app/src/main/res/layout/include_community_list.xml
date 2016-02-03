@@ -45,8 +45,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_commntyLatest"
                 android:layout_weight="1"
-                android:background="#00000000"
-                android:src="@drawable/btn_on_off"
+                android:background="@drawable/btn_on_off"
                 android:padding="20dp"
                 android:text="최신" />
 
@@ -55,8 +54,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_commntyPopular"
                 android:layout_weight="1"
-                android:background="#00000000"
-                android:src="@drawable/btn_on_off"
+                android:background="@drawable/btn_on_off"
                 android:padding="20dp"
                 android:text="인기" />
         </LinearLayout>
