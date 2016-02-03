@@ -260,14 +260,7 @@ public class LoginActivity extends BaseActivity {
                 startActivity(memberlogin);
             }
         });
-        /*btn_sitemap = (Button)findViewById(R.id.btn_sitemap);
-        btn_sitemap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent memberlogin = new Intent(getApplicationContext(), Sitemap.class);
-                startActivity(memberlogin);
-            }
-        });*/
+
     }
 
     //유저저장

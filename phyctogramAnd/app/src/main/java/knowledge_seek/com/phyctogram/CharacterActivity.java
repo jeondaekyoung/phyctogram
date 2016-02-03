@@ -290,45 +290,45 @@ public class CharacterActivity extends BaseActivity {
             iv_my_animal_02 = (ImageView) findViewById(R.id.iv_my_animal_02);
             iv_my_animal_03 = (ImageView) findViewById(R.id.iv_my_animal_03);
             iv_animal_00 = (ImageView) findViewById(R.id.iv_animal_00);
-            iv_animal_00.setAlpha(0.3f);
+            iv_animal_00.setAlpha(0.1f);
             iv_animal_01 = (ImageView) findViewById(R.id.iv_animal_01);
-            iv_animal_01.setAlpha(0.3f);
+            iv_animal_01.setAlpha(0.1f);
             iv_animal_02 = (ImageView) findViewById(R.id.iv_animal_02);
-            iv_animal_02.setAlpha(0.3f);
+            iv_animal_02.setAlpha(0.1f);
             iv_animal_03 = (ImageView) findViewById(R.id.iv_animal_03);
-            iv_animal_03.setAlpha(0.3f);
+            iv_animal_03.setAlpha(0.1f);
             iv_animal_04 = (ImageView) findViewById(R.id.iv_animal_04);
-            iv_animal_04.setAlpha(0.3f);
+            iv_animal_04.setAlpha(0.1f);
             iv_animal_05 = (ImageView) findViewById(R.id.iv_animal_05);
-            iv_animal_05.setAlpha(0.3f);
+            iv_animal_05.setAlpha(0.1f);
             iv_animal_06 = (ImageView) findViewById(R.id.iv_animal_06);
-            iv_animal_06.setAlpha(0.3f);
+            iv_animal_06.setAlpha(0.1f);
             iv_animal_07 = (ImageView) findViewById(R.id.iv_animal_07);
-            iv_animal_07.setAlpha(0.3f);
+            iv_animal_07.setAlpha(0.1f);
             iv_animal_08 = (ImageView) findViewById(R.id.iv_animal_08);
-            iv_animal_08.setAlpha(0.3f);
+            iv_animal_08.setAlpha(0.1f);
             iv_animal_09 = (ImageView) findViewById(R.id.iv_animal_09);
-            iv_animal_09.setAlpha(0.3f);
+            iv_animal_09.setAlpha(0.1f);
             iv_animal_10 = (ImageView) findViewById(R.id.iv_animal_10);
-            iv_animal_10.setAlpha(0.3f);
+            iv_animal_10.setAlpha(0.1f);
             iv_animal_11 = (ImageView) findViewById(R.id.iv_animal_11);
-            iv_animal_11.setAlpha(0.3f);
+            iv_animal_11.setAlpha(0.1f);
             iv_animal_12 = (ImageView) findViewById(R.id.iv_animal_12);
-            iv_animal_12.setAlpha(0.3f);
+            iv_animal_12.setAlpha(0.1f);
             iv_animal_13 = (ImageView) findViewById(R.id.iv_animal_13);
-            iv_animal_13.setAlpha(0.3f);
+            iv_animal_13.setAlpha(0.1f);
             iv_animal_14 = (ImageView) findViewById(R.id.iv_animal_14);
-            iv_animal_14.setAlpha(0.3f);
+            iv_animal_14.setAlpha(0.1f);
             iv_animal_15 = (ImageView) findViewById(R.id.iv_animal_15);
-            iv_animal_15.setAlpha(0.3f);
+            iv_animal_15.setAlpha(0.1f);
             iv_animal_16 = (ImageView) findViewById(R.id.iv_animal_16);
-            iv_animal_16.setAlpha(0.3f);
+            iv_animal_16.setAlpha(0.1f);
             iv_animal_17 = (ImageView) findViewById(R.id.iv_animal_17);
-            iv_animal_17.setAlpha(0.3f);
+            iv_animal_17.setAlpha(0.1f);
             iv_animal_18 = (ImageView) findViewById(R.id.iv_animal_18);
-            iv_animal_18.setAlpha(0.3f);
+            iv_animal_18.setAlpha(0.1f);
             iv_animal_19 = (ImageView) findViewById(R.id.iv_animal_19);
-            iv_animal_19.setAlpha(0.3f);
+            iv_animal_19.setAlpha(0.1f);
         }
 
         public void myDray() {
@@ -338,121 +338,101 @@ public class CharacterActivity extends BaseActivity {
                 iv_my_animal_01.setImageResource(R.drawable.animal_00_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_00_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_00_03);
-                iv_animal_00.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_00.setAlpha(1.0f);
             } else if (month_num >= 7 && month_num <= 12) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_01_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_01_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_01_03);
-                iv_animal_01.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_01.setAlpha(1.0f);
             } else if (month_num >= 13 && month_num <= 24) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_02_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_02_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_02_03);
-                iv_animal_02.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_02.setAlpha(1.0f);
             } else if (month_num >= 25 && month_num <= 36) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_03_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_03_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_03_03);
-                iv_animal_03.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_03.setAlpha(1.0f);
             } else if (month_num >= 37 && month_num <= 48) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_04_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_04_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_04_03);
-                iv_animal_04.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_04.setAlpha(1.0f);
             } else if (month_num >= 49 && month_num <= 60) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_05_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_05_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_05_03);
-                iv_animal_05.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_05.setAlpha(1.0f);
             } else if (month_num >= 61 && month_num <= 72) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_06_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_06_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_06_03);
-                iv_animal_06.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_06.setAlpha(1.0f);
             } else if (month_num >= 73 && month_num <= 84) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_07_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_07_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_07_03);
-                iv_animal_07.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_07.setAlpha(1.0f);
             } else if (month_num >= 85 && month_num <= 96) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_08_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_08_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_08_03);
-                iv_animal_08.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_08.setAlpha(1.0f);
             } else if (month_num >= 97 && month_num <= 108) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_09_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_09_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_09_03);
-                iv_animal_09.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_09.setAlpha(1.0f);
             } else if (month_num >= 109 && month_num <= 120) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_10_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_10_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_10_03);
-                iv_animal_10.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_10.setAlpha(1.0f);
             } else if (month_num >= 121 && month_num <= 132) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_11_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_11_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_11_03);
-                iv_animal_11.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_11.setAlpha(1.0f);
             } else if (month_num >= 133 && month_num <= 144) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_12_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_12_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_12_03);
-                iv_animal_12.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_12.setAlpha(1.0f);
             } else if (month_num >= 145 && month_num <= 156) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_13_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_13_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_13_03);
-                iv_animal_13.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_13.setAlpha(1.0f);
             } else if (month_num >= 157 && month_num <= 168) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_14_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_14_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_14_03);
-                iv_animal_14.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_14.setAlpha(1.0f);
             } else if (month_num >= 169 && month_num <= 180) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_15_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_15_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_15_03);
-                iv_animal_15.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_15.setAlpha(1.0f);
             } else if (month_num >= 181 && month_num <= 192) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_16_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_16_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_16_03);
-                iv_animal_16.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_16.setAlpha(1.0f);
             } else if (month_num >= 193 && month_num <= 204) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_17_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_17_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_17_03);
-                iv_animal_17.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_17.setAlpha(1.0f);
             } else if (month_num >= 205 && month_num <= 216) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_18_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_18_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_18_03);
-                iv_animal_18.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_18.setAlpha(1.0f);
             } else if (month_num >= 217 && month_num <= 228) {
                 iv_my_animal_01.setImageResource(R.drawable.animal_19_01);
                 iv_my_animal_02.setImageResource(R.drawable.animal_19_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_19_03);
-                iv_animal_19.setBackgroundResource(R.drawable.border_reply);
                 iv_animal_19.setAlpha(1.0f);
             } else if (month_num == 500) {
                 //입력된 데이터가 없다.
