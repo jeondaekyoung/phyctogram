@@ -54,17 +54,14 @@
 	<![CDATA[
 		SELECT analysis_seq, sexdstn, month_num, height, rank, animal_img
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF((SELECT LEFT(max(height_seq),6) FROM height_tb WHERE user_seq = #{user_seq}),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229,
-                                         PERIOD_DIFF((SELECT LEFT(max(height_seq),6) FROM height_tb WHERE user_seq = #{user_seq}),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) 
-                                       , 228)
+        WHERE month_num = IF( ( (SELECT to_days(date_format(max(mesure_date), '%Y%m%d')) FROM height_tb WHERE user_seq = #{user_seq})
+                                          - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+                                        , ceil(  ( (SELECT to_days(date_format(max(mesure_date), '%Y%m%d')) FROM height_tb WHERE user_seq = #{user_seq})
+                                          - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
+                                        ,228)
 			AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
-			AND height >= (
-            					  SELECT h.height 
-            					     FROM height_tb h, (select max(height_seq) as height_seq from height_tb WHERE user_seq = #{user_seq}) dh
-                                   WHERE h.height_seq = dh.height_seq
-                                 )
+			AND height >= ( SELECT height FROM height_tb WHERE user_seq = #{user_seq}
+                    			   ORDER BY mesure_date DESC LIMIT 1    )
      ORDER BY analysis_seq
           LIMIT 1
 	]]>
@@ -74,24 +71,16 @@
 	<![CDATA[
 		SELECT analysis_seq, sexdstn, month_num, height, rank, animal_img
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF((SELECT LEFT(max(height_seq),6) FROM height_tb WHERE user_seq = #{user_seq}),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229,
-                                         PERIOD_DIFF((SELECT LEFT(max(height_seq),6) FROM height_tb WHERE user_seq = #{user_seq}),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) 
-                                       , 228)
+        WHERE month_num = IF( ( (SELECT to_days(date_format(max(mesure_date), '%Y%m%d')) FROM height_tb WHERE user_seq = #{user_seq})
+                                          - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+                                        , ceil(  ( (SELECT to_days(date_format(max(mesure_date), '%Y%m%d')) FROM height_tb WHERE user_seq = #{user_seq})
+                                          - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
+                                        ,228)
 			AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
       ORDER BY analysis_seq DESC
            LIMIT 1
 	]]>
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

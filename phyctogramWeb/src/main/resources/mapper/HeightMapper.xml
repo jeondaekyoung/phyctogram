@@ -18,15 +18,17 @@
 							height_seq
 							,height
 							,mesure_date
-							,user_seq) VALUES (
+							,user_seq
+							,input_date) VALUES (
 							#{height_seq}
 							,#{height}
-							,now()
-							,#{user_seq} )
+							,#{mesure_date}
+							,#{user_seq}
+							,now() )
 	</insert>
 	
 	<select id="selectHeightByUser_seq" parameterType="String" resultType="Height">
-		SELECT height_seq, height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM height_tb
 		 WHERE user_seq = #{user_seq}
 	 ORDER BY mesure_date DESC
@@ -40,7 +42,7 @@
 	
 	<select id="selectHeightByUserSeqFT" parameterType="Map" resultType="Height">
 	<![CDATA[
-		SELECT height_seq, height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq, input_date
 		   FROM height_tb
 		 WHERE user_seq = #{user_seq}
 		 AND #{dateFrom} <= date(mesure_date) AND date(mesure_date) <= #{dateTo}
@@ -63,15 +65,17 @@
 							height_seq
 							,height
 							,mesure_date
-							,user_seq) VALUES (
+							,user_seq
+							,input_date) VALUES (
 							#{height_seq}
 							,#{height}
-							,now()
-							,#{user_seq} )
+							,#{mesure_date}
+							,#{user_seq}
+							,now() )
 	</insert>
 	
 	<select id="selectHeightForGraphByUserSeq" parameterType="Integer" resultType="Height">
-		SELECT height_seq, height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM  height_tb 
 	     WHERE user_seq = #{user_seq} 
 	 ORDER BY mesure_date DESC
@@ -82,10 +86,10 @@
 	<![CDATA[
 		SELECT rank
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
-                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+        WHERE month_num =  IF( ( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+                                         , ceil(( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                                     - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
                                          , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
             AND height >= #{height}
@@ -98,10 +102,10 @@
 	<![CDATA[
 		SELECT rank
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
-                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+        WHERE month_num = IF( ( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+        								, ceil(( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+        								            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
                                          , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
      ORDER BY analysis_seq DESC
@@ -113,10 +117,10 @@
 	<![CDATA[
 		SELECT animal_img
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
-                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+        WHERE month_num = IF( ( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+        								, ceil(( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+        								            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
                                          , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
             AND height >= #{height}
@@ -129,10 +133,10 @@
 	<![CDATA[
 		SELECT animal_img
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229, 
-                                         PERIOD_DIFF( DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                            (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
+        WHERE month_num = IF( ( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+        								, ceil(( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+        								            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
                                          , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
      ORDER BY analysis_seq DESC
@@ -144,11 +148,11 @@
 	<![CDATA[
 		SELECT height
 		  FROM analysis_2007_tb
-        WHERE month_num = IF(PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                           (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) ) < 229,
-                                         PERIOD_DIFF(DATE_FORMAT(#{mesure_date},'%Y%m'),
-                                                           (SELECT CONCAT(lifyea,mt) FROM users_tb WHERE user_seq = #{user_seq}) )
-                                         , 228 )
+        WHERE month_num = IF( ( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+                                            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30 < 229
+        								, ceil(( to_days(date_format(#{mesure_date},'%Y%m%d')) 
+        								            - (SELECT to_days(concat(lifyea,mt,de)) FROM users_tb WHERE user_seq = #{user_seq}) )/30)
+                                         , 228)
             AND sexdstn = (SELECT sexdstn FROM users_tb WHERE user_seq = #{user_seq})
             AND rank = 50
     ]]>
@@ -161,7 +165,7 @@
 	</select>
 	
 	<select id="selectMax2HeightByUserSeq" parameterType="Integer" resultType="Height">
-		SELECT height_seq, height, mesure_date, user_seq
+		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM height_tb
 		WHERE user_seq = #{user_seq}
 	 ORDER BY mesure_date DESC
