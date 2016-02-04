@@ -42,7 +42,7 @@
 
             <Button
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:id="@+id/btn_commntyLatest"
                 android:layout_weight="1"
                 android:background="@drawable/btn_off"
@@ -51,7 +51,8 @@
 
             <Button
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp
+                "
                 android:id="@+id/btn_commntyPopular"
                 android:layout_weight="1"
                 android:background="@drawable/btn_off"
