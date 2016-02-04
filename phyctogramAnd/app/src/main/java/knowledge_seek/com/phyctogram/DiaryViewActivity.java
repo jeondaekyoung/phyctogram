@@ -286,14 +286,6 @@ public class DiaryViewActivity extends BaseActivity {
             et_diary_date.setText(msg);
         }
     };*/
-    //날짜가 한자리일때 앞에 0을 붙이자.
-    /*private String dateFormat(int x){
-        String s = String.valueOf(x);
-        if(s.length() == 1){
-            s = "0".concat(s);
-        }
-        return s;
-    }*/
 
     //Diary의 내용체크
     private boolean checkDiary(Diary diary){

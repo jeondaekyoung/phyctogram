@@ -41,25 +41,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <!--<include-->
-                    <!--android:id="@+id/ic_screen"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--layout="@layout/include_main"/>-->
+                <!--android:id="@+id/ic_screen"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--layout="@layout/include_main"/>-->
                 <!-- include에는 layout이 있어야한다. -->
                 <LinearLayout
+                    android:id="@+id/ic_screen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/ic_screen"
-                    android:orientation="vertical">
-                </LinearLayout>
+                    android:orientation="vertical"></LinearLayout>
                 <LinearLayout
                     android:id="@+id/ll_empty"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
-                    android:orientation="vertical"/>
+                    android:orientation="vertical" />
             </FrameLayout>
-
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

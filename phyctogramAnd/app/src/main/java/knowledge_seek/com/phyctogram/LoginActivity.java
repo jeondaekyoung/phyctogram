@@ -104,29 +104,12 @@ public class LoginActivity extends BaseActivity {
 
             FindMemberByFacebookTask task = new FindMemberByFacebookTask();
             task.execute(member);
-            /*MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
-            Call<Member> call = service.findMemberByFacebookInfo(member);
-            call.enqueue(new Callback<Member>() {
-                @Override
-                public void onResponse(Response<Member> response, Retrofit retrofit) {
-                    Log.d("-진우-", "페이스북 가입 여부 결과1 : " + response.body());
-                    memberActivity = (Member)response.body();
-                    Log.d("-진우-", "페이스북 가입 여부 결과2 : " + memberActivity.toString());
-                    redirectMainActivity(memberActivity);
-                }
-
-                @Override
-                public void onFailure(Throwable t) {
-
-                }
-            });*/
-
         } else {
             Log.d("-진우-", "페이스북 로그인 체크 안됨");
         }
 
         //픽토그램 로그인 검사
-        Log.d("-진우-", "픽토그램 로그인 확인 : " + SaveSharedPreference.getMemberSeq(getApplicationContext()));
+        //Log.d("-진우-", "픽토그램 로그인 확인 : " + SaveSharedPreference.getMemberSeq(getApplicationContext()));
         if(SaveSharedPreference.getMemberSeq(getApplicationContext()).length() == 0){
             Log.d("-진우-", "픽토그램 로그인 안됨");
         } else {
@@ -134,7 +117,10 @@ public class LoginActivity extends BaseActivity {
             String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
             Log.d("-진우-", "픽토그램 로그인 됨 : " + member_seq);
 
-            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            FindMemberByMemberSeqTask task = new FindMemberByMemberSeqTask();
+            task.execute(member_seq);
+
+            /*MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
             Call<Member> call = service.findMemberByMemberSeq(Integer.valueOf(member_seq));
             call.enqueue(new Callback<Member>() {
                 @Override
@@ -149,7 +135,7 @@ public class LoginActivity extends BaseActivity {
                 public void onFailure(Throwable t) {
 
                 }
-            });
+            });*/
 
         }
 
@@ -520,6 +506,48 @@ public class LoginActivity extends BaseActivity {
                 redirectMainActivity(member);
             }
             dialog.dismiss();
+            super.onPostExecute(member);
+        }
+    }
+
+    //픽토그램 로그인 정보 읽어오기
+    private class FindMemberByMemberSeqTask extends AsyncTask<Object, Void, Member> {
+
+        //private ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+        private Member memberTask = null;
+
+        @Override
+        protected void onPreExecute() {
+            //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            //dialog.setMessage("잠시만 기다려주세요");
+            //dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Member doInBackground(Object... params) {
+            int member_seq = Integer.valueOf((String) params[0]);
+
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+            Call<Member> call = service.findMemberByMemberSeq(member_seq);
+            try {
+                memberTask = call.execute().body();
+            } catch (IOException e) {
+                Log.d("-진우-", "픽토그램 가입여부 실패");
+            }
+
+            return memberTask;
+        }
+
+        @Override
+        protected void onPostExecute(Member member) {
+            if(member != null) {
+                memberActivity = member;
+                Log.d("-진우-", "픽토그램 가입 여부 성공 결과 : " + memberActivity.toString());
+                redirectMainActivity(memberActivity);
+            }
+
+            //dialog.dismiss();
             super.onPostExecute(member);
         }
     }

@@ -137,7 +137,7 @@ public class UsersDataInputActivity extends BaseActivity {
 
                 String mesure_date = new StringBuilder().append(dp_mesure_date.getYear()).append("-")
                         .append(Utility.dateFormat(dp_mesure_date.getMonth() + 1)).append("-").append(Utility.dateFormat(dp_mesure_date.getDayOfMonth())).toString();
-                //usersHeight.setMesure_date(mesure_date);
+                usersHeight.setMesure_date(mesure_date);
 
                 Log.d("-진우-", "키 저장하기 : " + usersHeight.toString());
                 Log.d("-진우-", "json : " + Utility.height2json(usersHeight));

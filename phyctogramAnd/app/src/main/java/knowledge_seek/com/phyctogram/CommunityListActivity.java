@@ -2,8 +2,6 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,26 +14,18 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pkmmte.view.CircularImageView;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
-import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.SqlCommntyListViewListAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.SqlCommntyListViewAPI;
-import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
-import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 
 /**
@@ -116,6 +106,8 @@ public class CommunityListActivity extends BaseActivity {
         btn_commntyLatest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_commntyLatest.setBackgroundResource(R.drawable.btn_on);
+                btn_commntyPlpular.setBackgroundResource(R.drawable.btn_off);
                 pageCnt = 0;
                 sqlCommntyListViewList.clear();
                 FindCommntyLatestTask task = new FindCommntyLatestTask(pageCnt);
@@ -127,6 +119,8 @@ public class CommunityListActivity extends BaseActivity {
         btn_commntyPlpular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btn_commntyPlpular.setBackgroundResource(R.drawable.btn_on);
+                btn_commntyLatest.setBackgroundResource(R.drawable.btn_off);
                 pageCnt = 0;
                 sqlCommntyListViewList.clear();
                 FindCommntyPopularTask task = new FindCommntyPopularTask(pageCnt);
@@ -171,10 +165,6 @@ public class CommunityListActivity extends BaseActivity {
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();
 
-        //슬라이드메뉴 셋팅(내 아이목록, 계정이미지)
-        /*CommunityListTask task = new CommunityListTask();
-        task.execute(img_profile);*/
-
         Log.d("-진우-", "CommunityListActivity.onResume() : " + member.toString());
 
         //새로읽어오기
@@ -183,107 +173,6 @@ public class CommunityListActivity extends BaseActivity {
         task2.execute();
 
         Log.d("-진우-", "CommunityListActivity.onResume() 끝");
-    }
-
-    //수다방페이지 초기 데이터조회(슬라이드 내 아이목록, 계정이미지)
-    private class CommunityListTask extends AsyncTask<Object, Void, Bitmap> {
-
-        private ProgressDialog dialog = new ProgressDialog(CommunityListActivity.this);
-        private List<Users> usersTask;
-        private CircularImageView img_profileTask;
-
-        @Override
-        protected void onPreExecute() {
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
-            dialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Bitmap doInBackground(Object... params) {
-            Bitmap mBitmap = null;
-            img_profileTask = (CircularImageView)params[0];
-
-            //슬라이드메뉴에 있는 내 아이 목록
-            /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
-            Call<List<Users>> call = service.findUsersByMember(String.valueOf(member.getMember_seq()));
-            try {
-                usersTask = call.execute().body();
-            } catch (IOException e) {
-                Log.d("-진우-", "내 아이 목록 가져오기 실패");
-            }*/
-
-            /*String image_url = null;
-            if (member.getJoin_route().equals("kakao")) {
-                image_url = member.getKakao_thumbnailimagepath();
-                //이미지 불러오기
-                InputStream in = null;
-                try {
-                    Log.d("-진우-", "이미지 주소 : " + image_url);
-                    in = new URL(image_url).openStream();
-                    mBitmap = BitmapFactory.decodeStream(in);
-                    in.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else if (member.getJoin_route().equals("facebook")) {
-                image_url = "http://graph.facebook.com/" + member.getFacebook_id() + "/picture?type=large";
-                //이미지 불러오기
-                InputStream in = null;
-                try {
-                    //페이스북은 jpg파일이 링크 걸린 것이 아니다.
-                    //http://graph.facebook.com/userid/picture?type=large
-                    Log.d("-진우-", "이미지 주소 : " + image_url);
-
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url(image_url)
-                            .build();
-                    com.squareup.okhttp.Response response = client.newCall(request).execute();
-                    in = response.body().byteStream();
-                    mBitmap = BitmapFactory.decodeStream(in);
-                    in.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }*/
-            return mBitmap;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            /*if(bitmap != null) {
-                Log.d("-진우-", "이미지읽어옴");
-                img_profileTask.setImageBitmap(bitmap);
-            }
-
-            if (usersTask != null && usersTask.size() > 0) {
-                Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
-                for (Users u : usersTask) {
-                    Log.d("-진우-", "내 아이 : " + u.toString());
-                }
-
-                if (nowUsers == null) {
-                    nowUsers = usersTask.get(0);
-                }
-                Log.d("-진우-", "메인 유저는 " + nowUsers.toString());
-                usersList = usersTask;
-                //현재 선택된 내 아이를 맨 뒤로 이동
-                usersList = Utility.seqChange(usersList, nowUsers.getUser_seq());
-                usersListSlideAdapter.setUsersList(usersList);
-            } else {
-                Log.d("-진우-", "성공했으나 등록된 내아이가 없습니다.");
-            }
-
-            int height = getListViewHeight(lv_usersList);
-            lv_usersList.getLayoutParams().height = height;
-            usersListSlideAdapter.notifyDataSetChanged();*/
-
-            dialog.dismiss();
-            super.onPostExecute(bitmap);
-        }
-
     }
 
     //최신 글 목록 읽어오기
