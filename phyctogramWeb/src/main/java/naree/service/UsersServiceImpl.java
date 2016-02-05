@@ -65,12 +65,12 @@ public class UsersServiceImpl implements UsersService {
 		Analysis analysis = usersDao.selectMonthNumAnimalByUserSeq(user_seq);
 		
 		//데이터가 없을 때 표시할 이미지가 없다. 
-		int result = heightDao.selectExistHeightByUserSeq(user_seq);
+		/*int result = heightDao.selectExistHeightByUserSeq(user_seq);
 		if(result == 0){
 			//입력된 데이터가 없음을 500을 넣어준다
 			analysis.setMonth_num(500);
 			return analysis;
-		}
+		}*/
 		
 		return analysis;
 	}
