@@ -169,6 +169,8 @@ public class CommunityListActivity extends BaseActivity {
 
         //새로읽어오기
         pageCnt = 0;
+        btn_commntyLatest.setBackgroundResource(R.drawable.btn_on);
+        btn_commntyPlpular.setBackgroundResource(R.drawable.btn_off);
         FindCommntyLatestTask task2 = new FindCommntyLatestTask(pageCnt);
         task2.execute();
 

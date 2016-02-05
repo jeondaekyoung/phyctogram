@@ -250,6 +250,9 @@ public class UsersAnalysisActivity extends BaseActivity {
                             PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
                         } catch (PackageManager.NameNotFoundException e) {
                             Toast.makeText(getApplicationContext(), "카카오톡을 설치해주세요", Toast.LENGTH_SHORT).show();
+                            /*Uri uri = Uri.parse("market://search?q=pname:com.kakao.talk");
+                            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                            startActivity(intent);*/
                             return ;
                         }
 
@@ -266,6 +269,14 @@ public class UsersAnalysisActivity extends BaseActivity {
                         //intent.putExtra(Intent.EXTRA_TEXT, "내 아이 성장");
                         intent.putExtra(Intent.EXTRA_STREAM, uri);
                         intent.setType("image/*");
+
+
+                        //Uri uri2 = Uri.parse("kakao[88e6d63483f763a145860ecc0bfbda14]://kakaolink");
+                        //intent.putExtra(Intent.EXTRA_STREAM, uri2);
+                        //intent.setType("text/plain");
+                        //intent.setDataAndType(uri2, "text/plain");
+
+
                         intent.setPackage("com.kakao.talk");
                         //startActivity(Intent.createChooser(intent, "내 아이 성장을 공유합니다"));
                         startActivity(intent);

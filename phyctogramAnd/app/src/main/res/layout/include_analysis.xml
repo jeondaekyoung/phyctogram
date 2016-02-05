@@ -47,19 +47,19 @@
                 android:background="#C0AAE1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="20dp">
+                android:padding="15dp">
 
                 <!--캐릭터 이미지-->
                 <ImageView
                     android:id="@+id/iv_my_animal"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:background="#fff"
                     android:src="@drawable/sample" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="150dp"
+                    android:layout_height="140dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:paddingLeft="10dp">
@@ -72,7 +72,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="최종신장"
@@ -89,7 +89,7 @@
                             android:textSize="24dp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
                             android:text="cm"
                             android:textColor="#ffffff" />
@@ -103,8 +103,10 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
+                            android:text="("
+                            android:gravity="right"
                             android:textColor="#ffffff" />
 
                         <TextView
@@ -118,9 +120,9 @@
                             android:textSize="24dp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
-                            android:text="cm"
+                            android:text="cm )"
                             android:textColor="#ffffff" />
                     </LinearLayout>
 
@@ -131,7 +133,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="70dp"
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="상위"
@@ -148,7 +150,7 @@
                             android:textSize="24dp" />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="30dp"
                             android:layout_height="wrap_content"
                             android:text="%"
                             android:textColor="#ffffff" />
@@ -161,8 +163,8 @@
                 android:layout_height="wrap_content"
                 android:background="#F6D14C"
                 android:orientation="horizontal"
-                android:paddingBottom="20dp"
-                android:paddingTop="20dp">
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
 
                 <!--평균-->
                 <LinearLayout

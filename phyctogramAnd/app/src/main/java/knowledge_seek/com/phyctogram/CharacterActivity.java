@@ -434,12 +434,12 @@ public class CharacterActivity extends BaseActivity {
                 iv_my_animal_02.setImageResource(R.drawable.animal_19_02);
                 iv_my_animal_03.setImageResource(R.drawable.animal_19_03);
                 iv_animal_19.setAlpha(1.0f);
-            } else if (month_num == 500) {
+            } /*else if (month_num == 500) {
                 //입력된 데이터가 없다.
                 iv_my_animal_01.setImageResource(R.drawable.sample);
                 iv_my_animal_02.setImageResource(R.drawable.sample);
                 iv_my_animal_03.setImageResource(R.drawable.sample);
-            }
+            }*/
         }
     }
 }

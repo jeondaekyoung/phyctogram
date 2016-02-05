@@ -161,13 +161,13 @@ public class RecordActivity extends BaseActivity {
                             public void onResponse(Response<String> response, Retrofit retrofit) {
                                 Log.d("-진우-", "키 삭제 성공 결과 : " + response.body());
                                 Toast.makeText(getApplicationContext(), "키 삭제에 성공하였습니다", Toast.LENGTH_LONG).show();
-                                //Log.d("-진우-", "삭제전 : " + heightList.size());
+                                Log.d("-진우-", "삭제전 : " + heightList.size());
                                 heightList.remove(height);
-                                //Log.d("-진우-", "삭제후 : " + heightList.size());
+                                Log.d("-진우-", "삭제후 : " + heightList.size());
                                 for(int i =0; i < heightList.size()-1 ; i++){
                                     heightList.get(i).setGrow(String.format("%.1f", (heightList.get(i).getHeight() - heightList.get(i+1).getHeight()) ));
+                                    heightList.get(heightList.size()- 1).setGrow("0");
                                 }
-                                heightList.get(heightList.size()- 1).setGrow("0");
                                 heightListRecordAdapter.setHeights(heightList);
                                 heightListRecordAdapter.notifyDataSetChanged();
 

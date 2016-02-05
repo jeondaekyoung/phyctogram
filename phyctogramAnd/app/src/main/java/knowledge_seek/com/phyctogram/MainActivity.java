@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,12 +9,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +55,8 @@ public class MainActivity extends BaseActivity {
 
     //레이아웃정의
     private ImageButton btn_users_record;                     //기록조회
-    private ImageButton imBtn_community_list;      //수다방 리스트
+    private RelativeLayout rl_community_list;      //수다방 리스트
+    private ImageButton imBtn_community_list;
     private TextView tv_users_name;                 //아이 이름 출력
     private ImageButton btn_users_analysis;     //분석리포트
     private ImageView iv_my_animal;                        //캐릭터
@@ -69,6 +73,8 @@ public class MainActivity extends BaseActivity {
     private RelativeLayout rl_popularTop1;
     private RelativeLayout rl_popularTop2;
     private RelativeLayout rl_popularTop3;
+
+    //private ScrollView sv_main;
 
     //데이터정의
     private List<SqlCommntyListView> sqlCommntyListViewList = null;     //수다방 인기 Top3
@@ -185,16 +191,24 @@ public class MainActivity extends BaseActivity {
             }
         });
         //수다방(community)
-        imBtn_community_list = (ImageButton) findViewById(R.id.imBtn_community_list);
+        rl_community_list = (RelativeLayout) findViewById(R.id.rl_community_list);
+        rl_community_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CommunityListActivity.class);
+                startActivity(intent);
+            }
+        });
+        imBtn_community_list = (ImageButton)findViewById(R.id.imBtn_community_list);
         imBtn_community_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CommunityListActivity.class);
-                //intent.putExtra("member", member);
                 startActivity(intent);
-                //finish();
             }
         });
+
+
         //커뮤니티(수다방) 인기 Top3
         tv_popularTop1_title = (TextView) findViewById(R.id.tv_popularTop1_title);
         tv_popularTop1_name = (TextView) findViewById(R.id.tv_popularTop1_name);
@@ -257,6 +271,7 @@ public class MainActivity extends BaseActivity {
         tv_grow = (TextView) findViewById(R.id.tv_grow);
         tv_rank = (TextView) findViewById(R.id.tv_rank);
 
+        //sv_main = (ScrollView)findViewById(R.id.sv_main);
     }
 
     @Override
@@ -504,4 +519,5 @@ public class MainActivity extends BaseActivity {
             super.onPostExecute(aVoid);
         }
     }
+
 }

@@ -240,7 +240,13 @@
                         android:layout_height="90dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="~0.5세" />
+                        android:text="0세" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="90dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="0.5세" />
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
@@ -259,15 +265,15 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="3세" />
+                </TableRow>
+                <TableRow>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="4세" />
-                </TableRow>
-                <TableRow>
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
@@ -292,15 +298,15 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="8세" />
+                </TableRow>
+                <TableRow>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="9세" />
-                </TableRow>
-                <TableRow>
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
@@ -325,15 +331,15 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="13세" />
+                </TableRow>
+                <TableRow>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="14세" />
-                </TableRow>
-                <TableRow>
-
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="90dp"
@@ -358,12 +364,6 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="18세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="19세" />
                 </TableRow>
 
             </TableLayout>
@@ -374,7 +374,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="*만 나이 기준입니다."
+            android:layout_marginLeft="20dp"
+            android:text="* 만 나이 기준입니다."
             android:textSize="10dp"
             android:textColor="#ff0000"/>
     </LinearLayout>
