@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
+                android:paddingLeft="10dp"
                 android:text="HOME" />
 
             <ListView
@@ -65,7 +65,8 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
-                android:text="육아일기" />
+                android:text="육아일기"
+                android:textColor="@color/color2" />
 
             <Button
                 android:id="@+id/btn_dataInput"
@@ -74,7 +75,8 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
-                android:text="직접 키 입력" />
+                android:text="직접 키 입력"
+                android:textColor="@color/color2" />
 
             <Button
                 android:id="@+id/btn_usersManage"

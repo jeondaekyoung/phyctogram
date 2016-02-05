@@ -16,6 +16,8 @@
     <color name="color9">#BDD1DC</color>
 
     <!-- 픽토그램 보라색 -->
-    <color name="color10">#C1ABE1</color>
+    <color name="purple">#C1ABE1</color>
+    <color name="purpledk">#776096</color>
+    <color name="yellow">#F6D14C</color>
 
 </resources>

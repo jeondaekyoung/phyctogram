@@ -28,356 +28,377 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_fragment"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#C0AAE1"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_my_animal_01"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:src="@drawable/animal_01_01" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#C0AAE1"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
-            <ImageView
-                android:id="@+id/iv_my_animal_02"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight="2"
-                android:src="@drawable/animal_01_02" />
+                <ImageView
+                    android:id="@+id/iv_my_animal_01"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/animal_01_01" />
 
-            <ImageView
-                android:id="@+id/iv_my_animal_03"
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="3"
-                android:src="@drawable/animal_01_03" />
+                <ImageView
+                    android:id="@+id/iv_my_animal_02"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="2"
+                    android:src="@drawable/animal_01_02" />
 
+                <ImageView
+                    android:id="@+id/iv_my_animal_03"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/animal_01_03" />
+
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow>
+
+                        <ImageView
+                            android:id="@+id/iv_animal_00"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_00" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_01"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_01" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_02"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_02" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_03"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_03" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_04"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_04" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <ImageView
+                            android:id="@+id/iv_animal_05"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_05" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_06"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_06" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_07"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_07" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_08"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_08" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_09"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_09" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <ImageView
+                            android:id="@+id/iv_animal_10"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_10" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_11"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_11" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_12"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_12" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_13"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_13" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_14"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_14" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <ImageView
+                            android:id="@+id/iv_animal_15"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_15" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_16"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_16" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_17"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_17" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_18"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_18" />
+
+                        <ImageView
+                            android:id="@+id/iv_animal_19"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:alpha="0.1"
+                            android:src="@drawable/animal_19" />
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0.5세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="1세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="2세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="3세" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="4세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="5세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="6세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="7세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="8세" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="9세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="10세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="11세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="12세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="13세" />
+                    </TableRow>
+
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="14세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="15세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="16세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="17세" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="90dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="18세" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="right"
+                android:text="* 만 나이 기준입니다."
+                android:textColor="@color/colorAccent"/>
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow>
-                    <ImageView
-                        android:id="@+id/iv_animal_00"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_00" 
-                        android:alpha="0.1"/>
-
-                    <ImageView
-                        android:id="@+id/iv_animal_01"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_01"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_02"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_02"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_03"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_03"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_04"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_04"
-                        android:alpha="0.1" />
-                </TableRow>
-
-                <TableRow>
-
-                    <ImageView
-                        android:id="@+id/iv_animal_05"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_05"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_06"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_06"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_07"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_07"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_08"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_08"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_09"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_09"
-                        android:alpha="0.1" />
-                </TableRow>
-
-                <TableRow>
-
-                    <ImageView
-                        android:id="@+id/iv_animal_10"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_10"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_11"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_11"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_12"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_12"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_13"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_13"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_14"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_14"
-                        android:alpha="0.1" />
-                </TableRow>
-
-                <TableRow>
-
-                    <ImageView
-                        android:id="@+id/iv_animal_15"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_15"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_16"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_16"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_17"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_17"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_18"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_18"
-                        android:alpha="0.1" />
-
-                    <ImageView
-                        android:id="@+id/iv_animal_19"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/animal_19"
-                        android:alpha="0.1" />
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="0.5세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="1세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="2세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="3세" />
-                </TableRow>
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="4세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="5세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="6세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="7세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="8세" />
-                </TableRow>
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="9세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="10세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="11세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="12세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="13세" />
-                </TableRow>
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="14세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="15세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="16세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="17세" />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="90dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="18세" />
-                </TableRow>
-
-            </TableLayout>
-
-        </RelativeLayout>
-        </ScrollView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="* 만 나이 기준입니다."
-            android:textSize="10dp"
-            android:textColor="#ff0000"/>
-    </LinearLayout>
-
+    </ScrollView>
 </LinearLayout>
