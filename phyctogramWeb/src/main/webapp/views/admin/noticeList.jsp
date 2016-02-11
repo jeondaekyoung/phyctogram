@@ -28,10 +28,10 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="noticeList.jsp">공지사항</a>
+            <a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
           </li>
           <li>
-            <a href="customer.jsp">문의하기</a>
+            <a href="<%=application.getContextPath()%>/views/admin/customer.jsp">문의하기</a>
           </li>
         </ul>
       </div>
@@ -52,7 +52,7 @@
       <div class="container m-t-xl">
         <div class="row">
           <div class="col-sm-12">
-            <a href="noticeWrite.jsp" class="btn btn-danger btn-block btn-lg m-b-sm">공지 작성하기</a>
+            <a href="<%=application.getContextPath()%>/views/admin/noticeWrite.jsp" class="btn btn-danger btn-block btn-lg m-b-sm">공지 작성하기</a>
             <section class="list-group alt">
                 <ul class="list-group list-group-lg">
                   <li class="list-group-item">
