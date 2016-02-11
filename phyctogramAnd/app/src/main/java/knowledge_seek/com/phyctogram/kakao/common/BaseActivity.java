@@ -84,7 +84,6 @@ public class BaseActivity extends Activity {
         usersListSlideAdapter = new UsersListSlideAdapter(this);
         lv_usersList.setAdapter(usersListSlideAdapter);
 
-
         //슬라이드 내 이동 버튼 정의
         btn_home = (Button) findViewById(R.id.btn_home);
         btn_home.setOnClickListener(new View.OnClickListener() {

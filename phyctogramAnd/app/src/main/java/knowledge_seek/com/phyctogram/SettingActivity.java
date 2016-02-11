@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -15,27 +14,18 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.pkmmte.view.CircularImageView;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
-import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
-import retrofit.Call;
 
 /**
  * Created by dkfka on 2015-12-02.
@@ -100,7 +90,9 @@ public class SettingActivity extends BaseActivity {
         tv_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "준비중입니다", Toast.LENGTH_LONG).show();
+                /*Toast.makeText(getApplicationContext(), "준비중입니다", Toast.LENGTH_LONG).show();*/
+                Intent intent = new Intent(getApplicationContext(), NoticeListActivity.class);
+                startActivity(intent);
             }
         });
         //내기기

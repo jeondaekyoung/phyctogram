@@ -56,6 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:divider="#e0e0e0"
+                android:listSelector="@color/yellow"
                 android:dividerHeight="1dp" />
 
             <Button
