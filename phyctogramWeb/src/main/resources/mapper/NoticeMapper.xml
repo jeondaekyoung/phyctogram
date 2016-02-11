@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.NoticeMapper">
+
+	<insert id="registerNotice" parameterType="Notice">
+		INSERT INTO notice_tb (
+						  title
+						  ,notice
+						  ,writng_de) VALUES (
+						  #{title}
+						  ,#{notice}
+						  ,now())
+	</insert>
+	
+	<select id="listNotices" parameterType="Integer" resultType="Notice">
+		SELECT notice_seq, title, notice, writng_de
+		  FROM notice_tb
+		ORDER BY writng_de DESC
+		LIMIT #{pageCnt}, 10
+	</select>
+	
+	
+</mapper>

@@ -19,6 +19,7 @@
 		<typeAlias type="naree.db.domain.Diary" alias="Diary"/>
 		<typeAlias type="naree.db.domain.Analysis" alias="Analysis"/>
 		<typeAlias type="naree.db.domain.Admin" alias="Admin"/>
+		<typeAlias type="naree.db.domain.Notice" alias="Notice"/>
 		
 	</typeAliases>
 
@@ -47,6 +48,7 @@
     <mapper resource="mapper/CommentMapper.xml"/>
     <mapper resource="mapper/DiaryMapper.xml"/>
     <mapper resource="mapper/AdminMapper.xml"/>
+    <mapper resource="mapper/NoticeMapper.xml"/>
   </mappers>
   
 </configuration>

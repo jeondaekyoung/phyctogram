@@ -28,10 +28,10 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="noticeList.jsp">공지사항</a>
+            <a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
           </li>
           <li>
-            <a href="customer.jsp">문의하기</a>
+            <a href="<%=application.getContextPath()%>/views/admin/customer.jsp">문의하기</a>
           </li>
         </ul>
       </div>
@@ -54,9 +54,11 @@
           <div class="col-sm-12">
             <section class="list-group alt">
                 <ul class="list-group list-group-lg">
+                
+                <form action="<%=application.getContextPath() %>/notice/register.do" method="POST" id="register">
                   <li class="list-group-item"><!-- 제목영역 -->
                     <div class="media">
-                        <input class="form-control input-lg" type="text" placeholder="제목을 입력하세요">
+                        <input class="form-control input-lg" type="text" id="title" name="title" placeholder="제목을 입력하세요">
                     </div>
                   </li>
                   <!-- /제목영역 -->
@@ -65,14 +67,15 @@
                     <div class="media">
                       <div class="media-body">
                         <div id="editor">
-							<textarea rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" placeholder="내용을 입력하세요"></textarea>
+							<textarea rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" id="notice" name="notice" placeholder="내용을 입력하세요"></textarea>
 						</div>						
                       </div>
                     </div>
                   </li><!-- 내용영역 -->
                 </ul>
+                </form>
+            	<button class="btn btn-danger btn-block btn-lg m-b-sm" id="registerBtn">작성완료</button>
                 
-            	<button class="btn btn-danger btn-block btn-lg m-b-sm">작성완료</button>
             </section>
           </div>
         </div>        
@@ -109,5 +112,29 @@
   <!-- App -->
   <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  //공지사항 저장
+	  $("#registerBtn").click(function(){
+		  if(checkValue() == true){
+			  $("#register").submit();
+		  }
+	  });
+  });
+  
+  var checkValue = function(){
+	  if($("#title").val() == ""){
+		  alert("제목을 입력해주세요");
+		  $("#title").focus();
+		  return false;
+	  } else if($("#notice").val() == ""){
+		  alert("내용을 입력해주세요");
+		  $("#notice").focus();
+		  return false;
+	  }
+	  return true;
+  }
+  </script>
+  
 </body>
 </html>

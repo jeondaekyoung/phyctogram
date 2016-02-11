@@ -31,7 +31,7 @@
                     <h1>로그인</h1>
                 </div>
                 
-                <form action="${pageContext.request.contextPath }/admin/login.do" method="POST">
+                <form action="<%=application.getContextPath()%>/admin/login.do" method="POST">
 	                <div id="contents">
 	                    <div class="formgroup">
 	                        <label>ID</label>

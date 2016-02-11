@@ -188,5 +188,31 @@
   <!-- App -->
   <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
+  <script type="text/javascript">
+  var rootPath = window.location.protocol + '//' + window.location.host;
+  var pageCnt = 0;
+  $(document).ready(function(){
+	  $.ajax({
+		  url: rootPath + "/notice/list.do"
+		  ,type: "POST"
+		  ,data: {
+			  pageCnt: pageCnt
+		  }
+		  ,success: listSuccess
+		  ,error: errorCallback
+	  })
+  });
+  
+  //공지사항 리스트 조회
+  var listSuccess = function(resultData){
+	  console.log("결과 - " + resultData);
+	  pageCnt++;
+  };
+  
+  //Ajax 에러 콜백함수
+  var errorCallback = function(){
+	  alert("수행 중 오류가 발생했습니다");
+  };
+  </script>
 </body>
 </html>
