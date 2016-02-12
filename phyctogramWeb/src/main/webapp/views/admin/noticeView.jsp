@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,10 +29,10 @@
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active">
-            <a href="noticeList.jsp">공지사항</a>
+            <a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
           </li>
           <li>
-            <a href="customer.jsp">문의하기</a>
+            <a href="<%=application.getContextPath()%>/views/admin/customer.jsp">문의하기</a>
           </li>
         </ul>
       </div>
@@ -57,8 +58,8 @@
                   <li class="list-group-item"><!-- 제목영역 -->
                     <div class="media">
                       <div class="media-body">
-                        <div class="h2 text-center-xs m-b-sm">텍스트뷰어, 그릅콜 중 친구 초대 기능 등 2.0.9 업데이트 안내</div>
-                        <p class="text-muted text-center-xs">2016/01/12</p>
+                        <div class="h2 text-center-xs m-b-sm">${notice.title }</div>
+                        <p class="text-muted text-center-xs" id="noticeDate"><fmt:formatDate value="${notice.writng_de }" type="both" pattern="yyyy/MM/dd"/></p>
                       </div>
                     </div>
                   </li>
@@ -67,36 +68,8 @@
                   <li class="list-group-item"><!-- 내용영역 -->
                     <div class="media">
                       <div class="media-body">
-                        <div class="l-h-2x">카카오톡 사용자 여러분, 안녕하세요. <br>
-							요즘 이애란 선생님의 백세인생 인기가 대단한데요.<br><br>
-							2010년 3월생인 귀요미 카카오톡은, 이제 곧 일곱 살이 되는 어린이입니다. <br>
-							(카카오팀은 어른이… 평균 나이는 비밀입니다.)<br><br>
-							카카오톡이 일곱 살 먹을 때까지 일어서 걷고 뛰다가, 가끔은 또 넘어지고 하면서도 <br>
-							이만큼 무럭무럭 잘 자랄 수 있었던 건… 전부 사용자 여러분 덕분이라고 생각합니다.<br><br>
-							진심으로 감사합니다.<br><br>
-							백세카톡 되려면 아직 멀었지만, 백 세가 되어서도 <br>
-							사용자 여러분들 곁에 함께이고 싶다 전해라~♫<br><br>
-							…네, 2.0.9 업데이트 내역 나갑니다.<br><br>
-							■ 장문의 메시지,이제 한번에 보세요. <br><br>
-							학교나 회사에서 장문의 메시지 주고받을 때,  꼭 저장하고 열어야해서 번거로우셨을텐데요.<br>
-							이젠 장문의 메시지를 클릭 한번에 볼 수 있는 '텍스트뷰어'가 생겼습니다. <br><br>
-							장문의 메시지, 이젠 퀵하게 보세요.<br><br>
-							■ 톡프로필로 대동 단결, 오픈 채팅 ‘프로필 제한’기능 <br><br>
-							명함에도 모임에도… 요즘 흥한다는 오픈채팅 아시죠.<br><br>
-							이젠 누구? 하지 말고, 오픈채팅방 개설할 때<br>
-							‘카카오톡 프로필로 제한’ 옵션을 선택해 보세요.<br><br>
-							프렌즈 캐릭터로도 변신 가능했던 오픈채팅,<br>
-							이제부터는 채팅방에 참여하는 방장도, 손님도 카톡 프로필만으로 대화하게 할 수 있습니다.<br>
-							(철수인데 영희인 척 속이지 말라 이거예요…)<br><br>
-							■ 그룹콜 중에도 친구 초대 <br>
-							기존에는 그룹콜 중 친구를 초대하려면 다시 그룹콜을 걸어야 했었는데요. <br>
-							이제는 그룹콜 통화 중에 친구를 더 초대할 수 있습니다. <br>
-							그룹콜 하다 심심하면,  친구 더 부르라고 전해라 ~♫<br><br>
-							■그밖에 기타 사용성 개선<br>
-							- 접근성 개선 <br>
-							- 그외 버그 수정 및 안정성 개선 <br><br>
-							크리스마스엔 여러분께 산타모자 씌워드리고픈 @카카오팀 드림</div>
-                      </div>
+                        <div class="l-h-2x">${notice.notice }</div>
+                       </div>
                     </div>
                   </li><!-- 내용영역 -->
                 </ul>
@@ -138,5 +111,36 @@
   <!-- App -->
   <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  
+  });
+  
+  
+  
+//시간포맷
+var formatDate = function(dateObj){
+  	var curr_year = date.getFullYear();
+  	var curr_month = date.getMonth() + 1;
+  	var curr_date = date.getDate();
+  	var curr_hr = date.getHours();
+  	var curr_min = date.getMinutes();
+  	
+  	if(curr_month.toString().length == 1) {
+  		curr_month = '0' + curr_month;
+  	}
+  	if(curr_date.toString().length == 1){
+  		curr_date = '0' + curr_date;
+  	}
+  	if(curr_hr.toString().length == 1){
+  		curr_hr = '0' + curr_hr;
+  	}
+  	if(curr_min.toString().length == 1){
+  		curr_min = '0' + curr_min;
+  	}
+  	return curr_year + "/"+ curr_month + "/" + curr_date;
+  }
+  
+  </script>
 </body>
 </html>

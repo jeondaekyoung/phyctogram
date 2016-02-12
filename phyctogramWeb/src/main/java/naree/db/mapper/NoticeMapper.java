@@ -10,4 +10,10 @@ public interface NoticeMapper {
 
 	List<Notice> listNotices(int pageCnt);
 
+	Notice selectByNoticeSeq(int notice_seq);
+
+	int updateByNotice(Notice notice);
+
+	int deleteByNoticeSeq(int notice_seq);
+
 }

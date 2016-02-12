@@ -55,4 +55,69 @@ public class NoticeController {
 		
 		return notices;
 	}
+	
+	/**
+	 * 공지사항 보기
+	 * @param notice_seq
+	 * @return
+	 */
+	@RequestMapping(value = "view.do", method=RequestMethod.GET)
+	public ModelAndView view(int notice_seq){
+		logger.info("notice/view.do - 공기사항 번호 : " + notice_seq);
+		ModelAndView mv = new ModelAndView();
+		
+		Notice notice = noticeService.searchByNoticeSeq(notice_seq);
+		mv.addObject("notice", notice);
+		
+		mv.setViewName("admin/noticeView");
+		return mv;
+	}
+	
+	/**
+	 * 공지사항 수정하기(입력받는 화면)
+	 * @param notice_seq
+	 * @return
+	 */
+	@RequestMapping(value = "modify.do", method=RequestMethod.POST)
+	public ModelAndView modify(int notice_seq){
+		logger.info("notice/modify.do - 공지사항 번호 : " + notice_seq);
+		ModelAndView mv = new ModelAndView();
+		
+		Notice notice = noticeService.searchByNoticeSeq(notice_seq);
+		mv.addObject("notice", notice);
+		
+		mv.addObject("mode", "modify");
+		mv.setViewName("admin/noticeWrite");
+		return mv;
+	}
+	
+	/**
+	 * 공지사항 수정하기(DB수정)
+	 * @param notice
+	 * @return
+	 */
+	@RequestMapping(value = "modeModify.do", method=RequestMethod.POST)
+	public ModelAndView modeModify(Notice notice){
+		logger.info("notice/modeModify.do - " + notice.toString());
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.modifyByNotice(notice);
+		mv.setViewName("admin/noticeList");
+		return mv;
+	}
+	
+	/**
+	 * 공지사항 삭제하기
+	 * @param notice_seq
+	 * @return
+	 */
+	@RequestMapping(value = "erase.do", method=RequestMethod.POST)
+	public ModelAndView erase(int notice_seq){
+		logger.info("notice/erase.do - 공지사항 번호 : " + notice_seq);
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.eraseByNoticeSeq(notice_seq);
+		mv.setViewName("admin/noticeList");
+		return mv;
+	}
 }

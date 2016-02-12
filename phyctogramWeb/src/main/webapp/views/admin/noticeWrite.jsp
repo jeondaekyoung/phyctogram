@@ -55,10 +55,12 @@
             <section class="list-group alt">
                 <ul class="list-group list-group-lg">
                 
-                <form action="<%=application.getContextPath() %>/notice/register.do" method="POST" id="register">
+                <form action="<%=application.getContextPath() %>/notice/modeModify.do" method="POST" id="register">
+                	<input type="hidden" value="${mode }" id="mode" >
+                	<input type="hidden" value="${notice.notice_seq }" name="notice_seq">
                   <li class="list-group-item"><!-- 제목영역 -->
                     <div class="media">
-                        <input class="form-control input-lg" type="text" id="title" name="title" placeholder="제목을 입력하세요">
+                        <input class="form-control input-lg" type="text" id="title" name="title" placeholder="제목을 입력하세요" value="${notice.title }">
                     </div>
                   </li>
                   <!-- /제목영역 -->
@@ -67,7 +69,7 @@
                     <div class="media">
                       <div class="media-body">
                         <div id="editor">
-							<textarea rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" id="notice" name="notice" placeholder="내용을 입력하세요"></textarea>
+							<textarea rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" id="notice" name="notice" placeholder="내용을 입력하세요" >${notice.notice }</textarea>
 						</div>						
                       </div>
                     </div>
@@ -113,15 +115,49 @@
   <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
   <script type="text/javascript">
+  var rootPath = window.location.protocol + '//' + window.location.host;
   $(document).ready(function(){
-	  //공지사항 저장
+	  
+	  var mode = $("#mode").val();
+	  console.log("모드 : " + mode);
+	  
+	  if(mode == "modify") {
+		  $("#registerBtn").text("수정하기");
+	  }
+	  //공지사항 수정
 	  $("#registerBtn").click(function(){
 		  if(checkValue() == true){
-			  $("#register").submit();
+			  if(mode == "modify"){
+				  $("#register").submit();
+			  } else {
+				  register();
+			  }
 		  }
 	  });
   });
   
+  //작성하기
+  var register = function(){
+	  console.log("작성하기");
+	  var f = document.createElement('form');
+	  var objs = document.createElement('input');
+	  objs.setAttribute('type','hidden');
+	  objs.setAttribute('name', 'title');
+	  objs.setAttribute('value', $("#title").val());
+	  f.appendChild(objs);
+	  var objs1 = document.createElement('input');
+	  objs1.setAttribute('type','hidden');
+	  objs1.setAttribute('name', 'notice');
+	  objs1.setAttribute('value', $("#notice").val());
+	  f.appendChild(objs1);
+	  
+	  f.setAttribute('action', rootPath+"/notice/register.do");
+	  f.setAttribute('method','post');
+	  document.body.appendChild(f);
+	  f.submit();
+  }
+  
+  //값 체크
   var checkValue = function(){
 	  if($("#title").val() == ""){
 		  alert("제목을 입력해주세요");

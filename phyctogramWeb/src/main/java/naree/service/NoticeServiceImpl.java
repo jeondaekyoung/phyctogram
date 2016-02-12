@@ -26,4 +26,22 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDao.listNotices(pageCnt);
 	}
 
+	@Override
+	public Notice searchByNoticeSeq(int notice_seq) {
+		
+		return noticeDao.selectByNoticeSeq(notice_seq);
+	}
+
+	@Override
+	public int modifyByNotice(Notice notice) {
+		
+		return noticeDao.updateByNotice(notice);
+	}
+
+	@Override
+	public int eraseByNoticeSeq(int notice_seq) {
+		
+		return noticeDao.deleteByNoticeSeq(notice_seq);
+	}
+
 }

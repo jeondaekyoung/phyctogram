@@ -39,4 +39,45 @@ public class NoticeDaoImpl implements NoticeDao {
 		return result;
 	}
 
+	@Override
+	public Notice selectByNoticeSeq(int notice_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Notice result = null;
+		try {
+			NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+			result = noticeMapper.selectByNoticeSeq(notice_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateByNotice(Notice notice) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+			result = noticeMapper.updateByNotice(notice);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int deleteByNoticeSeq(int notice_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			NoticeMapper noticeMapper = sqlSession.getMapper(NoticeMapper.class);
+			result = noticeMapper.deleteByNoticeSeq(notice_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
 }
