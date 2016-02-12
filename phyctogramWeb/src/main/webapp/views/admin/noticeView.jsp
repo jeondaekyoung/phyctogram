@@ -65,7 +65,7 @@
                   </li>
                   <!-- /제목영역 -->
                   
-                  <li class="list-group-item"><!-- 내용영역 -->
+                  <li class="list-group-item min-h"><!-- 내용영역 -->
                     <div class="media">
                       <div class="media-body">
                         <div class="l-h-2x">${notice.notice }</div>
@@ -81,30 +81,7 @@
       </div>
     </div>
   </section>
-  
-  <!-- footer -->
-  <footer id="footer">
-    <div class="bg-dark dker wrapper">
-      <div class="container text-center m-t-lg">
-        <div class="row m-t-xl m-b-xl">
-          <div class="col-sm-4"><i class="fa fa-map-marker fa-3x icon-muted"></i>
-            <h5 class="text-uc m-b m-t-lg">주소</h5>
-            <p class="text-sm">서울특별시 강남구 학동로56길 47<br>4층 (주)나리지식앤컴퍼니</p>
-          </div>
-          <div class="col-sm-4"><i class="fa fa-envelope-o fa-3x icon-muted"></i>
-            <h5 class="text-uc m-b m-t-lg">메일</h5>
-            <p class="text-sm"><a href="mailto:hey@example.com">seek-knowledge@knowledge-seek.com</a></p>
-          </div>
-          <div class="col-sm-4"><i class="fa fa-phone fa-3x icon-muted"></i>
-            <h5 class="text-uc m-b m-t-lg">유선</h5>
-            <p class="text-sm">070-8624-4532</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- / footer --> 
-  
+   
   <script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>

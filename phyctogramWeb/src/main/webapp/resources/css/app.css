@@ -753,6 +753,9 @@ fieldset[disabled] .btn-danger.active {
 .m-b-n-xl {
   margin-bottom: -40px;
 }
+.min-h{
+	min-height: 500px;
+}
 .clear {
   display: block;
   overflow: hidden;
