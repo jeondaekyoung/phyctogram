@@ -17,6 +17,14 @@
     
 <body> 
   <section id="content">
+  <!-- <div class="bg-dark lt">
+      <div class="container">
+        <div class="m-b-lg m-t-lg">
+          <h3 class="m-b-none">공지사항</h3>
+          <small class="text-muted">Notice</small>
+        </div>
+      </div>
+    </div> -->
     <div>
       <div class="container m-t-xl">
         <div class="row">

@@ -15,39 +15,15 @@
 </head>
     
 <body>
-  	
-  <!-- header -->
-  <header id="header" class="navbar navbar-fixed-top bg-white box-shadow b-b b-light"  data-spy="affix" data-offset-top="1">
-    <div class="container">
-      <div class="navbar-header">        
-        <a href="#" class="navbar-brand"><span class="text-muted">Phyctogram</span></a>
-        <button class="btn btn-link visible-xs" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active">
-            <a href="noticeList.jsp">공지사항</a>
-          </li>
-          <li>
-            <a href="customer.jsp">문의하기</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </header>
-  <!-- / header -->
-  
   <section id="content">
-    <div class="bg-dark lt">
+    <!-- <div class="bg-dark lt">
       <div class="container">
         <div class="m-b-lg m-t-lg">
           <h3 class="m-b-none">문의하기</h3>
           <p class="text-muted">customer</p>
         </div>
       </div>
-    </div>
+    </div> -->
     <div>
       <div class="container m-t-xl">
         <div class="row">
