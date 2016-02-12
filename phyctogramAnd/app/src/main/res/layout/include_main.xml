@@ -32,14 +32,13 @@
     <LinearLayout
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:weightSum="16">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
+            android:layout_weight="1"
             android:background="#C0AAE1"
             android:gravity="center"
             android:orientation="horizontal"
@@ -158,22 +157,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <ImageButton
                 android:id="@+id/btn_users_record"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
-                android:layout_marginRight="10dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginRight="5dp"
                 android:background="@drawable/main1" />
 
             <ImageButton
                 android:id="@+id/btn_users_analysis"
-                android:layout_width="145dp"
-                android:layout_height="145dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:background="@drawable/main2" />
         </LinearLayout>
 
@@ -184,13 +183,14 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_weight="5"
+            android:layout_weight="1"
             android:background="#f3f3f3"
             android:orientation="vertical"
             android:padding="10dp"
             android:weightSum="4">
 
             <RelativeLayout
+                android:id="@+id/rl_community_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

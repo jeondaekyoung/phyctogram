@@ -68,6 +68,8 @@ public class CharacterActivity extends BaseActivity {
 
                 //현재 선택된 내 아이를 맨 뒤로 이동
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
+                //lv_usersList.setBackgroundColor(getResources().getColor(R.color.yellow));
+
                 //내 아이 목록 셋팅
                 usersListSlideAdapter.setUsersList(usersList);
                 usersListSlideAdapter.notifyDataSetChanged();
@@ -85,7 +87,6 @@ public class CharacterActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
-
     }
 
     @Override

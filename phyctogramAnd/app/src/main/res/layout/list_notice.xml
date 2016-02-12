@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:padding="10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/notice_title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_alignParentLeft="true"
+        android:padding="5dp"
+        android:text="제목" />
 
-        <TextView
-            android:id="@+id/notice_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="제목" />
+    <TextView
+        android:id="@+id/notice_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="2016/01/25"
+        android:textColor="#aaaaaa" />
 
-        <TextView
-            android:id="@+id/notice_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="2016/01/25"
-            android:textColor="#aaaaaa" />
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>

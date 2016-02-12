@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.pkmmte.view.CircularImageView;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-import knowledge_seek.com.phyctogram.listAdapter.NoticeListAdapter;
+import knowledge_seek.com.phyctogram.listAdapter.CustomAdapter;
 
 /**
  * Created by dkfka on 2016-02-11.
@@ -29,8 +29,7 @@ public class NoticeListActivity extends BaseActivity {
 
     //레이아웃정의
     private ListView lv_noticeList;
-    private NoticeListAdapter noticeListAdapter;
-
+    private CustomAdapter customAdapter;
     //데이터정의
     private boolean lastListViewVisible = false;        //화면에 리스트의 마지막 아이템이 보여지는지 체크
     private int pageCnt = 0;                            //리스트뷰의 목록 페이지 번호
@@ -75,11 +74,12 @@ public class NoticeListActivity extends BaseActivity {
         });
 
         //공지 글 목록
-        noticeListAdapter = new NoticeListAdapter();
+        customAdapter = new CustomAdapter();
         lv_noticeList = (ListView)findViewById(R.id.lv_noticeList);
-        //lv_noticeList.setAdapter(noticeListAdapter);
+        lv_noticeList.setAdapter(customAdapter);
+
         //리스트뷰 클릭 -> 글 보기로 이동
-        lv_noticeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_noticeList.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), NoticeViewActivity.class);
