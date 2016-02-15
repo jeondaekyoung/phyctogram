@@ -132,6 +132,7 @@ public class MainActivity extends BaseActivity {
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
                 //내 아이 목록 셋팅
                 usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
                 usersListSlideAdapter.notifyDataSetChanged();
 
                 //내 아이 메인(분석) 정보 계산하기
@@ -396,6 +397,7 @@ public class MainActivity extends BaseActivity {
                 //현재 선택된 내 아이를 맨 뒤로 이동
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
                 Log.d("-진우-", "순서 바꾼 후 내 아이 목록 : " + usersList.size());
+                usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
                 usersListSlideAdapter.setUsersList(usersList);
 
                 int height = getListViewHeight(lv_usersList);

@@ -72,6 +72,7 @@ public class CharacterActivity extends BaseActivity {
 
                 //내 아이 목록 셋팅
                 usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
                 usersListSlideAdapter.notifyDataSetChanged();
 
                 //아이 선택시 아이에 맞는 캐릭터를 불러오기
@@ -99,6 +100,7 @@ public class CharacterActivity extends BaseActivity {
 
         //슬라이드메뉴 내 아이 목록 셋팅
         usersListSlideAdapter.setUsersList(usersList);
+        usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
         int height = getListViewHeight(lv_usersList);
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();

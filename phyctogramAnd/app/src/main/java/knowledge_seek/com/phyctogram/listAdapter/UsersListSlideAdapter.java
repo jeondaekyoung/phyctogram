@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.R;
 import knowledge_seek.com.phyctogram.domain.Users;
 
 /**
@@ -18,7 +19,7 @@ import knowledge_seek.com.phyctogram.domain.Users;
  */
 public class UsersListSlideAdapter extends BaseAdapter {
     private Context context;
-
+    private int selectUsers;
 
     //리스트
     private List<Users> usersList = new ArrayList<Users>();
@@ -47,6 +48,10 @@ public class UsersListSlideAdapter extends BaseAdapter {
         return position;
     }
 
+    public void setSelectUsers(int selectUsers) {
+        this.selectUsers = selectUsers;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         /*if(convertView == null){
@@ -67,6 +72,9 @@ public class UsersListSlideAdapter extends BaseAdapter {
         TextView tv = (TextView) LayoutInflater.from(context).inflate(
                 android.R.layout.simple_list_item_1, parent, false);
         tv.setText(usersList.get(position).getName());
+        if(selectUsers == usersList.get(position).getUser_seq()) {
+            tv.setBackgroundResource(R.drawable.lv_selector);
+        }
         return tv;
     }
 }

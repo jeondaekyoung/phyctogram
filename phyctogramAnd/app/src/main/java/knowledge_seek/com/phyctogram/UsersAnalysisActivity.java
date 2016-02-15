@@ -121,6 +121,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
                 //내 아이 목록 셋팅
                 usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
                 usersListSlideAdapter.notifyDataSetChanged();
 
                 //내 아이 메인(분석) 정보 계산하기
@@ -352,6 +353,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         //슬라이드메뉴 내 아이 목록 셋팅
         usersListSlideAdapter.setUsersList(usersList);
+        usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
         int height = getListViewHeight(lv_usersList);
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();

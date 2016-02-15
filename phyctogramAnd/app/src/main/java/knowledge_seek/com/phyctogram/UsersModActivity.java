@@ -103,6 +103,7 @@ public class UsersModActivity extends BaseActivity {
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
                 //내 아이 목록 셋팅
                 usersListSlideAdapter.setUsersList(usersList);
+                usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
                 usersListSlideAdapter.notifyDataSetChanged();
 
                 init();
@@ -197,6 +198,7 @@ public class UsersModActivity extends BaseActivity {
 
         //슬라이드메뉴 내 아이 목록 셋팅
         usersListSlideAdapter.setUsersList(usersList);
+        usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
         int height = getListViewHeight(lv_usersList);
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();

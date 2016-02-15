@@ -58,8 +58,7 @@
                 android:choiceMode="singleChoice"
                 android:divider="#e0e0e0"
                 android:dividerHeight="1dp"
-                android:drawSelectorOnTop="true"
-                android:listSelector="@drawable/lv_selector" />
+                android:drawSelectorOnTop="true"/>
 
             <Button
                 android:id="@+id/btn_usersDiary"

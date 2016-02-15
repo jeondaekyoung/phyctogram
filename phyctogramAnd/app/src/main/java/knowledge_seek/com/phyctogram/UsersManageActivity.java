@@ -374,6 +374,7 @@ public class UsersManageActivity extends BaseActivity {
             }
 
             usersListSlideAdapter.setUsersList(usersList);
+            usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
             int height = getListViewHeight(lv_usersList);
             lv_usersList.getLayoutParams().height = height;
             usersListSlideAdapter.notifyDataSetChanged();

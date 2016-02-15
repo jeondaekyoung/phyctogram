@@ -130,6 +130,7 @@ public class CommunityWriteActivity extends BaseActivity {
 
         //슬라이드메뉴 내 아이 목록 셋팅
         usersListSlideAdapter.setUsersList(usersList);
+        usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
         int height = getListViewHeight(lv_usersList);
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();
