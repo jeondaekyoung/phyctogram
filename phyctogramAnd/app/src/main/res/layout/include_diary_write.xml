@@ -36,13 +36,14 @@
         android:background="#ffffffff"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_diary_date"
+        <TextView
+            android:id="@+id/tv_diary_date"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
             android:editable="false"
-            android:hint="날 짜"
             android:textSize="14dp" />
 
         <EditText

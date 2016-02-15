@@ -52,7 +52,7 @@ public class DiaryWriteActivity extends BaseActivity {
     //레이아웃 정의
     private TextView tv_users_name;     //아이 이름 출력
 
-    private EditText et_diary_date;     //날짜
+    private TextView tv_diary_date;     //날짜
     private Button btn_diary_save;      //일기 저장
     private EditText et_title;
     private EditText et_contents;
@@ -112,17 +112,17 @@ public class DiaryWriteActivity extends BaseActivity {
             }
         });
 
-        et_diary_date = (EditText)findViewById(R.id.et_diary_date);
+        tv_diary_date = (TextView)findViewById(R.id.tv_diary_date);
 
+        //초기디폴트 날짜 셋팅
+        datepickSetting();
         //달력 대화상자 띄우기
-        GregorianCalendar calendar = new GregorianCalendar();
-        year = calendar.get(Calendar.YEAR);
-        month = calendar.get(Calendar.MONTH);
-        day = calendar.get(Calendar.DAY_OF_MONTH);
-        et_diary_date.setOnClickListener(new View.OnClickListener() {
+        tv_diary_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(DiaryWriteActivity.this, dateSetListener, year, month, day).show();
+                String diaryDate = tv_diary_date.getText().toString();
+                new DatePickerDialog(DiaryWriteActivity.this, dateSetListener, Integer.valueOf(diaryDate.substring(0,4)),
+                        Integer.valueOf(diaryDate.substring(5,7))-1, Integer.valueOf(diaryDate.substring(8))).show();
                 setTheme(R.style.AppTheme);
             }
         });
@@ -148,12 +148,12 @@ public class DiaryWriteActivity extends BaseActivity {
 
 
                 //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString().length());
-                if(et_diary_date.getText().toString().length() <= 0){
+                if(tv_diary_date.getText().toString().length() <= 0){
                     Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString());
-                    String[] date = et_diary_date.getText().toString().split("-");
+                    String[] date = tv_diary_date.getText().toString().split("-");
                     //Log.d("-진우-", String.valueOf(date.length));
                     diary.setWritng_year(date[0]);
                     diary.setWritng_mt(date[1]);
@@ -170,6 +170,8 @@ public class DiaryWriteActivity extends BaseActivity {
                 onBackPressed();
             }
         });
+
+
     }
 
     @Override
@@ -195,12 +197,22 @@ public class DiaryWriteActivity extends BaseActivity {
         Log.d("-진우-", "DiaryWriteActivity.onResume() 끝");
     }
 
+    //초기디폴트 날짜 셋팅
+    private void datepickSetting() {
+        GregorianCalendar calendar = new GregorianCalendar();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        String msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(month + 1)).concat("-").concat(Utility.dateFormat(day));
+        tv_diary_date.setText(msg);
+    }
+
     //날짜 입력
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             String msg = String.valueOf(year).concat("-").concat(Utility.dateFormat(monthOfYear + 1)).concat("-").concat(Utility.dateFormat(dayOfMonth));
-            et_diary_date.setText(msg);
+            tv_diary_date.setText(msg);
         }
     };
 

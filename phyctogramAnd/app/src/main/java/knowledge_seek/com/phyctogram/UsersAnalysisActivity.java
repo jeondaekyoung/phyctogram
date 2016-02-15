@@ -322,6 +322,15 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         //내 아이 메인(분석) 정보 등
         iv_my_animal = (ImageView)findViewById(R.id.iv_my_animal);
+        iv_my_animal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CharacterActivity.class);
+                //intent.putExtra("member", member);
+                startActivity(intent);
+                //finish();
+            }
+        });
         tv_height = (TextView)findViewById(R.id.tv_height);
         tv_grow = (TextView)findViewById(R.id.tv_grow);
         tv_rank = (TextView)findViewById(R.id.tv_rank);

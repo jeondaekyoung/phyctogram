@@ -131,7 +131,7 @@ public class PwmodActivity extends BaseActivity {
         if (member.getJoin_route().equals("kakao")) {
             ll_phyctogram.setVisibility(View.GONE);
             ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("카카오 가입자입니다");
+            tv_join_route.setText("카카오 가입자입니다. 카카오 비밀번호 변경은 해당앱을 이용해주세요.");
         } else if (member.getJoin_route().equals("facebook")) {
             ll_phyctogram.setVisibility(View.GONE);
             ll_no_phyctogram.setVisibility(View.VISIBLE);

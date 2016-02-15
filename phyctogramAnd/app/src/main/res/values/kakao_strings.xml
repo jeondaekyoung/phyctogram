@@ -2,4 +2,5 @@
     <string name="kakao_app_key">88e6d63483f763a145860ecc0bfbda14</string>
     <string name="kakao_scheme">kakao88e6d63483f763a145860ecc0bfbda14</string>
     <string name="kakaostory_host">kakaostory</string>
+    <string name="kakaolink_host">kakaolink</string>
 </resources>
