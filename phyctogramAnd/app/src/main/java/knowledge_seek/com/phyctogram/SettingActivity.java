@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
@@ -46,6 +47,7 @@ public class SettingActivity extends BaseActivity {
     private TextView tv_logout;     //로그아웃
     private TextView tv_pwmod;      ///비밀번호 변경
     private TextView tv_withdraw;       //회원탈퇴
+    private TextView tv_qa;             //문의하기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +170,18 @@ public class SettingActivity extends BaseActivity {
                 Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);
                 //intent.putExtra("member", member);
                 startActivity(intent);
+                //finish();
+            }
+        });
+        //문의하기
+        tv_qa = (TextView)findViewById(R.id.tv_qa);
+        tv_qa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "문의하기", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);1
+                //intent.putExtra("member", member);
+                //startActivity(intent);
                 //finish();
             }
         });

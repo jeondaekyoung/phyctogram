@@ -6,7 +6,7 @@
     android:padding="10dp">
 
     <TextView
-        android:id="@+id/notice_title"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -14,7 +14,7 @@
         android:text="제목" />
 
     <TextView
-        android:id="@+id/notice_date"
+        android:id="@+id/tv_writng_de"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"

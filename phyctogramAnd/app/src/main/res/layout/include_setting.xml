@@ -84,5 +84,15 @@
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:text="회원탈퇴" />
+
+        <TextView
+            android:id="@+id/tv_qa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
+            android:paddingBottom="20dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:text="문의하기" />
     </LinearLayout>
 </LinearLayout>

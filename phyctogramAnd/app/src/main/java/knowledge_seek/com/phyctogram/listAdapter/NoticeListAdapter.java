@@ -8,43 +8,56 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import knowledge_seek.com.phyctogram.R;
+import knowledge_seek.com.phyctogram.domain.Notice;
 
 /**
  * Created by dkfka on 2016-02-11.
  */
-public class CustomAdapter extends BaseAdapter {
+public class NoticeListAdapter extends BaseAdapter {
+    private LayoutInflater inflater;
+    private List<Notice> notices;
+    private int layout;
 
-    // 문자열을 보관 할 ArrayList
-    private ArrayList<String> m_List;
-
-    // 생성자
-    public CustomAdapter() {
-        m_List = new ArrayList<String>();
+    public NoticeListAdapter(Context context, List<Notice> data, int layout) {
+        this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.notices = data;
+        this.layout = layout;
     }
 
-    // 현재 아이템의 수를 리턴
+    public void setNotices(List<Notice> list) {
+        notices = list;
+    }
+
     @Override
     public int getCount() {
-        return m_List.size();
+        return notices.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return m_List.get(position);
+        return notices.get(position);
     }
 
-    // 아이템 position의 ID 값 리턴
     @Override
     public long getItemId(int position) {
         return position;
     }
 
-    // 출력 될 아이템 관리
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final int pos = position;
+        if(convertView == null) {
+            convertView = inflater.inflate(layout, parent, false);
+        }
+        Notice notice = notices.get(position);
+        TextView tv_title = (TextView)convertView.findViewById(R.id.tv_title);
+        TextView tv_writng_de = (TextView)convertView.findViewById(R.id.tv_writng_de);
+        tv_title.setText(notices.get(position).getTitle());
+        tv_writng_de.setText(notices.get(position).getWritng_de());
+
+        /*final int pos = position;
         final Context context = parent.getContext();
 
         // 리스트가 길어지면서 현재 화면에 보이지 않는 아이템은 converView가 null인 상태로 들어 옴
@@ -59,7 +72,7 @@ public class CustomAdapter extends BaseAdapter {
 
             TextView txt_date = (TextView) convertView.findViewById(R.id.notice_date);
             txt_date.setText(m_List.get(position));
-        }
+        }*/
         return convertView;
     }
 }
