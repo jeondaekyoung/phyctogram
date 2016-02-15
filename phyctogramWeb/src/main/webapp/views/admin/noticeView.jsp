@@ -50,7 +50,6 @@
                   </li><!-- 내용영역 -->
                 </ul>
                 
-            	<a href="javascript:history.back()" class="btn btn-danger btn-block btn-lg m-b-sm">목록으로 가기</a>
             </section>
           </div>
         </div>        
