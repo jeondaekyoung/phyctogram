@@ -60,7 +60,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
     //리포트 공유 팝업
     private PopupWindow popup;
-    private ImageButton btn_share;
+    private Button btn_share;
 
     private LinearLayout ll_capture;                   //캡쳐화면
     private Bitmap captureView;                         //캡처화면 저장할 비트맵
@@ -142,7 +142,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         ll_capture = (LinearLayout)findViewById(R.id.ll_capture);
         //리포트 공유 팝업
-        btn_share = (ImageButton) findViewById(R.id.btn_share);
+        btn_share = (Button) findViewById(R.id.btn_share);
         btn_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

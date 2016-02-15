@@ -203,10 +203,9 @@ public class BaseActivity extends Activity {
         startActivity(intent);
         //finish();
     }
-    
+
     //슬라이딩, 메뉴
     public void initSildeMenu() {
-
 
         // init left menu width
         metrics = new DisplayMetrics();

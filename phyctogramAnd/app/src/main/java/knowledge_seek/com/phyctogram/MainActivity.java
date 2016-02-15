@@ -1,7 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,14 +8,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,11 +52,11 @@ public class MainActivity extends BaseActivity {
     private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private ImageButton btn_users_record;                     //기록조회
+    private Button btn_users_record;                     //기록조회
     private RelativeLayout rl_community_list;      //수다방 리스트
     private ImageButton imBtn_community_list;
     private TextView tv_users_name;                 //아이 이름 출력
-    private ImageButton btn_users_analysis;     //분석리포트
+    private Button btn_users_analysis;     //분석리포트
     private ImageView iv_my_animal;                        //캐릭터
     private TextView tv_height;                         //최종신장
     private TextView tv_grow;                           //성장 값
@@ -162,7 +160,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         //기록조회
-        btn_users_record = (ImageButton) findViewById(R.id.btn_users_record);
+        btn_users_record = (Button) findViewById(R.id.btn_users_record);
         btn_users_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -177,7 +175,7 @@ public class MainActivity extends BaseActivity {
             }
         });
         //분석리포트
-        btn_users_analysis = (ImageButton) findViewById(R.id.btn_users_analysis);
+        btn_users_analysis = (Button) findViewById(R.id.btn_users_analysis);
         btn_users_analysis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

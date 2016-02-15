@@ -152,28 +152,39 @@
             </LinearLayout>
         </LinearLayout>
 
-
         <!-- 기록조회, 분석리포트 버튼 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:orientation="horizontal">
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_users_record"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/main1" />
+                android:background="@drawable/main1"
+                android:gravity="top|center"
+                android:padding="5dp"
+                android:text="기록조회"
+                android:textColor="@color/color6"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btn_users_analysis"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:background="@drawable/main2" />
+                android:background="@drawable/main2"
+                android:gravity="top|center"
+                android:padding="5dp"
+                android:text="분석리포트"
+                android:textColor="@color/purple"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
         </LinearLayout>
 
         <!-- 수다방 인기top3 -->
@@ -183,23 +194,35 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="#f3f3f3"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:weightSum="4">
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <RelativeLayout
                 android:id="@+id/rl_community_list"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/borderbottom"
                 android:paddingBottom="8dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:text="수다방 인기글 TOP 3"
+                    android:textColor="@color/purple"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
                 <ImageButton
                     android:id="@+id/imBtn_community_list"
-                    android:layout_width="match_parent"
+                    android:layout_width="23dp"
                     android:layout_height="25dp"
                     android:layout_alignParentRight="true"
                     android:layout_margin="2dp"
@@ -210,10 +233,9 @@
                 android:id="@+id/rl_popularTop1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="13dp"
                 android:layout_weight="1"
-                android:background="@drawable/borderbottom"
-                android:paddingBottom="15dp">
+                android:background="@drawable/borderbottom">
 
                 <TextView
                     android:id="@+id/tv_popularTop1_title"
@@ -238,10 +260,9 @@
                 android:id="@+id/rl_popularTop2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="13dp"
                 android:layout_weight="1"
-                android:background="@drawable/borderbottom"
-                android:paddingBottom="15dp">
+                android:background="@drawable/borderbottom">
 
                 <TextView
                     android:id="@+id/tv_popularTop2_title"
@@ -266,7 +287,7 @@
                 android:id="@+id/rl_popularTop3"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="13dp"
                 android:layout_weight="1">
 
                 <TextView
