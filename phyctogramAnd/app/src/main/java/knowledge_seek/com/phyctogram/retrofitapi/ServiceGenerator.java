@@ -17,6 +17,7 @@ import knowledge_seek.com.phyctogram.domain.Diary;
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.Notice;
+import knowledge_seek.com.phyctogram.domain.Qa;
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import knowledge_seek.com.phyctogram.domain.Users;
 import retrofit.GsonConverterFactory;
@@ -62,6 +63,8 @@ public class ServiceGenerator {
             gsonBuilder.registerTypeAdapter(Analysis.class, new AnalysisDes());
         } else if("Notice".equals(gubun)){
             gsonBuilder.registerTypeAdapter(Notice.class, new NoticeDes());
+        } else if("Qa".equals(gubun)){
+            gsonBuilder.registerTypeAdapter(Qa.class, new QaDes());
         }
 
         Gson gson = gsonBuilder.create();

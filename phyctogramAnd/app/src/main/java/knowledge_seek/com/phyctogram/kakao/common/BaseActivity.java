@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,10 +55,12 @@ public class BaseActivity extends Activity {
     //데이터정의
     public static Member member = null;                 //멤버
     public static List<Users> usersList = new ArrayList<Users>();           //내 아이 목록
-    public static Users nowUsers = null;                                        //메인유저
+    public static Users nowUsers = new Users();                                        //메인유저
     public static String memberName = null;                                 //슬라이드 멤버 이름
     public static Bitmap memberImg = null;                                  //슬라이드 멤버 이미지
 
+    //제스처
+    //private GestureDetector mGestures = null;
 
     long backKeyPressedTime = 0;
 
@@ -102,6 +105,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
+                if (usersList == null || usersList.size() <= 0) {
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDiaryActivity.class);
                 //intent.putExtra("member", member);
@@ -114,6 +121,10 @@ public class BaseActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
+                if (usersList == null || usersList.size() <= 0) {
+                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersDataInputActivity.class);
                 //intent.putExtra("member", member);
@@ -215,6 +226,8 @@ public class BaseActivity extends Activity {
 
         // init main view
         ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
+        //메인뷰에 터치이벤트 적용
+        //ll_mainLayout.setOnTouchListener(ll_mainLayoutListener);
 
         // init left menu
         ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
@@ -280,6 +293,62 @@ public class BaseActivity extends Activity {
         }
     }
 
+    //터치이벤트
+    /*private final View.OnTouchListener ll_mainLayoutListener = new View.OnTouchListener() {
+        int startX, endX;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            Log.d("-진우-", "슬라이드 상태 : " + isLeftExpanded);
+            if(isLeftExpanded) {
+            }
+
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_MOVE:
+                    Log.d("-진우-", "MOVE " + event.getX());
+                    break;
+                case MotionEvent.ACTION_DOWN:
+                    startX = (int)event.getX();
+                    Log.d("-진우-", "DOWN " + event.getX());
+                    break;
+                case MotionEvent.ACTION_UP:
+                    endX = (int)event.getX();
+                    Log.d("-진우-", "UP " + event.getX());
+
+                    if(slideCheck(startX, endX)) {
+                        Log.d("-진우-", "슬라이드 실행");
+                        menuLeftSlideAnimationToggle();
+                        return false;
+                    } else {
+                        Log.d("-진우-", "슬라이드 미실행");
+                        //return true;
+                    }
+                    break;
+            }
+
+
+            //return false;   DOWN 한번만 발생
+            return true;
+        }
+    };*/
+    //스와이프 결정
+    /*public boolean slideCheck(int startX, int endX) {
+        if (startX <= 50) {
+            Log.d("-진우-", "시작지점 OK");
+        } else {
+            Log.d("-진우-", "시작지점으로 옳지않다");
+            return false;
+        }
+        if ((endX - startX) >= 80) {
+            Log.d("-진우-", "이동 OK");
+        } else {
+            Log.d("-진우-", "이동하기에 옳지않다");
+            return false;
+        }
+        return true;
+    }*/
+
     /**
      * 뷰의 동작을 제어한다. 하위 모든 뷰들이 enable 값으로 설정된다.
      *
@@ -341,4 +410,5 @@ public class BaseActivity extends Activity {
         }
 
     }
+
 }

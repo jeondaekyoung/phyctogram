@@ -125,7 +125,7 @@ public class UsersDataInputActivity extends BaseActivity {
 
                 String height_str = et_input_height.getText().toString();
                 Log.d("-진우-", "입력된 키 : " + height_str);
-                if(nowUsers == null){
+                if(nowUsers.getUser_seq() == 0){
                     Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                     return ;
                 }

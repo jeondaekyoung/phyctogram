@@ -386,7 +386,7 @@ public class MainActivity extends BaseActivity {
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
                 Utility.compareList(usersList, usersTask);
 
-                if (nowUsers == null) {
+                if (nowUsers.getUser_seq() == 0) {
                     nowUsers = usersTask.get(0);
                 }
                 Log.d("-진우-", "메인 유저는 " + nowUsers.toString());

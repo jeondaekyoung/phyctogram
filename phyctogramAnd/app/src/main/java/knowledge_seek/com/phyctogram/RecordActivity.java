@@ -206,7 +206,7 @@ public class RecordActivity extends BaseActivity {
                 if(!checkDate(dateFrom, dateTo)){
                     return;
                 }
-                if(nowUsers == null){
+                if(nowUsers.getUser_seq() == 0){
                     Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                     return ;
                 }
@@ -277,7 +277,7 @@ public class RecordActivity extends BaseActivity {
         task.execute(img_profile);*/
 
         //디폴트날짜로 기록조회
-        if(nowUsers == null){
+        if(nowUsers.getUser_seq() == 0){
             Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
         } else {
             String dateFrom = tv_datepickFrom.getText().toString();

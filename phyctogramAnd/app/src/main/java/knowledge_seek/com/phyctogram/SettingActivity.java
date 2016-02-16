@@ -178,10 +178,10 @@ public class SettingActivity extends BaseActivity {
         tv_qa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "문의하기", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(getApplicationContext(), WithdrawActivity.class);1
+                //Toast.makeText(getApplicationContext(), "문의하기", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), QaListActivity.class);
                 //intent.putExtra("member", member);
-                //startActivity(intent);
+                startActivity(intent);
                 //finish();
             }
         });

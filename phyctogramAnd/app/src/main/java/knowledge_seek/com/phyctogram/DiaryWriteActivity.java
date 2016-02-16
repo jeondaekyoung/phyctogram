@@ -136,7 +136,7 @@ public class DiaryWriteActivity extends BaseActivity {
             public void onClick(View v) {
                 //Log.d("-진우-", "저장하기");
 
-                if(nowUsers == null){
+                if(nowUsers.getUser_seq() == 0){
                     Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
                     return;
                 }

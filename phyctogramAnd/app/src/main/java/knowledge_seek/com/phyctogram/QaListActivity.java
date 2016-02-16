@@ -20,17 +20,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import knowledge_seek.com.phyctogram.domain.Notice;
+import knowledge_seek.com.phyctogram.domain.Qa;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-import knowledge_seek.com.phyctogram.listAdapter.NoticeListAdapter;
-import knowledge_seek.com.phyctogram.retrofitapi.NoticeAPI;
+import knowledge_seek.com.phyctogram.listAdapter.QaListAdapter;
+import knowledge_seek.com.phyctogram.retrofitapi.QaAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import retrofit.Call;
 
 /**
- * Created by dkfka on 2016-02-11.
+ * Created by sjw on 2016-02-16.
  */
-public class NoticeListActivity extends BaseActivity {
+public class QaListActivity extends BaseActivity {
 
     //레이아웃정의 - 슬라이드메뉴
     private ImageButton btn_left;
@@ -39,22 +39,22 @@ public class NoticeListActivity extends BaseActivity {
     private TextView tv_member_name;        //슬라이드 내 이름
 
     //레이아웃정의
-    private ListView lv_noticeList;
-    private NoticeListAdapter noticeListAdapter;
+    private ListView lv_qalist;
+    private QaListAdapter qaListAdapter;
 
     //데이터정의
-    private List<Notice> noticeList = new ArrayList<>();
-    //private
+    private List<Qa> qaList = new ArrayList<>();
     private boolean lastListViewVisible = false;        //화면에 리스트의 마지막 아이템이 보여지는지 체크
-    private int pageCnt = 0;                            //리스트뷰의 목록 페이지 번호
+    private int pageCnt = 0;                                //리스트의 목록 페이지 번호
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //화면 페이지
-        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
-        LayoutInflater.from(this).inflate(R.layout.include_notice_list, ic_screen, true);
+        ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
+        LayoutInflater.from(this).inflate(R.layout.include_qa_list, ic_screen, true);
 
         //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
@@ -72,12 +72,10 @@ public class NoticeListActivity extends BaseActivity {
         lv_usersList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
-                Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
 
             }
         });
+
         //레이아웃 정의
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
@@ -87,21 +85,21 @@ public class NoticeListActivity extends BaseActivity {
             }
         });
 
-        //공지 글 목록
-        lv_noticeList = (ListView)findViewById(R.id.lv_noticeList);
-        noticeListAdapter = new NoticeListAdapter(this, noticeList, R.layout.list_notice);
-        lv_noticeList.setAdapter(noticeListAdapter);
-        lv_noticeList.setOnScrollListener(scrollListener);
+        //문의내용 글 목록
+        lv_qalist = (ListView)findViewById(R.id.lv_qaList);
+        qaListAdapter = new QaListAdapter(this, qaList, R.layout.list_qa);
+        lv_qalist.setAdapter(qaListAdapter);
+        lv_qalist.setOnScrollListener(scrollListener);
 
         //리스트뷰 클릭 -> 글 보기로 이동
-        lv_noticeList.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+        lv_qalist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Notice notice = (Notice)noticeListAdapter.getItem(position);
-                Log.d("-진우-", "선택한 공지사항 : " + notice.toString());
-                Intent intent = new Intent(getApplicationContext(), NoticeViewActivity.class);
-                intent.putExtra("notice_seq", notice.getNotice_seq());
-                startActivity(intent);
+                Qa qa = (Qa)qaListAdapter.getItem(position);
+                Log.d("-진우-", "선택한 문의내용 : " + qa.toString());
+                /*Intent intent = new Intent(getApplicationContext(), QaViewActivity.class);
+                intent.putExtra("qa_seq", qa.getQa_seq());
+                startActivity(intent);*/
             }
         });
     }
@@ -121,29 +119,25 @@ public class NoticeListActivity extends BaseActivity {
         lv_usersList.getLayoutParams().height = height;
         usersListSlideAdapter.notifyDataSetChanged();
 
-        Log.d("-진우-", "CommunityListActivity.onResume() : " + member.toString());
+        Log.d("-진우-", "QaListActivity.onResume() : " + member.toString());
 
         //새로읽어오기
-        noticeList.clear();
+        qaList.clear();
         pageCnt = 0;
-        NoticeListTask task = new NoticeListTask(pageCnt);
+        QaListTask task = new QaListTask(pageCnt);
         task.execute();
-        /*btn_commntyLatest.setBackgroundResource(R.drawable.btn_on);
-        btn_commntyPlpular.setBackgroundResource(R.drawable.btn_off);
-        FindCommntyLatestTask task2 = new FindCommntyLatestTask(pageCnt);
-        task2.execute();*/
 
-        Log.d("-진우-", "CommunityListActivity.onResume() 끝");
+        Log.d("-진우-", "QaListActivity.onResume() 끝");
     }
 
-    //공지사항 목록 불러오기
-    private class NoticeListTask extends AsyncTask<Void, Void, List<Notice>>{
+    //문의내용 목록 불러오기
+    private class QaListTask extends AsyncTask<Void, Void, List<Qa>>{
 
-        private ProgressDialog dialog = new ProgressDialog(NoticeListActivity.this);
+        private ProgressDialog dialog = new ProgressDialog(QaListActivity.this);
         private int pageCntTask;
-        private List<Notice> noticeTask;
+        private List<Qa> qaTask;
 
-        public NoticeListTask(int pageCntTask) {
+        public QaListTask(int pageCntTask) {
             this.pageCntTask = pageCntTask;
         }
 
@@ -156,36 +150,35 @@ public class NoticeListActivity extends BaseActivity {
         }
 
         @Override
-        protected List<Notice> doInBackground(Void... params) {
-
-            //공지사항 목록
-            NoticeAPI service = ServiceGenerator.createService(NoticeAPI.class, "Notice");
-            Call<List<Notice>> call = service.findnoticeList(pageCntTask);
+        protected List<Qa> doInBackground(Void... params) {
+            //문의내용 목록
+            QaAPI service = ServiceGenerator.createService(QaAPI.class, "Qa");
+            Call<List<Qa>> call = service.findqaByMemberSeq(member.getMember_seq(), pageCntTask);
             try {
-                noticeTask = call.execute().body();
+                qaTask = call.execute().body();
             } catch (IOException e) {
-                Log.d("-진우-", "공지사항 목록조회 실패");
+                Log.d("-진우-", "문의내용 목록조회 실패");
             }
-            return noticeTask;
+            return qaTask;
         }
 
         @Override
-        protected void onPostExecute(List<Notice> notices) {
-            if(notices != null && notices.size() > 0){
-                Log.d("-진우-", "읽어온 목록은 " + notices.size() + " 개 있습니다");
-                noticeList.addAll(notices);
-                Log.d("-진우-", "총 목록은 " + noticeList.size() + " 개 있습니다");
+        protected void onPostExecute(List<Qa> qas) {
+            if(qas != null && qas.size() > 0) {
+                Log.d("-진우-", "읽어온 목록은 " + qas.size() + " 개 있습니다");
+                qaList.addAll(qas);
+                Log.d("-진우-", "총 목록은 " + qaList.size() + " 개 있습니다");
 
-                noticeListAdapter.setNotices(noticeList);
+                qaListAdapter.setQas(qaList);
                 pageCnt = pageCntTask+1;
-           } else {
+            } else {
                 Log.d("-진우-", "성공했으나 목록이 없습니다");
             }
 
-            noticeListAdapter.notifyDataSetChanged();
+            qaListAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
-            super.onPostExecute(notices);
+            super.onPostExecute(qas);
         }
     }
 
@@ -195,19 +188,19 @@ public class NoticeListActivity extends BaseActivity {
         public void onScrollStateChanged(AbsListView view, int scrollState) {
             //OnScrollListener.SCROLL_STATE_IDLE은 스크롤이 이동하다가 멈추었을 때 발생되는 스크롤상태입니다.
             //즉 스크롤이 바닦에 닿아 멈춘 상태에 처리를 하겠다는 뜻
-            if(scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastListViewVisible){
+            if(scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && lastListViewVisible) {
                 //화면에 바닦에 닿았고, 스크롤이 멈추었다.
                 Log.d("-진우-", "추가데이터 불러오기");
-                NoticeListTask task = new NoticeListTask(pageCnt);
+                QaListTask task = new QaListTask(pageCnt);
                 task.execute();
             }
         }
 
         @Override
         public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            //현재 화면에 보이는 첫번째 리스트 아이템의 번호(firstVisibleItem) + 현재 화면에 보이는 리스트 아이템의 갯수(visibleItemCount)가
-            //리스트 전체의 갯수(totalItemCount) - 1 보다 크거나 같을 때
-            lastListViewVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount);
+                //현재 화면에 보이는 첫번째 리스트 아이템의 번호(firstVisibleItem) + 현재 화면에 보이는 리스트 아이템의 갯수(visibleItemCount)가
+                //리스트 전체의 갯수(totalItemCount) - 1 보다 크거나 같을 때
+                lastListViewVisible = (totalItemCount > 0) && (firstVisibleItem + visibleItemCount >= totalItemCount);
         }
     };
 }
