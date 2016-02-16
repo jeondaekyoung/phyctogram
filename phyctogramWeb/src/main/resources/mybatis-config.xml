@@ -20,6 +20,7 @@
 		<typeAlias type="naree.db.domain.Analysis" alias="Analysis"/>
 		<typeAlias type="naree.db.domain.Admin" alias="Admin"/>
 		<typeAlias type="naree.db.domain.Notice" alias="Notice"/>
+		<typeAlias type="naree.db.domain.Qa" alias="Qa"/>
 		
 	</typeAliases>
 
@@ -49,6 +50,7 @@
     <mapper resource="mapper/DiaryMapper.xml"/>
     <mapper resource="mapper/AdminMapper.xml"/>
     <mapper resource="mapper/NoticeMapper.xml"/>
+    <mapper resource="mapper/QaMapper.xml"/>
   </mappers>
   
 </configuration>
