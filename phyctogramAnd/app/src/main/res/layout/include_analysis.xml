@@ -79,7 +79,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="52dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="최종신장"
@@ -140,7 +140,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="50dp"
+                                android:layout_width="52dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:text="상위"
