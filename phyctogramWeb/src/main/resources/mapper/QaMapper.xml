@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.QaMapper">
+
+	<select id="selectqaByMemberSeq" parameterType="hashmap" resultType="Qa">
+		SELECT qa_seq, title, contents, writng_de, answer, member_seq
+					,IF(ISNULL(answer), '답변대기', '답변완료') as state
+		  FROM qa_tb
+		WHERE member_seq = #{member_seq}
+		ORDER BY writng_de DESC
+		LIMIT #{pageCnt}, 10
+	</select>
+
+</mapper>
