@@ -198,7 +198,7 @@ public class BaseActivity extends Activity {
         //데이터초기화
         member = null;                                       //멤버
         usersList.clear();                                      //내 아이 목록
-        nowUsers = null;                                      //메인유저
+        nowUsers = new Users();                                      //메인유저
         memberName = null;                                //슬라이드 멤버 이름
         memberImg = null;                                  //슬라이드 멤버 이미지
         final Intent intent = new Intent(this, LoginActivity.class);
