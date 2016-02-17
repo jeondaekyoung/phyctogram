@@ -21,6 +21,7 @@ import knowledge_seek.com.phyctogram.domain.Commnty;
 import knowledge_seek.com.phyctogram.domain.Diary;
 import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
+import knowledge_seek.com.phyctogram.domain.Qa;
 import knowledge_seek.com.phyctogram.domain.Users;
 
 /**
@@ -145,6 +146,10 @@ public class Utility {
 
     public static String comment2json(Comment comment) {
         return new Gson().toJson(comment);
+    }
+
+    public static String qa2json(Qa qa) {
+        return new Gson().toJson(qa);
     }
 
     public static String commnty2json(Commnty commnty){

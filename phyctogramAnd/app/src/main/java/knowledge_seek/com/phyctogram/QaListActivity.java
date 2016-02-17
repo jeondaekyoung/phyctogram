@@ -39,6 +39,7 @@ public class QaListActivity extends BaseActivity {
     private TextView tv_member_name;        //슬라이드 내 이름
 
     //레이아웃정의
+    private ImageButton imBtn_qa_write;     //글 쓰기
     private ListView lv_qalist;
     private QaListAdapter qaListAdapter;
 
@@ -84,6 +85,15 @@ public class QaListActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
+        //문의하기 글쓰기
+        imBtn_qa_write = (ImageButton)findViewById(R.id.imBtn_qa_write);
+        imBtn_qa_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), QaWriteActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //문의내용 글 목록
         lv_qalist = (ListView)findViewById(R.id.lv_qaList);
@@ -97,9 +107,9 @@ public class QaListActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Qa qa = (Qa)qaListAdapter.getItem(position);
                 Log.d("-진우-", "선택한 문의내용 : " + qa.toString());
-                /*Intent intent = new Intent(getApplicationContext(), QaViewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), QaViewActivity.class);
                 intent.putExtra("qa_seq", qa.getQa_seq());
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
     }
