@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import naree.db.domain.Qa;
 import naree.db.mapper.QaMapper;
+import naree.db.mapper.UsersMapper;
 import naree.util.factory.ConnectionFactory;
 
 @Repository
@@ -24,6 +25,20 @@ public class QaDaoImpl implements QaDao {
 			QaMapper qaMapper = sqlSession.getMapper(QaMapper.class);
 			result = qaMapper.selectqaByMemberSeq(map);
 		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int insertQa(Qa qa) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			QaMapper qaMapper = sqlSession.getMapper(QaMapper.class);
+			result = qaMapper.insertQa(qa);
+		}finally{
+			sqlSession.commit();
 			sqlSession.close();
 		}
 		return result;

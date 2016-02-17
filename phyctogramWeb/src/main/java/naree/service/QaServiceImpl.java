@@ -20,4 +20,10 @@ public class QaServiceImpl implements QaService {
 		return qaDao.selectqaByMemberSeq(member_seq, pageCnt);
 	}
 
+	@Override
+	public int registerQa(Qa qa) {
+		
+		return qaDao.insertQa(qa);
+	}
+
 }

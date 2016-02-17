@@ -14,4 +14,11 @@ public interface QaService {
 	 */
 	List<Qa> findqaByMemberSeq(int member_seq, int pageCnt);
 
+	/**
+	 * 문의내용 저장하기
+	 * @param qa
+	 * @return
+	 */
+	int registerQa(Qa qa);
+
 }

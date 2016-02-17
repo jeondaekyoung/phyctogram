@@ -13,5 +13,14 @@
 		ORDER BY writng_de DESC
 		LIMIT #{pageCnt}, 10
 	</select>
+	
+	<insert id="insertQa" parameterType="Qa">
+		INSERT INTO qa_tb (title
+									,contents
+									,member_seq ) VALUES (
+									#{title}
+									,#{contents}
+									,#{member_seq} )
+	</insert>
 
 </mapper>

@@ -11,4 +11,6 @@ public interface QaMapper {
 
 	List<Qa> selectqaByMemberSeq(HashMap<String, Object> map);
 
+	int insertQa(Qa qa);
+
 }
