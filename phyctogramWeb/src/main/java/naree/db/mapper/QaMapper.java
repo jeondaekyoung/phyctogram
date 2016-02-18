@@ -13,4 +13,8 @@ public interface QaMapper {
 
 	int insertQa(Qa qa);
 
+	List<Qa> listQa(HashMap<String, Object> map);
+	
+	int modifyQa(HashMap<String, Object> map);
+
 }
