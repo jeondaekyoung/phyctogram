@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,20 +34,22 @@
           	<div class="panel-group m-b min-h">
              	<div class="panel panel-default">
 	              <div class="panel-heading">
-                    <span class="text-info">2016/02/18</span>
+                    <span class="text-info"><fmt:formatDate value="${qa.writng_de }" type="both" pattern="yyyy/MM/dd"/></span>
                   </div>
                   <div class="panel-heading">
-                    <span class="text-info">문의합니다. 문의문의</span>
+                    <span class="text-info">${qa.title }</span>
                   </div>
                   <div class="panel-heading">
-                    <span class="text-dark">
-                    	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </span>
+                    <span class="text-dark">${qa.contents }</span>
                   </div>
                   <div class="panel-heading">
                   	<h5>답변</h5>
                     <span class="text-dark">
-                    	Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    	<c:choose>
+                    		<c:when test="${qa.answer != null }">${qa.answer }</c:when>
+                    		<c:otherwise>답변 대기 중입니다</c:otherwise>
+                    	</c:choose>
+                    
                     </span>
                   </div>
                 </div>

@@ -28,13 +28,19 @@ public class QaServiceImpl implements QaService {
 
 	@Override
 	public List<Qa> listQa(int pageCnt, String searchState) {
-		// TODO Auto-generated method stub
+		
 		return qaDao.listQa(pageCnt, searchState);
 	}
 
 	@Override
 	public int modifyQa(int qa_seq, String answer) {
-		// TODO Auto-generated method stub
+		
 		return qaDao.modifyQa(qa_seq, answer);
+	}
+
+	@Override
+	public Qa searchByQaSeq(int qa_seq) {
+		
+		return qaDao.selectByQaSeq(qa_seq);
 	}
 }

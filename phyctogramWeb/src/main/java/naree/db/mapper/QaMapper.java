@@ -17,4 +17,6 @@ public interface QaMapper {
 	
 	int modifyQa(HashMap<String, Object> map);
 
+	Qa selectByQaSeq(int qa_seq);
+
 }

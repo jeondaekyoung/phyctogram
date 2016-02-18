@@ -79,4 +79,17 @@ public class QaDaoImpl implements QaDao {
 		}
 		return result;
 	}
+
+	@Override
+	public Qa selectByQaSeq(int qa_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		Qa result = null;
+		try {
+			QaMapper qaMapper = sqlSession.getMapper(QaMapper.class);
+			result = qaMapper.selectByQaSeq(qa_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
 }

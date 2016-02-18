@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import naree.db.domain.Qa;
 import naree.service.QaService;
@@ -50,5 +51,22 @@ public class QaController {
 		int result = qaService.modifyQa(qa_seq, answer);
 		
 		return result == 1?"success":"fail";
+	}
+	
+	/**
+	 * 문의내용 보기
+	 * @param qa_seq
+	 * @return
+	 */
+	@RequestMapping(value = "view.do", method=RequestMethod.GET)
+	public ModelAndView view(int qa_seq){
+		logger.info("qa/view.do - 문의 번호 : " + qa_seq);
+		ModelAndView mv = new ModelAndView();
+		
+		Qa qa = qaService.searchByQaSeq(qa_seq);
+		mv.addObject("qa", qa);
+		
+		mv.setViewName("admin/qaView");
+		return mv;
 	}
 }

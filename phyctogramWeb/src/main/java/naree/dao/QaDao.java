@@ -35,4 +35,11 @@ public interface QaDao {
 	 */
 	int modifyQa(int qa_seq, String answer);
 
+	/**
+	 * 문의사항 읽어오기
+	 * @param qa_seq
+	 * @return
+	 */
+	Qa selectByQaSeq(int qa_seq);
+
 }

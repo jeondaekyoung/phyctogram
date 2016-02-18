@@ -44,5 +44,11 @@
 		     SET answer = #{answer}
 		  WHERE qa_seq = #{qa_seq}
 	</update>
+	
+	<select id="selectByQaSeq" parameterType="Integer" resultType="Qa">
+		SELECT qa_seq, title, contents, writng_de, answer, member_seq
+		  FROM qa_tb
+		WHERE qa_seq = #{qa_seq}
+	</select>
 
 </mapper>
