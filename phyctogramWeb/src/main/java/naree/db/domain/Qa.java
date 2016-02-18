@@ -11,6 +11,8 @@ public class Qa {
 	private String answer;
 	private int member_seq;
 	private String state;
+	private String name;
+	
 	public int getQa_seq() {
 		return qa_seq;
 	}
@@ -53,10 +55,15 @@ public class Qa {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
 		return "Qa [qa_seq=" + qa_seq + ", title=" + title + ", contents=" + contents + ", writng_de=" + writng_de
-				+ ", answer=" + answer + ", member_seq=" + member_seq + ", state=" + state + "]";
-	}
-		
+				+ ", answer=" + answer + ", member_seq=" + member_seq + ", state=" + state + ", name=" + name + "]";
+	}	
 }
