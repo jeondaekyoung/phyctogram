@@ -20,5 +20,19 @@ public interface QaDao {
 	 * @return
 	 */
 	int insertQa(Qa qa);
+	
+	/**
+	 * 문의사항 목록 읽어오기
+	 * @param pageCnt, searchState
+	 * @return
+	 */
+	List<Qa> listQa(int pageCnt, String searchState);
+	
+	/**
+	 * 문의사항 답변 저장하기
+	 * @param qa_seq, answer
+	 * @return
+	 */
+	int modifyQa(int qa_seq, String answer);
 
 }
