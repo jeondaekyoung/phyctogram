@@ -40,21 +40,6 @@ label {
   padding-top: 0;
   padding-bottom: 0;
 }
-.text-primary {
-  color: #65bd77;
-}
-.text-info {
-  color: #4cc0c1;
-}
-.text-success {
-  color: #8ec165;
-}
-.text-warning {
-  color: #ffc333;
-}
-.text-danger {
-  color: #fb6b5b;
-}
 .text-light {
   color: #f1f1f1;
 }
@@ -63,9 +48,6 @@ label {
 }
 .text-dark {
   color: #2e3e4e;
-}
-.text-muted {
-  color: #979797;
 }
 small {
   font-size: 90%;

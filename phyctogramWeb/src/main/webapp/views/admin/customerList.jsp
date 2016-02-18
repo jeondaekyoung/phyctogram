@@ -56,7 +56,7 @@
              	<div class="panel panel-default">
 	                <header class="panel-heading">
 		              <div class="row text-sm wrapper">
-		                <div class="col-sm-3">
+		                <div class="col-sm-12">
 		                  <div class="input-group">
 		                    <input type="checkbox"> 답변 대기만 보기
 		                    <input type="checkbox"> 전체
@@ -119,23 +119,11 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-                      Collapsible Group Item #3
-                    </a>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body text-sm">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div> -->
               </div>
           
-              <footer class="panel-footer">
+              <!-- <footer class="panel-footer">
                 <div class="row">
-                  <!-- <div class="col-sm-4 text-right text-center-xs">                
+                  <div class="col-sm-4 text-right text-center-xs">                
                     <ul class="pagination pagination-sm m-t-none m-b-none">
                       <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
                       <li><a href="#">1</a></li>
@@ -145,9 +133,9 @@
                       <li><a href="#">5</a></li>
                       <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
                     </ul>
-                  </div> -->
+                  </div>
                 </div>
-              </footer>
+              </footer> -->
           </div>
         </div>        
       </div>
