@@ -31,7 +31,7 @@
             <a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
           </li>
           <li>
-            <a href="<%=application.getContextPath()%>/views/admin/customer.jsp">문의하기</a>
+            <a href="<%=application.getContextPath()%>/views/admin/qaList.jsp">문의하기</a>
           </li>
         </ul>
       </div>
@@ -69,13 +69,14 @@
 	                 </header>
 	             </div>
              	 <div class="panel panel-default">
-                  <div class="panel-heading">
+                  <div class="panel-heading nav">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
                       <span class="col-sm-2">2016/02/16</span>
                       <span class="col-sm-2">글쓴이</span>
                       <span class="col-sm-6">제품 구입 관련하여 문의하려고 합니다.</span>
                       <span class="col-sm-2">
-						<a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text-active">답변완료</i><i class="fa fa-times text-danger text">답변대기</i></a>
+						<!-- <a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text-active">답변완료</i><i class="fa fa-times text-danger text">답변대기</i></a> -->
+						<i class="fa fa-check text-success text">답변완료</i>
 					  </span>
                     </a>
                   </div>
@@ -84,24 +85,23 @@
                       Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                     </div>
                     <div class="panel-body text-sm">
-                      <h5>답변</h5>
-                      <div>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+                      <h5>답변 내용</h5>
                       <div>
-                      	<textarea class="col-sm-11 min-h-xs"></textarea>
-                      	<button class="btn btn-sm btn-danger col-sm-1" type="button">답변</button>
-                      	<button class="btn btn-sm col-sm-1" type="button">수정</button>
+                      	<textarea class="col-sm-11 min-h-xs">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</textarea>
+                      	<button class="btn btn-sm btn-danger col-sm-1" type="button">답변 저장</button>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="panel panel-default">
-                  <div class="panel-heading">
+                  <div class="panel-heading nav">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
                       <span class="col-sm-2">2016/02/16</span>
                       <span class="col-sm-2">글쓴이</span>
                       <span class="col-sm-6">제품 구입 관련하여 문의하려고 합니다요.</span>
                       <span class="col-sm-2">
-						<a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text">답변완료</i><i class="fa fa-times text-danger text-active">답변대기</i></a>
+						<!-- <a href="#" class="active" data-toggle="class"><i class="fa fa-check text-success text">답변완료</i><i class="fa fa-times text-danger text-active">답변대기</i></a> -->
+						<i class="fa fa-times text-danger text">답변대기</i>
 					  </span>
                     </a>
                   </div>
