@@ -20,5 +20,19 @@ public interface QaService {
 	 * @return
 	 */
 	int registerQa(Qa qa);
+	
+	/**
+	 * 문의사항 목록 불러오기
+	 * @param pageCnt
+	 * @return
+	 */
+	List<Qa> listQa(int pageCnt, String searchState);
+	
+	/**
+	 * 문의사항 답변 저장하기
+	 * @param qa_seq, answer
+	 * @return
+	 */
+	int modifyQa(int qa_seq, String answer);
 
 }
