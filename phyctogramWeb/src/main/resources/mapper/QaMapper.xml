@@ -22,5 +22,27 @@
 									,#{contents}
 									,#{member_seq} )
 	</insert>
+	
+	<select id="listQa" parameterType="hashmap" resultType="Qa">
+		SELECT a.qa_seq as qa_seq
+				   ,a.writng_de as writng_de
+			       ,IFNULL(IFNULL(b.name,b.kakao_nickname),b.facebook_name) as name
+			       ,a.title as title
+			       ,a.contents as contents
+			       ,a.answer as answer
+		  FROM qa_tb AS a INNER JOIN member_tb AS b
+			  ON a.member_seq = b.member_seq
+		<if test = "searchState == 'answer'">
+		WHERE a.answer IS NULL
+		</if>
+		ORDER BY writng_de DESC
+		   LIMIT #{pageCnt}, 10
+	</select>
+	
+	<update id="modifyQa" parameterType="hashmap">
+		UPDATE qa_tb
+		     SET answer = #{answer}
+		  WHERE qa_seq = #{qa_seq}
+	</update>
 
 </mapper>
