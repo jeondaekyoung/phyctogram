@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>공지사항</title>
+<title>문의하기</title>
 <meta name="description"
 	content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
 <meta name="viewport"
@@ -214,7 +214,7 @@
 				error : errorCallback
 			})
 		}
-		//대형 마트에서 구매 가능합니다.
+		
 		//답변 저장하기
 		var answerSuccess = function(resultData) {
 			if(resultData=="success"){
