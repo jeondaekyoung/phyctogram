@@ -239,15 +239,15 @@ public class CalendarMonthAdapter extends BaseAdapter {
         itemView.setGravity(Gravity.LEFT);
 
         if(columnIndex == 0){
-            itemView.setDayColor(Color.rgb(255,98,98));       //일요일은 빨강색 글씨
+            itemView.setDayColor(Color.rgb(255,100,100));       //일요일은 빨강색 글씨
         } else if(columnIndex == 6){
-            itemView.setDayColor(Color.rgb(41,98,252));       //토요일은 파란색 글씨
+            itemView.setDayColor(Color.rgb(110,155,255));       //토요일은 파란색 글씨
         } else {
-            itemView.setDayColor(Color.rgb(182,182,182));
+            itemView.setDayColor(Color.rgb(180,180,180));
         }
 
         if(position == getSelectedPosition()){
-            itemView.setBackgroundColor(Color.YELLOW);      //선택한 날짜 배경색입히기
+            itemView.setBackgroundColor(Color.rgb(203,186,229));      //선택한 날짜 배경색입히기
         } else {
             itemView.setBackgroundColor(Color.WHITE);
         }

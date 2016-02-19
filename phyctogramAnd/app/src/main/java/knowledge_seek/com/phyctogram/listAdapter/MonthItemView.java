@@ -67,7 +67,7 @@ public class MonthItemView extends RelativeLayout {
 
     public void setTitle(String title) {
         tv_month_item_title.setText(title);
-        tv_month_item_title.setBackgroundColor(Color.YELLOW);
+        tv_month_item_title.setBackgroundColor(Color.rgb(203,186,229));
         tv_month_item_title.setVisibility(View.VISIBLE);
     }
 
