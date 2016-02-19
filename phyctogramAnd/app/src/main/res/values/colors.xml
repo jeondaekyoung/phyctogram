@@ -19,6 +19,6 @@
     <color name="purple">#C1ABE1</color>
     <color name="purpledk">#776096</color>
     <color name="yellow">#F6D14C</color>
-    <color name="yellow2">#88F6D14C</color>
+    <color name="grey_alpha">#88B2B2B2</color>
 
 </resources>

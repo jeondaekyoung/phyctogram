@@ -13,11 +13,10 @@
 
         <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
+            android:layout_width="42dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+            android:background="@drawable/btn_menu" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -32,9 +31,9 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/et_title"
@@ -61,37 +60,41 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:gravity="center">
 
-            <ImageButton
+            <Button
                 android:id="@+id/pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/write_pic" />
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/btn_border_radius2"
+                android:text="사진"
+                android:textSize="12dp"
+                android:textColor="@color/purple" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/mov"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/pic"
-                android:background="@drawable/write_mov" />
+                android:text="동영상"
+                android:textSize="12dp"
+                android:background="@drawable/btn_border_radius2"
+                android:textColor="@color/purple" />
 
             <Button
                 android:id="@+id/btn_community_save"
                 android:layout_width="60dp"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:background="#C0AAE1"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/btn_border_radius"
                 android:text="저장"
                 android:textColor="#ffffff"
                 android:textSize="12dp" />

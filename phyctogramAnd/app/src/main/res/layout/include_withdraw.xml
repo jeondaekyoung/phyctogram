@@ -13,11 +13,10 @@
 
         <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
+            android:layout_width="42dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+            android:background="@drawable/btn_menu" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -33,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -106,9 +105,9 @@
                 <Button
                     android:id="@+id/btn_withdraw"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="20dp"
-                    android:background="#ff0000"
+                    android:background="@drawable/btn_border_radius"
                     android:text="탈퇴"
                     android:textColor="#ffffff" />
 

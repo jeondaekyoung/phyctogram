@@ -12,12 +12,11 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btn_left"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+        android:id="@+id/btn_left"
+        android:layout_width="42dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/btn_menu" />
 
         <TextView
             android:id="@+id/tv_users_name"
@@ -39,7 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#f2f2f2"
+            android:background="@color/color5"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -58,42 +57,36 @@
                 <TextView
                     android:id="@+id/tv_datepickFrom"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="32dp"
                     android:layout_weight="1"
-                    android:background="@drawable/linedate"
+                    android:background="@color/color6"
                     android:gravity="center"
-                    android:hint="날짜입력하세요"
-                    android:textColor="#000000"
-                    android:textSize="16dp" />
+                    android:hint="날짜입력하세요" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="-"
-                    android:textColor="#000000"
-                    android:textSize="24dp" />
+                    android:text="-" />
 
                 <TextView
                     android:id="@+id/tv_datepickTo"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="32dp"
                     android:layout_weight="1"
-                    android:background="@drawable/linedate"
+                    android:background="@color/color6"
                     android:gravity="center"
-                    android:hint="날짜입력하세요"
-                    android:textColor="#000000"
-                    android:textSize="16dp" />
+                    android:hint="날짜입력하세요" />
 
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn_findHeight"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="10dp"
-                android:background="#c1abe1"
+                android:background="@drawable/btn_border_radius"
                 android:text="검색"
                 android:textColor="#ffffff" />
         </LinearLayout>
@@ -101,7 +94,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/yellow"
+            android:background="@color/color4"
             android:orientation="horizontal"
             android:weightSum="16">
 

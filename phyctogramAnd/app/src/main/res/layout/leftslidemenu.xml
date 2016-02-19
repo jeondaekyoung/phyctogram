@@ -9,9 +9,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@drawable/menu"
+        android:background="@color/color5"
         android:orientation="horizontal"
         android:paddingBottom="15dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/logo"/>
 
         <com.pkmmte.view.CircularImageView
             android:id="@+id/img_profile"
@@ -29,7 +37,7 @@
             android:layout_margin="8dp"
             android:layout_toRightOf="@id/img_profile"
             android:text="아이디 님"
-            android:textColor="#ffffff"
+            android:textColor="@color/purple"
             android:textSize="14dp" />
     </RelativeLayout>
 
@@ -68,7 +76,7 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="육아일기"
-                android:textColor="@color/yellow" />
+                android:textColor="@color/purple" />
 
             <Button
                 android:id="@+id/btn_dataInput"
@@ -78,7 +86,7 @@
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
                 android:text="직접 키 입력"
-                android:textColor="@color/yellow" />
+                android:textColor="@color/purple" />
 
             <Button
                 android:id="@+id/btn_usersManage"

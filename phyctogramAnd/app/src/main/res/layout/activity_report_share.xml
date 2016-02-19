@@ -44,7 +44,7 @@
             android:background="@drawable/borderbottom"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="0dp">
 
             <ImageButton
                 android:id="@+id/imBtn_fb"

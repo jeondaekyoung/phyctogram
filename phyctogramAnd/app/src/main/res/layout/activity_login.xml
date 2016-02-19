@@ -3,60 +3,109 @@
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
+    android:background="@color/color5"
     android:orientation="vertical"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp">
 
     <ImageView
-        android:layout_width="250dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/logo" />
-
-    <Button
-        android:id="@+id/btn_login_kko"
+        android:layout_marginBottom="70dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/logo"/>
+    <EditText
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/log_kko"
-        android:gravity="center"
-        android:text="카카오톡 로그인"
-        android:textColor="#000000"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/color6"
+        android:hint="e-mail"
+        android:inputType="textUri"
+        android:paddingLeft="10dp"
         android:textSize="12dp" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btn_login_fb"
+    <EditText
+        android:id="@+id/et_pw"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:paddingBottom="13dp"
-        android:paddingTop="13dp"
-        android:textColor="#ffffff"
-        android:textSize="12dp"
-        facebook:com_facebook_login_text="페이스북 로그인"
-        facebook:com_facebook_logout_text="페이스북 로그인" />
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/color6"
+        android:hint="password"
+        android:inputType="text"
+        android:paddingLeft="10dp"
+        android:password="true"
+        android:textSize="12dp" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_member_login"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/log_btn"
+        android:layout_height="40dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/purple"
         android:gravity="center"
         android:text="회원 로그인"
         android:textColor="#ffffff"
         android:textSize="12dp" />
-    <!--<Button
-        android:id="@+id/btn_sitemap"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="테스트버튼"
-        />-->
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_login_kko"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:background="@drawable/log_kakao"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:text="카카오톡 로그인"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btn_login_fb"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:textColor="#ffffff"
+            android:textSize="12dp"
+            facebook:com_facebook_login_text="페이스북 로그인"
+            facebook:com_facebook_logout_text="페이스북 로그인" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_find_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="비밀번호 찾기"
+            android:textColor="@color/color2"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/tv_join_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="회원가입"
+            android:textColor="@color/color2"
+            android:textSize="12dp" />
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,7 +118,7 @@
             android:layout_centerInParent="true"
             android:layout_marginBottom="10dp"
             android:text="copyright ⓒ 2015 Knowledge-seek Co., Ltd. all rights reserved"
-            android:textColor="#ffffff"
+            android:textColor="@color/color2"
             android:textSize="10dp" />
     </RelativeLayout>
 

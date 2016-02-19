@@ -8,16 +8,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#776096"
+        android:background="@color/purpledk"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
+            android:layout_width="42dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+            android:background="@drawable/btn_menu" />
 
         <TextView
             android:id="@+id/tv_users_name"
@@ -34,13 +33,14 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffffff">
+        android:background="#ffffff">
 
         <Button
             android:id="@+id/btn_monthPrevious"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="15dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
+            android:layout_margin="10dp"
             android:background="@drawable/btn_arrow_left" />
 
         <TextView
@@ -51,15 +51,15 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="MonthView"
-            android:textColor="#747474"
-            android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textColor="@color/color2"
+            android:textSize="18dp" />
 
         <Button
             android:id="@+id/btn_monthNext"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="15dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="10dp"
             android:background="@drawable/btn_arrow_right" />
 
         <LinearLayout
@@ -67,90 +67,80 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btn_monthPrevious"
-            android:orientation="horizontal">
+            android:background="@color/color2"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
 
             <TextView
                 android:id="@+id/sundayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="일"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/mondayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="월"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/tuesdayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="화"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/wednesdayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="수"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/thursdayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="목"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/fridayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="금"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
 
             <TextView
                 android:id="@+id/saturdayTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#747474"
                 android:gravity="center"
                 android:text="토"
                 android:textColor="#ffffffff"
-                android:textSize="16dp" />
+                android:textSize="14dp" />
         </LinearLayout>
 
         <GridView
@@ -171,12 +161,11 @@
 
             <ImageButton
                 android:id="@+id/imBtn_diary_write"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="#00000000"
-                android:src="@drawable/float_button_03" />
+                android:background="@drawable/float_button_03" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
