@@ -32,7 +32,7 @@ public class HeightController {
 	public void registerHeight(String user_seq, String height){
 		//logger.trace("/height/register.do");
 		//logger.debug("/height/register.do");
-		logger.info("/height/register.do");
+		logger.info("/height/register.do : " + user_seq + ", " + height);
 		//logger.warn("/height/register.do");
 		//logger.error("/height/register.do");
 		

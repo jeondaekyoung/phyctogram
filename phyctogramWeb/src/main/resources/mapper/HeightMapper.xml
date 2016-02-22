@@ -22,7 +22,7 @@
 							,input_date) VALUES (
 							#{height_seq}
 							,#{height}
-							,#{mesure_date}
+							,now()
 							,#{user_seq}
 							,now() )
 	</insert>
