@@ -13,11 +13,10 @@
 
         <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
+            android:layout_width="42dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+            android:background="@drawable/btn_menu" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,12 +42,12 @@
 
         <ImageButton
             android:id="@+id/imBtn_qa_write"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:background="#00000000"
-            android:src="@drawable/float_button_03" />
+            android:background="@drawable/float_button_03"
+            android:padding="5dp" />
 
     </RelativeLayout>
 </LinearLayout>

@@ -198,8 +198,7 @@
                                 android:id="@+id/iv_analysis_height50_diff"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/icon_report_down" />
+                                android:layout_marginRight="10dp" />
 
                             <TextView
                                 android:id="@+id/tv_analysis_height50_diff"
@@ -235,8 +234,7 @@
                                 android:id="@+id/iv_analysis_height_diff"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@drawable/icon_report_up" />
+                                android:layout_marginRight="10dp" />
 
                             <TextView
                                 android:id="@+id/tv_analysis_height_diff"

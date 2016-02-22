@@ -59,9 +59,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_weight="1"
-                    android:background="@color/color6"
+                    android:background="@drawable/linedate"
                     android:gravity="center"
-                    android:hint="날짜입력하세요" />
+                    android:hint="날짜를 입력하세요" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,9 +75,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_weight="1"
-                    android:background="@color/color6"
+                    android:background="@drawable/linedate"
                     android:gravity="center"
-                    android:hint="날짜입력하세요" />
+                    android:hint="날짜를 입력하세요" />
 
             </LinearLayout>
 
