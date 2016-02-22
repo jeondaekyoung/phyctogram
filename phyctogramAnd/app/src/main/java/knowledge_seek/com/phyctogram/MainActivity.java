@@ -53,24 +53,24 @@ public class MainActivity extends BaseActivity {
 
     //레이아웃정의
     private Button btn_users_record;                     //기록조회
-    private RelativeLayout rl_community_list;      //수다방 리스트
-    private ImageButton imBtn_community_list;
+    //private RelativeLayout rl_community_list;      //수다방 리스트
+    private Button btn_community_list;              //수다방으로 가기
     private TextView tv_users_name;                 //아이 이름 출력
-    private Button btn_users_analysis;     //분석리포트
+    private Button btn_users_analysis;               //분석리포트
     private ImageView iv_my_animal;                        //캐릭터
     private TextView tv_height;                         //최종신장
     private TextView tv_grow;                           //성장 값
     private TextView tv_rank;                           //상위
 
     private TextView tv_popularTop1_title;          //수다방 인기 Top3
-    private TextView tv_popularTop1_name;
-    private TextView tv_popularTop2_title;
-    private TextView tv_popularTop2_name;
-    private TextView tv_popularTop3_title;
-    private TextView tv_popularTop3_name;
+    //private TextView tv_popularTop1_name;
+    //private TextView tv_popularTop2_title;
+    //private TextView tv_popularTop2_name;
+    //private TextView tv_popularTop3_title;
+    //private TextView tv_popularTop3_name;
     private RelativeLayout rl_popularTop1;
-    private RelativeLayout rl_popularTop2;
-    private RelativeLayout rl_popularTop3;
+    //private RelativeLayout rl_popularTop2;
+    //private RelativeLayout rl_popularTop3;
 
     //private ScrollView sv_main;
 
@@ -190,31 +190,22 @@ public class MainActivity extends BaseActivity {
             }
         });
         //수다방(community)
-        rl_community_list = (RelativeLayout) findViewById(R.id.rl_community_list);
-        rl_community_list.setOnClickListener(new View.OnClickListener() {
+        btn_community_list = (Button) findViewById(R.id.btn_community_list);
+        btn_community_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CommunityListActivity.class);
                 startActivity(intent);
             }
         });
-        imBtn_community_list = (ImageButton)findViewById(R.id.imBtn_community_list);
-        imBtn_community_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CommunityListActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
         //커뮤니티(수다방) 인기 Top3
         tv_popularTop1_title = (TextView) findViewById(R.id.tv_popularTop1_title);
-        tv_popularTop1_name = (TextView) findViewById(R.id.tv_popularTop1_name);
-        tv_popularTop2_title = (TextView) findViewById(R.id.tv_popularTop2_title);
-        tv_popularTop2_name = (TextView) findViewById(R.id.tv_popularTop2_name);
-        tv_popularTop3_title = (TextView) findViewById(R.id.tv_popularTop3_title);
-        tv_popularTop3_name = (TextView) findViewById(R.id.tv_popularTop3_name);
+        //tv_popularTop1_name = (TextView) findViewById(R.id.tv_popularTop1_name);
+        //tv_popularTop2_title = (TextView) findViewById(R.id.tv_popularTop2_title);
+        //tv_popularTop2_name = (TextView) findViewById(R.id.tv_popularTop2_name);
+        //tv_popularTop3_title = (TextView) findViewById(R.id.tv_popularTop3_title);
+        //tv_popularTop3_name = (TextView) findViewById(R.id.tv_popularTop3_name);
         rl_popularTop1 = (RelativeLayout) findViewById(R.id.rl_popularTop1);
         rl_popularTop1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,7 +222,7 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
-        rl_popularTop2 = (RelativeLayout) findViewById(R.id.rl_popularTop2);
+        /*rl_popularTop2 = (RelativeLayout) findViewById(R.id.rl_popularTop2);
         rl_popularTop2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -246,8 +237,8 @@ public class MainActivity extends BaseActivity {
                     //finish();
                 }
             }
-        });
-        rl_popularTop3 = (RelativeLayout) findViewById(R.id.rl_popularTop3);
+        });*/
+        /*rl_popularTop3 = (RelativeLayout) findViewById(R.id.rl_popularTop3);
         rl_popularTop3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,7 +253,7 @@ public class MainActivity extends BaseActivity {
                     //finish();
                 }
             }
-        });
+        });*/
 
 
         //내 아이 메인(분석) 정보
@@ -415,7 +406,10 @@ public class MainActivity extends BaseActivity {
             if (sqlCommntyListViewTask != null) {
                 sqlCommntyListViewList = sqlCommntyListViewTask;        //main변수에 저장
             }
-            if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3) {
+            if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() > 0){
+                tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
+            }
+            /*if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3) {
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
                 tv_popularTop2_title.setText(sqlCommntyListViewTask.get(1).getTitle());
@@ -443,7 +437,7 @@ public class MainActivity extends BaseActivity {
                 tv_popularTop2_name.setText(null);
                 tv_popularTop3_title.setText(null);
                 tv_popularTop3_name.setText(null);
-            }
+            }*/
 
             dialog.dismiss();
             super.onPostExecute(bitmap);

@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -46,6 +48,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -60,12 +63,15 @@ public class LoginActivity extends BaseActivity {
     private SessionCallback callback;
 
     //레이아웃 정의
-    private com.facebook.login.widget.LoginButton facebookLoginButton;
+
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
-    private Button btn_login_kko;
-    private Button btn_login;
-    //private Button btn_sitemap;         //테스트버튼 삭제해야함
+    private Button btn_login_kko;                                                           //카카오
+    private com.facebook.login.widget.LoginButton facebookLoginButton;      //페이스북
+    private EditText et_email;
+    private EditText et_pw;
+    private Button btn_member_login;                                                    //픽토그램
+    private TextView tv_join_member;
 
     //데이터
     private Member memberActivity = new Member();
@@ -235,15 +241,45 @@ public class LoginActivity extends BaseActivity {
 
             @Override
             public void onError(FacebookException error) {
-                Log.d("-진우-", "실패(에러) ");
+                Log.d("-진우-", "실패(에러) : " + error.getMessage());
             }
         });
-        btn_login = (Button)findViewById(R.id.btn_login);
-        btn_login.setOnClickListener(new View.OnClickListener() {
+
+
+        et_email = (EditText)findViewById(R.id.et_email);
+        et_pw = (EditText)findViewById(R.id.et_pw);
+
+        //픽토그램 로그인
+        btn_member_login = (Button)findViewById(R.id.btn_member_login);
+        btn_member_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent memberlogin = new Intent(getApplicationContext(), LoginActivity2.class);
-                startActivity(memberlogin);
+                Member temp = new Member();
+                Log.d("-진우-", "멤버 : " + temp.toString());
+                Log.d("-진우-", "이메일 : " + et_email.getText().toString() + ", 패스워드 : " + et_pw.getText().toString());
+                temp.setEmail(et_email.getText().toString());
+                temp.setPassword(et_pw.getText().toString());
+
+                //멤버 내용 체크
+                if(!checkMember(temp)){
+                    return;
+                }
+
+                //멤버 로그인
+                temp.setJoin_route("phyctogram");
+                Log.d("-진우-", temp.toString());
+                Log.d("-진우-", Utility.member2json(temp));
+                loginMember(temp);
+            }
+        });
+
+        tv_join_member = (TextView)findViewById(R.id.tv_join_member);
+        tv_join_member.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), JoinActivity.class);
+                intent.putExtra("member", member);
+                startActivity(intent);
             }
         });
 
@@ -255,6 +291,43 @@ public class LoginActivity extends BaseActivity {
         RegisterMemberTask task = new RegisterMemberTask();
         task.execute(member);
 
+    }
+
+    //픽토그램 멤버로그인
+    private void loginMember(Member member){
+
+        MemberAPI service = ServiceGenerator.createService(MemberAPI.class, "Member");
+        Call<Member> call = service.loginMemberByPhycto(member);
+        call.enqueue(new Callback<Member>() {
+            @Override
+            public void onResponse(Response<Member> response, Retrofit retrofit) {
+                Log.d("-진우-", "픽토그램 로그인 성공 결과 : " + response.body());
+                memberActivity = (Member) response.body();
+                if (memberActivity == null) {
+                    Toast.makeText(getApplicationContext(), "이메일과 패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    //가입완료후 로그인유지를 위해 preference를 사용한다.
+                    SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
+                    redirectMainActivity(memberActivity);
+                }
+
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.d("-진우-", "로그인하는데 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+            }
+        });
+
+    }
+
+    //멤버 내용 체크
+    private boolean checkMember(Member member){
+        if(member.getEmail().length() <= 0 || member.getPassword().length() <= 0){
+            Toast.makeText(getApplicationContext(), "이메일과 패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
     @Override

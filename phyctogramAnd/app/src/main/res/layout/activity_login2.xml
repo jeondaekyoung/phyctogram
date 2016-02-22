@@ -9,7 +9,7 @@
     android:paddingTop="20dp"
     android:windowSoftInputMode="adjustPan">
 
-    <!--<ScrollView
+    <ScrollView
         android:id="@+id/sv_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -104,5 +104,5 @@
             android:text="copyright ⓒ 2015 Knowledge-seek Co., Ltd. all rights reserved"
             android:textColor="#fff"
             android:textSize="10dp" />
-    </RelativeLayout>-->
+    </RelativeLayout>
 </LinearLayout>

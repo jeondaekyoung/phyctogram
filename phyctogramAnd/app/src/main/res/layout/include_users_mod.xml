@@ -65,7 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="제품에 표시될 이름입니다. 예:AA, AA1 (영문 2자, 숫자 1자 제한)"
+                    android:text="제품에 표시될 이름입니다. 예:ABC 또는 AB2(영문 3자 또는 영문 2자+숫자 1자)"
                     android:textColor="#ff0000"
                     android:textSize="10dp" />
 
