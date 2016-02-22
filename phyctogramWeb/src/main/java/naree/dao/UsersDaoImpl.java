@@ -1,5 +1,6 @@
 package naree.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,7 +31,7 @@ public class UsersDaoImpl implements UsersDao {
 	@Override
 	public List<Users> selectUsersByMemberSeq(String member_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
-		List<Users> result;
+		List<Users> result = new ArrayList<Users>();
 		try{
 			UsersMapper usersMapper = sqlSession.getMapper(UsersMapper.class);
 			result = usersMapper.selectUsersByMemberSeq(member_seq);
