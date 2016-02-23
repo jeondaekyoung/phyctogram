@@ -2,18 +2,38 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.ScanResult;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,10 +44,13 @@ import com.squareup.okhttp.Request;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
+import knowledge_seek.com.phyctogram.domain.Wifi;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.listAdapter.WifiListAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import retrofit.Call;
@@ -37,11 +60,19 @@ import retrofit.Call;
  */
 public class EquipmentActivity extends BaseActivity {
 
+    ScanResult scanResult;
+    WifiManager wm;
+    List apList;
+
     //레이아웃정의 - 슬라이드메뉴
     private LinearLayout ic_screen;
     private ImageButton btn_left;
     private CircularImageView img_profile;      //슬라이드 내 이미지
     private TextView tv_member_name;            //슬라이드 내 이름
+    private Button btn_connWifi;
+    private List<Wifi> wifiList = new ArrayList<>();
+    private ListView lv_wifilist;
+    private WifiListAdapter wifiListAdapter;
 
     //레이아웃정의
 
@@ -58,6 +89,17 @@ public class EquipmentActivity extends BaseActivity {
         if (memberImg != null) {
             img_profile.setImageBitmap(memberImg);
         }
+
+        //기기 검색 버튼 셋팅
+        btn_connWifi = (Button) findViewById(R.id.connWifiBtn);
+        btn_connWifi.setText("기기 검색");
+        btn_connWifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btn_connWifi.setText("검색중 입니다...");
+                searchStartWifi();
+            }
+        });
 
         //슬라이드 내 이름, 셋팅
         tv_member_name = (TextView) findViewById(R.id.tv_member_name);
@@ -82,6 +124,238 @@ public class EquipmentActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
+    }
+
+    //wifi 초기화 및 검색 start
+    public void searchStartWifi(){
+        WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        boolean checkWifi = wfMgr.isWifiEnabled();
+        Log.d("-진우-", "checkWifi : "+checkWifi);
+        if(!checkWifi){
+            wfMgr.setWifiEnabled(true);
+        }
+
+        //WifiManager 초기화
+        wm = (WifiManager) getSystemService(WIFI_SERVICE);
+
+        //검색 하기
+        wm.startScan();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+        registerReceiver(wifiReceiver, filter);
+    }
+
+    //wifi 검색 완료 receiver
+    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
+                searchWifi();
+            }
+        }
+    };
+
+    //wifi List view 셋팅
+    public void searchWifi() {
+        unregisterReceiver(wifiReceiver);    //리시버 해제
+        apList = wm.getScanResults();
+        if (wm.getScanResults() != null) {
+            int size = apList.size();
+            for (int i = 0; i < size; i++) {
+                scanResult = (ScanResult) apList.get(i);
+                wifiList.add(new Wifi(scanResult.SSID,scanResult.capabilities));
+            }
+        }
+
+        lv_wifilist = (ListView)findViewById(R.id.lv_wifiList);
+        wifiListAdapter = new WifiListAdapter(this, wifiList, R.layout.list_wifi);
+        lv_wifilist.setAdapter(wifiListAdapter);
+
+        lv_wifilist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Wifi wifi = (Wifi) wifiListAdapter.getItem(position);
+                String capabilities = wifi.getCapabilities();
+                if(capabilities.contains("WEP")||capabilities.contains("WPA")||capabilities.contains("WPA2")||capabilities.contains("OPEN")){
+                    openPopup(wifi.getSsid(), wifi.getCapabilities());
+                }else{
+                    connectWifi(wifi.getSsid(), "", wifi.getCapabilities());
+                }
+            }
+        });
+
+        btn_connWifi.setText("검색 완료 (재검색)");
+    }
+
+    private Button btnClosePopup, btnPwdOk;
+    private PopupWindow pwindo;
+    private int mWidthPixels, mHeightPixels;
+    private TextView textSsid, textCapabilities;
+    private EditText textPassword;
+
+    public void openPopup(String ssid, String capabilities){
+        WindowManager w = getWindowManager();
+        Display d = w.getDefaultDisplay();
+        DisplayMetrics metrics = new DisplayMetrics();
+        d.getMetrics(metrics);
+        // since SDK_INT = 1;
+        mWidthPixels = metrics.widthPixels;
+        mHeightPixels = metrics.heightPixels;
+
+        // 상태바와 메뉴바의 크기를 포함해서 재계산
+        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
+            try {
+                mWidthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
+                mHeightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
+            } catch (Exception ignored) {
+            }
+        // 상태바와 메뉴바의 크기를 포함
+        if (Build.VERSION.SDK_INT >= 17)
+            try {
+                Point realSize = new Point();
+                Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
+                mWidthPixels = realSize.x;
+                mHeightPixels = realSize.y;
+            } catch (Exception ignored) {
+            }
+
+        try {
+            //  LayoutInflater 객체와 시킴
+            LayoutInflater inflater = (LayoutInflater) EquipmentActivity.this
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            View layout = inflater.inflate(R.layout.popup_wifi,
+                    (ViewGroup) findViewById(R.id.popup_element));
+
+            pwindo = new PopupWindow(layout, mWidthPixels-200, mHeightPixels-500, true);
+            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
+            btnClosePopup = (Button) layout.findViewById(R.id.btn_close_popup);
+            btnClosePopup.setOnClickListener(cancel_button_click_listener);
+            btnPwdOk = (Button) layout.findViewById(R.id.btn_pwdOk);
+            btnPwdOk.setOnClickListener(ok_button_click_listener);
+            textSsid = (TextView) layout.findViewById(R.id.text_ssid);
+            textSsid.setText(ssid);
+            textCapabilities = (TextView) layout.findViewById(R.id.text_capabilities);
+            textCapabilities.setText(capabilities);
+            textPassword = (EditText) layout.findViewById(R.id.edit_password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private View.OnClickListener ok_button_click_listener =
+        new View.OnClickListener() {
+
+            public void onClick(View v) {
+                connectWifi(textSsid.getText().toString(), textPassword.getText().toString(), textCapabilities.getText().toString());
+                pwindo.dismiss();
+            }
+    };
+
+    private View.OnClickListener cancel_button_click_listener =
+        new View.OnClickListener() {
+
+            public void onClick(View v) {
+                pwindo.dismiss();
+            }
+    };
+
+
+    public boolean connectWifi(String ssid, String password, String capabilities) {
+        Log.d("-진우-", "ssid: " + ssid+",password: "+password+",capablities: "+capabilities);
+        WifiConfiguration wfc = new WifiConfiguration();
+
+        wfc.SSID = "\"".concat( ssid ).concat("\"");
+        wfc.status = WifiConfiguration.Status.DISABLED;
+        wfc.priority = 40;
+
+        if(capabilities.contains("WEP") == true ){
+            Log.d("-진우-", "WEP 셋팅");
+            wfc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+            wfc.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+            wfc.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.SHARED);
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+            wfc.wepKeys[0] = "\"".concat(password).concat("\"");
+            wfc.wepTxKeyIndex = 0;
+        }else if(capabilities.contains("WPA") == true ) {
+            Log.d("-진우-", "WPA 셋팅");
+            wfc.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+            wfc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+            wfc.preSharedKey = "\"".concat(password).concat("\"");
+        }else if(capabilities.contains("WPA2") == true ) {
+            Log.d("-진우-", "WPA2 셋팅");
+            wfc.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+            wfc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+            wfc.preSharedKey = "\"".concat(password).concat("\"");
+        }else if(capabilities.contains("OPEN") == true ) {
+            Log.d("-진우-", "OPEN 셋팅");
+            wfc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+            wfc.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+            wfc.allowedAuthAlgorithms.clear();
+            wfc.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+            wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+        }
+
+        Log.d("-진우-", "wfc : " + wfc.toString());
+
+        int networkId = -1;
+        WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        List<WifiConfiguration> networks = wfMgr.getConfiguredNetworks();
+        Log.d("-진우-", "networks : " + networks.toString());
+
+        for(int i=0; i<networks.size(); i++){
+            Log.d("-진우-", "networks.get(i).SSID : " + networks.get(i).SSID);
+            if(networks.get(i).SSID.equals("\"".concat( ssid ).concat("\""))){
+                Log.d("-진우-", "networks.get(i).networkId : " + networks.get(i).networkId);
+                networkId = networks.get(i).networkId;
+            }
+        }
+        if(networkId == -1) {
+            networkId = wfMgr.addNetwork(wfc);
+        }
+        Log.d("-진우-", "networkId : " + networkId);
+
+        boolean connection = false;
+
+        if(networkId != -1){
+            Toast.makeText(getApplicationContext(), "연결 시도합니다.", Toast.LENGTH_SHORT).show();
+            //wfMgr.enableNetwork(networkId, true);
+            connection = wfMgr.enableNetwork(networkId, true);
+            Log.d("-진우-", "connection : "+connection);
+        }else{
+            Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+
+        if(connection==true) {
+            Toast.makeText(getApplicationContext(), "연결 되었습니다.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "연결에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+        }
+
+        btn_connWifi.setText("기기 연결 해제");
+
+        return connection;
     }
 
     @Override
@@ -226,5 +500,6 @@ public class EquipmentActivity extends BaseActivity {
             dialog.dismiss();
             super.onPostExecute(bitmap);
         }
+
     }
 }
