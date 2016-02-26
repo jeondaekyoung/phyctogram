@@ -2,10 +2,12 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,24 +21,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pkmmte.view.CircularImageView;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.RequestBody;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Diary;
-import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.retrofitapi.DiaryAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.FileUploadService;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
-import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
 import knowledge_seek.com.phyctogram.util.Utility;
 import retrofit.Call;
+import retrofit.Response;
 
 /**
  * Created by dkfka on 2015-12-08.
@@ -56,10 +56,13 @@ public class DiaryWriteActivity extends BaseActivity {
     private Button btn_diary_save;      //일기 저장
     private EditText et_title;
     private EditText et_contents;
+    private Button btn_pic;                 //갤러리
 
     //데이터 정의
     int year, month, day;
     Diary diary;
+    private static final int SELECT_IMAGE = 1;
+    private File imageFile = null;                          //업로드파일
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -165,13 +168,28 @@ public class DiaryWriteActivity extends BaseActivity {
                 }
 
                 Log.d("-진우-", "저장 : " + Utility.diary2json(diary));
-                RegisterDiaryTask task = new RegisterDiaryTask(diary);
+                RegisterDiaryTask task = new RegisterDiaryTask(diary, imageFile);
                 task.execute();
-                onBackPressed();
+                //onBackPressed();
             }
         });
 
+        btn_pic = (Button)findViewById(R.id.btn_pic);
+        btn_pic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                //파일업로드 테스트
+                //Intent intent = new Intent(getApplicationContext(), FileUploadActivity.class);
+                //startActivity(intent);
+
+                //사진 가져오기
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+                intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, SELECT_IMAGE);
+            }
+        });
     }
 
     @Override
@@ -198,6 +216,45 @@ public class DiaryWriteActivity extends BaseActivity {
         Log.d("-진우-", "DiaryWriteActivity.onResume() 끝");
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == SELECT_IMAGE && resultCode == RESULT_OK && data != null){
+            Uri selectedImageUri = data.getData();
+            String imagePath = getPath(selectedImageUri);
+
+            //선택한 갤러리를 작게 보이도록 할 수 있다
+            /*BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 4;
+            Bitmap src = BitmapFactory.decodeFile(imagepath, options);
+            Bitmap resized = Bitmap.createScaledBitmap(src, 300, 300, true);
+            imageview.setImageBitmap(resized);*/
+
+            imageFile = new File(imagePath);
+        }
+    }
+
+    //선택한 갤러리 파일 경로찾기
+    public String getPath(Uri uri){
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        //Log.d("-진우-", "column_index : " + column_index);
+
+        cursor.moveToFirst();
+
+        String imgPath = cursor.getString(column_index);
+        String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
+        //Log.d("-진우-", "갤러리 : " + column_index + ", path : " + imgPath + ", imgName : " + imgName);
+        Log.d("-진우-", "선택한 갤러리 경로 : " + cursor.getString(column_index));
+        return cursor.getString(column_index);
+    }
+
+
     //초기디폴트 날짜 셋팅
     private void datepickSetting() {
         GregorianCalendar calendar = new GregorianCalendar();
@@ -218,11 +275,6 @@ public class DiaryWriteActivity extends BaseActivity {
     };
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
     //Diary의 내용체크
     private boolean checkDiary(Diary diary){
         if(diary.getTitle().length() <= 0 || diary.getContents().length() <= 0){
@@ -237,9 +289,11 @@ public class DiaryWriteActivity extends BaseActivity {
 
         private ProgressDialog dialog = new ProgressDialog(DiaryWriteActivity.this);
         private Diary diaryTask;
+        private File imageFileTask;
 
-        public RegisterDiaryTask(Diary diary) {
+        public RegisterDiaryTask(Diary diary, File imageFile) {
             this.diaryTask = diary;
+            this.imageFileTask = imageFile;
         }
 
         @Override
@@ -253,23 +307,47 @@ public class DiaryWriteActivity extends BaseActivity {
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
+
             DiaryAPI service = ServiceGenerator.createService(DiaryAPI.class);
             Call<String> call = service.registerDiary(diaryTask);
             try {
                 result = call.execute().body();
+                Log.d("-진우-", "일기 저장 결과 : " + result);
             } catch (IOException e){
                 Log.d("-진우-", "글 저장 실패");
             }
+
+            //이미지파일이 있을 경우 업로드한다
+            if(imageFileTask != null && !result.equals("exist") && !result.equals("fail")) {
+                Log.d("-진우-", "파일 업로드 시작 :  " + imageFileTask.getName() + ", 일기 시퀀스 : " + result);
+                FileUploadService service1 = ServiceGenerator.createService(FileUploadService.class);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), imageFileTask);
+
+                Call<String> call1 = service1.fileUploadSingle(Integer.valueOf(result), requestBody);
+                try {
+                    //result = call.execute().body();
+                    Response res = call1.execute();
+                    Log.d("-진우-", "코드 : " + res.code() + ", " + res.body());
+                } catch (IOException e) {
+                    Log.d("-진우-", "글 저장 실패");
+                }
+            }
+
 
             return result;
         }
 
         @Override
         protected void onPostExecute(String result) {
-            if(result != null && result.equals("success")){
-                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
-            } else if(result != null && result.equals("exist")){
-                Toast.makeText(getApplicationContext(), "이미 일기를 작성하였습니다", Toast.LENGTH_LONG).show();
+            if(result != null){
+                if(result.equals("exist")){
+                    Toast.makeText(getApplicationContext(), "이미 일기를 작성하였습니다", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
+                    //Log.d("-진우-", "일기 시퀀스 : " + result);
+                    onBackPressed();
+                }
+
             } else {
                 Log.d("-진우-", "일기 저장에 실패하였습니다");
             }
@@ -278,4 +356,6 @@ public class DiaryWriteActivity extends BaseActivity {
             super.onPostExecute(result);
         }
     }
+
+
 }

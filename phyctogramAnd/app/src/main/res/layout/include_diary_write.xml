@@ -74,24 +74,24 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/pic"
+                android:id="@+id/btn_pic"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/btn_border_radius2"
-                android:text="사진"
+                android:text="갤러리"
                 android:textSize="12dp"
                 android:textColor="@color/purple" />
 
             <Button
-                android:id="@+id/mov"
+                android:id="@+id/btn_mov"
                 android:layout_width="60dp"
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/pic"
+                android:layout_toRightOf="@id/btn_pic"
                 android:text="동영상"
                 android:textSize="12dp"
                 android:background="@drawable/btn_border_radius2"

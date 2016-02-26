@@ -263,27 +263,21 @@ public class UsersAnalysisActivity extends BaseActivity {
                         Bitmap captureView_2 = Bitmap.createBitmap(cache_2);
                         Uri uri = Uri.fromFile(Utility.saveBitmaptoJpeg(captureView_2));
 
-                        //공유
+                        //이미지공유
                         Intent intent = new Intent(Intent.ACTION_SEND);
-                        //msg.addCategory(Intent.CATEGORY_DEFAULT);
-                        //intent.putExtra(Intent.EXTRA_SUBJECT, "픽토그램");
-                        //intent.putExtra(Intent.EXTRA_TEXT, "내 아이 성장");
                         intent.putExtra(Intent.EXTRA_STREAM, uri);
-                        intent.setType("image/*");
+                        intent.setType("image");
 
-
-                        //Uri uri2 = Uri.parse("kakao[88e6d63483f763a145860ecc0bfbda14]://kakaolink");
-                        //intent.putExtra(Intent.EXTRA_STREAM, uri2);
-                        //intent.setType("text/plain");
-                        //intent.setDataAndType(uri2, "text/plain");
+                        //텍스트(URL) 공유
+                        /*Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("text/plain");
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "URL 테스트");
+                        intent.putExtra(Intent.EXTRA_TEXT, "http://www.knowledge-seek.com");*/
 
 
                         intent.setPackage("com.kakao.talk");
                         //startActivity(Intent.createChooser(intent, "내 아이 성장을 공유합니다"));
                         startActivity(intent);
-
-                        Intent market = new Intent(Intent.ACTION_VIEW);
-                        
 
                     }
                 });

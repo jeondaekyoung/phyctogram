@@ -196,4 +196,37 @@ public class Utility {
         return new File(ex_storage+file_name);
 
     }
+
+    public static String saveBitmaptoJpegPath(Bitmap bitmap) {
+        String folder_name = "/phyctogram/";
+        String file_name = "phyctogram.jpg";
+        String ex_storage = Environment.getExternalStorageDirectory().getAbsolutePath() + folder_name;
+
+        File file_path = new File(ex_storage);
+        if(!file_path.isDirectory()) {
+            file_path.mkdirs();
+        }
+
+        File jpgfile = new File(ex_storage+file_name);
+        OutputStream out = null;
+        try {
+            jpgfile.createNewFile();
+            out = new FileOutputStream(jpgfile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        } catch (FileNotFoundException e) {
+            Log.e("FileNotFoundException", e.getMessage());
+        } catch (IOException e) {
+            Log.e("IOException", e.getMessage());
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Log.d("-진우-", "저장위치 : " + ex_storage + file_name);
+        return ex_storage+file_name;
+
+    }
 }

@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <uses-feature android:name="android.hardware.wifi" />
+
     <application
         android:name=".kakao.common.GlobalApplication"
         android:allowBackup="true"
@@ -195,6 +197,14 @@
             android:name=".QaViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+        <!-- 파일업로드 테스트 -->
+        <activity
+            android:name=".FileUploadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
     </application>
 
 </manifest>
