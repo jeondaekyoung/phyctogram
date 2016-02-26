@@ -19,4 +19,6 @@ public interface DiaryMapper {
 
 	int deleteDiaryByDiary(int diary_seq);
 
+	int updateDiaryForFile(Diary diary);
+
 }

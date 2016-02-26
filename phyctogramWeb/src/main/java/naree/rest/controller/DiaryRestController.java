@@ -40,8 +40,9 @@ public class DiaryRestController {
 		
 		//없으면 저장
 		result = diaryService.registerDiary(diary);
+		logger.info("저장 결과 : " + result + ", " + diary.getDiary_seq());
 		if(result == 1){
-			return "success";
+			return diary.getDiary_seq()+"";
 		} else {
 			return "fail";
 		}

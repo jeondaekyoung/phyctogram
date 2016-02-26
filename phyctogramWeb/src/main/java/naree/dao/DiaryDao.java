@@ -49,4 +49,11 @@ public interface DiaryDao {
 	 */
 	int deleteDiaryByDiary(int diary_seq);
 
+	/**
+	 * 일기 이미지정보 저장하기
+	 * @param diary
+	 * @return
+	 */
+	int updateDiaryForFile(Diary diary);
+
 }

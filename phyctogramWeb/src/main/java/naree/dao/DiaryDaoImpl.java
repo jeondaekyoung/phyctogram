@@ -24,6 +24,7 @@ public class DiaryDaoImpl implements DiaryDao {
 			sqlSession.commit();
 			sqlSession.close();
 		}
+		
 		return result;
 	}
 
@@ -93,6 +94,20 @@ public class DiaryDaoImpl implements DiaryDao {
 		try {
 			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
 			result = diaryMapper.deleteDiaryByDiary(diary_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateDiaryForFile(Diary diary) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			DiaryMapper diaryMapper = sqlSession.getMapper(DiaryMapper.class);
+			result = diaryMapper.updateDiaryForFile(diary);
 		} finally {
 			sqlSession.commit();
 			sqlSession.close();

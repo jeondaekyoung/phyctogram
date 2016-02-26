@@ -5,7 +5,7 @@
 	
 <mapper namespace="naree.db.mapper.DiaryMapper">
 
-	<insert id="insertDiary" parameterType="Diary">
+	<insert id="insertDiary" parameterType="Diary" useGeneratedKeys="true" keyProperty="diary_seq" >
 		INSERT INTO diary_tb (
 						  title,
 						  contents,
@@ -54,5 +54,12 @@
 		DELETE FROM diary_tb
 		         WHERE diary_seq = #{diary_seq}
 	</delete>
+	
+	<update id="updateDiaryForFile" parameterType="Diary">
+		UPDATE diary_tb
+		     SET image_nm = #{image_nm},
+		     	   image_server_nm = #{image_server_nm}
+		 WHERE diary_seq = #{diary_seq}
+	</update>
 
 </mapper>

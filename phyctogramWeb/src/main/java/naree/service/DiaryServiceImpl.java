@@ -47,4 +47,12 @@ public class DiaryServiceImpl implements DiaryService {
 		
 		return diaryDao.deleteDiaryByDiary(diary_seq);
 	}
+
+	@Override
+	public int modifyDiaryForFile(Diary diary) {
+		
+		return diaryDao.updateDiaryForFile(diary);
+	}
+
+	
 }
