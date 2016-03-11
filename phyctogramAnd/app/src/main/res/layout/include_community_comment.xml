@@ -8,16 +8,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#776096"
+        android:background="@color/purpledk"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/btn_left"
-            android:layout_width="50dp"
+            android:layout_width="42dp"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:background="#00000000"
-            android:src="@drawable/btn_menu" />
+            android:background="@drawable/btn_menu" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#776096"
+        android:background="@color/purpledk"
         android:orientation="horizontal">
 
         <ImageButton
