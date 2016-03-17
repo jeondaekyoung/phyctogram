@@ -274,9 +274,9 @@
       <div class="container wrapper">
         <div class="m-t-xl m-b"><!--  스마트폰으로 자녀의 성장 과정을 기록해보세요. 픽토그램이 자세히 분석해드립니다. -->
           <!-- <a href="#" target="_blank" class="btn btn-lg btn-dark b-white bg-empty m-sm">다운로드</a> -->
+          <a href="know" target="_blank" class="btn btn-dark b-white bg-empty m-sm">나리지식</a>
           <a href="agreement.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">이용약관</a>
           <a href="privacy.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">개인정보취급방침</a>
-          <a href="#" target="_blank" class="btn btn-dark b-white bg-empty m-sm">이용안내</a>
           <a href="partnership.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">제휴안내</a>
         </div>
       </div>
