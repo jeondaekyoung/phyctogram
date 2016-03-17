@@ -4,9 +4,12 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>가장 진보한 유아용 선장관리 솔루션 : 픽토그램</title>
-  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+  <title>픽토그램</title>
+  <meta name="naver-site-verification" content="b5c6de529108b528bdc4d119fd6a5086e67ad0c3"/>
+  <meta name="description" content="가장 진보한 유아용 키재기 픽토그램" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+  <meta property="og:title" content="픽토그램" >
+  <meta property="og:description" content="가장 진보한 유아용 키재기 픽토그램" >
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/animate.css" type="text/css" />
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/font-awesome.min.css" type="text/css" />
@@ -288,7 +291,7 @@
       <div class="container wrapper">
         <div class="m-t-xl m-b"><!--  스마트폰으로 자녀의 성장 과정을 기록해보세요. 픽토그램이 자세히 분석해드립니다. -->
           <!-- <a href="#" target="_blank" class="btn btn-lg btn-dark b-white bg-empty m-sm">다운로드</a> -->
-          <a href="know" target="_blank" class="btn btn-dark b-white bg-empty m-sm">나리지식</a>
+          <a href="know.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">나리지식</a>
           <a href="agreement.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">이용약관</a>
           <a href="privacy.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">개인정보취급방침</a>
           <a href="partnership.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">제휴안내</a>
