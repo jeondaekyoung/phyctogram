@@ -51,10 +51,17 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_border_radius"
             android:text="찾기"
             android:textColor="#ffffff" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="*카카오톡이나 페이스북으로 가입된 회원에게는 비밀번호 찾기 서비스가 지원되지 않습니다."
+            android:textColor="#ff0000"
+            android:textSize="11dp" />
     </LinearLayout>
 </LinearLayout>

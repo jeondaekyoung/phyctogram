@@ -72,6 +72,7 @@ public class LoginActivity extends BaseActivity {
     private EditText et_pw;
     private Button btn_member_login;                                                    //픽토그램
     private TextView tv_join_member;
+    private TextView tv_find_pw;
 
     //데이터
     private Member memberActivity = new Member();
@@ -172,7 +173,7 @@ public class LoginActivity extends BaseActivity {
             }
         });
         //Log.d("-진우-", " 아우 " + accessTokenTracker.isTracking());
-        facebookLoginButton = (com.facebook.login.widget.LoginButton)findViewById(R.id.btn_login_fb);
+        facebookLoginButton = (com.facebook.login.widget.LoginButton) findViewById(R.id.btn_login_fb);
         facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
         facebookLoginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         facebookLoginButton.setReadPermissions(Arrays.asList("user_photos", "email", "user_birthday", "user_friends"));
@@ -227,7 +228,6 @@ public class LoginActivity extends BaseActivity {
                 request.setParameters(parameters);
                 request.executeAsync();
 
-
                 //Profile profile = Profile.getCurrentProfile();
                 //Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
 
@@ -273,6 +273,14 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        tv_find_pw = (TextView)findViewById(R.id.tv_find_pw);
+        tv_find_pw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PwfindActivity.class);
+                startActivity(intent);
+            }
+        });
         tv_join_member = (TextView)findViewById(R.id.tv_join_member);
         tv_join_member.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -355,7 +363,6 @@ public class LoginActivity extends BaseActivity {
         super.onDestroy();
         Session.getCurrentSession().removeCallback(callback);
         accessTokenTracker.stopTracking();
-
     }
 
     @Override
