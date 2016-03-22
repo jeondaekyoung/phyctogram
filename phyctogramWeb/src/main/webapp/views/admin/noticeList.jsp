@@ -31,6 +31,9 @@
             <a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
           </li>
           <li>
+            <a href="<%=application.getContextPath()%>/views/admin/push.jsp">푸쉬보내기</a>
+          </li>
+          <li>
             <a href="<%=application.getContextPath()%>/views/admin/qaList.jsp">문의하기</a>
           </li>
         </ul>

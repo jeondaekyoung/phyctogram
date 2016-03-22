@@ -5,27 +5,15 @@
 <head>
 <meta charset="utf-8" />
 <title>문의하기</title>
-<meta name="description"
-	content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet"
-	href="<%=application.getContextPath()%>/resources/css/bootstrap.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=application.getContextPath()%>/resources/css/font-awesome.min.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=application.getContextPath()%>/resources/css/landing.css"
-	type="text/css" />
-<link rel="stylesheet"
-	href="<%=application.getContextPath()%>/resources/css/app.css"
-	type="text/css" />
-
+<meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/landing.css" type="text/css" />
+<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/app.css" type="text/css" />
 </head>
 
 <body>
-
 	<!-- header -->
 	<header id="header"
 		class="navbar navbar-fixed-top bg-white box-shadow b-b b-light"
@@ -33,19 +21,15 @@
 		<div class="container">
 			<div class="navbar-header">
 				<a href="#" class="navbar-brand"><span class="text-muted">Phyctogram</span></a>
-				<button class="btn btn-link visible-xs" type="button"
-					data-toggle="collapse" data-target=".navbar-collapse">
+				<button class="btn btn-link visible-xs" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 					<i class="fa fa-bars"></i>
 				</button>
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a
-						href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a>
-					</li>
-					<li><a
-						href="<%=application.getContextPath()%>/views/admin/qaList.jsp">문의하기</a>
-					</li>
+					<li class="active"><a href="<%=application.getContextPath()%>/views/admin/noticeList.jsp">공지사항</a></li>
+          			<li><a href="<%=application.getContextPath()%>/views/admin/push.jsp">푸쉬보내기</a></li>
+					<li><a href="<%=application.getContextPath()%>/views/admin/qaList.jsp">문의하기</a></li>
 				</ul>
 			</div>
 		</div>
@@ -71,10 +55,9 @@
 									<div class="row text-sm wrapper">
 										<div class="col-sm-12">
 											<div class="input-group">
-												<input type="checkbox" id="answer" value="answer" checked="checked"> 답변 대기만 보기 <input
-													type="checkbox" id="total" value="total"> 전체 <span class="input-group-btn">
-													<button class="btn btn-sm btn-danger" type="button" id="search">검색</button>
-												</span>
+												<input type="checkbox" id="answer" value="answer" checked="checked"> 답변 대기만 보기
+												<input type="checkbox" id="total" value="total"> 전체
+												<span class="input-group-btn"><button class="btn btn-sm btn-danger" type="button" id="search">검색</button></span>
 											</div>
 										</div>
 									</div>
@@ -82,21 +65,6 @@
 							</div>
 						</div>
 						<button class="btn btn-danger btn-block btn-lg m-b-sm" id="moreBtn">더보기</button>
-						<!-- <footer class="panel-footer">
-                <div class="row">
-                  <div class="col-sm-4 text-right text-center-xs">                
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                      <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">4</a></li>
-                      <li><a href="#">5</a></li>
-                      <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
-                  </div>
-                </div>
-              </footer> -->
 					</div>
 				</div>
 			</div>
@@ -133,12 +101,9 @@
 	</footer>
 	<!-- / footer -->
 
-
-	<script
-		src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
 	<!-- Bootstrap -->
-	<script
-		src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>
+	<script src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>
 	<!-- App -->
 	<script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
