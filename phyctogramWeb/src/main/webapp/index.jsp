@@ -252,7 +252,7 @@
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">
-                  <div class="padder-v"><span class="text-danger font-bold h1">￦50</span></div>
+                  <div class="padder-v"><span class="text-danger font-bold h1">단가 미정</span></div>
                 </li>
                 <li class="list-group-item">
                     <label for="bk"><input type="radio" id="bk" name="color" disabled>스톤 블랙 (Stone Black)</label>
