@@ -35,6 +35,12 @@ public interface MemberMapper {
 	int deleteMemberByMemberSeq(int member_seq);
 
 	int updatePwByMember(Member member);
+	
+	String findMemberByToken(Member member);
+	
+	int registerToken(Member member);
+	
+	int updateToken(Member member);
 }
 
 

@@ -12,5 +12,21 @@ public interface AdminService {
 	 * @return
 	 */
 	Admin login(String id, String pw);
+	
+	/**
+	 * 구매내역 저장
+	 * @param price
+	 * @param etc
+	 * @return
+	 */
+	int buy(String price, String etc);
+	
+	/**
+	 * 구매내역 조회
+	 * @param price
+	 * @param etc
+	 * @return
+	 */
+	int totalPrice();
 
 }

@@ -17,4 +17,14 @@
 		 WHERE id = #{id}
 		    AND pw = password(#{pw})
 	</select>
+	<insert id="registerBuy" parameterType="hashmap">
+		INSERT INTO buy_tb (price
+									,etc ) VALUES (
+									#{price}
+									,#{etc} )
+	</insert>
+	<select id="totalPrice" resultType="Integer">
+		SELECT sum(price)
+		  FROM buy_tb
+	</select>
 </mapper>

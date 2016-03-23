@@ -81,5 +81,24 @@ public interface MemberService {
 	 */
 	int modifyPwByMember(Member member);
 	
+	/**
+	 * Device Token 저장 확인
+	 * @param member
+	 * @return
+	 */
+	String findMemberByToken(Member member);
 	
+	/**
+	 * Save Device Token
+	 * @param member
+	 * @return
+	 */
+	int registerToken(Member member);
+	
+	/**
+	 * Update Device Token
+	 * @param member
+	 * @return
+	 */
+	int updateToken(Member member);
 }

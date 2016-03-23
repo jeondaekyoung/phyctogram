@@ -172,5 +172,37 @@ public class MemberRestController {
 		}
 	}
 	
-	
+	/**
+	 * Save Device Token
+	 * @param member_seq
+	 * @param token
+	 * @return
+	 */
+	@RequestMapping(value = "registerToken", method = RequestMethod.POST)
+	public String registerToken(@RequestParam("member_seq") int member_seq, @RequestParam("token") String token){
+		logger.info("토큰 저장 Token : " + token + ", 멤버시퀀스 : " + member_seq);
+		
+		Member member = new Member();
+		member.setMember_seq(member_seq);
+		member.setToken(token);
+		
+		String resultStr = memberService.findMemberByToken(member);
+		if(resultStr==null){
+			int result = memberService.registerToken(member);
+			if(result == 1){
+				return "success";
+			} else {
+				return "fail";
+			}
+		}else if(resultStr!=null&&resultStr.equals(token)){
+			return "success";
+		}else{
+			int result = memberService.updateToken(member);
+			if(result == 1){
+				return "success";
+			} else {
+				return "fail";
+			}
+		}
+	}
 }

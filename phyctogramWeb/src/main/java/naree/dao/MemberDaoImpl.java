@@ -227,4 +227,45 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public String findMemberByToken(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		String result = null;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.findMemberByToken(member);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int registerToken(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.registerToken(member);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
+
+	@Override
+	public int updateToken(Member member) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try{
+			MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+			result = memberMapper.updateToken(member);
+		}finally{
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
 }

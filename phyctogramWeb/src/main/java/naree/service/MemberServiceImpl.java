@@ -170,11 +170,21 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.updatePwByMember(member);
 	}
-	
-	
-	
-	
-	
-	
 
+	@Override
+	public String findMemberByToken(Member member) {
+		// TODO Auto-generated method stub
+		return memberDao.findMemberByToken(member);
+	}
+
+	@Override
+	public int registerToken(Member member) {
+		return memberDao.registerToken(member);
+	}
+
+	@Override
+	public int updateToken(Member member) {
+		// TODO Auto-generated method stub
+		return  memberDao.updateToken(member);
+	}
 }

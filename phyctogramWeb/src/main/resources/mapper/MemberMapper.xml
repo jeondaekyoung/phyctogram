@@ -151,5 +151,20 @@
 		UPDATE member_tb SET password = password(#{password})
 		 WHERE member_seq = #{member_seq}
 	</update>
-
+	
+	<select id="findMemberByToken" parameterType="Member" resultType="String">
+		SELECT token 
+		  FROM push_tb 
+		WHERE member_seq = #{member_seq}
+	</select>
+	
+	<insert id="registerToken" parameterType="Member">
+		INSERT INTO push_tb(member_seq, token) VALUES (#{member_seq},#{token})
+	</insert>
+	
+	<update id="updateToken" parameterType="Member">
+		UPDATE push_tb 
+		     SET token = #{token} 
+		 WHERE member_seq = #{member_seq}
+	</update>
 </mapper>

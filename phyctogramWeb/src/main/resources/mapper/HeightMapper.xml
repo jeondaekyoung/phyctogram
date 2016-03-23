@@ -31,8 +31,8 @@
 		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM height_tb
 		 WHERE user_seq = #{user_seq}
-	 ORDER BY mesure_date DESC
-	 	   LIMIT 1
+	 ORDER BY input_date DESC
+	 	   LIMIT 20
 	</select>
 	
 	<delete id="deleteHeightByUserSeq" parameterType="String">
@@ -171,14 +171,4 @@
 	 ORDER BY mesure_date DESC
 	      LIMIT 2 
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 </mapper>

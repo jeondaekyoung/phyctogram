@@ -20,6 +20,7 @@ public class Member {
 	private String facebook_name;
 	private String facebook_gender;
 	private String join_route;
+	private String token;
 	public int getMember_seq() {
 		return member_seq;
 	}
@@ -116,7 +117,12 @@ public class Member {
 	public void setJoin_route(String join_route) {
 		this.join_route = join_route;
 	}
-	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	@Override
 	public String toString() {
 		return "Member [member_seq=" + member_seq + ", email=" + email + ", name=" + name + ", id=" + id + ", domain="
@@ -124,8 +130,6 @@ public class Member {
 				+ ", kakao_nickname=" + kakao_nickname + ", kakao_thumbnailimagepath=" + kakao_thumbnailimagepath
 				+ ", facebook_id=" + facebook_id + ", facebook_email=" + facebook_email + ", facebook_birthday="
 				+ facebook_birthday + ", facebook_name=" + facebook_name + ", facebook_gender=" + facebook_gender
-				+ ", join_route=" + join_route + "]";
+				+ ", join_route=" + join_route + ", token=" + token + "]";
 	}
-	
-	
 }

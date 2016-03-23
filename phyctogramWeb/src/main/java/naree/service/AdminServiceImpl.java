@@ -29,6 +29,16 @@ public class AdminServiceImpl implements AdminService {
 		
 		return admin;
 	}
-	
-	
+
+	@Override
+	public int buy(String price, String etc) {
+		// TODO Auto-generated method stub
+		return adminDao.registerBuy(price, etc);
+	}
+
+	@Override
+	public int totalPrice() {
+		// TODO Auto-generated method stub
+		return adminDao.totalPrice();
+	}
 }

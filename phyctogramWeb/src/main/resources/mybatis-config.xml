@@ -51,6 +51,7 @@
     <mapper resource="mapper/AdminMapper.xml"/>
     <mapper resource="mapper/NoticeMapper.xml"/>
     <mapper resource="mapper/QaMapper.xml"/>
+    <mapper resource="mapper/PushMapper.xml"/>
   </mappers>
   
 </configuration>

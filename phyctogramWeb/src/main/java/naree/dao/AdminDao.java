@@ -17,5 +17,19 @@ public interface AdminDao {
 	 * @return
 	 */
 	boolean searchAdminByAdmin(Admin admin);
+	
+	/**
+	 *  구매내역 저장
+	 * @param admin
+	 * @return
+	 */
+	int registerBuy(String price, String etc);
+	
+	/**
+	 *  구매내역 조회
+	 * @param admin
+	 * @return
+	 */
+	int totalPrice();
 
 }
