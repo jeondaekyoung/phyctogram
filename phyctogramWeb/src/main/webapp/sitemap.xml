@@ -8,20 +8,32 @@
 
 <url>
   <loc>http://phyctogram.com/</loc>
+  <changefreq>monthly</changefreq>
+  <priority>1.00</priority>
 </url>
 <url>
   <loc>http://phyctogram.com/index.jsp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>http://phyctogram.com/know.jsp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>http://phyctogram.com/agreement.jsp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>http://phyctogram.com/privacy.jsp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
 </url>
 <url>
   <loc>http://phyctogram.com/partnership.jsp</loc>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
 </url>
 </urlset>
