@@ -293,6 +293,7 @@ public class EquipmentActivity extends BaseActivity {
             wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
             wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
             wfc.preSharedKey = "\"".concat(password).concat("\"");
+            Log.d("-진우-", "패스워드 확인 : " + wfc.preSharedKey);
         }else if(capabilities.contains("WPA2") == true ) {
             Log.d("-진우-", "WPA2 셋팅");
             wfc.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
@@ -319,9 +320,15 @@ public class EquipmentActivity extends BaseActivity {
 
         Log.d("-진우-", "wfc : " + wfc.toString());
 
-        int networkId = -1;
-        WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        List<WifiConfiguration> networks = wfMgr.getConfiguredNetworks();
+        int networkId = wm.addNetwork(wfc);
+        if(networkId != -1){
+            wm.enableNetwork(networkId, true);
+            Log.d("-진우-", "연결됬나?");
+        }
+
+        /*int networkId = -1;
+        //WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        List<WifiConfiguration> networks = wm.getConfiguredNetworks();
         Log.d("-진우-", "networks : " + networks.toString());
 
         for(int i=0; i<networks.size(); i++){
@@ -332,7 +339,7 @@ public class EquipmentActivity extends BaseActivity {
             }
         }
         if(networkId == -1) {
-            networkId = wfMgr.addNetwork(wfc);
+            networkId = wm.addNetwork(wfc);
         }
         Log.d("-진우-", "networkId : " + networkId);
 
@@ -341,21 +348,24 @@ public class EquipmentActivity extends BaseActivity {
         if(networkId != -1){
             Toast.makeText(getApplicationContext(), "연결 시도합니다.", Toast.LENGTH_SHORT).show();
             //wfMgr.enableNetwork(networkId, true);
-            connection = wfMgr.enableNetwork(networkId, true);
+            connection = wm.enableNetwork(networkId, true);
             Log.d("-진우-", "connection : "+connection);
         }else{
             Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
 
         if(connection==true) {
+            wm.setWifiEnabled(true);
             Toast.makeText(getApplicationContext(), "연결 되었습니다.", Toast.LENGTH_SHORT).show();
+
         }else{
             Toast.makeText(getApplicationContext(), "연결에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
         btn_connWifi.setText("기기 연결 해제");
 
-        return connection;
+        //return connection;
+        return true;
     }
 
     @Override

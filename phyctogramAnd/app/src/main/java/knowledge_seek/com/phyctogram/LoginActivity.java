@@ -2,11 +2,15 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -44,6 +48,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Member;
+import knowledge_seek.com.phyctogram.gcm.MyRegistrationIntentService;
+import knowledge_seek.com.phyctogram.gcm.QuickstartPreferences;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
@@ -53,6 +59,9 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 /**
  * 로그인 페이지
@@ -172,6 +181,15 @@ public class LoginActivity extends BaseActivity {
                 kakaoLogin();
             }
         });
+
+        tv_find_pw = (TextView)findViewById(R.id.tv_find_pw);
+        tv_find_pw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-","비밀번호 찾기, LoginActivity");
+            }
+        });
+
         //Log.d("-진우-", " 아우 " + accessTokenTracker.isTracking());
         facebookLoginButton = (com.facebook.login.widget.LoginButton) findViewById(R.id.btn_login_fb);
         facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
@@ -290,8 +308,7 @@ public class LoginActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-
-    }
+    } //end create
 
     //유저저장
     private void registerMember(Member member){
@@ -368,7 +385,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         // Call the 'activateApp' method to log an app event for use in analytics and advertising
         // reporting.  Do so in the onResume methods of the primary Activities that an app may be
         // launched into.

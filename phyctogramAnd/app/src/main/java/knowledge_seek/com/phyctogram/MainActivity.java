@@ -33,7 +33,9 @@ import knowledge_seek.com.phyctogram.domain.Height;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.domain.SqlCommntyListView;
 import knowledge_seek.com.phyctogram.domain.Users;
+import knowledge_seek.com.phyctogram.gcm.QuickstartPreferences;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.SqlCommntyListViewAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
@@ -97,6 +99,14 @@ public class MainActivity extends BaseActivity {
                 memberName = member.getFacebook_name() + " 님";
             } else {
                 memberName = member.getName() + " 님";
+            }
+
+            if (QuickstartPreferences.token != null){
+                Log.d("-진우-", "BaseActivity member_seq: " + member.getMember_seq()+", Token: "+QuickstartPreferences.token);
+                RegisterTokenTask task = new RegisterTokenTask(member.getMember_seq(),QuickstartPreferences.token);
+                task.execute();
+            }else{
+                Log.d("-진우-", "BaseActivity - Token 발급 불가");
             }
         } else {
             //member = new Member();
@@ -511,6 +521,50 @@ public class MainActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(aVoid);
+        }
+    }
+
+    //일기 저장
+    private class RegisterTokenTask extends AsyncTask<Void, Void, String>{
+
+        private int memberSeq;
+        private String token;
+
+        public RegisterTokenTask(int memberSeq, String token)         {
+            this.memberSeq = memberSeq;
+            this.token = token;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Log.d("-진우-", "RegisterTokenTask onPreExecute");
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String result = null;
+
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class);
+            Call<String> call = service.registerToken(memberSeq, token);
+            try {
+                result = call.execute().body();
+                Log.d("-진우-", "Token 저장 결과 : " + result);
+            } catch (IOException e){
+                Log.d("-진우-", "Token 저장 실패");
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            if(result.equals("success")){
+                Log.d("-진우-", "Token  저장에 성공하였습니다");
+            } else {
+                Log.d("-진우-", "Token 저장에 실패하였습니다");
+            }
+            super.onPostExecute(result);
         }
     }
 

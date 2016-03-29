@@ -63,4 +63,7 @@ public interface MemberAPI {
     @POST("/rest/member/modifyPwByMember")
     Call<String> modifyPwBymember(@Query("member_seq") int member_seq, @Query("nowpw") String nowpw,
                                   @Query("newpw") String newpw);
+
+    @POST("/rest/member/registerToken")
+    Call<String> registerToken(@Query("member_seq") int member_seq, @Query("token") String token);
 }
