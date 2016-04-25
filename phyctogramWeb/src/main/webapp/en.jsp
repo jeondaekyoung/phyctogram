@@ -33,7 +33,8 @@
         </button>
       </div>
       <div class="collapse navbar-collapse">
-        <a href="index.jsp" class="label label-warning text-white" style="float:right; margin:20px">한국어</a>
+        <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<%=application.getContextPath()%>/resources/images/en.jpg" alt="english"/></a>
+        <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<%=application.getContextPath()%>/resources/images/kr.jpg" alt="korean"/></a>
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="index.jsp#content">Home</a></li>
           <li><a href="index.jsp#about">Features</a></li>
@@ -41,7 +42,7 @@
         </ul>
       </div>
     </div>
-  </header>	
+  </header>
   <!-- / header -->
   
   <section id="content">
