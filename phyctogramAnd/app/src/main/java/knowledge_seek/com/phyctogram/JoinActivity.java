@@ -5,18 +5,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -45,7 +49,7 @@ public class JoinActivity extends Activity {
     private Button btn_join_member;
     CheckBox agreement1, agreement2;
     private ScrollView sv_layout;
-
+    private TextView textViewPw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +57,39 @@ public class JoinActivity extends Activity {
         setContentView(R.layout.activity_join);
 
         member = new Member();
+        textViewPw = (TextView) findViewById(R.id.textViewPw);
         et_name = (EditText)findViewById(R.id.et_name);
         et_email = (EditText)findViewById(R.id.et_email);
         et_pw = (EditText)findViewById(R.id.et_pw);
+        et_pw.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (et_pw.getText().toString().length()>0) {
+                    if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
+                        textViewPw.setTextColor(Color.parseColor("#01DF3A"));
+                        textViewPw.setText("비밀번호가 일치합니다.");
+                    } else {
+                        textViewPw.setTextColor(Color.parseColor("#ff0000"));
+                        textViewPw.setText("비밀번호가 일치하지 않습니다.");
+                    }
+                }
+            }
+        });
         et_pw1 = (EditText)findViewById(R.id.et_pw1);
+        et_pw1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (et_pw.getText().toString().length()>0) {
+                    if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
+                        textViewPw.setTextColor(Color.parseColor("#01DF3A"));
+                        textViewPw.setText("비밀번호가 일치합니다.");
+                    } else {
+                        textViewPw.setTextColor(Color.parseColor("#ff0000"));
+                        textViewPw.setText("비밀번호가 일치하지 않습니다.");
+                    }
+                }
+            }
+        });
         btn_join_member = (Button)findViewById(R.id.btn_join_member);
         sv_layout = (ScrollView)findViewById(R.id.sv_layout);
         sv_layout.setVerticalScrollBarEnabled(false);
@@ -149,8 +182,20 @@ public class JoinActivity extends Activity {
                 }
             }
         });
+    }//onCreate
 
-
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (et_pw.getText().toString().length()>0) {
+            if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
+                textViewPw.setTextColor(Color.parseColor("#01DF3A"));
+                textViewPw.setText("비밀번호가 일치합니다.");
+            } else {
+                textViewPw.setTextColor(Color.parseColor("#ff0000"));
+                textViewPw.setText("비밀번호가 일치하지 않습니다.");
+            }
+        }
+        return super.onTouchEvent(event);
     }
 
     //패스워드 체크
@@ -167,7 +212,13 @@ public class JoinActivity extends Activity {
             Toast.makeText(getApplicationContext(), "내용을 확인해주세요", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return true;
+
+        if (member.getEmail().contains("@")&&member.getEmail().contains(".")){
+            return true;
+        }else{
+            Toast.makeText(getApplicationContext(), "이메일 형식을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
     //멤버저장

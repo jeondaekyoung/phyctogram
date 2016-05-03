@@ -88,6 +88,7 @@
                     android:inputType="textPassword" />
 
                 <TextView
+                    android:id="@+id/textViewPw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="비밀번호가 일치하지 않습니다."

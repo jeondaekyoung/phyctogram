@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+        <knowledge_seek.com.phyctogram.util.MyLinearView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -43,9 +43,10 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:singleLine="true"
                 android:text="제목" />
 
             <LinearLayout
@@ -85,9 +86,9 @@
                     android:textColor="#aaaaaa" />
             </LinearLayout>
 
-        </LinearLayout>
+        </knowledge_seek.com.phyctogram.util.MyLinearView>
 
-        <ScrollView
+        <knowledge_seek.com.phyctogram.util.MyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="30dp"
@@ -121,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
-        </ScrollView>
+        </knowledge_seek.com.phyctogram.util.MyScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"

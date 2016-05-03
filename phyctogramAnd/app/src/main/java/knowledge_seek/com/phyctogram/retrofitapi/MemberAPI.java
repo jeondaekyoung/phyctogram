@@ -66,4 +66,7 @@ public interface MemberAPI {
 
     @POST("/rest/member/registerToken")
     Call<String> registerToken(@Query("member_seq") int member_seq, @Query("token") String token);
+
+    @POST("/rest/member/findPw")
+    Call<String> findPw(@Query("mailAddr") String mailAddr, @Query("token") String token);
 }

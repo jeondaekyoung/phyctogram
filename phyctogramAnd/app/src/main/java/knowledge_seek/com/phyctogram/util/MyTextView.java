@@ -1,30 +1,29 @@
 package knowledge_seek.com.phyctogram.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.ScrollView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 
 /**
- * 스크롤뷰 이벤트 처리
- * Created by sjw on 2016-02-02.
+ * Created by shj on 2016-02-22.
  */
-public class MyScrollView extends ScrollView {
+public class MyTextView extends TextView{
     int startX, endX;
 
-    public MyScrollView(Context context) {
+    public MyTextView(Context context) {
         super(context);
     }
 
-    public MyScrollView(Context context, AttributeSet attrs) {
+    public MyTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public MyTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -33,7 +32,7 @@ public class MyScrollView extends ScrollView {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startX = (int)ev.getX();
-                Log.d("-진우-","MotionEvent.ACTION_DOWN");
+                Log.d("-진우-", "MotionEvent.ACTION_DOWN");
                 super.onTouchEvent(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -63,7 +62,7 @@ public class MyScrollView extends ScrollView {
 
     //스와이프 결정
     public boolean slideCheck(int startX, int endX) {
-        Log.d("-진우-", "scrollstartX:"+startX+"scrollendX"+endX);
+        Log.d("-진우-", "scrollstartX:" + startX + "scrollendX" + endX);
         if (startX <= 50) {
             Log.d("-진우-", "scroll시작지점 OK");
         } else {

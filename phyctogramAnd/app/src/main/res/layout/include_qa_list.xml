@@ -27,13 +27,13 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <RelativeLayout
+    <knowledge_seek.com.phyctogram.util.MyRelativeView
         android:id="@id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ListView
+        <knowledge_seek.com.phyctogram.util.MyListView
             android:id="@+id/lv_qaList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,5 +49,5 @@
             android:background="@drawable/float_button_03"
             android:padding="5dp" />
 
-    </RelativeLayout>
+    </knowledge_seek.com.phyctogram.util.MyRelativeView>
 </LinearLayout>

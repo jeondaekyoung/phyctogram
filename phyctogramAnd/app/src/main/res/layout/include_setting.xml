@@ -27,14 +27,14 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <LinearLayout
+    <knowledge_seek.com.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="#ffffffff">
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
             android:paddingTop="20dp"
             android:text="공지사항" />
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_equip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:paddingTop="20dp"
             android:text="내 기기" />
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
             android:paddingTop="20dp"
             android:text="로그아웃" />
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_pwmod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             android:paddingTop="20dp"
             android:text="비밀번호 변경" />
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_withdraw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:paddingTop="20dp"
             android:text="회원탈퇴" />
 
-        <TextView
+        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_qa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,5 +93,5 @@
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
             android:text="문의하기" />
-    </LinearLayout>
+    </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

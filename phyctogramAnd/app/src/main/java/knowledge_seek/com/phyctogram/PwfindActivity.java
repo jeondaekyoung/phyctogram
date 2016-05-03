@@ -1,23 +1,34 @@
 package knowledge_seek.com.phyctogram;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import java.io.IOException;
+
+import knowledge_seek.com.phyctogram.gcm.QuickstartPreferences;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
+import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
+import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
+import retrofit.Call;
 
 /**
- * Created by dkfka on 2015-11-27.
+ * Created by dkfka on 2016-03-29.
  */
 public class PwfindActivity extends BaseActivity {
-    public static final String HTTPADDR = "http://117.52.89.181";
 
     //레이아웃정의
     private LinearLayout ic_screen;
-    private ImageButton btn_left;
+    private EditText editTextMail;
+    private Button buttonFind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +37,81 @@ public class PwfindActivity extends BaseActivity {
         //화면 페이지
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_pw_find, ic_screen, true);
-        //슬라이드메뉴 셋팅
-        initSildeMenu();
 
-        //레이아웃 정의
-        btn_left = (ImageButton)findViewById(R.id.btn_left);
-        btn_left.setOnClickListener(new View.OnClickListener() {
+        editTextMail = (EditText) findViewById(R.id.editTextMail);
+        buttonFind = (Button) findViewById(R.id.buttonFind);
+        buttonFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                menuLeftSlideAnimationToggle();
+                if (editTextMail.getText().length()<0){
+                    Toast.makeText(v.getContext(), "이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }else{
+                    if (QuickstartPreferences.token != null){
+                        Log.d("-진우-", "PwfindActivity editTextMail.getText: " + editTextMail.getText() + ", Token: " + QuickstartPreferences.token);
+                        FindPwTask task = new FindPwTask(editTextMail.getText().toString(), QuickstartPreferences.token);
+                        task.execute();
+                    }else{
+                        Toast.makeText(v.getContext(), "푸쉬 사용 불가능 기기로 비밀번호 찾기가 불가능합니다. 고객센터로 문의해주세요.", Toast.LENGTH_SHORT).show();
+                        Log.d("-진우-", "PwfindActivity - Token 발급 불가");
+                    }
+                }
             }
         });
+    }
+
+    //토큰 저장
+    private class FindPwTask extends AsyncTask<Void, Void, String> {
+
+        private String mailAddr;
+        private String token;
+
+        public FindPwTask(String mailAddr, String token)         {
+            this.mailAddr = mailAddr;
+            this.token = token;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            Log.d("-진우-", "FindPwTask onPreExecute");
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String result = null;
+
+            MemberAPI service = ServiceGenerator.createService(MemberAPI.class);
+            Call<String> call = service.findPw(mailAddr, token);
+            try {
+                result = call.execute().body();
+                Log.d("-진우-", "비밀번호 찾기 결과 : " + result);
+            } catch (IOException e){
+                Log.d("-진우-", "비밀번호 찾기 실패");
+            }
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if (result != null) {
+                if (result.equals("success")) {
+                    Toast.makeText(PwfindActivity.this, "변경된 비밀번호가 Push 메시지로 발송 되었습니다. (최대 3분 소요)",Toast.LENGTH_LONG).show();
+                    Log.d("-진우-", "비밀번호 찾기에 성공하였습니다.");
+                    finish();
+                } else if (result.equals("wrongMail")) {
+                    Toast.makeText(PwfindActivity.this, "메일주소가 잘못되었습니다. 다시 입력해주세요.",Toast.LENGTH_LONG).show();
+                    Log.d("-진우-", "메일주소가 잘못되었습니다.");
+                } else {
+                    Toast.makeText(PwfindActivity.this, "비밀번호 찾기에 실패하였습니다. 다시 시도해주세요.",Toast.LENGTH_LONG).show();
+                    Log.d("-진우-", "비밀번호 찾기에 실패하였습니다.");
+                }
+            }else{
+                Log.d("-진우-", "result null");
+            }
+            super.onPostExecute(result);
+        }
     }
 
     @Override

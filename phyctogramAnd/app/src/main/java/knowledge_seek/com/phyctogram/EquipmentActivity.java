@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
+import android.net.DhcpInfo;
 import android.net.NetworkInfo;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
@@ -41,8 +42,11 @@ import com.pkmmte.view.CircularImageView;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,16 +132,23 @@ public class EquipmentActivity extends BaseActivity {
 
     //wifi 초기화 및 검색 start
     public void searchStartWifi(){
-        WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        //WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
-        boolean checkWifi = wfMgr.isWifiEnabled();
+        /*boolean checkWifi = wfMgr.isWifiEnabled();
         Log.d("-진우-", "checkWifi : "+checkWifi);
         if(!checkWifi){
             wfMgr.setWifiEnabled(true);
-        }
+        }*/
 
         //WifiManager 초기화
         wm = (WifiManager) getSystemService(WIFI_SERVICE);
+
+        boolean checkWifi = wm.isWifiEnabled();
+
+        Log.d("-진우-", "checkWifi : "+checkWifi);
+        if(!checkWifi){
+            wm.setWifiEnabled(true);
+        }
 
         //검색 하기
         wm.startScan();
@@ -320,13 +331,13 @@ public class EquipmentActivity extends BaseActivity {
 
         Log.d("-진우-", "wfc : " + wfc.toString());
 
-        int networkId = wm.addNetwork(wfc);
+        /*int networkId = wm.addNetwork(wfc);
         if(networkId != -1){
             wm.enableNetwork(networkId, true);
             Log.d("-진우-", "연결됬나?");
         }
-
-        /*int networkId = -1;
+*/
+        int networkId = -1;
         //WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         List<WifiConfiguration> networks = wm.getConfiguredNetworks();
         Log.d("-진우-", "networks : " + networks.toString());
@@ -351,22 +362,72 @@ public class EquipmentActivity extends BaseActivity {
             connection = wm.enableNetwork(networkId, true);
             Log.d("-진우-", "connection : "+connection);
         }else{
-            Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다. 다시 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
         }
 
         if(connection==true) {
             wm.setWifiEnabled(true);
             Toast.makeText(getApplicationContext(), "연결 되었습니다.", Toast.LENGTH_SHORT).show();
 
+            WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+            DhcpInfo dhcpInfo = wm.getDhcpInfo() ;
+            int serverIp = dhcpInfo.gateway;
+
+            String ipAddress = String.format(
+                    "%d.%d.%d.%d",
+                    (serverIp & 0xff),
+                    (serverIp >> 8 & 0xff),
+                    (serverIp >> 16 & 0xff),
+                    (serverIp >> 24 & 0xff));
+
+            Log.d("-진우-", "ipAddress: " + ipAddress);
+            Log.d("-진우-", "member.getMember_seq(): " + member.getMember_seq());
+            String url = "http://"+ipAddress+"?member_seq="+member.getMember_seq()+"?";
+            Log.d("-진우-", "url: " + url);
+            String result = sendData(url);
+            Log.d("-진우-", "result: " + result);
+            Log.d("-진우-", "ssid: " + ssid);
+            Log.d("-진우-", "password: " + password);
+            url = "http://"+ipAddress + "?SSID=" + ssid + "?&" + "PW=" +password+"?";
+            Log.d("-진우-", "url: " + url);
+            result = sendData(url);
+            Log.d("-진우-", "result: " + result);
         }else{
             Toast.makeText(getApplicationContext(), "연결에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
-        }*/
-
-        btn_connWifi.setText("기기 연결 해제");
-
-        //return connection;
+        }
+        btn_connWifi.setText("기기 재 검색");
         return true;
     }
+
+    private static String sendData(String addr){
+        StringBuilder html = new StringBuilder();
+        try{
+            URL url = new URL(addr);
+            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+            if(conn != null){
+                conn.setConnectTimeout(10000);
+                conn.setUseCaches(false);
+                if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
+                    BufferedReader br = new BufferedReader(
+                            new InputStreamReader(conn.getInputStream()));
+                    for(;;){
+                        String line = br.readLine();
+                        if(line == null)break;
+                        html.append(line );
+                        html.append('\n');
+                    }
+                    br.close();
+                }
+                conn.disconnect();
+            }
+        }
+        catch(Exception ex){;}
+
+        return html.toString();
+    }
+
+
+
 
     @Override
     protected void onResume() {

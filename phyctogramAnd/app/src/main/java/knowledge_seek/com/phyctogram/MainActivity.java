@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -92,7 +94,7 @@ public class MainActivity extends BaseActivity {
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             member = (Member) bundle.getSerializable("member");
-            Log.d("-진우-", "BaseActivity 에서 onCreate() : " + member.toString());
+            Log.d("-진우-", "MainActivity 에서 onCreate() : " + member.toString());
             if (member.getJoin_route().equals("kakao")) {
                 memberName = member.getKakao_nickname() + " 님";
             } else if (member.getJoin_route().equals("facebook")) {
@@ -102,11 +104,11 @@ public class MainActivity extends BaseActivity {
             }
 
             if (QuickstartPreferences.token != null){
-                Log.d("-진우-", "BaseActivity member_seq: " + member.getMember_seq()+", Token: "+QuickstartPreferences.token);
+                Log.d("-진우-", "MainActivity member_seq: " + member.getMember_seq()+", Token: "+QuickstartPreferences.token);
                 RegisterTokenTask task = new RegisterTokenTask(member.getMember_seq(),QuickstartPreferences.token);
                 task.execute();
             }else{
-                Log.d("-진우-", "BaseActivity - Token 발급 불가");
+                Log.d("-진우-", "MainActivity - Token 발급 불가");
             }
         } else {
             //member = new Member();
@@ -524,7 +526,7 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    //일기 저장
+    //토큰 저장
     private class RegisterTokenTask extends AsyncTask<Void, Void, String>{
 
         private int memberSeq;

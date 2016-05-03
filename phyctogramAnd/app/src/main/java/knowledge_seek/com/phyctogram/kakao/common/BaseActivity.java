@@ -6,12 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.media.session.MediaSession;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -379,8 +377,9 @@ public class BaseActivity extends Activity {
         }
     }
 
+    /*
     //터치이벤트
-    /*private final View.OnTouchListener ll_mainLayoutListener = new View.OnTouchListener() {
+    private final View.OnTouchListener ll_mainLayoutListener = new View.OnTouchListener() {
         int startX, endX;
 
         @Override
@@ -417,9 +416,9 @@ public class BaseActivity extends Activity {
             //return false;   DOWN 한번만 발생
             return true;
         }
-    };*/
+    };
     //스와이프 결정
-    /*public boolean slideCheck(int startX, int endX) {
+    public boolean slideCheck(int startX, int endX) {
         if (startX <= 50) {
             Log.d("-진우-", "시작지점 OK");
         } else {

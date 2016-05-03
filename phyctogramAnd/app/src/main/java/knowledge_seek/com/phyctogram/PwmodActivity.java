@@ -118,6 +118,7 @@ public class PwmodActivity extends BaseActivity {
                             Toast.makeText(getApplicationContext(), "비밀번호 변경에 실패하였습니다", Toast.LENGTH_SHORT).show();
                         } else if("success".equals(result)){
                             Toast.makeText(getApplicationContext(), "비밀번호가 변경되었습니다", Toast.LENGTH_SHORT).show();
+                            finish();
                         }
                     }
 
