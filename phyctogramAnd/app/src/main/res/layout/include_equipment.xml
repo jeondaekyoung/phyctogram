@@ -86,8 +86,14 @@
             android:background="@drawable/btn_border_radius"
             android:text="기기 연결 해제"
             android:textColor="#ffffff" />
+        
+        <Button
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="test"/>
 
-        <RelativeLayout
+        <!--<RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -98,14 +104,14 @@
                 android:divider="#f1f1f1"
                 android:dividerHeight="1dp" />
 
-            <!--<ImageButton
+            &lt;!&ndash;<ImageButton
                 android:id="@+id/addEquip"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/float_button_03"
-                android:padding="5dp" />-->
-        </RelativeLayout>
+                android:padding="5dp" />&ndash;&gt;
+        </RelativeLayout>-->
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

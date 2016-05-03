@@ -1,52 +1,59 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/popup_element"
-    android:layout_width="fill_parent"
+    android:layout_width="270dip"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
-    android:orientation="vertical"
-    android:padding="10sp" >
-
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="SSID"
-        android:id="@+id/text_ssid" />
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/purpledk"
+        android:gravity="center"
+        android:text="U+Net0243"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="capabilities"
-        android:id="@+id/text_capabilities"
-        android:layout_below="@+id/text_ssid"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="비밀번호" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/edit_password"
-        android:layout_below="@+id/text_ssid"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="185dp"
-        android:hint="패스워드를 입력해주세요." />
-
-    <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="취소"
-        android:id="@+id/btn_close_popup"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/edit_password"
-        android:layout_alignStart="@+id/edit_password" />
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:ems="10"
+        android:inputType="textPassword" />
 
-    <Button
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="연결"
-        android:id="@+id/btn_pwdOk"
-        android:layout_alignTop="@+id/btn_close_popup"
-        android:layout_alignRight="@+id/edit_password"
-        android:layout_alignEnd="@+id/edit_password" />
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_close_popup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/purple"
+            android:text="취소"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btn_pwdOk"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/purple"
+            android:text="연결"
+            android:textColor="#fff" />
+    </LinearLayout>
+</LinearLayout>
