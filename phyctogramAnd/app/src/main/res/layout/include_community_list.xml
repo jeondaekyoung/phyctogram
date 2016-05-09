@@ -41,22 +41,20 @@
             android:orientation="horizontal">
 
             <knowledge_seek.com.phyctogram.util.MyButtonView
-                android:layout_width="0dp"
-                android:layout_height="60dp"
                 android:id="@+id/btn_commntyLatest"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_off"
-                android:padding="20dp"
-                android:text="최신"/>
+                android:text="최신" />
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="60dp"
                 android:id="@+id/btn_commntyPopular"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@drawable/btn_off"
-                android:padding="20dp"
-                android:text="인기"/>
+                android:text="인기" />
         </LinearLayout>
 
         <knowledge_seek.com.phyctogram.util.MyListView
