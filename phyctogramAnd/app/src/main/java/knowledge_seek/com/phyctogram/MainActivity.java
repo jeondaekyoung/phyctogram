@@ -1,7 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,12 +8,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,7 +58,7 @@ public class MainActivity extends BaseActivity {
     private Button btn_community_list;              //수다방으로 가기
     private TextView tv_users_name;                 //아이 이름 출력
     private Button btn_users_analysis;               //분석리포트
-    private ImageView iv_my_animal;                        //캐릭터
+    private CircularImageView iv_my_animal;                        //캐릭터
     private TextView tv_height;                         //최종신장
     private TextView tv_grow;                           //성장 값
     private TextView tv_rank;                           //상위
@@ -161,7 +158,7 @@ public class MainActivity extends BaseActivity {
         });
 
         //캐릭터
-        iv_my_animal = (ImageView) findViewById(R.id.iv_my_animal);
+        iv_my_animal = (CircularImageView) findViewById(R.id.iv_my_animal);
         iv_my_animal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +198,7 @@ public class MainActivity extends BaseActivity {
                 //finish();
             }
         });
-        //수다방(community)
+        /*//수다방(community)
         btn_community_list = (Button) findViewById(R.id.btn_community_list);
         btn_community_list.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,7 +230,7 @@ public class MainActivity extends BaseActivity {
                     //finish();
                 }
             }
-        });
+        });*/
         /*rl_popularTop2 = (RelativeLayout) findViewById(R.id.rl_popularTop2);
         rl_popularTop2.setOnClickListener(new View.OnClickListener() {
             @Override
