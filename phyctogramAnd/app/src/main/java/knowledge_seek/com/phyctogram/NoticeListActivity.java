@@ -101,6 +101,9 @@ public class NoticeListActivity extends BaseActivity {
                 Log.d("-진우-", "선택한 공지사항 : " + notice.toString());
                 Intent intent = new Intent(getApplicationContext(), NoticeViewActivity.class);
                 intent.putExtra("notice_seq", notice.getNotice_seq());
+                intent.putExtra("title", notice.getTitle());
+                intent.putExtra("writing_de", notice.getWritng_de());
+                intent.putExtra("notice", notice.getNotice());
                 startActivity(intent);
             }
         });
@@ -150,7 +153,7 @@ public class NoticeListActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

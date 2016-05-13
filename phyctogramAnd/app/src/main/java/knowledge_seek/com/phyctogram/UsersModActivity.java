@@ -97,7 +97,7 @@ public class UsersModActivity extends BaseActivity {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 users = nowUsers;
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 //선택 아이로 인한 순서 변경
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
@@ -154,7 +154,7 @@ public class UsersModActivity extends BaseActivity {
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         Log.d("-진우-", "내 아이 수정 성공 결과 : " + response.body());
                         if (response.body().equals("success")) {
-                            Toast.makeText(UsersModActivity.this, "수정하였습니다", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UsersModActivity.this, R.string.diaryViewActivity_modifyAlert, Toast.LENGTH_LONG).show();
                         }
                         FindUsersTask task = new FindUsersTask();
                         task.execute();
@@ -216,16 +216,16 @@ public class UsersModActivity extends BaseActivity {
     private boolean checkUsers(Users users){
         //Log.d("-진우-", users.toString());
         if(users.getName().length() <= 0){
-            Toast.makeText(getApplicationContext(), "이름을 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkName, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(users.getInitials().length() <= 0 || users.getInitials().length() >= 4) {
-            Toast.makeText(getApplicationContext(), "이니셜을 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkInitials, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             //Toast.makeText(getApplicationContext(), users.getInitials() + " : " + users.getInitials().matches("^[A-Z0-9]*$"), Toast.LENGTH_SHORT).show();
             if(!users.getInitials().matches("^[A-Z0-9]*$")){
-                Toast.makeText(getApplicationContext(), "이니셜을 확인해주세요", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkInitials, Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
@@ -242,7 +242,7 @@ public class UsersModActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -344,7 +344,7 @@ public class UsersModActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

@@ -139,9 +139,8 @@ public class UsersManageActivity extends BaseActivity {
 
                 AlertDialog.Builder dialog = new AlertDialog.Builder(UsersManageActivity.this);
                 dialog.setTitle("'" + users.getName() + "' 삭제");
-                dialog.setMessage("아이를 삭제할 경우 아이의 키와 일기도 삭제됩니다. " +
-                        "아이를 삭제하시겠습니까?");
-                dialog.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                dialog.setMessage(R.string.usersManageActivity_deleteChildAsk);
+                dialog.setPositiveButton(R.string.commonActivity_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -155,10 +154,11 @@ public class UsersManageActivity extends BaseActivity {
                                 intent.putExtra("member", member);
                                 startActivity(intent);
                                 finish();*/
-                                Toast.makeText(getApplicationContext(), "내 아이 삭제에 성공하였습니다.", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), R.string.usersManageActivity_successDeleteChild, Toast.LENGTH_LONG).show();
 
                                 if(nowUsers.getUser_seq() == users.getUser_seq()){
-                                    nowUsers = null;
+                                    nowUsers = new Users();
+                                    //nowUsers = null;
                                 }
 
                                 FindUsersTask task = new FindUsersTask();
@@ -168,12 +168,12 @@ public class UsersManageActivity extends BaseActivity {
 
                             @Override
                             public void onFailure(Throwable t) {
-                                Log.d("-진우-", "내아이를 삭제하는 실패하였습니다. - " + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
+                                Log.d("-진우-", R.string.usersManageActivity_failDeleteChild + t.getMessage() + ", " + t.getCause() + ", " + t.getStackTrace());
                             }
                         });
                     }
                 });
-                dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton(R.string.commonActivity_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -234,7 +234,7 @@ public class UsersManageActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -335,7 +335,7 @@ public class UsersManageActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

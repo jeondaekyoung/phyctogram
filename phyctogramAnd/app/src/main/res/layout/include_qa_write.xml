@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="문의하기 글쓰기"
+            android:text="@string/includeQaWrite_qaWrite"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:hint=" 제목"
+            android:hint="@string/includeQaWrite_title"
             android:inputType="text"
             android:textSize="14dp" />
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="top|left"
-            android:hint=" 내용"
+            android:hint="@string/includeQaWrite_contents"
             android:inputType="textMultiLine"
             android:lines="24"
             android:maxWidth="5.0dip"
@@ -71,7 +71,7 @@
                 android:layout_centerVertical="true"
                 android:layout_margin="5dp"
                 android:background="@drawable/btn_border_radius"
-                android:text="저장"
+                android:text="@string/includeComWrite_save"
                 android:textColor="#ffffff"
                 android:textSize="12dp" />
 

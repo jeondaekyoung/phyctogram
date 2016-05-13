@@ -140,7 +140,7 @@ public class DiaryWriteActivity extends BaseActivity {
                 //Log.d("-진우-", "저장하기");
 
                 if(nowUsers.getUser_seq() == 0){
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -152,7 +152,7 @@ public class DiaryWriteActivity extends BaseActivity {
 
                 //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString().length());
                 if(tv_diary_date.getText().toString().length() <= 0){
-                    Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerDay, Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString());
@@ -278,7 +278,7 @@ public class DiaryWriteActivity extends BaseActivity {
     //Diary의 내용체크
     private boolean checkDiary(Diary diary){
         if(diary.getTitle().length() <= 0 || diary.getContents().length() <= 0){
-            Toast.makeText(getApplicationContext(), "제목과 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.communityWriteActivity_writeTitleContents, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -299,7 +299,7 @@ public class DiaryWriteActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -341,9 +341,9 @@ public class DiaryWriteActivity extends BaseActivity {
         protected void onPostExecute(String result) {
             if(result != null){
                 if(result.equals("exist")){
-                    Toast.makeText(getApplicationContext(), "이미 일기를 작성하였습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_alreadyDiary, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_LONG).show();
                     //Log.d("-진우-", "일기 시퀀스 : " + result);
                     onBackPressed();
                 }

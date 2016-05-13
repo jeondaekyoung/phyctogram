@@ -113,7 +113,7 @@ public class UsersAnalysisActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 tv_users_name.setText(nowUsers.getName());
 
@@ -181,7 +181,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                             String appPackage = "com.facebook.katana";
                             PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
                         } catch (PackageManager.NameNotFoundException e) {
-                            Toast.makeText(getApplicationContext(), "페이스북을을 설치해주세요", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.usersAnalysisActivity_initFacebook, Toast.LENGTH_SHORT).show();
                             return ;
                         }
                         //실제로 올릴 이미지 캡쳐-2
@@ -216,7 +216,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                             String appPackage = "com.kakao.story";
                             PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
                         } catch (PackageManager.NameNotFoundException e) {
-                            Toast.makeText(getApplicationContext(), "카카오스토리를 설치해주세요", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.usersAnalysisActivity_initkakaoStroy, Toast.LENGTH_SHORT).show();
                             return ;
                         }
 
@@ -250,7 +250,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                             String appPackage = "com.kakao.talk";
                             PackageInfo pi = pm.getPackageInfo(appPackage, PackageManager.GET_ACTIVITIES);
                         } catch (PackageManager.NameNotFoundException e) {
-                            Toast.makeText(getApplicationContext(), "카카오톡을 설치해주세요", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.usersAnalysisActivity_initkakao, Toast.LENGTH_SHORT).show();
                             /*Uri uri = Uri.parse("market://search?q=pname:com.kakao.talk");
                             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(intent);*/
@@ -402,7 +402,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         LineData d = new LineData();
 
-        LineDataSet set = new LineDataSet(my, "내 아이 성장곡선");
+        LineDataSet set = new LineDataSet(my, getString(R.string.usersAnalysisActivity_childChart));
         set.setColor(Color.rgb(151, 118, 197));
         set.setLineWidth(2.5f);
         set.setCircleColor(Color.rgb(151, 118, 197));
@@ -427,7 +427,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         BarData d = new BarData();
 
-        BarDataSet set = new BarDataSet(ave, "평균 성장 그래프");
+        BarDataSet set = new BarDataSet(ave, getString(R.string.usersAnalysisActivity_avgChart));
         set.setColor(Color.rgb(220, 220, 220));
         set.setValueTextColor(Color.rgb(220, 220, 220));
         set.setValueTextSize(10f);
@@ -449,7 +449,7 @@ public class UsersAnalysisActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -552,7 +552,7 @@ public class UsersAnalysisActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -642,7 +642,7 @@ public class UsersAnalysisActivity extends BaseActivity {
                 Log.d("-진우-", "키성장분석 : " + h.toString());
             }
             StringBuilder analysis_height50 = new StringBuilder();
-            analysis_height50.append("평균 ").append(analysisTask.get(0).getHeight_50()).append(" cm");
+            analysis_height50.append(getString(R.string.usersAnalysisActivity_avg)+" ").append(analysisTask.get(0).getHeight_50()).append(" cm");
             double analysis_height050_diff = Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight() - analysisTask.get(0).getHeight_50()));
             //Log.d("-진우-", "분석 결과 : " + analysis_height50 + ", " + analysis_height050_diff);
             tv_analysis_height50.setText(analysis_height50);
@@ -677,7 +677,7 @@ public class UsersAnalysisActivity extends BaseActivity {
             double analysis_height50_diff =  Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight_50() - analysisTask.get(analysisSize-1).getHeight_50()));
             double analysis_height_diff =  Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight() - analysisTask.get(analysisSize-1).getHeight()));
             StringBuilder analysis_height = new StringBuilder();
-            analysis_height.append(month_diff).append("개월동안 ").append(analysis_height50_diff).append("cm 성장");
+            analysis_height.append(month_diff).append(getString(R.string.usersAnalysisActivity_month)+" ").append(analysis_height50_diff).append("cm "+getString(R.string.usersAnalysisActivity_grow));
             double diff = Double.parseDouble(String.format("%.1f", analysis_height_diff - analysis_height50_diff));
             Log.d("-진우-", "분석 결과2 : " + analysis_height + ", " + analysis_height_diff + ", " + analysis_height50_diff + " = "
                     + (analysis_height_diff - analysis_height50_diff) + ", " + diff);

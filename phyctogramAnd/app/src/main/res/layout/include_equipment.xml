@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 기기"
+            android:text="@string/includeEquipment_myHW"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -34,6 +34,7 @@
         android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyImageView
+            android:id="@+id/img_btn"
             android:layout_width="match_parent"
             android:layout_height="103dp"
             android:src="@drawable/equipment" />
@@ -48,7 +49,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="일련번호" />
+                android:text="@string/includeEquipment_serialNumber" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,7 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="펌웨어 버전" />
+                android:text="@string/includeEquipment_swVersion" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,16 +85,16 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_border_radius"
-            android:text="기기 연결 해제"
+            android:text="@string/equipmentActivity_searchHW"
             android:textColor="#ffffff" />
         
-        <Button
+        <!--<Button
             android:id="@+id/test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="test"/>
+            android:text="test"/>-->
 
-        <!--<RelativeLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -104,14 +105,14 @@
                 android:divider="#f1f1f1"
                 android:dividerHeight="1dp" />
 
-            &lt;!&ndash;<ImageButton
+            <!--<ImageButton
                 android:id="@+id/addEquip"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:background="@drawable/float_button_03"
-                android:padding="5dp" />&ndash;&gt;
+                android:padding="5dp" />-->
         </RelativeLayout>-->
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

@@ -1,5 +1,6 @@
 package knowledge_seek.com.phyctogram;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -32,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -46,6 +48,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -77,6 +80,7 @@ public class EquipmentActivity extends BaseActivity {
     private List<Wifi> wifiList = new ArrayList<>();
     private ListView lv_wifilist;
     private WifiListAdapter wifiListAdapter;
+    private ImageView img_btn;
 
     //레이아웃정의
 
@@ -88,6 +92,20 @@ public class EquipmentActivity extends BaseActivity {
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_equipment, ic_screen, true);
 
+        //test
+        img_btn = (ImageView) findViewById(R.id.img_btn);
+        img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asyncTaskCall();
+                /*String url = "http://www.phyctogram.com/admin/index.do";
+                String result = requestHttpGet(url);
+
+                //test
+                Toast.makeText(getApplicationContext(), "member_seq  url: "+url+" ,  result: "+result, Toast.LENGTH_LONG).show();*/
+            }
+        });
+
         //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
         if (memberImg != null) {
@@ -96,11 +114,11 @@ public class EquipmentActivity extends BaseActivity {
 
         //기기 검색 버튼 셋팅
         btn_connWifi = (Button) findViewById(R.id.connWifiBtn);
-        btn_connWifi.setText("기기 검색");
+        btn_connWifi.setText(R.string.equipmentActivity_searchHW);
         btn_connWifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_connWifi.setText("검색중 입니다...");
+                btn_connWifi.setText(R.string.equipmentActivity_searching);
                 searchStartWifi();
             }
         });
@@ -140,21 +158,57 @@ public class EquipmentActivity extends BaseActivity {
             wfMgr.setWifiEnabled(true);
         }*/
 
-        //WifiManager 초기화
-        wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        //롤리팝 버전 이상이라면 권한 체크 요청함
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                //requestPermissions API 23이상에서 사용 가능 오류 아님
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 11);
+            }catch (Exception e){
+                Log.d("-진우-","ParingActivity requestPermissions Exception : "+ e.getMessage());
+            }
+        }else{
+            //WifiManager 초기화
+            wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
-        boolean checkWifi = wm.isWifiEnabled();
+            boolean checkWifi = wm.isWifiEnabled();
 
-        Log.d("-진우-", "checkWifi : "+checkWifi);
-        if(!checkWifi){
-            wm.setWifiEnabled(true);
+            Log.d("-진우-", "checkWifi : "+checkWifi);
+            if(!checkWifi){
+                wm.setWifiEnabled(true);
+            }
+
+            //검색 하기
+            wm.startScan();
+            IntentFilter filter = new IntentFilter();
+            filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+            registerReceiver(wifiReceiver, filter);
         }
+    }
+    //권한 체크 결과 받음
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (requestCode == 11) {
+            //허용 0, 비허용 -1
+            if (grantResults[0] == 0){
+                //WifiManager 초기화
+                wm = (WifiManager) getSystemService(WIFI_SERVICE);
 
-        //검색 하기
-        wm.startScan();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
-        registerReceiver(wifiReceiver, filter);
+                boolean checkWifi = wm.isWifiEnabled();
+
+                Log.d("-진우-", "checkWifi : "+checkWifi);
+                if(!checkWifi){
+                    wm.setWifiEnabled(true);
+                }
+
+                //검색 하기
+                wm.startScan();
+                IntentFilter filter = new IntentFilter();
+                filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+                registerReceiver(wifiReceiver, filter);
+            }else{
+                Log.d("-진우-", "fail");
+            }
+        }
     }
 
     //wifi 검색 완료 receiver
@@ -196,17 +250,25 @@ public class EquipmentActivity extends BaseActivity {
             }
         });
 
-        btn_connWifi.setText("검색 완료 (재검색)");
+        btn_connWifi.setText(R.string.equipmentActivity_endSearch);
     }
 
     private Button btnClosePopup, btnPwdOk;
     private PopupWindow pwindo;
     private int mWidthPixels, mHeightPixels;
-    private TextView textSsid, textCapabilities;
+    private TextView tv_ssid, textCapabilities;
     private EditText textPassword;
 
     public void openPopup(String ssid, String capabilities){
-        WindowManager w = getWindowManager();
+
+        PopUpActivity.activity = this;
+
+        Intent i = new Intent(getApplicationContext(), PopUpActivity.class);
+        i.putExtra("ssid", ssid);
+        i.putExtra("capabilities", capabilities);
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        /*WindowManager w = getWindowManager();
         Display d = w.getDefaultDisplay();
         DisplayMetrics metrics = new DisplayMetrics();
         d.getMetrics(metrics);
@@ -245,21 +307,21 @@ public class EquipmentActivity extends BaseActivity {
             btnClosePopup.setOnClickListener(cancel_button_click_listener);
             btnPwdOk = (Button) layout.findViewById(R.id.btn_pwdOk);
             btnPwdOk.setOnClickListener(ok_button_click_listener);
-            textSsid = (TextView) layout.findViewById(R.id.text_ssid);
-            textSsid.setText(ssid);
-            textCapabilities = (TextView) layout.findViewById(R.id.text_capabilities);
-            textCapabilities.setText(capabilities);
+            *//*textSsid = (TextView) layout.findViewById(R.id.text_ssid);
+            textSsid.setText(ssid);*//*
+            *//*textCapabilities = (TextView) layout.findViewById(R.id.text_capabilities);
+            textCapabilities.setText(capabilities);*//*
             textPassword = (EditText) layout.findViewById(R.id.edit_password);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-    private View.OnClickListener ok_button_click_listener =
+    /*private View.OnClickListener ok_button_click_listener =
         new View.OnClickListener() {
 
             public void onClick(View v) {
-                connectWifi(textSsid.getText().toString(), textPassword.getText().toString(), textCapabilities.getText().toString());
+                connectWifi(tv_ssid.getText().toString(), textPassword.getText().toString(), textCapabilities.getText().toString());
                 pwindo.dismiss();
             }
     };
@@ -270,11 +332,10 @@ public class EquipmentActivity extends BaseActivity {
             public void onClick(View v) {
                 pwindo.dismiss();
             }
-    };
-
+    };*/
 
     public boolean connectWifi(String ssid, String password, String capabilities) {
-        Log.d("-진우-", "ssid: " + ssid+",password: "+password+",capablities: "+capabilities);
+        Log.d("-진우-", "ssid: " + ssid + ",password: " + password + ",capablities: " +capabilities);
         WifiConfiguration wfc = new WifiConfiguration();
 
         wfc.SSID = "\"".concat( ssid ).concat("\"");
@@ -357,17 +418,17 @@ public class EquipmentActivity extends BaseActivity {
         boolean connection = false;
 
         if(networkId != -1){
-            Toast.makeText(getApplicationContext(), "연결 시도합니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.equipmentActivity_connectionAlert, Toast.LENGTH_SHORT).show();
             //wfMgr.enableNetwork(networkId, true);
             connection = wm.enableNetwork(networkId, true);
             Log.d("-진우-", "connection : "+connection);
         }else{
-            Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.equipmentActivity_failPW, Toast.LENGTH_SHORT).show();
         }
 
         if(connection==true) {
             wm.setWifiEnabled(true);
-            Toast.makeText(getApplicationContext(), "연결 되었습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.equipmentActivity_successConnection, Toast.LENGTH_SHORT).show();
 
             WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
             DhcpInfo dhcpInfo = wm.getDhcpInfo() ;
@@ -382,52 +443,23 @@ public class EquipmentActivity extends BaseActivity {
 
             Log.d("-진우-", "ipAddress: " + ipAddress);
             Log.d("-진우-", "member.getMember_seq(): " + member.getMember_seq());
-            String url = "http://"+ipAddress+"?member_seq="+member.getMember_seq()+"?";
+            String url = "http://"+ipAddress+":80?member_seq="+member.getMember_seq()+"**";
             Log.d("-진우-", "url: " + url);
-            String result = sendData(url);
-            Log.d("-진우-", "result: " + result);
-            Log.d("-진우-", "ssid: " + ssid);
-            Log.d("-진우-", "password: " + password);
-            url = "http://"+ipAddress + "?SSID=" + ssid + "?&" + "PW=" +password+"?";
-            Log.d("-진우-", "url: " + url);
-            result = sendData(url);
-            Log.d("-진우-", "result: " + result);
+            //String result = sendData(url);
+
+            //test
+            //Toast.makeText(getApplicationContext(), "member_seq  url: "+url+" ,  result: "+result, Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(getApplicationContext(), WifiPopUpActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra("ipAddress", ipAddress);
+            startActivity(i);
         }else{
-            Toast.makeText(getApplicationContext(), "연결에 실패하였습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.equipmentActivity_failConnection, Toast.LENGTH_SHORT).show();
         }
-        btn_connWifi.setText("기기 재 검색");
+        btn_connWifi.setText(R.string.equipmentActivity_endSearch);
         return true;
     }
-
-    private static String sendData(String addr){
-        StringBuilder html = new StringBuilder();
-        try{
-            URL url = new URL(addr);
-            HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-            if(conn != null){
-                conn.setConnectTimeout(10000);
-                conn.setUseCaches(false);
-                if(conn.getResponseCode() == HttpURLConnection.HTTP_OK){
-                    BufferedReader br = new BufferedReader(
-                            new InputStreamReader(conn.getInputStream()));
-                    for(;;){
-                        String line = br.readLine();
-                        if(line == null)break;
-                        html.append(line );
-                        html.append('\n');
-                    }
-                    br.close();
-                }
-                conn.disconnect();
-            }
-        }
-        catch(Exception ex){;}
-
-        return html.toString();
-    }
-
-
-
 
     @Override
     protected void onResume() {
@@ -452,28 +484,6 @@ public class EquipmentActivity extends BaseActivity {
         Log.d("-진우-", "EquipmentActivity.onResume() 끝");
     }
 
-    //지울까????===================================================================
-    public void onClickAddequip(){
-        final EditText et = new EditText(this);
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle("기기 추가")
-                .setMessage("일련번호를 입력하세요.")
-                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                })
-                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                })
-                .setView(et)
-                .show();
-    }
-
     //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class EquipmentTask extends AsyncTask<Object, Void, Bitmap> {
 
@@ -484,7 +494,7 @@ public class EquipmentActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -571,6 +581,63 @@ public class EquipmentActivity extends BaseActivity {
             dialog.dismiss();
             super.onPostExecute(bitmap);
         }
+    }
 
+    public void asyncTaskCall() {
+        String ip = "192.168.123.254";
+        new TestAsyncTask().execute(ip);
+    }
+
+    private class TestAsyncTask extends AsyncTask<Object, Integer, Void>{
+        // doInBackground 메소드가 실행되기 전에 실행되는 메소드
+        @Override
+        protected void onPreExecute() {
+            // UI 작업을 수행하는 부분
+            super.onPreExecute();
+        }
+
+        // 실제 비즈니스 로직이 처리될 메소드(Thread 부분이라고 생각하면 됨)
+        @Override
+        protected Void doInBackground(Object... params) {
+            String ip = (String) params[0];
+            Log.d("-진우-", "ip : "+ip);
+            try {
+                Log.d("-진우-", "Exception : 1");
+                URL reqUrl = new URL("http://192.168.4.1:80/");
+                Log.d("-진우-", "Exception : 2");
+                HttpURLConnection urlConn = (HttpURLConnection) reqUrl.openConnection();
+                Log.d("-진우-", "Exception : 3");
+                urlConn.setRequestMethod("GET");
+                Log.d("-진우-", "Exception : 4");
+                urlConn.setRequestProperty("REF", "180**");
+                Log.d("-진우-", "Exception : 5");
+
+                int resCode = urlConn.getResponseCode();
+                Log.d("-진우-", "Exception : 6");
+                if (resCode != HttpURLConnection.HTTP_OK) return null;
+                Log.d("-진우-", "Exception : 7");
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
+                Log.d("-진우-", "Exception : 8");
+                String input;
+                Log.d("-진우-", "Exception : 9");
+                StringBuffer sb = new StringBuffer();
+                Log.d("-진우-", "Exception : 10");
+
+                while ((input = reader.readLine()) != null){
+                    sb.append(input);
+                }
+            }catch (Exception e){
+                Log.d("-진우-", "Exception : " + e.getMessage());
+            }
+            return null;
+        }
+
+        // 모든 작업이 끝난 후 처리되는 메소드
+        @Override
+        protected void onPostExecute(Void result) {
+            //Log.d("-진우-", "result : " + result.toString());
+            super.onPostExecute(result);
+        }
     }
 }

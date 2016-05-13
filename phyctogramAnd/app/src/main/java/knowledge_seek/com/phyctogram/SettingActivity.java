@@ -115,9 +115,9 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-                builder.setMessage("로그아웃 하시겠습니까?")
+                builder.setMessage(R.string.settingActivity_logout)
                         .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
-                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 if(member.getJoin_route().equals("facebook")){
                                     AccessToken accessToken = AccessToken.getCurrentAccessToken();
@@ -140,7 +140,7 @@ public class SettingActivity extends BaseActivity {
                                 }
                             }
                         })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.commonActivity_cancel, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.cancel();
                             }
@@ -221,7 +221,7 @@ public class SettingActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

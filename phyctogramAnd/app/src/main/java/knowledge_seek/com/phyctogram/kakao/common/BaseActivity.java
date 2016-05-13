@@ -173,7 +173,7 @@ public class BaseActivity extends Activity {
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "육아일기페이지 가기", Toast.LENGTH_SHORT).show();
                 if (usersList == null || usersList.size() <= 0) {
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_LONG).show();
                     return;
                 }
                 menuLeftSlideAnimationToggle();
@@ -189,7 +189,7 @@ public class BaseActivity extends Activity {
             public void onClick(View v) {
                 //Toast.makeText(BaseActivity.this, "직접입력페이지 가기", Toast.LENGTH_SHORT).show();
                 if (usersList == null || usersList.size() <= 0) {
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_LONG).show();
                     return;
                 }
                 menuLeftSlideAnimationToggle();
@@ -482,7 +482,7 @@ public class BaseActivity extends Activity {
             //두번 클릭시 종료
             if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
                 backKeyPressedTime = System.currentTimeMillis();
-                Toast.makeText(getApplicationContext(), "\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.baseActivity_exit, Toast.LENGTH_SHORT).show();
                 return;
             }
             if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {

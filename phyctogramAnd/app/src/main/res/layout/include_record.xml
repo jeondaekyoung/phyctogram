@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 아이 관리에서 아이를 등록해주세요"
+            android:text="@string/diaryWriteActivity_registerChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="조회기간" />
+                android:text="@string/includeRecord_searchDay" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/linedate"
                     android:gravity="center"
-                    android:hint="날짜를 입력하세요" />
+                    android:hint="@string/includeRecord_writeDay" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/linedate"
                     android:gravity="center"
-                    android:hint="날짜를 입력하세요" />
+                    android:hint="@string/includeRecord_writeDay" />
 
             </LinearLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/btn_border_radius"
-                android:text="검색"
+                android:text="@string/includeRecord_search"
                 android:textColor="#ffffff" />
         </LinearLayout>
 
@@ -103,28 +103,28 @@
                 android:layout_height="30dp"
                 android:layout_weight="5"
                 android:gravity="center"
-                android:text="날짜" />
+                android:text="@string/includeRecord_day" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="키" />
+                android:text="@string/includeMain_height" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:text="증감" />
+                android:text="@string/includeRecord_increase" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="상위" />
+                android:text="@string/includeMain_highRank" />
 
         </LinearLayout>
 

@@ -27,11 +27,11 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <knowledge_seek.com.phyctogram.util.MyLinearView
             android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,10 +86,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:text="키"
+                        android:text="@string/includeMain_height"
                         android:textColor="@color/color1" />
 
-                    <LinearLayout
+                    <knowledge_seek.com.phyctogram.util.MyLinearView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -111,10 +111,10 @@
                             android:text="cm"
                             android:textColor="@color/purple"
                             android:textSize="40dp" />
-                    </LinearLayout>
+                    </knowledge_seek.com.phyctogram.util.MyLinearView>
 
                     <!-- 성장 값 -->
-                    <LinearLayout
+                    <knowledge_seek.com.phyctogram.util.MyLinearView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -134,7 +134,7 @@
                             android:layout_height="wrap_content"
                             android:text="cm"
                             android:textColor="@color/color1" />
-                    </LinearLayout>
+                    </knowledge_seek.com.phyctogram.util.MyLinearView>
                 </LinearLayout>
 
                 <!-- 상위 -->
@@ -150,7 +150,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
                         android:gravity="center"
-                        android:text="상위"
+                        android:text="@string/includeMain_highRank"
                         android:textColor="@color/color1" />
 
                     <LinearLayout
@@ -180,6 +180,7 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/btn_users_analysis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
@@ -201,11 +202,10 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_toRightOf="@id/iv_icon_rp"
-                    android:text="리포트 분석"
+                    android:text="@string/includeMain_reportAnalysis"
                     android:textColor="@color/color1" />
 
-                <knowledge_seek.com.phyctogram.util.MyButtonView
-                    android:id="@+id/btn_users_analysis"
+                <Button
                     android:layout_width="14dp"
                     android:layout_height="21dp"
                     android:layout_alignParentRight="true"
@@ -214,6 +214,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/btn_users_record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
@@ -235,16 +236,15 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_toRightOf="@id/iv_icon_sc"
-                    android:text="기록 검색"
+                    android:text="@string/includeMain_listSearch"
                     android:textColor="@color/color1" />
                 <Button
-                    android:id="@+id/btn_users_record"
                     android:layout_width="14dp"
                     android:layout_height="21dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/list_btn"/>
             </RelativeLayout>
-        </LinearLayout>
-    </knowledge_seek.com.phyctogram.util.MyScrollView>
+        </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </ScrollView>
 </LinearLayout>

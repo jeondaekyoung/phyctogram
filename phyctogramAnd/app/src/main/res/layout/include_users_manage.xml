@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 아이 관리"
+            android:text="@string/includeUsersMenage_manegeChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#f2f2f2"
-            android:text="+ 내 아이 추가" />
+            android:text="@string/includeUsersMenage_addChild" />
 
         <knowledge_seek.com.phyctogram.util.MyListView
             android:id="@+id/lv_usersList_manage"

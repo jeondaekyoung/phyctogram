@@ -128,7 +128,7 @@ public class CommunityViewActivity extends BaseActivity {
         tv_hits_co = (TextView)findViewById(R.id.tv_hits_co);
         tv_hits_co.setText(String.valueOf(sqlCommntyListView.getHits_co()));
         tv_cnt = (TextView)findViewById(R.id.tv_cnt);
-        tv_cnt.setText(new StringBuilder().append("댓글 ").append(sqlCommntyListView.getCnt()).append(" 개").toString());
+        tv_cnt.setText(new StringBuilder().append(getString(R.string.communityViewActivity_comment)).append(sqlCommntyListView.getCnt()).append(" "+getString(R.string.communityViewActivity_number)).toString());
         tv_contents = (TextView)findViewById(R.id.tv_contents);
 
 
@@ -202,7 +202,7 @@ public class CommunityViewActivity extends BaseActivity {
     //댓글 내용 체크
     private boolean checkComment(Comment comment){
         if(comment.getContent().length() <= 0){
-            Toast.makeText(getApplicationContext(), "댓글을 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.communityViewActivity_writeComment, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -243,7 +243,7 @@ public class CommunityViewActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
-                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("-진우-", "저장하는데 실패하였습니다");
             }
@@ -273,7 +273,7 @@ public class CommunityViewActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

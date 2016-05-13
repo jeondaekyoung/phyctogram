@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="회원가입"
+            android:text="@string/activityJoin_join"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="이름" />
+                    android:text="@string/activityJoin_name" />
 
                 <EditText
                     android:id="@+id/et_name"
@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="이메일 주소" />
+                    android:text="@string/activityJoin_emailAddr" />
 
                 <EditText
                     android:id="@+id/et_email"
@@ -67,7 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="비밀번호" />
+                    android:text="@string/activityJoin_password" />
 
                 <EditText
                     android:id="@+id/et_pw"
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="비밀번호 확인" />
+                    android:text="@string/activityJoin_passwordOk" />
 
                 <EditText
                     android:id="@+id/et_pw1"
@@ -91,7 +91,7 @@
                     android:id="@+id/textViewPw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="비밀번호가 일치하지 않습니다."
+                    android:text="@string/joinActivity_discordPW"
                     android:textColor="#ff0000" />
 
                 <CheckBox
@@ -99,13 +99,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="이용약관 동의" />
+                    android:text="@string/activityJoin_agreeClause" />
 
                 <CheckBox
                     android:id="@+id/agreement2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="개인정보취급방침 동의" />
+                    android:text="@string/activityJoin_individualInfo" />
             </LinearLayout>
         </ScrollView>
 
@@ -119,7 +119,7 @@
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/btn_border_radius"
-                android:text="가입하기"
+                android:text="@string/activityJoin_joining"
                 android:textColor="#ffffff" />
         </RelativeLayout>
 

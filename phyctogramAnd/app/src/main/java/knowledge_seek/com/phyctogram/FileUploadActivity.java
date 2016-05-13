@@ -201,8 +201,8 @@ public class FileUploadActivity extends BaseActivity implements View.OnClickList
         }
         else if (arg0==uploadButton) {
 
-            dialog = ProgressDialog.show(FileUploadActivity.this, "", "Uploading file...", true);
-            messageText.setText("uploading started.....");
+            dialog = ProgressDialog.show(FileUploadActivity.this, "", getString(R.string.fileUploadActivity_upLoadingAlert), true);
+            messageText.setText(R.string.fileUploadActivity_startUpLoading);
             new Thread(new Runnable() {
                 public void run() {
 
@@ -229,7 +229,7 @@ public class FileUploadActivity extends BaseActivity implements View.OnClickList
 
             //Bitmap bitmap = BitmapFactory.decodeFile(imagepath);
             //imageview.setImageBitmap(bitmap);
-            messageText.setText("업로드 파일 정보 : " + imagepath);
+            messageText.setText(getString(R.string.fileUploadActivity_fileInfo)+ " " + imagepath);
         }
 
     }

@@ -9,6 +9,8 @@
         android:targetSdkVersion="21" />
 
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -198,6 +200,14 @@
             android:name=".QaViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".PopUpActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".WifiPopUpActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"/>
 
 
         <!-- 파일업로드 테스트 -->

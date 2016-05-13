@@ -107,7 +107,7 @@ public class RecordActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 tv_users_name.setText(nowUsers.getName());
 
@@ -149,9 +149,9 @@ public class RecordActivity extends BaseActivity {
                 final Height height = (Height)heightListRecordAdapter.getItem(position);
                 Log.d("-진우-", "삭제 : " + height.toString());
                 AlertDialog.Builder dialog = new AlertDialog.Builder(RecordActivity.this);
-                dialog.setTitle("삭제");
-                dialog.setMessage("다음 데이터를 삭제하시겠습니까? " + height.getMesure_date() + ", " + height.getHeight() + "cm");
-                dialog.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                dialog.setTitle(R.string.diaryViewActivity_delete);
+                dialog.setMessage(getString(R.string.recordActivity_deleteData)+" " + height.getMesure_date() + ", " + height.getHeight() + "cm");
+                dialog.setPositiveButton(R.string.commonActivity_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -161,7 +161,7 @@ public class RecordActivity extends BaseActivity {
                             @Override
                             public void onResponse(Response<String> response, Retrofit retrofit) {
                                 Log.d("-진우-", "키 삭제 성공 결과 : " + response.body());
-                                Toast.makeText(getApplicationContext(), "키 삭제에 성공하였습니다", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), R.string.recordActivity_sucessDeleteHeight, Toast.LENGTH_LONG).show();
                                 Log.d("-진우-", "삭제전 : " + heightList.size());
                                 heightList.remove(height);
                                 Log.d("-진우-", "삭제후 : " + heightList.size());
@@ -183,7 +183,7 @@ public class RecordActivity extends BaseActivity {
                     }
 
                 });
-                dialog.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                dialog.setNegativeButton(R.string.commonActivity_no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -207,7 +207,7 @@ public class RecordActivity extends BaseActivity {
                     return;
                 }
                 if(nowUsers.getUser_seq() == 0){
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_SHORT).show();
                     return ;
                 }
 
@@ -278,7 +278,7 @@ public class RecordActivity extends BaseActivity {
 
         //디폴트날짜로 기록조회
         if(nowUsers.getUser_seq() == 0){
-            Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_SHORT).show();
         } else {
             String dateFrom = tv_datepickFrom.getText().toString();
             String dateTo = tv_datepickTo.getText().toString();
@@ -326,7 +326,7 @@ public class RecordActivity extends BaseActivity {
     //날짜 입력 체크
     private boolean checkDate(String dateFrom, String dateTo){
         if(dateFrom.length() <= 0 || dateTo.length() <= 0){
-            Toast.makeText(getApplicationContext(), "날짜를 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerDay, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -342,7 +342,7 @@ public class RecordActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -455,7 +455,7 @@ public class RecordActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

@@ -149,7 +149,7 @@ public class DiaryViewActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if(et_diary_date.getText().toString().length() <= 0){
-                    Toast.makeText(getApplicationContext(), "삭제할 일기가 없습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_notDeleteDiary, Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -157,10 +157,10 @@ public class DiaryViewActivity extends BaseActivity {
 
                 Log.d("-진우-", "삭제클릭 : " + Utility.diary2json(diary));
                 AlertDialog.Builder dialog = new AlertDialog.Builder(DiaryViewActivity.this);
-                dialog.setTitle("일기 삭제하기")
-                        .setMessage(nowUsers.getName() + "님의 " + diary_date + " 일기를 삭제하시겠습니까?")
+                dialog.setTitle(R.string.diaryViewActivity_deleteDiaryTitle)
+                        .setMessage(nowUsers.getName() + getString(R.string.diaryViewActivity_respect)+" " + diary_date + " "+getString(R.string.diaryViewActivity_deleteAsk))
                         .setCancelable(false)
-                        .setPositiveButton("삭제", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.diaryViewActivity_delete, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.d("-진우-", "json : " + Utility.diary2json(diary));
@@ -170,8 +170,8 @@ public class DiaryViewActivity extends BaseActivity {
                                     @Override
                                     public void onResponse(Response<String> response, Retrofit retrofit) {
                                         Log.d("-진우-", "일기 삭제 결과 : " + response.body());
-                                        if(response.body().equals("success")){
-                                            Toast.makeText(getApplicationContext(), "삭제하였습니다", Toast.LENGTH_SHORT).show();
+                                        if (response.body().equals("success")) {
+                                            Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_deleteAlert, Toast.LENGTH_SHORT).show();
                                             onBackPressed();
                                             //내용 지우기
                                             //et_diary_date.setText("");
@@ -187,7 +187,7 @@ public class DiaryViewActivity extends BaseActivity {
                                 });
                             }
                         })
-                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.commonActivity_cancel, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -212,7 +212,7 @@ public class DiaryViewActivity extends BaseActivity {
 
                 //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString().length());
                 if(et_diary_date.getText().toString().length() <= 0){
-                    Toast.makeText(getApplicationContext(), "수정할 일기가 없습니다", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_notModifyAlert, Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //Log.d("-진우-", "날짜 : " + et_diary_date.getText().toString());
@@ -228,7 +228,7 @@ public class DiaryViewActivity extends BaseActivity {
                 }
 
                 if(diary.equals(mod_diary)){
-                    Toast.makeText(getApplicationContext(), "변경된 내용이 없습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_notChangeAlert, Toast.LENGTH_SHORT).show();
                     return ;
                 }
 
@@ -240,7 +240,7 @@ public class DiaryViewActivity extends BaseActivity {
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         Log.d("-진우-", "일기 수정 결과 : " + response.body());
                         if(response.body().equals("success")){
-                            Toast.makeText(getApplicationContext(), "수정하였습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_modifyAlert, Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         }
                     }
@@ -298,7 +298,7 @@ public class DiaryViewActivity extends BaseActivity {
     //Diary의 내용체크
     private boolean checkDiary(Diary diary){
         if(diary.getTitle().length() <= 0 || diary.getContents().length() <= 0){
-            Toast.makeText(getApplicationContext(), "제목과 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.communityWriteActivity_writeTitleContents, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -314,7 +314,7 @@ public class DiaryViewActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

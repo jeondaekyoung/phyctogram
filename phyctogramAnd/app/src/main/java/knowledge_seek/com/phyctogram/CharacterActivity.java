@@ -64,7 +64,7 @@ public class CharacterActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+R.string.characterActivity_choiceChild, Toast.LENGTH_LONG).show();
 
                 //현재 선택된 내 아이를 맨 뒤로 이동
                 Utility.seqChange(usersList, nowUsers.getUser_seq());
@@ -127,7 +127,7 @@ public class CharacterActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

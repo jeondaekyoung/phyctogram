@@ -329,7 +329,7 @@ public class LoginActivity extends BaseActivity {
                 Log.d("-진우-", "픽토그램 로그인 성공 결과 : " + response.body());
                 memberActivity = (Member) response.body();
                 if (memberActivity == null) {
-                    Toast.makeText(getApplicationContext(), "이메일과 패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.loginActivity_checkPWEmail, Toast.LENGTH_SHORT).show();
                 } else {
                     //가입완료후 로그인유지를 위해 preference를 사용한다.
                     SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
@@ -349,7 +349,7 @@ public class LoginActivity extends BaseActivity {
     //멤버 내용 체크
     private boolean checkMember(Member member){
         if(member.getEmail().length() <= 0 || member.getPassword().length() <= 0){
-            Toast.makeText(getApplicationContext(), "이메일과 패스워드를 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.loginActivity_checkPWEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -532,7 +532,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -576,7 +576,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -609,14 +609,14 @@ public class LoginActivity extends BaseActivity {
     //픽토그램 로그인 정보 읽어오기
     private class FindMemberByMemberSeqTask extends AsyncTask<Object, Void, Member> {
 
-        //private ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
+        private ProgressDialog dialog = new ProgressDialog(LoginActivity.this);
         private Member memberTask = null;
 
         @Override
         protected void onPreExecute() {
-            //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            //dialog.setMessage("잠시만 기다려주세요");
-            //dialog.show();
+            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            dialog.setMessage(getString(R.string.commonActivity_wait));
+            dialog.show();
             super.onPreExecute();
         }
 
@@ -643,7 +643,7 @@ public class LoginActivity extends BaseActivity {
                 redirectMainActivity(memberActivity);
             }
 
-            //dialog.dismiss();
+            dialog.dismiss();
             super.onPostExecute(member);
         }
     }

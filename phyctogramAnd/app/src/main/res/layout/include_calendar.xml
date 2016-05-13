@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 아이 관리에서 아이를 등록해주세요"
+            android:text="@string/diaryWriteActivity_registerChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="일"
+                android:text="@string/includeCalendar_sunday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="월"
+                android:text="@string/includeCalendar_monday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="화"
+                android:text="@string/includeCalendar_tuesday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="수"
+                android:text="@string/includeCalendar_wednesday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="목"
+                android:text="@string/includeCalendar_thursday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="금"
+                android:text="@string/includeCalendar_friday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
 
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="토"
+                android:text="@string/includeCalendar_saturday"
                 android:textColor="#ffffffff"
                 android:textSize="14dp" />
         </LinearLayout>

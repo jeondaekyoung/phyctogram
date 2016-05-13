@@ -148,7 +148,7 @@ public class CommunityWriteActivity extends BaseActivity {
     //Commnty의 내용체크
     private boolean checkCommnty(Commnty commnty){
         if(commnty.getTitle().length() <= 0 || commnty.getContents().length() <= 0){
-            Toast.makeText(getApplicationContext(), "제목과 내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.communityWriteActivity_writeTitleContents, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -167,7 +167,7 @@ public class CommunityWriteActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -189,7 +189,7 @@ public class CommunityWriteActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
-                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("-진우-", "저장하는데 실패하였습니다");
             }

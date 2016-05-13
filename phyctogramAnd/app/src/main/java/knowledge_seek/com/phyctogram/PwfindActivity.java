@@ -44,14 +44,14 @@ public class PwfindActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (editTextMail.getText().length()<0){
-                    Toast.makeText(v.getContext(), "이메일 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(v.getContext(), R.string.pwfindActivity_registerEmail, Toast.LENGTH_SHORT).show();
                 }else{
                     if (QuickstartPreferences.token != null){
                         Log.d("-진우-", "PwfindActivity editTextMail.getText: " + editTextMail.getText() + ", Token: " + QuickstartPreferences.token);
                         FindPwTask task = new FindPwTask(editTextMail.getText().toString(), QuickstartPreferences.token);
                         task.execute();
                     }else{
-                        Toast.makeText(v.getContext(), "푸쉬 사용 불가능 기기로 비밀번호 찾기가 불가능합니다. 고객센터로 문의해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), R.string.pwfindActivity_notPush, Toast.LENGTH_SHORT).show();
                         Log.d("-진우-", "PwfindActivity - Token 발급 불가");
                     }
                 }
@@ -97,14 +97,14 @@ public class PwfindActivity extends BaseActivity {
 
             if (result != null) {
                 if (result.equals("success")) {
-                    Toast.makeText(PwfindActivity.this, "변경된 비밀번호가 Push 메시지로 발송 되었습니다. (최대 3분 소요)",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_sendPush,Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "비밀번호 찾기에 성공하였습니다.");
                     finish();
                 } else if (result.equals("wrongMail")) {
-                    Toast.makeText(PwfindActivity.this, "메일주소가 잘못되었습니다. 다시 입력해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failEmail,Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "메일주소가 잘못되었습니다.");
                 } else {
-                    Toast.makeText(PwfindActivity.this, "비밀번호 찾기에 실패하였습니다. 다시 시도해주세요.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failFindPW,Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "비밀번호 찾기에 실패하였습니다.");
                 }
             }else{

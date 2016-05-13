@@ -192,7 +192,7 @@ public class CommunityListActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(R.string.commonActivity_wait+"");
             dialog.show();
             super.onPreExecute();
         }
@@ -251,7 +251,7 @@ public class CommunityListActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(R.string.commonActivity_wait+"");
             dialog.show();
             super.onPreExecute();
         }

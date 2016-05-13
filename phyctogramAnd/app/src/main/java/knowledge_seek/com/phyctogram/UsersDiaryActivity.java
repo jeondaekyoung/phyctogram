@@ -100,7 +100,7 @@ public class UsersDiaryActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 tv_users_name.setText(nowUsers.getName());
 
@@ -223,7 +223,7 @@ public class UsersDiaryActivity extends BaseActivity {
                     startActivity(intent);
                     //finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -263,7 +263,7 @@ public class UsersDiaryActivity extends BaseActivity {
     private void setMonthText() {
         curYear = calendarMonthAdapter.getCurYear();
         curMonth = calendarMonthAdapter.getCurMonth();
-        tv_monthText.setText(curYear + "년 " + (curMonth + 1) + "월");
+        tv_monthText.setText(curYear + getString(R.string.usersDiaryActivity_year)+" " + (curMonth + 1) + getString(R.string.usersDiaryActivity_month));
 
         curYearStr = String.valueOf(curYear);
         curMonthStr = String.valueOf(curMonth + 1);
@@ -282,7 +282,7 @@ public class UsersDiaryActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

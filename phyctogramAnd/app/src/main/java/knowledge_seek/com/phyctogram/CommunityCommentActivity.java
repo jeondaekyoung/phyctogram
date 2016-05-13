@@ -155,7 +155,7 @@ public class CommunityCommentActivity extends BaseActivity {
     //comment의 내용 체크
     private boolean checkComment(Comment comment){
         if(comment.getContent().length() <= 0){
-            Toast.makeText(getApplicationContext(), "내용을 입력해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.communityCommentActivity_writeContents, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public class CommunityCommentActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -274,7 +274,7 @@ public class CommunityCommentActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -296,7 +296,7 @@ public class CommunityCommentActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
-                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_SHORT).show();
             } else {
                 Log.d("-진우-", "저장하는데 실패하였습니다");
             }

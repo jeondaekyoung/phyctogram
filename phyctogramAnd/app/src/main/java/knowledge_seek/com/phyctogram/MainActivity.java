@@ -53,11 +53,11 @@ public class MainActivity extends BaseActivity {
     private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private Button btn_users_record;                     //기록조회
+    private RelativeLayout btn_users_record;                     //기록조회
     //private RelativeLayout rl_community_list;      //수다방 리스트
     private Button btn_community_list;              //수다방으로 가기
     private TextView tv_users_name;                 //아이 이름 출력
-    private Button btn_users_analysis;               //분석리포트
+    private RelativeLayout btn_users_analysis;               //분석리포트
     private CircularImageView iv_my_animal;                        //캐릭터
     private TextView tv_height;                         //최종신장
     private TextView tv_grow;                           //성장 값
@@ -130,7 +130,7 @@ public class MainActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 if (tv_users_name != null) {
                     tv_users_name.setText(nowUsers.getName());
@@ -169,12 +169,12 @@ public class MainActivity extends BaseActivity {
             }
         });
         //기록조회
-        btn_users_record = (Button) findViewById(R.id.btn_users_record);
+        btn_users_record = (RelativeLayout) findViewById(R.id.btn_users_record);
         btn_users_record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (usersList == null || usersList.size() <= 0) {
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_LONG).show();
                     return;
                 }
                 Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
@@ -184,12 +184,12 @@ public class MainActivity extends BaseActivity {
             }
         });
         //분석리포트
-        btn_users_analysis = (Button) findViewById(R.id.btn_users_analysis);
+        btn_users_analysis = (RelativeLayout) findViewById(R.id.btn_users_analysis);
         btn_users_analysis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (usersList == null || usersList.size() <= 0) {
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_LONG).show();
                     return;
                 }
                 Intent intent = new Intent(getApplicationContext(), UsersAnalysisActivity.class);
@@ -302,7 +302,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -358,7 +358,7 @@ public class MainActivity extends BaseActivity {
             }
 
             //커뮤니티(수다방) 인기 Top3 읽어오기
-            SqlCommntyListViewAPI service1 = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
+            /*SqlCommntyListViewAPI service1 = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
             Call<List<SqlCommntyListView>> call1 = service1.findCommntyPopularTop3();
             try {
                 List<SqlCommntyListView> resultList1 = call1.execute().body();
@@ -371,7 +371,7 @@ public class MainActivity extends BaseActivity {
                 }
             } catch (IOException e) {
                 Log.d("-진우-", "수다방 목록 조회 실패");
-            }
+            }*/
 
             return memberImg;
         }
@@ -412,12 +412,12 @@ public class MainActivity extends BaseActivity {
 
 
             //커뮤니티(수다방) 인기 Top3 셋팅
-            if (sqlCommntyListViewTask != null) {
+            /*if (sqlCommntyListViewTask != null) {
                 sqlCommntyListViewList = sqlCommntyListViewTask;        //main변수에 저장
             }
             if(sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() > 0){
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
-            }
+            }*/
             /*if (sqlCommntyListViewTask != null && sqlCommntyListViewTask.size() >= 3) {
                 tv_popularTop1_title.setText(sqlCommntyListViewTask.get(0).getTitle());
                 tv_popularTop1_name.setText(sqlCommntyListViewTask.get(0).getName());
@@ -462,7 +462,7 @@ public class MainActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

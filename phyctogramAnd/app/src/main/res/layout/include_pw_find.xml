@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="비밀번호 찾기"
+            android:text="@string/includePwFind_findPw"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -29,14 +29,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이메일 주소" />
+            android:text="@string/includePwFind_emailAddr" />
 
         <EditText
             android:id="@+id/editTextMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="예) mail@mail.com"
+            android:hint="@string/includePwFind_ex"
             android:inputType="textEmailAddress"
             android:textSize="14dp" />
 
@@ -48,13 +48,13 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_border_radius"
-            android:text="찾기"
+            android:text="@string/includePwFind_find"
             android:textColor="#ffffff" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="*카카오톡이나 페이스북으로 가입된 회원에게는 비밀번호 찾기 서비스가 지원되지 않습니다."
+            android:text="@string/includePwFind_sign"
             android:textColor="#ff0000"
             android:textSize="11dp" />
     </LinearLayout>

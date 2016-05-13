@@ -67,10 +67,10 @@ public class JoinActivity extends Activity {
                 if (et_pw.getText().toString().length()>0) {
                     if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
                         textViewPw.setTextColor(Color.parseColor("#01DF3A"));
-                        textViewPw.setText("비밀번호가 일치합니다.");
+                        textViewPw.setText(R.string.joinActivity_agreePW);
                     } else {
                         textViewPw.setTextColor(Color.parseColor("#ff0000"));
-                        textViewPw.setText("비밀번호가 일치하지 않습니다.");
+                        textViewPw.setText(R.string.joinActivity_discordPW);
                     }
                 }
             }
@@ -82,10 +82,10 @@ public class JoinActivity extends Activity {
                 if (et_pw.getText().toString().length()>0) {
                     if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
                         textViewPw.setTextColor(Color.parseColor("#01DF3A"));
-                        textViewPw.setText("비밀번호가 일치합니다.");
+                        textViewPw.setText(R.string.joinActivity_agreePW);
                     } else {
                         textViewPw.setTextColor(Color.parseColor("#ff0000"));
-                        textViewPw.setText("비밀번호가 일치하지 않습니다.");
+                        textViewPw.setText(R.string.joinActivity_discordPW);
                     }
                 }
             }
@@ -116,7 +116,7 @@ public class JoinActivity extends Activity {
 
                 //약관 동의체크
                 if(!(agreement1.isChecked() && agreement2.isChecked())){
-                    Toast.makeText(getApplicationContext(), "이용약관 및 개인정보취급방침에 동의해주십시요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.joinActivity_agreeClause, Toast.LENGTH_SHORT).show();
                     return ;
                 }
 
@@ -145,10 +145,10 @@ public class JoinActivity extends Activity {
                     layout = inflater.inflate(R.layout.popup_agree, (ViewGroup) findViewById(R.id.agreeText));
                     AlertDialog.Builder aDialog = new AlertDialog.Builder(JoinActivity.this);
 
-                    aDialog.setTitle("이용약관");
+                    aDialog.setTitle(R.string.joinActivity_clause);
                     aDialog.setView(layout);
 
-                    aDialog.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    aDialog.setNegativeButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     });
@@ -169,10 +169,10 @@ public class JoinActivity extends Activity {
                     layout = inflater2.inflate(R.layout.popup_agree2, (ViewGroup) findViewById(R.id.agreeText));
                     AlertDialog.Builder aDialog2 = new AlertDialog.Builder(JoinActivity.this);
 
-                    aDialog2.setTitle("개인정보취급방침");
+                    aDialog2.setTitle(R.string.joinActivity_individualInfo);
                     aDialog2.setView(layout);
 
-                    aDialog2.setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                    aDialog2.setNegativeButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                         }
                     });
@@ -189,10 +189,10 @@ public class JoinActivity extends Activity {
         if (et_pw.getText().toString().length()>0) {
             if (et_pw.getText().toString().equals(et_pw1.getText().toString())) {
                 textViewPw.setTextColor(Color.parseColor("#01DF3A"));
-                textViewPw.setText("비밀번호가 일치합니다.");
+                textViewPw.setText(R.string.joinActivity_agreePW);
             } else {
                 textViewPw.setTextColor(Color.parseColor("#ff0000"));
-                textViewPw.setText("비밀번호가 일치하지 않습니다.");
+                textViewPw.setText(R.string.joinActivity_discordPW);
             }
         }
         return super.onTouchEvent(event);
@@ -201,7 +201,7 @@ public class JoinActivity extends Activity {
     //패스워드 체크
     private boolean checkpw(String word1, String word2){
         if(word1.length() <= 0 || word2.length() <= 0 || !word1.equals(word2)){
-            Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.joinActivity_checkPW, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -209,14 +209,14 @@ public class JoinActivity extends Activity {
     //멤버 내용 체크
     private boolean checkMember(Member member){
         if(member.getName().length() <= 0 || member.getEmail().length() <= 0 || member.getPassword().length() <= 0){
-            Toast.makeText(getApplicationContext(), "내용을 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.joinActivity_checkContents, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if (member.getEmail().contains("@")&&member.getEmail().contains(".")){
             return true;
         }else{
-            Toast.makeText(getApplicationContext(), "이메일 형식을 확인해주세요.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.joinActivity_checkEmail, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -245,7 +245,7 @@ public class JoinActivity extends Activity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -269,13 +269,13 @@ public class JoinActivity extends Activity {
         protected void onPostExecute(Member member) {
             if(member != null) {
                 Log.d("-진우-", "픽토그램 가입 성공 결과1 : " + member.toString());
-                Toast.makeText(getApplicationContext(), "픽토그램 회원이 되셨습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.joinActivity_successJoinAlert, Toast.LENGTH_SHORT).show();
                 memberActivity = member;
                 //가입완료후 로그인유지를 위해 preference를 사용한다.
                 SaveSharedPreference.setMemberSeq(getApplicationContext(), String.valueOf(memberActivity.getMember_seq()));
                 redirectMainActivity(memberActivity);
             } else {
-                Toast.makeText(getApplicationContext(), "이미 가입된 이메일입니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.joinActivity_alreadyJoinAlert, Toast.LENGTH_SHORT).show();
             }
 
             dialog.dismiss();

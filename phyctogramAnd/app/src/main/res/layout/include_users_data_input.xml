@@ -25,7 +25,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:inputType="numberDecimal"
-            android:text="내 아이 관리에서 아이를 등록해주세요"
+            android:text="@string/diaryWriteActivity_registerChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="키" />
+            android:text="@string/includeMain_height" />
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_input_height"
@@ -51,7 +51,7 @@
             android:textSize="14dp"
             android:textColor="#000000"
             android:paddingLeft="10dp"
-            android:hint="키를 입력하세요"
+            android:hint="@string/includeUsersDataInput_writeHeight"
             android:background="@drawable/linedate"
             android:numeric="decimal" />
 
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="날짜" />
+            android:text="@string/includeRecord_day" />
 
         <DatePicker
             android:id="@+id/dp_mesure_date"
@@ -77,7 +77,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/btn_border_radius"
-            android:text="등록"
+            android:text="@string/includeComComment_register"
             android:textColor="#ffffff" />
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

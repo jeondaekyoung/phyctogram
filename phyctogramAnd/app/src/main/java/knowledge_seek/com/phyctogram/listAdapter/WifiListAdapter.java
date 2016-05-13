@@ -52,9 +52,9 @@ public class WifiListAdapter extends BaseAdapter {
         }
         Wifi wifi = wifis.get(position);
         TextView tv_ssid = (TextView)convertView.findViewById(R.id.tv_ssid);
-        TextView tv_capabilities = (TextView)convertView.findViewById(R.id.tv_capabilities);
+        //TextView tv_capabilities = (TextView)convertView.findViewById(R.id.tv_capabilities);
         tv_ssid.setText(wifis.get(position).getSsid());
-        tv_capabilities.setText(wifis.get(position).getCapabilities());
+        //tv_capabilities.setText(wifis.get(position).getCapabilities());
         return convertView;
     }
 }

@@ -109,6 +109,11 @@ public class QaListActivity extends BaseActivity {
                 Log.d("-진우-", "선택한 문의내용 : " + qa.toString());
                 Intent intent = new Intent(getApplicationContext(), QaViewActivity.class);
                 intent.putExtra("qa_seq", qa.getQa_seq());
+                intent.putExtra("title", qa.getTitle());
+                intent.putExtra("writing_de", qa.getWritng_de());
+                intent.putExtra("contents", qa.getContents());
+                intent.putExtra("state", qa.getState());
+                intent.putExtra("ansewr", qa.getAnswer());
                 startActivity(intent);
             }
         });
@@ -154,7 +159,7 @@ public class QaListActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

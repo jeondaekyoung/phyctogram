@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="수다방"
+            android:text="@string/includeComList_communityRoom"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:singleLine="true"
-                android:text="제목" />
+                android:text="@string/includeComWrite_title" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:singleLine="true"
-                    android:text="아이디"
+                    android:text="@string/includeComView_id"
                     android:textColor="#aaaaaa" />
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
-                    android:text="조회"
+                    android:text="@string/includeComView_search"
                     android:textColor="#aaaaaa" />
 
                 <TextView
@@ -105,7 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="150dp"
-                    android:text="내용" />
+                    android:text="@string/includeComView_contents" />
 
                 <TextView
                     android:id="@+id/tv_cnt"
@@ -115,7 +115,7 @@
                     android:background="@drawable/borderbottom"
                     android:paddingBottom="10dp"
                     android:paddingLeft="1dp"
-                    android:text="댓글 11개" />
+                    android:text="@string/includeComView_reNumber" />
 
                 <ListView
                     android:id="@+id/lv_comments"
@@ -135,7 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:background="@color/color4"
-                android:hint="댓글쓰기"
+                android:hint="@string/includeComComment_reWrite"
                 android:padding="5dp" />
 
             <Button
@@ -146,7 +146,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:background="@drawable/btn_border_radius"
-                android:text="등록"
+                android:text="@string/includeComComment_register"
                 android:textColor="#ffffff" />
         </RelativeLayout>
     </RelativeLayout>

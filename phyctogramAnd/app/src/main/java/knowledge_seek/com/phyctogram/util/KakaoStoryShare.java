@@ -16,6 +16,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import knowledge_seek.com.phyctogram.R;
+
 /**
  * Created by sjw on 2016-01-27.
  */
@@ -52,7 +54,7 @@ public class KakaoStoryShare {
                 public void onSuccess(MyStoryInfo result) {
                     Log.d("-진우-", "성공 : " + result.toString());
                     //handleStoryPostResult(KakaoStoryService.StoryType.PHOTO, result);
-                    Toast.makeText(mActivity, "카카오스토리에 사진을 올렸습니다", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mActivity, R.string.kakaoStoryShare_successUpload, Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

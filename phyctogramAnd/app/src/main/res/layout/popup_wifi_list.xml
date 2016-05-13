@@ -8,12 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/purpledk"
-        android:text="기기에서 연결할 Wi-fi를 선택해 주세요"
+        android:text="@string/popupWifiList_sign"
         android:gravity="center"
         android:textColor="#fff" />
 
     <ListView
         android:id="@+id/list_wifi"
+        android:background="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="450dip"/>
 

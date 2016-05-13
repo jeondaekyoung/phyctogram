@@ -57,7 +57,7 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="10dp"
-                android:text="HOME" />
+                android:text="@string/leftSlideMenu_home" />
 
             <ListView
                 android:id="@+id/lv_usersList"
@@ -75,7 +75,7 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
-                android:text="육아일기"
+                android:text="@string/leftSlideMenu_diary"
                 android:textColor="@color/purple" />
 
             <Button
@@ -85,7 +85,7 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="15dp"
-                android:text="직접 키 입력"
+                android:text="@string/leftSlideMenu_selfWriteHeight"
                 android:textColor="@color/purple" />
 
             <Button
@@ -95,7 +95,7 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="10dp"
-                android:text="내 아이 관리" />
+                android:text="@string/includeUsersMenage_manegeChild" />
 
             <Button
                 android:id="@+id/btn_setup"
@@ -104,7 +104,7 @@
                 android:background="@drawable/borderbottom"
                 android:gravity="fill_vertical"
                 android:paddingLeft="10dp"
-                android:text="설정" />
+                android:text="@string/includeSetting_setting" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

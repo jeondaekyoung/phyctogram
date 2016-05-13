@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="설정"
+            android:text="@string/includeSetting_setting"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -42,7 +42,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="공지사항" />
+            android:text="@string/includeNoticeList_notice" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_equip"
@@ -52,7 +52,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="내 기기" />
+            android:text="@string/includeEquipment_myHW" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_logout"
@@ -62,7 +62,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="로그아웃" />
+            android:text="@string/includeSetting_logout" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_pwmod"
@@ -72,7 +72,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="비밀번호 변경" />
+            android:text="@string/includePwModify_modifyPw" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_withdraw"
@@ -82,7 +82,7 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="회원탈퇴" />
+            android:text="@string/includeSetting_memberLeave" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_qa"
@@ -92,6 +92,6 @@
             android:paddingBottom="20dp"
             android:paddingLeft="10dp"
             android:paddingTop="20dp"
-            android:text="문의하기" />
+            android:text="@string/includeQaList_qa" />
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

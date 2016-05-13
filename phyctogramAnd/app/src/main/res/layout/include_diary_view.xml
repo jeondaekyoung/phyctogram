@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 아이 관리에서 아이를 등록해주세요"
+            android:text="@string/diaryWriteActivity_registerChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -42,7 +42,7 @@
             android:layout_marginTop="10dp"
             android:editable="false"
             android:enabled="false"
-            android:hint="날짜"
+            android:hint="@string/includeDiaryView_day"
             android:textColor="@color/color7"
             android:textSize="14dp" />
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:hint=" 제 목"
+            android:hint="@string/includeDiaryView_title"
             android:inputType="text"
             android:textSize="14dp" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:gravity="top|left"
-            android:hint=" 내 용"
+            android:hint="@string/includeDiaryView_contents"
             android:inputType="textMultiLine"
             android:lines="21"
             android:maxWidth="5.0dip"
@@ -82,7 +82,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="5dp"
                 android:background="@drawable/btn_border_radius2"
-                android:text="사진"
+                android:text="@string/includeDiaryView_picture"
                 android:textColor="@color/purple"
                 android:textSize="12dp" />
 
@@ -94,7 +94,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/pic"
                 android:background="@drawable/btn_border_radius2"
-                android:text="동영상"
+                android:text="@string/includeDiaryView_video"
                 android:textColor="@color/purple"
                 android:textSize="12dp" />
 
@@ -106,7 +106,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/btn_diary_modify"
                 android:background="@drawable/btn_border_radius2"
-                android:text="삭제"
+                android:text="@string/commonActivity_delete"
                 android:textColor="@color/purple"
                 android:textSize="12dp" />
 
@@ -118,7 +118,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/btn_border_radius"
-                android:text="수정"
+                android:text="@string/commonActivity_modify"
                 android:textColor="#ffffff"
                 android:textSize="12dp" />
 

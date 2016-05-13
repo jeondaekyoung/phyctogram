@@ -16,6 +16,7 @@ import com.kakao.usermgmt.response.model.UserProfile;
 import java.io.IOException;
 
 import knowledge_seek.com.phyctogram.MainActivity;
+import knowledge_seek.com.phyctogram.R;
 import knowledge_seek.com.phyctogram.domain.Member;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
@@ -117,7 +118,7 @@ public class SampleSignupActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

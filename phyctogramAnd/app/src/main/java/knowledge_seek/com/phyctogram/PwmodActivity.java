@@ -113,11 +113,11 @@ public class PwmodActivity extends BaseActivity {
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         String result = response.body();
                         if("wrongPw".equals(result)){
-                            Toast.makeText(getApplicationContext(), "비밀번호가 잘못되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.pwmodActivity_failPW, Toast.LENGTH_SHORT).show();
                         } else if("fail".equals(result)){
-                            Toast.makeText(getApplicationContext(), "비밀번호 변경에 실패하였습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.pwmodActivity_failChangePW, Toast.LENGTH_SHORT).show();
                         } else if("success".equals(result)){
-                            Toast.makeText(getApplicationContext(), "비밀번호가 변경되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.pwmodActivity_successChangePW, Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     }
@@ -132,11 +132,11 @@ public class PwmodActivity extends BaseActivity {
         if (member.getJoin_route().equals("kakao")) {
             ll_phyctogram.setVisibility(View.GONE);
             ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("카카오 가입자입니다. 카카오 비밀번호 변경은 해당앱을 이용해주세요.");
+            tv_join_route.setText(R.string.pwmodActivity_kakaoPW);
         } else if (member.getJoin_route().equals("facebook")) {
             ll_phyctogram.setVisibility(View.GONE);
             ll_no_phyctogram.setVisibility(View.VISIBLE);
-            tv_join_route.setText("페이스북 가입자입니다. 페이스북 비밀번호 변경은 해당앱을 이용해주세요.");
+            tv_join_route.setText(R.string.pwmodActivity_facebookPW);
         } else {
             ll_phyctogram.setVisibility(View.VISIBLE);
             ll_no_phyctogram.setVisibility(View.GONE);
@@ -172,11 +172,11 @@ public class PwmodActivity extends BaseActivity {
     private boolean checkpw(String nowpw, String newpw, String pw1) {
         //Log.d("-진우-", nowpw + ", " + newpw + ", " + pw1);
         if(nowpw.length() <= 0 || newpw.length() <= 0 || pw1.length() <= 0){
-            Toast.makeText(getApplicationContext(), "비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.joinActivity_checkPW, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!newpw.equals(pw1)) {
-            Toast.makeText(getApplicationContext(), "변경할 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.pwmodActivity_checkChangePW, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -194,7 +194,7 @@ public class PwmodActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

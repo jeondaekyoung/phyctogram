@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="MY 캐릭터"
+            android:text="@string/includeFileUpload_myCharacter"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -241,35 +241,35 @@
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="0세" />
+                            android:text="@string/includeMyCharacter_age0" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="0.5세" />
+                            android:text="@string/includeMyCharacter_age1" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="1세" />
+                            android:text="@string/includeMyCharacter_age2" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="2세" />
+                            android:text="@string/includeMyCharacter_age3" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="3세" />
+                            android:text="@string/includeMyCharacter_age4" />
                     </TableRow>
 
                     <TableRow>
@@ -279,35 +279,35 @@
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="4세" />
+                            android:text="@string/includeMyCharacter_age5" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="5세" />
+                            android:text="@string/includeMyCharacter_age6" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="6세" />
+                            android:text="@string/includeMyCharacter_age7" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="7세" />
+                            android:text="@string/includeMyCharacter_age8" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="8세" />
+                            android:text="@string/includeMyCharacter_age9" />
                     </TableRow>
 
                     <TableRow>
@@ -317,35 +317,35 @@
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="9세" />
+                            android:text="@string/includeMyCharacter_age10" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="10세" />
+                            android:text="@string/includeMyCharacter_age11" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="11세" />
+                            android:text="@string/includeMyCharacter_age12" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="12세" />
+                            android:text="@string/includeMyCharacter_age13" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="13세" />
+                            android:text="@string/includeMyCharacter_age14" />
                     </TableRow>
 
                     <TableRow>
@@ -355,35 +355,35 @@
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="14세" />
+                            android:text="@string/includeMyCharacter_age15" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="15세" />
+                            android:text="@string/includeMyCharacter_age16" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="16세" />
+                            android:text="@string/includeMyCharacter_age17" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="17세" />
+                            android:text="@string/includeMyCharacter_age18" />
 
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="90dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="18세" />
+                            android:text="@string/includeMyCharacter_age19" />
                     </TableRow>
 
                 </TableLayout>
@@ -395,7 +395,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="right"
-                android:text="* 만 나이 기준입니다."
+                android:text="@string/includeMyCharacter_sign"
                 android:textColor="@color/colorAccent"/>
         </LinearLayout>
 

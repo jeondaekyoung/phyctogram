@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="내 아이 관리에서 아이를 등록해주세요"
+            android:text="@string/diaryWriteActivity_registerChild"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -81,7 +81,7 @@
                                 android:layout_width="52dp"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:text="최종신장"
+                                android:text="@string/includeAnalysis_finalHeight"
                                 android:textColor="#ffffff" />
 
                             <TextView
@@ -140,9 +140,9 @@
 
                             <TextView
                                 android:layout_width="52dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="45dp"
                                 android:gravity="center"
-                                android:text="상위"
+                                android:text="@string/includeAnalysis_highRank"
                                 android:textColor="#ffffff" />
 
                             <TextView
@@ -185,7 +185,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:text="평균 147cm" />
+                            android:text="@string/includeAnalysis_avg" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -221,7 +221,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="5dp"
-                            android:text="8개월동안 1.5cm 성장" />
+                            android:text="@string/includeAnalysis_growth" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -258,24 +258,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
-                    android:text="분석:" />
+                    android:text="@string/includeAnalysis_analysis" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다." />
+                    android:text="@string/includeAnalysis_analysisContentFirst" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다." />
+                    android:text="@string/includeAnalysis_analysisContentSecond" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="Tanner 분류법 (바로가기 링크)"
+                    android:text="@string/includeAnalysis_analysisContentLink"
                     android:textColor="#ff0000" />
 
                 <!--공유버튼-->
@@ -287,7 +287,7 @@
                     android:gravity="center"
                     android:paddingRight="12dp"
                     android:onClick="onClick"
-                    android:text="공유하기"
+                    android:text="@string/includeAnalysis_analysisShare"
                     android:textColor="@color/color6" />
 
                 <!--그래프-->

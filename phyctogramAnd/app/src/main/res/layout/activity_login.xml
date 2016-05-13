@@ -46,7 +46,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/purple"
         android:gravity="center"
-        android:text="회원 로그인"
+        android:text="@string/activityLogin_login"
         android:textColor="#ffffff"
         android:textSize="12dp" />
 
@@ -63,7 +63,7 @@
             android:background="@drawable/log_kakao"
             android:gravity="center"
             android:layout_marginRight="5dp"
-            android:text="카카오톡 로그인"
+            android:text="@string/activityLogin_kakaoLogin"
             android:textColor="#ffffff"
             android:textSize="12dp" />
 
@@ -78,8 +78,8 @@
             android:paddingTop="13dp"
             android:textColor="#ffffff"
             android:textSize="12dp"
-            facebook:com_facebook_login_text="페이스북 로그인"
-            facebook:com_facebook_logout_text="페이스북 로그인" />
+            facebook:com_facebook_login_text="@string/activityLogin_facebookLogin"
+            facebook:com_facebook_logout_text="@string/activityLogin_facebookLogin" />
     </LinearLayout>
 
     <LinearLayout
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="비밀번호 찾기"
+            android:text="@string/activityLogin_findPW"
             android:textColor="@color/color2"
             android:textSize="12dp" />
 
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
-            android:text="회원가입"
+            android:text="@string/activityJoin_join"
             android:textColor="@color/color2"
             android:textSize="12dp" />
     </LinearLayout>

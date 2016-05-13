@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="비밀번호 변경"
+            android:text="@string/includePwModify_modifyPw"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -49,7 +49,7 @@
                 <knowledge_seek.com.phyctogram.util.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="현재 비밀번호" />
+                    android:text="@string/includePwModify_realPw" />
 
                 <knowledge_seek.com.phyctogram.util.MyEditTextView
                     android:id="@+id/et_now_pw"
@@ -61,7 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="변경할 비밀번호" />
+                    android:text="@string/includePwModify_changePw" />
 
                 <knowledge_seek.com.phyctogram.util.MyEditTextView
                     android:id="@+id/et_pw"
@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="변경할 비밀번호 확인" />
+                    android:text="@string/includePwModify_checkChangePw" />
 
                 <knowledge_seek.com.phyctogram.util.MyEditTextView
                     android:id="@+id/et_pw1"
@@ -91,7 +91,7 @@
                         android:layout_height="30dp"
                         android:layout_alignParentBottom="true"
                         android:background="@drawable/btn_border_radius"
-                        android:text="변경하기"
+                        android:text="@string/includePwModify_change"
                         android:textColor="#ffffff" />
                 </RelativeLayout>
             </LinearLayout>
@@ -108,7 +108,7 @@
                 android:id="@+id/tv_join_route"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="가입경로"
+                android:text="@string/includePwModify_joinChannel"
                 android:textColor="@color/color7"
                 android:textSize="18dp" />
         </knowledge_seek.com.phyctogram.util.MyLinearView>

@@ -2,9 +2,11 @@
     android:id="@+id/popup_element"
     android:layout_width="270dip"
     android:layout_height="fill_parent"
+    android:background="#ffffff"
     android:orientation="vertical">
 
     <TextView
+        android:id="@id/tv_ssid"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/purpledk"
@@ -20,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
-        android:text="비밀번호" />
+        android:text="@string/includeWithdraw_pw" />
 
     <EditText
         android:id="@+id/edit_password"
@@ -41,19 +43,19 @@
         <Button
             android:id="@+id/btn_close_popup"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/purple"
-            android:text="취소"
+            android:text="@string/commonActivity_cancel"
             android:textColor="#fff" />
 
         <Button
             android:id="@+id/btn_pwdOk"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:background="@color/purple"
-            android:text="연결"
+            android:text="@string/popupWifi_connection"
             android:textColor="#fff" />
     </LinearLayout>
 </LinearLayout>

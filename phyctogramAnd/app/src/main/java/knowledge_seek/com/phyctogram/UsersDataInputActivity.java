@@ -90,7 +90,7 @@ public class UsersDataInputActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
-                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' "+getString(R.string.characterActivity_choiceChild), Toast.LENGTH_LONG).show();
 
                 tv_users_name.setText(nowUsers.getName());
 
@@ -126,7 +126,7 @@ public class UsersDataInputActivity extends BaseActivity {
                 String height_str = et_input_height.getText().toString();
                 Log.d("-진우-", "입력된 키 : " + height_str);
                 if(nowUsers.getUser_seq() == 0){
-                    Toast.makeText(getApplicationContext(), "내 아이 관리에서 아이를 등록해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.diaryWriteActivity_registerChild, Toast.LENGTH_SHORT).show();
                     return ;
                 }
                 if(!checkHeight(height_str)){
@@ -183,7 +183,7 @@ public class UsersDataInputActivity extends BaseActivity {
     private boolean checkHeight(String height_str){
         //Log.d("-진우-", "자릿수 : " + height_str.length());
         if(height_str.length() <= 0 || height_str.length() > 7){
-            Toast.makeText(getApplicationContext(), "키를 확인해주세요", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.usersDataInputActivity_checkHeight, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -202,7 +202,7 @@ public class UsersDataInputActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }
@@ -224,7 +224,7 @@ public class UsersDataInputActivity extends BaseActivity {
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
-                Toast.makeText(getApplicationContext(), "저장하였습니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_SHORT).show();
                 /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("member", member);
                 startActivity(intent);
@@ -251,7 +251,7 @@ public class UsersDataInputActivity extends BaseActivity {
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("잠시만 기다려주세요");
+            dialog.setMessage(getString(R.string.commonActivity_wait));
             dialog.show();
             super.onPreExecute();
         }

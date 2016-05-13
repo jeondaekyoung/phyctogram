@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="MY 캐릭터"
+            android:text="@string/includeFileUpload_myCharacter"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
@@ -48,13 +48,13 @@
                 android:id="@+id/button_selectpic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="갤러리"/>
+                android:text="@string/includeDiaryWrite_gallery"/>
 
             <Button
                 android:id="@+id/uploadButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="파일업로드"/>
+                android:text="@string/includeFileUpload_fileUpload"/>
 
             <TextView
                 android:id="@+id/messageText"
