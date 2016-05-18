@@ -141,7 +141,7 @@
 
     <string name="activityReport_close">닫기</string>
 
-    <string name="includeAnalysis_finalHeight">최종신장</string>
+    <string name="includeAnalysis_finalHeight">키</string>
     <string name="includeAnalysis_highRank">상위</string>
     <string name="includeAnalysis_avg">평균 147cm</string>
     <string name="includeAnalysis_growth">8개월동안 1.5cm 성장</string>
@@ -196,8 +196,8 @@
 
     <string name="includeMain_height">키</string>
     <string name="includeMain_highRank">상위</string>
-    <string name="includeMain_reportAnalysis">리포트 분석</string>
-    <string name="includeMain_listSearch">기록 검색</string>
+    <string name="includeMain_reportAnalysis">성장 분석</string>
+    <string name="includeMain_listSearch">얼마나 컸을까?</string>
 
     <string name="includeMyCharacter_age0">0세</string>
     <string name="includeMyCharacter_age1">0.5세</string>

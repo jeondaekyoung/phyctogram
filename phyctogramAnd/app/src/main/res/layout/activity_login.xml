@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/color6"
+        android:background="@drawable/border_grey"
         android:hint="e-mail"
         android:inputType="textUri"
         android:paddingLeft="10dp"
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/color6"
+        android:background="@drawable/border_grey"
         android:hint="password"
         android:inputType="text"
         android:paddingLeft="10dp"
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:layout_marginRight="5dp"
             android:text="@string/activityLogin_kakaoLogin"
-            android:textColor="#ffffff"
+            android:textColor="#2F1310"
             android:textSize="12dp" />
 
         <com.facebook.login.widget.LoginButton
