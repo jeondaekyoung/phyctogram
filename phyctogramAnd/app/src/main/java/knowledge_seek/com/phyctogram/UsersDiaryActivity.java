@@ -169,7 +169,6 @@ public class UsersDiaryActivity extends BaseActivity {
                         dialog.show();*/
                     }
                 }
-
             }
         });
 
@@ -182,7 +181,6 @@ public class UsersDiaryActivity extends BaseActivity {
         btn_monthPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 calendarMonthAdapter.setPreviousMonth();
                 setMonthText();
 
@@ -191,14 +189,12 @@ public class UsersDiaryActivity extends BaseActivity {
                     ReUserDiaryTask task = new ReUserDiaryTask();
                     task.execute();
                 }
-
             }
         });
         btn_monthNext = (Button) findViewById(R.id.btn_monthNext);
         btn_monthNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 calendarMonthAdapter.setNextMonth();
                 setMonthText();
 
@@ -207,7 +203,6 @@ public class UsersDiaryActivity extends BaseActivity {
                     ReUserDiaryTask task = new ReUserDiaryTask();
                     task.execute();
                 }
-
             }
         });
 
@@ -227,10 +222,7 @@ public class UsersDiaryActivity extends BaseActivity {
                 }
             }
         });
-
-
         curPosition = -1;
-
     }
 
     @Override
@@ -270,7 +262,6 @@ public class UsersDiaryActivity extends BaseActivity {
         if (curMonthStr.length() == 1) {
             curMonthStr = "0".concat(curMonthStr);
         }
-
     }
 
     //일기 목록 다시 읽어오기
@@ -279,6 +270,7 @@ public class UsersDiaryActivity extends BaseActivity {
         private ProgressDialog dialog = new ProgressDialog(UsersDiaryActivity.this);
         private List<Diary> diarysTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -287,6 +279,7 @@ public class UsersDiaryActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Void doInBackground(Void... params) {
             //일기 목록 읽어오기
@@ -300,6 +293,7 @@ public class UsersDiaryActivity extends BaseActivity {
             return null;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Void aVoid) {
             //일기

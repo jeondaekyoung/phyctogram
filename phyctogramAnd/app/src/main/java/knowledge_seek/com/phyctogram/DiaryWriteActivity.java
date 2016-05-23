@@ -102,7 +102,6 @@ public class DiaryWriteActivity extends BaseActivity {
                 if (tv_users_name != null) {
                     tv_users_name.setText(nowUsers.getName());
                 }*/
-
             }
         });
 
@@ -119,6 +118,7 @@ public class DiaryWriteActivity extends BaseActivity {
 
         //초기디폴트 날짜 셋팅
         datepickSetting();
+
         //달력 대화상자 띄우기
         tv_diary_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,6 +221,7 @@ public class DiaryWriteActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    //갤러리 선택 결과 받는 함수
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == SELECT_IMAGE && resultCode == RESULT_OK && data != null){
@@ -286,16 +287,17 @@ public class DiaryWriteActivity extends BaseActivity {
 
     //일기 저장
     private class RegisterDiaryTask extends AsyncTask<Void, Void, String>{
-
         private ProgressDialog dialog = new ProgressDialog(DiaryWriteActivity.this);
         private Diary diaryTask;
         private File imageFileTask;
 
+        //생성자
         public RegisterDiaryTask(Diary diary, File imageFile) {
             this.diaryTask = diary;
             this.imageFileTask = imageFile;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -304,6 +306,7 @@ public class DiaryWriteActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
@@ -332,11 +335,10 @@ public class DiaryWriteActivity extends BaseActivity {
                     Log.d("-진우-", "글 저장 실패");
                 }
             }
-
-
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result != null){
@@ -347,7 +349,6 @@ public class DiaryWriteActivity extends BaseActivity {
                     //Log.d("-진우-", "일기 시퀀스 : " + result);
                     onBackPressed();
                 }
-
             } else {
                 Log.d("-진우-", "일기 저장에 실패하였습니다");
             }
@@ -356,6 +357,4 @@ public class DiaryWriteActivity extends BaseActivity {
             super.onPostExecute(result);
         }
     }
-
-
 }

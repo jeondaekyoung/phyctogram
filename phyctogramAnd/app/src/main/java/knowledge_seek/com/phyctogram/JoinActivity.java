@@ -107,9 +107,6 @@ public class JoinActivity extends Activity {
                     return ;
                 }
 
-                //패스워드체크
-                //Log.d("-진우-", "#" + et_pw.getText().toString() + "#, #" + et_pw1.getText().toString() + "#");
-                //Log.d("-진우-", "#" + et_pw.getText().toString().length() + "#, #" + et_pw1.getText().toString().length() + "#");
                 if(!checkpw(et_pw.getText().toString(), et_pw1.getText().toString())){
                    return ;
                 }
@@ -242,6 +239,7 @@ public class JoinActivity extends Activity {
         private ProgressDialog dialog = new ProgressDialog(JoinActivity.this);
         private Member memberTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -250,6 +248,7 @@ public class JoinActivity extends Activity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Member doInBackground(Object... params) {
             Member member = null;
@@ -265,6 +264,7 @@ public class JoinActivity extends Activity {
             return member;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Member member) {
             if(member != null) {

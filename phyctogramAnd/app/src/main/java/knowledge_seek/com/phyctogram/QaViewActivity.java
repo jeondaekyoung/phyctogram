@@ -74,7 +74,6 @@ public class QaViewActivity extends BaseActivity {
                 /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
-
             }
         });
 
@@ -109,9 +108,11 @@ public class QaViewActivity extends BaseActivity {
         TextView tv_content = (TextView) findViewById(R.id.qa_content);
         tv_content.setMovementMethod(new ScrollingMovementMethod());
 
+        //문의사항 타이틀
         TextView qa_title = (TextView) findViewById(R.id.qa_title);
         qa_title.setText(title);
 
+        //문의사항 날짜
         TextView qa_date = (TextView) findViewById(R.id.qa_date);
         qa_date.setText(writing_de);
 
@@ -125,6 +126,7 @@ public class QaViewActivity extends BaseActivity {
             sb.append(ansewr);
         }
 
+        //html 태그가 먹도록 set 함
         tv_content.setText(Html.fromHtml(sb.toString()));
 
         /*webview = (WebView) findViewById(R.id.wb_qa);

@@ -124,6 +124,7 @@ public class CharacterActivity extends BaseActivity {
         private ProgressDialog dialog = new ProgressDialog(CharacterActivity.this);
         private Analysis analysisTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -132,6 +133,7 @@ public class CharacterActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Void doInBackground(Void... params) {
             AnalysisAPI service = ServiceGenerator.createService(AnalysisAPI.class, "Analysis");
@@ -144,6 +146,7 @@ public class CharacterActivity extends BaseActivity {
             return null;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Void aVoid) {
             if (analysisTask != null) {

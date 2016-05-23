@@ -218,6 +218,7 @@ public class SettingActivity extends BaseActivity {
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -226,6 +227,7 @@ public class SettingActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Bitmap doInBackground(Object... params) {
             Bitmap mBitmap = null;
@@ -277,6 +279,7 @@ public class SettingActivity extends BaseActivity {
             return mBitmap;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             /*if(bitmap != null){

@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -11,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import knowledge_seek.com.phyctogram.util.EqAsyncTask;
 
 
 public class PopUpActivity extends Activity implements View.OnClickListener{
@@ -79,6 +82,7 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 	}
 
 	class SendMessageThread extends Thread {
+		private ProgressDialog dialog = new ProgressDialog(wifiPopUpActivity);
 		private boolean isPlay = false;
 		private int i;
 		private String ipAddress;
@@ -91,9 +95,15 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 			this.ipAddress = ipAddress;
 			this.ssid = ssid;
 			this.pw = pw;
+			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dialog.setCancelable(false);
+			dialog.setCanceledOnTouchOutside(false);
+			dialog.setMessage(getString(R.string.commonActivity_wait));
+			dialog.show();
 		}
 
 		public void stopThread() {
+			dialog.dismiss();
 			isPlay = !isPlay;
 		}
 
@@ -102,21 +112,16 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 			super.run();
 			while (isPlay) {
 				if(i==0){
-					String url = "http://"+ipAddress + ":80?SSID=" + ssid + "**";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					Log.d("-진우-","1");
+					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"??");
 				}else if(i==1){
-					String url = "http://"+ipAddress + ":80?PW=" + pw +"**";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					Log.d("-진우-","2");
+					new EqAsyncTask().execute("192.168.4.1:80", "PW", pw+"??");
 				}else if(i==2){
-					String url = "http://"+ipAddress + ":80?END_SERVER=";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					Log.d("-진우-","3");
+					new EqAsyncTask().execute("192.168.4.1:80", "END_SERVER","0");
 				}else{
+					Log.d("-진우-","4");
 					wifiPopUpActivity.connectWifi(ssid, pw, capabilities);
 				}
 				if (i==3){
@@ -125,7 +130,7 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 					i++;
 				}
 				try {
-					Thread.sleep(200);
+					Thread.sleep(1000*5);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

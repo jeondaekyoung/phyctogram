@@ -60,6 +60,7 @@ import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.listAdapter.WifiListAdapter;
 import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.retrofitapi.UsersAPI;
+import knowledge_seek.com.phyctogram.util.EqAsyncTask;
 import retrofit.Call;
 
 /**
@@ -67,9 +68,10 @@ import retrofit.Call;
  */
 public class EquipmentActivity extends BaseActivity {
 
-    ScanResult scanResult;
-    WifiManager wm;
-    List apList;
+    //wifi관련
+    private ScanResult scanResult;
+    private WifiManager wm;
+    private List apList;
 
     //레이아웃정의 - 슬라이드메뉴
     private LinearLayout ic_screen;
@@ -97,12 +99,7 @@ public class EquipmentActivity extends BaseActivity {
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                asyncTaskCall();
-                /*String url = "http://www.phyctogram.com/admin/index.do";
-                String result = requestHttpGet(url);
-
-                //test
-                Toast.makeText(getApplicationContext(), "member_seq  url: "+url+" ,  result: "+result, Toast.LENGTH_LONG).show();*/
+                new EqAsyncTask().execute("192.168.4.1:80", "REF", "190??");
             }
         });
 
@@ -150,18 +147,9 @@ public class EquipmentActivity extends BaseActivity {
 
     //wifi 초기화 및 검색 start
     public void searchStartWifi(){
-        //WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        /*boolean checkWifi = wfMgr.isWifiEnabled();
-        Log.d("-진우-", "checkWifi : "+checkWifi);
-        if(!checkWifi){
-            wfMgr.setWifiEnabled(true);
-        }*/
-
         //롤리팝 버전 이상이라면 권한 체크 요청함
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
-                //requestPermissions API 23이상에서 사용 가능 오류 아님
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 11);
             }catch (Exception e){
                 Log.d("-진우-","ParingActivity requestPermissions Exception : "+ e.getMessage());
@@ -203,6 +191,7 @@ public class EquipmentActivity extends BaseActivity {
                 //검색 하기
                 wm.startScan();
                 IntentFilter filter = new IntentFilter();
+                //검색 결과로 리시버를 등록하고 SCAN_RESULTS_AVAILABLE_ACTION 네임으로 설정한다.
                 filter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
                 registerReceiver(wifiReceiver, filter);
             }else{
@@ -215,6 +204,7 @@ public class EquipmentActivity extends BaseActivity {
     private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //네임이 SCAN_RESULTS_AVAILABLE_ACTION 인 방송이 들어오면 wifi 연결함
             if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)) {
                 searchWifi();
             }
@@ -224,27 +214,32 @@ public class EquipmentActivity extends BaseActivity {
     //wifi List view 셋팅
     public void searchWifi() {
         unregisterReceiver(wifiReceiver);    //리시버 해제
-        apList = wm.getScanResults();
+        apList = wm.getScanResults(); //스캔된 wifi 정보를 받음
         if (wm.getScanResults() != null) {
             int size = apList.size();
             for (int i = 0; i < size; i++) {
-                scanResult = (ScanResult) apList.get(i);
-                wifiList.add(new Wifi(scanResult.SSID,scanResult.capabilities));
+                scanResult = (ScanResult) apList.get(i); //wifi 정보를 하나씩 선택
+                wifiList.add(new Wifi(scanResult.SSID,scanResult.capabilities)); //wifi 정보를 걸러내어 list에 입력
             }
         }
 
+        //wifi 리스트를 adapter를 통하여 ListView에 셋팅함
         lv_wifilist = (ListView)findViewById(R.id.lv_wifiList);
         wifiListAdapter = new WifiListAdapter(this, wifiList, R.layout.list_wifi);
         lv_wifilist.setAdapter(wifiListAdapter);
 
+        //ListView Item 클릭 시
         lv_wifilist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //선택된 wifi 정보를 봅음
                 Wifi wifi = (Wifi) wifiListAdapter.getItem(position);
-                String capabilities = wifi.getCapabilities();
+                String capabilities = wifi.getCapabilities(); //보안 방식을 가져옴
+                //보안이 걸려있다면 비밀번호 입력 팝업을 오픈
                 if(capabilities.contains("WEP")||capabilities.contains("WPA")||capabilities.contains("WPA2")||capabilities.contains("OPEN")){
                     openPopup(wifi.getSsid(), wifi.getCapabilities());
                 }else{
+                    //보안이 없다면 바로 연결
                     connectWifi(wifi.getSsid(), "", wifi.getCapabilities());
                 }
             }
@@ -253,95 +248,30 @@ public class EquipmentActivity extends BaseActivity {
         btn_connWifi.setText(R.string.equipmentActivity_endSearch);
     }
 
-    private Button btnClosePopup, btnPwdOk;
-    private PopupWindow pwindo;
-    private int mWidthPixels, mHeightPixels;
-    private TextView tv_ssid, textCapabilities;
-    private EditText textPassword;
-
+    //보안 wifi 일 경우 팝업 오픈하여 비밀번호 입력하게 함
     public void openPopup(String ssid, String capabilities){
-
+        //현재 activity를 팝업에 셋팅함
         PopUpActivity.activity = this;
 
+        //팝업 오픈
         Intent i = new Intent(getApplicationContext(), PopUpActivity.class);
         i.putExtra("ssid", ssid);
         i.putExtra("capabilities", capabilities);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
-        /*WindowManager w = getWindowManager();
-        Display d = w.getDefaultDisplay();
-        DisplayMetrics metrics = new DisplayMetrics();
-        d.getMetrics(metrics);
-        // since SDK_INT = 1;
-        mWidthPixels = metrics.widthPixels;
-        mHeightPixels = metrics.heightPixels;
-
-        // 상태바와 메뉴바의 크기를 포함해서 재계산
-        if (Build.VERSION.SDK_INT >= 14 && Build.VERSION.SDK_INT < 17)
-            try {
-                mWidthPixels = (Integer) Display.class.getMethod("getRawWidth").invoke(d);
-                mHeightPixels = (Integer) Display.class.getMethod("getRawHeight").invoke(d);
-            } catch (Exception ignored) {
-            }
-        // 상태바와 메뉴바의 크기를 포함
-        if (Build.VERSION.SDK_INT >= 17)
-            try {
-                Point realSize = new Point();
-                Display.class.getMethod("getRealSize", Point.class).invoke(d, realSize);
-                mWidthPixels = realSize.x;
-                mHeightPixels = realSize.y;
-            } catch (Exception ignored) {
-            }
-
-        try {
-            //  LayoutInflater 객체와 시킴
-            LayoutInflater inflater = (LayoutInflater) EquipmentActivity.this
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View layout = inflater.inflate(R.layout.popup_wifi,
-                    (ViewGroup) findViewById(R.id.popup_element));
-
-            pwindo = new PopupWindow(layout, mWidthPixels-200, mHeightPixels-500, true);
-            pwindo.showAtLocation(layout, Gravity.CENTER, 0, 0);
-            btnClosePopup = (Button) layout.findViewById(R.id.btn_close_popup);
-            btnClosePopup.setOnClickListener(cancel_button_click_listener);
-            btnPwdOk = (Button) layout.findViewById(R.id.btn_pwdOk);
-            btnPwdOk.setOnClickListener(ok_button_click_listener);
-            *//*textSsid = (TextView) layout.findViewById(R.id.text_ssid);
-            textSsid.setText(ssid);*//*
-            *//*textCapabilities = (TextView) layout.findViewById(R.id.text_capabilities);
-            textCapabilities.setText(capabilities);*//*
-            textPassword = (EditText) layout.findViewById(R.id.edit_password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
-    /*private View.OnClickListener ok_button_click_listener =
-        new View.OnClickListener() {
-
-            public void onClick(View v) {
-                connectWifi(tv_ssid.getText().toString(), textPassword.getText().toString(), textCapabilities.getText().toString());
-                pwindo.dismiss();
-            }
-    };
-
-    private View.OnClickListener cancel_button_click_listener =
-        new View.OnClickListener() {
-
-            public void onClick(View v) {
-                pwindo.dismiss();
-            }
-    };*/
-
+    //wifi 연결 담당
     public boolean connectWifi(String ssid, String password, String capabilities) {
-        Log.d("-진우-", "ssid: " + ssid + ",password: " + password + ",capablities: " +capabilities);
+        Log.d("-진우-", "ssid: " + ssid + ",password: " + password + ",capablities: " + capabilities);
         WifiConfiguration wfc = new WifiConfiguration();
 
+        //wifi 고통 규칙
         wfc.SSID = "\"".concat( ssid ).concat("\"");
         wfc.status = WifiConfiguration.Status.DISABLED;
         wfc.priority = 40;
 
+        //wifi 보안 종류별 개별 규칙
         if(capabilities.contains("WEP") == true ){
             Log.d("-진우-", "WEP 셋팅");
             wfc.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
@@ -392,14 +322,7 @@ public class EquipmentActivity extends BaseActivity {
 
         Log.d("-진우-", "wfc : " + wfc.toString());
 
-        /*int networkId = wm.addNetwork(wfc);
-        if(networkId != -1){
-            wm.enableNetwork(networkId, true);
-            Log.d("-진우-", "연결됬나?");
-        }
-*/
-        int networkId = -1;
-        //WifiManager wfMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        int networkId = -1; //-1 연결 정보 없음
         List<WifiConfiguration> networks = wm.getConfiguredNetworks();
         Log.d("-진우-", "networks : " + networks.toString());
 
@@ -407,33 +330,38 @@ public class EquipmentActivity extends BaseActivity {
             Log.d("-진우-", "networks.get(i).SSID : " + networks.get(i).SSID);
             if(networks.get(i).SSID.equals("\"".concat( ssid ).concat("\""))){
                 Log.d("-진우-", "networks.get(i).networkId : " + networks.get(i).networkId);
-                networkId = networks.get(i).networkId;
+                networkId = networks.get(i).networkId; //-1을 연결 정보가 있다면 해당 id로 변경
             }
         }
+
+        //연결 정보가 없다면 네트워크를 추가하고 id를 받음
         if(networkId == -1) {
             networkId = wm.addNetwork(wfc);
         }
         Log.d("-진우-", "networkId : " + networkId);
 
+        //연결 여부 : false
         boolean connection = false;
 
         if(networkId != -1){
             Toast.makeText(getApplicationContext(), R.string.equipmentActivity_connectionAlert, Toast.LENGTH_SHORT).show();
-            //wfMgr.enableNetwork(networkId, true);
-            connection = wm.enableNetwork(networkId, true);
+            //해당 networkId로 wifi를 연결함
+            connection = wm.enableNetwork(networkId, true); //연결이 되면 true를 반환
             Log.d("-진우-", "connection : "+connection);
         }else{
             Toast.makeText(getApplicationContext(), R.string.equipmentActivity_failPW, Toast.LENGTH_SHORT).show();
         }
 
+        //연결이 되었다면
         if(connection==true) {
+            //wifi정보를 저장
             wm.setWifiEnabled(true);
             Toast.makeText(getApplicationContext(), R.string.equipmentActivity_successConnection, Toast.LENGTH_SHORT).show();
 
+            //연결된 wifi에 ip를 가져옴 필요 여부 판단 필요
             WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
             DhcpInfo dhcpInfo = wm.getDhcpInfo() ;
             int serverIp = dhcpInfo.gateway;
-
             String ipAddress = String.format(
                     "%d.%d.%d.%d",
                     (serverIp & 0xff),
@@ -442,14 +370,11 @@ public class EquipmentActivity extends BaseActivity {
                     (serverIp >> 24 & 0xff));
 
             Log.d("-진우-", "ipAddress: " + ipAddress);
-            Log.d("-진우-", "member.getMember_seq(): " + member.getMember_seq());
-            String url = "http://"+ipAddress+":80?member_seq="+member.getMember_seq()+"**";
-            Log.d("-진우-", "url: " + url);
-            //String result = sendData(url);
 
-            //test
-            //Toast.makeText(getApplicationContext(), "member_seq  url: "+url+" ,  result: "+result, Toast.LENGTH_LONG).show();
+            //기기에 member_seq 전송
+            new EqAsyncTask().execute("192.168.4.1:80", "member_seq", member.getMember_seq()+"??");
 
+            //연결된 픽토그램 기기에 보내줄 wifi 선택 팝업을 오픈
             Intent i = new Intent(getApplicationContext(), WifiPopUpActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             i.putExtra("ipAddress", ipAddress);
@@ -486,7 +411,6 @@ public class EquipmentActivity extends BaseActivity {
 
     //기록조회페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class EquipmentTask extends AsyncTask<Object, Void, Bitmap> {
-
         private ProgressDialog dialog = new ProgressDialog(EquipmentActivity.this);
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
@@ -580,64 +504,6 @@ public class EquipmentActivity extends BaseActivity {
 
             dialog.dismiss();
             super.onPostExecute(bitmap);
-        }
-    }
-
-    public void asyncTaskCall() {
-        String ip = "192.168.123.254";
-        new TestAsyncTask().execute(ip);
-    }
-
-    private class TestAsyncTask extends AsyncTask<Object, Integer, Void>{
-        // doInBackground 메소드가 실행되기 전에 실행되는 메소드
-        @Override
-        protected void onPreExecute() {
-            // UI 작업을 수행하는 부분
-            super.onPreExecute();
-        }
-
-        // 실제 비즈니스 로직이 처리될 메소드(Thread 부분이라고 생각하면 됨)
-        @Override
-        protected Void doInBackground(Object... params) {
-            String ip = (String) params[0];
-            Log.d("-진우-", "ip : "+ip);
-            try {
-                Log.d("-진우-", "Exception : 1");
-                URL reqUrl = new URL("http://192.168.4.1:80/");
-                Log.d("-진우-", "Exception : 2");
-                HttpURLConnection urlConn = (HttpURLConnection) reqUrl.openConnection();
-                Log.d("-진우-", "Exception : 3");
-                urlConn.setRequestMethod("GET");
-                Log.d("-진우-", "Exception : 4");
-                urlConn.setRequestProperty("REF", "180**");
-                Log.d("-진우-", "Exception : 5");
-
-                int resCode = urlConn.getResponseCode();
-                Log.d("-진우-", "Exception : 6");
-                if (resCode != HttpURLConnection.HTTP_OK) return null;
-                Log.d("-진우-", "Exception : 7");
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
-                Log.d("-진우-", "Exception : 8");
-                String input;
-                Log.d("-진우-", "Exception : 9");
-                StringBuffer sb = new StringBuffer();
-                Log.d("-진우-", "Exception : 10");
-
-                while ((input = reader.readLine()) != null){
-                    sb.append(input);
-                }
-            }catch (Exception e){
-                Log.d("-진우-", "Exception : " + e.getMessage());
-            }
-            return null;
-        }
-
-        // 모든 작업이 끝난 후 처리되는 메소드
-        @Override
-        protected void onPostExecute(Void result) {
-            //Log.d("-진우-", "result : " + result.toString());
-            super.onPostExecute(result);
         }
     }
 }

@@ -1,6 +1,7 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Wifi;
 import knowledge_seek.com.phyctogram.listAdapter.WifiListAdapter;
+import knowledge_seek.com.phyctogram.util.EqAsyncTask;
 
 
 public class WifiPopUpActivity extends Activity{
@@ -112,7 +114,7 @@ public class WifiPopUpActivity extends Activity{
 					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(i);
 				} else {
-					SendMessageThread sendMessageThread = new SendMessageThread(true, 0, ipAddress, wifi.getSsid());
+					SendMessageThread sendMessageThread = new SendMessageThread(true, 0, ipAddress, wifi.getSsid(), capabilities);
 					sendMessageThread.start();
 				}
 			}
@@ -120,19 +122,28 @@ public class WifiPopUpActivity extends Activity{
 	}
 
 	class SendMessageThread extends Thread {
+		private ProgressDialog dialog = new ProgressDialog(WifiPopUpActivity.this);
 		private boolean isPlay = false;
 		private int i;
 		private String ipAddress;
 		private String ssid;
+		private String capabilities;
 
-		public SendMessageThread(boolean isPlay, int i, String ipAddress, String ssid) {
+		public SendMessageThread(boolean isPlay, int i, String ipAddress, String ssid, String capabilities) {
 			this.i = i;
 			this.isPlay = isPlay;
 			this.ipAddress = ipAddress;
 			this.ssid = ssid;
+			this.capabilities = capabilities;
+			dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			dialog.setCancelable(false);
+			dialog.setCanceledOnTouchOutside(false);
+			dialog.setMessage(getString(R.string.commonActivity_wait));
+			dialog.show();
 		}
 
 		public void stopThread() {
+			dialog.dismiss();
 			isPlay = !isPlay;
 		}
 
@@ -141,28 +152,21 @@ public class WifiPopUpActivity extends Activity{
 			super.run();
 			while (isPlay) {
 				if(i==0){
-					String url = "http://"+ipAddress + ":80?SSID=" + ssid + "**";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"??");
 				}else if(i==1){
-					String url = "http://"+ipAddress + ":80?PW=**";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					new EqAsyncTask().execute("192.168.4.1:80", "PW", "??");
+				}else if(i==2){
+					new EqAsyncTask().execute("192.168.4.1:80", "END_SERVER", "END_SERVER");
 				}else{
-					String url = "http://"+ipAddress + ":80?END_SERVER=";
-					Log.d("-진우-", "PopUpActivity url: " + url);
-					//String result = EquipmentActivity.sendData(url);
-					//Log.d("-진우-", "PopUpActivity result: " + result);
+					connectWifi(ssid, "", capabilities);
 				}
-				if (i==2){
+				if (i==3){
 					stopThread();
 				}else {
 					i++;
 				}
 				try {
-					Thread.sleep(200);
+					Thread.sleep(1000*5);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -245,18 +249,18 @@ public class WifiPopUpActivity extends Activity{
 		boolean connection = false;
 
 		if(networkId != -1){
-			Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_settingHW, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_settingHW, Toast.LENGTH_SHORT).show();
 			connection = wm.enableNetwork(networkId, true);
 			Log.d("-진우-", "connection : "+connection);
 		}else{
-			Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_reSettingHWPW, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_reSettingHWPW, Toast.LENGTH_SHORT).show();
 		}
 
 		if(connection==true) {
 			wm.setWifiEnabled(true);
-			Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_successSettingHW, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_successSettingHW, Toast.LENGTH_SHORT).show();
 		}else{
-			Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_reSettingHWConnection, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_reSettingHWConnection, Toast.LENGTH_SHORT).show();
 		}
 
 		finish();

@@ -152,10 +152,10 @@ public class DiaryViewActivity extends BaseActivity {
                     Toast.makeText(getApplicationContext(), R.string.diaryViewActivity_notDeleteDiary, Toast.LENGTH_LONG).show();
                     return;
                 }
-
                 String diary_date = et_diary_date.getText().toString();
 
                 Log.d("-진우-", "삭제클릭 : " + Utility.diary2json(diary));
+                //삭제 팝업
                 AlertDialog.Builder dialog = new AlertDialog.Builder(DiaryViewActivity.this);
                 dialog.setTitle(R.string.diaryViewActivity_deleteDiaryTitle)
                         .setMessage(nowUsers.getName() + getString(R.string.diaryViewActivity_respect)+" " + diary_date + " "+getString(R.string.diaryViewActivity_deleteAsk))
@@ -194,12 +194,9 @@ public class DiaryViewActivity extends BaseActivity {
                             }
                         });
                 dialog.show();
-
-
-
-
             }
         });
+
         btn_diary_modify = (Button)findViewById(R.id.btn_diary_modify);
         btn_diary_modify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -250,11 +247,8 @@ public class DiaryViewActivity extends BaseActivity {
 
                     }
                 });
-
-
             }
         });
-
     }
 
     @Override
@@ -306,11 +300,11 @@ public class DiaryViewActivity extends BaseActivity {
 
     //일기보기페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지)
     private class DiaryViewTask extends AsyncTask<Object, Void, Bitmap> {
-
         private ProgressDialog dialog = new ProgressDialog(DiaryViewActivity.this);
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -319,6 +313,7 @@ public class DiaryViewActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Bitmap doInBackground(Object... params) {
             Bitmap mBitmap = null;
@@ -370,6 +365,7 @@ public class DiaryViewActivity extends BaseActivity {
             return mBitmap;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             /*if (bitmap != null) {

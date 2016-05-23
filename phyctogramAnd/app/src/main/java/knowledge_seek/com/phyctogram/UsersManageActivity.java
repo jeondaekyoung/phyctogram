@@ -88,7 +88,7 @@ public class UsersManageActivity extends BaseActivity {
             }
         });
 
-
+        //슬라이드 메뉴 버튼
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,13 +119,9 @@ public class UsersManageActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Users users = (Users) usersListManageAdapter.getItem(position);
-                //Log.d("-진우-", "수정할 아이 : " + users.toString());
-                //menuLeftSlideAnimationToggle();
                 Intent intent = new Intent(getApplicationContext(), UsersModActivity.class);
-                //intent.putExtra("member", member);
                 intent.putExtra("users", users);
                 startActivity(intent);
-                //finish();
             }
         });
 
@@ -143,7 +139,6 @@ public class UsersManageActivity extends BaseActivity {
                 dialog.setPositiveButton(R.string.commonActivity_yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         UsersAPI service = ServiceGenerator.createService(UsersAPI.class);
                         Call<String> call = service.delUsersByUserSeq(String.valueOf(users.getUser_seq()));
                         call.enqueue(new Callback<String>() {
@@ -156,7 +151,7 @@ public class UsersManageActivity extends BaseActivity {
                                 finish();*/
                                 Toast.makeText(getApplicationContext(), R.string.usersManageActivity_successDeleteChild, Toast.LENGTH_LONG).show();
 
-                                if(nowUsers.getUser_seq() == users.getUser_seq()){
+                                if (nowUsers.getUser_seq() == users.getUser_seq()) {
                                     nowUsers = new Users();
                                     //nowUsers = null;
                                 }
@@ -242,7 +237,7 @@ public class UsersManageActivity extends BaseActivity {
         @Override
         protected Bitmap doInBackground(Object... params) {
             Bitmap mBitmap = null;
-            img_profileTask = (CircularImageView)params[0];
+            img_profileTask = (CircularImageView) params[0];
 
             //슬라이드메뉴에 있는 내 아이 목록
             /*UsersAPI service = ServiceGenerator.createService(UsersAPI.class, "Users");
@@ -327,11 +322,12 @@ public class UsersManageActivity extends BaseActivity {
     }
 
     //내 아이 목록 읽어오기
-    private class FindUsersTask extends AsyncTask<Void, Void, Void>{
+    private class FindUsersTask extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog dialog = new ProgressDialog(UsersManageActivity.this);
         private List<Users> usersTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -340,6 +336,7 @@ public class UsersManageActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Void doInBackground(Void... params) {
 
@@ -355,10 +352,11 @@ public class UsersManageActivity extends BaseActivity {
             return null;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Void aVoid) {
 
-            if(usersTask != null && usersTask.size() > 0){
+            if (usersTask != null && usersTask.size() > 0) {
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
                 Utility.compareList(usersList, usersTask);
 

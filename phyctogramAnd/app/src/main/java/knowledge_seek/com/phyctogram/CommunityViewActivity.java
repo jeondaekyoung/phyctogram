@@ -64,8 +64,8 @@ public class CommunityViewActivity extends BaseActivity {
     private Button btn_comment_register;        //댓글 등록
 
     //데이터정의
-    private SqlCommntyListView sqlCommntyListView = new SqlCommntyListView();
-    private Commnty commnty = new Commnty();
+    private SqlCommntyListView sqlCommntyListView = new SqlCommntyListView(); //커뮤니티 리스트 객체
+    private Commnty commnty = new Commnty(); //커뮤니티 내용 객체
     private List<Comment> CommentList = new ArrayList<Comment>();
     private Comment comment = new Comment();        //댓글객체
 
@@ -106,7 +106,6 @@ public class CommunityViewActivity extends BaseActivity {
                 /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
-
             }
         });
 
@@ -130,7 +129,6 @@ public class CommunityViewActivity extends BaseActivity {
         tv_cnt = (TextView)findViewById(R.id.tv_cnt);
         tv_cnt.setText(new StringBuilder().append(getString(R.string.communityViewActivity_comment)).append(sqlCommntyListView.getCnt()).append(" "+getString(R.string.communityViewActivity_number)).toString());
         tv_contents = (TextView)findViewById(R.id.tv_contents);
-
 
         //댓글 목록
         lv_comments = (ListView)findViewById(R.id.lv_comments);
@@ -157,7 +155,6 @@ public class CommunityViewActivity extends BaseActivity {
                 //댓글 저장하기
                 RegisterCommentTask task = new RegisterCommentTask(comment);
                 task.execute();
-
             }
         });
         /*et_comment.setOnClickListener(new View.OnClickListener() {
@@ -169,7 +166,6 @@ public class CommunityViewActivity extends BaseActivity {
                 //startActivity(intent);
             }
         });*/
-
     }
 
     @Override
@@ -193,6 +189,7 @@ public class CommunityViewActivity extends BaseActivity {
 
         Log.d("-진우-", "CommunityViewActivity 에 onResume() : " + member.toString());
 
+        //수다방 내용 읽어오기
         FindCommntyAndCommentTask task1 = new FindCommntyAndCommentTask(sqlCommntyListView.getCommnty_seq());
         task1.execute();
 
@@ -210,7 +207,6 @@ public class CommunityViewActivity extends BaseActivity {
 
     //댓글 쓰기
     private class RegisterCommentTask extends AsyncTask<Void, Void, String>{
-
         private Comment comment;
         //private ProgressDialog dialog = new ProgressDialog(CommunityViewActivity.this);
 
@@ -218,6 +214,7 @@ public class CommunityViewActivity extends BaseActivity {
             this.comment = comment;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             //dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -226,6 +223,7 @@ public class CommunityViewActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
@@ -240,6 +238,7 @@ public class CommunityViewActivity extends BaseActivity {
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
@@ -270,6 +269,7 @@ public class CommunityViewActivity extends BaseActivity {
             this.commnty_seqTask = commnty_seqTask;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -278,6 +278,7 @@ public class CommunityViewActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Void doInBackground(Void... params) {
             CommntyAPI service = ServiceGenerator.createService(CommntyAPI.class, "Commnty");
@@ -295,10 +296,10 @@ public class CommunityViewActivity extends BaseActivity {
             } catch (IOException e){
                 Log.d("-진우-", "수다방 댓글 조회 실패");
             }
-
             return null;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Void aVoid) {
             if(commntyTask != null){
@@ -316,7 +317,6 @@ public class CommunityViewActivity extends BaseActivity {
 
                 CommentList = commentListTask;
                 commentListAdapter.setComments(commentListTask);
-
             }
 
             int height = getListViewHeight(lv_comments);

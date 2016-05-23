@@ -61,7 +61,6 @@ public class CommunityWriteActivity extends BaseActivity {
         ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_commuinity_write, ic_screen, true);
 
-
         //슬라이드 내 이미지, 셋팅
         img_profile = (CircularImageView) findViewById(R.id.img_profile);
         if (memberImg != null) {
@@ -81,7 +80,6 @@ public class CommunityWriteActivity extends BaseActivity {
                 /*nowUsers = (Users) usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
-
             }
         });
 
@@ -117,7 +115,6 @@ public class CommunityWriteActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-
     }
 
     @Override
@@ -156,14 +153,15 @@ public class CommunityWriteActivity extends BaseActivity {
 
     //글 저장
     private class RegisterCommntyTask extends AsyncTask<Void, Void, String> {
-
         private Commnty commnty;
         private ProgressDialog dialog = new ProgressDialog(CommunityWriteActivity.this);
 
+        //생성자
         public RegisterCommntyTask(Commnty commnty) {
             this.commnty = commnty;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -172,6 +170,7 @@ public class CommunityWriteActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             Log.d("-진우-", Utility.commnty2json(commnty));
@@ -186,6 +185,7 @@ public class CommunityWriteActivity extends BaseActivity {
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
@@ -198,5 +198,4 @@ public class CommunityWriteActivity extends BaseActivity {
             super.onPostExecute(result);
         }
     }
-
 }

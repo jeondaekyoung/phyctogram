@@ -66,7 +66,7 @@ public class UsersAddActivity extends BaseActivity {
         Log.d("-진우-", "UsersAddActivity.onCreate() 실행");
 
         //화면페이지
-        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
+        ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_users_add, ic_screen, true);
 
         //슬라이드 내 이미지, 셋팅
@@ -105,13 +105,13 @@ public class UsersAddActivity extends BaseActivity {
         users = new Users();
 
         //레이아웃 정의
-        et_name = (EditText)findViewById(R.id.et_name);
-        et_initials = (EditText)findViewById(R.id.et_initials);
-        dp_lifedate = (DatePicker)findViewById(R.id.dp_lifedate);
+        et_name = (EditText) findViewById(R.id.et_name);
+        et_initials = (EditText) findViewById(R.id.et_initials);
+        dp_lifedate = (DatePicker) findViewById(R.id.dp_lifedate);
         //rg_sexdstn = (RadioGroup)findViewById(R.id.rg_sexdstn);
-        rb_female = (RadioButton)findViewById(R.id.rb_female);
-        rb_male = (RadioButton)findViewById(R.id.rb_male);
-        btn_usersadd = (Button)findViewById(R.id.btn_usersadd);
+        rb_female = (RadioButton) findViewById(R.id.rb_female);
+        rb_male = (RadioButton) findViewById(R.id.rb_male);
+        btn_usersadd = (Button) findViewById(R.id.btn_usersadd);
         btn_usersadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,14 +127,14 @@ public class UsersAddActivity extends BaseActivity {
                 users.setLifyea(String.valueOf(dp_lifedate.getYear()));
                 users.setMt(Utility.dateFormat(dp_lifedate.getMonth() + 1));
                 users.setDe(Utility.dateFormat(dp_lifedate.getDayOfMonth()));
-                if(rb_female.isChecked()){
+                if (rb_female.isChecked()) {
                     users.setSexdstn("female");
-                } else if(rb_male.isChecked()){
+                } else if (rb_male.isChecked()) {
                     users.setSexdstn("male");
                 }
 
-                if(!checkUsers(users)){
-                    return ;
+                if (!checkUsers(users)) {
+                    return;
                 }
 
                 //내아이 저장하기 - 비동기
@@ -146,14 +146,8 @@ public class UsersAddActivity extends BaseActivity {
                     @Override
                     public void onResponse(Response<String> response, Retrofit retrofit) {
                         Log.d("-진우-", "내 아이 등록 결과 : " + response.body());
-                        if(response.body() != null && response.body().equals("success")){
+                        if (response.body() != null && response.body().equals("success")) {
                             Toast.makeText(getApplicationContext(), R.string.usersAddActivity_registerChild, Toast.LENGTH_LONG).show();
-                            /*Intent intent = new Intent(getApplicationContext(), UsersManageActivity.class);
-                            intent.putExtra("member", member);
-                            startActivity(intent);
-                            finish();*/
-                            /*FindUsersTask task = new FindUsersTask();
-                            task.execute();*/
                             onBackPressed();
                         }
                     }
@@ -198,18 +192,18 @@ public class UsersAddActivity extends BaseActivity {
     }
 
     //users의 내용 체크
-    private boolean checkUsers(Users users){
+    private boolean checkUsers(Users users) {
         //Log.d("-진우-", users.toString());
-        if(users.getName().length() <= 0){
+        if (users.getName().length() <= 0) {
             Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkName, Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(users.getInitials().length() <= 0 || users.getInitials().length() >= 4) {
+        if (users.getInitials().length() <= 0 || users.getInitials().length() >= 4) {
             Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkInitials, Toast.LENGTH_SHORT).show();
             return false;
         } else {
             //Toast.makeText(getApplicationContext(), users.getInitials() + " : " + users.getInitials().matches("^[A-Z0-9]*$"), Toast.LENGTH_SHORT).show();
-            if(!users.getInitials().matches("^[A-Z0-9]*$")){
+            if (!users.getInitials().matches("^[A-Z0-9]*$")) {
                 Toast.makeText(getApplicationContext(), R.string.usersAddActivity_checkInitials, Toast.LENGTH_SHORT).show();
                 return false;
             }
@@ -316,7 +310,7 @@ public class UsersAddActivity extends BaseActivity {
     }
 
     //내 아이 목록 읽어오기
-    private class FindUsersTask extends AsyncTask<Void, Void, Void>{
+    private class FindUsersTask extends AsyncTask<Void, Void, Void> {
 
         private ProgressDialog dialog = new ProgressDialog(UsersAddActivity.this);
         private List<Users> usersTask;
@@ -347,9 +341,9 @@ public class UsersAddActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
 
-            if(usersTask != null && usersTask.size() > 0){
+            if (usersTask != null && usersTask.size() > 0) {
                 Log.d("-진우-", "내 아이는 몇명? " + usersTask.size());
-                for(Users u : usersTask) {
+                for (Users u : usersTask) {
                     Log.d("-진우-", "내 아이 : " + u.toString());
                 }
                 usersList = usersTask;

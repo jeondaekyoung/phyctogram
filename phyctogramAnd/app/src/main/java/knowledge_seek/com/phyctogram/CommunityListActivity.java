@@ -79,9 +79,9 @@ public class CommunityListActivity extends BaseActivity {
                 /*nowUsers = (Users)usersListSlideAdapter.getItem(position);
                 Log.d("-진우-", "선택한 아이 : " + nowUsers.toString());
                 Toast.makeText(getApplicationContext(), "'" + nowUsers.getName() + "' 아이를 선택하였습니다", Toast.LENGTH_LONG).show();*/
-
             }
         });
+
         //레이아웃 정의
         btn_left = (ImageButton) findViewById(R.id.btn_left);
         btn_left.setOnClickListener(new View.OnClickListener() {
@@ -131,8 +131,10 @@ public class CommunityListActivity extends BaseActivity {
 
         //커뮤니티 글 목록
         lv_sqlcommntyList_communityList = (ListView)findViewById(R.id.lv_sqlcommntyList_communityList);
+        //set adapter
         sqlCommntyListViewListAdapter = new SqlCommntyListViewListAdapter(this, sqlCommntyListViewList, R.layout.list_community );
         lv_sqlcommntyList_communityList.setAdapter(sqlCommntyListViewListAdapter);
+        //set scrollListener
         lv_sqlcommntyList_communityList.setOnScrollListener(scrollListenerLatest);
         //리스트뷰 클릭 -> 글 보기로 이동
         lv_sqlcommntyList_communityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -155,15 +157,17 @@ public class CommunityListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         Log.d("-진우-", "CommunityListActivity.onResume() 실행");
-
         //슬라이드메뉴 셋팅
         initSildeMenu();
 
         //슬라이드메뉴 내 아이 목록 셋팅
         usersListSlideAdapter.setUsersList(usersList);
         usersListSlideAdapter.setSelectUsers(nowUsers.getUser_seq());
+        //리스트뷰의 높이를 구함
         int height = getListViewHeight(lv_usersList);
+        //리스트뷰의 높이를 셋팅
         lv_usersList.getLayoutParams().height = height;
+        //data 갱신
         usersListSlideAdapter.notifyDataSetChanged();
 
         Log.d("-진우-", "CommunityListActivity.onResume() : " + member.toString());
@@ -172,6 +176,7 @@ public class CommunityListActivity extends BaseActivity {
         pageCnt = 0;
         btn_commntyLatest.setBackgroundResource(R.drawable.btn_on);
         btn_commntyPlpular.setBackgroundResource(R.drawable.btn_off);
+        //최신 글 목록 읽어오기
         FindCommntyLatestTask task2 = new FindCommntyLatestTask(pageCnt);
         task2.execute();
 
@@ -180,15 +185,16 @@ public class CommunityListActivity extends BaseActivity {
 
     //최신 글 목록 읽어오기
     private class FindCommntyLatestTask extends AsyncTask<Void, Void, List<SqlCommntyListView>>{
+        private int pageCntTask; //페이지 번호
+        private List<SqlCommntyListView> sqlCommntyListViewTask; //커뮤니티 리스트 객체
+        private ProgressDialog dialog = new ProgressDialog(CommunityListActivity.this); //로딩 팝업
 
-        private int pageCntTask;
-        private List<SqlCommntyListView> sqlCommntyListViewTask;
-        private ProgressDialog dialog = new ProgressDialog(CommunityListActivity.this);
-
+        //생성자 페이지 번호 셋팅
         public FindCommntyLatestTask(int pageCntTask) {
             this.pageCntTask = pageCntTask;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -197,11 +203,14 @@ public class CommunityListActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected List<SqlCommntyListView> doInBackground(Void... params) {
+            //통신에 필요한 객체 생성
             SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
             Call<List<SqlCommntyListView>> call = service.findCommntyLatest(pageCntTask);
             try {
+                //통신 시작 후 결과를 sqlCommntyListViewTask에 저장
                 sqlCommntyListViewTask = call.execute().body();
             } catch (IOException e){
                 Log.d("-진우-", "수다방 목록 조회 실패");
@@ -209,6 +218,7 @@ public class CommunityListActivity extends BaseActivity {
             return sqlCommntyListViewTask;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(List<SqlCommntyListView> sqlCommntyListViews) {
             if(sqlCommntyListViews != null && sqlCommntyListViews.size() > 0){
@@ -237,17 +247,19 @@ public class CommunityListActivity extends BaseActivity {
             super.onPostExecute(sqlCommntyListViews);
         }
     }
+
     //인기 글 목록 읽어오기
     private class FindCommntyPopularTask extends AsyncTask<Void, Void, List<SqlCommntyListView>>{
-
         private int pageCntTask;
         private List<SqlCommntyListView> sqlCommntyListViewTask;
         private ProgressDialog dialog = new ProgressDialog(CommunityListActivity.this);
 
+        //생성자 페이지 번호 셋팅
         public FindCommntyPopularTask(int pageCntTask) {
             this.pageCntTask = pageCntTask;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -256,6 +268,7 @@ public class CommunityListActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected List<SqlCommntyListView> doInBackground(Void... params) {
             SqlCommntyListViewAPI service = ServiceGenerator.createService(SqlCommntyListViewAPI.class, "SqlCommntyListView");
@@ -268,6 +281,7 @@ public class CommunityListActivity extends BaseActivity {
             return sqlCommntyListViewTask;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(List<SqlCommntyListView> sqlCommntyListViews) {
             if(sqlCommntyListViews != null && sqlCommntyListViews.size() > 0){

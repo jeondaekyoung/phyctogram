@@ -35,7 +35,7 @@ public class PwfindActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         //화면 페이지
-        ic_screen = (LinearLayout)findViewById(R.id.ic_screen);
+        ic_screen = (LinearLayout) findViewById(R.id.ic_screen);
         LayoutInflater.from(this).inflate(R.layout.include_pw_find, ic_screen, true);
 
         editTextMail = (EditText) findViewById(R.id.editTextMail);
@@ -43,14 +43,15 @@ public class PwfindActivity extends BaseActivity {
         buttonFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (editTextMail.getText().length()<0){
+                if (editTextMail.getText().length() < 0) {
                     Toast.makeText(v.getContext(), R.string.pwfindActivity_registerEmail, Toast.LENGTH_SHORT).show();
-                }else{
-                    if (QuickstartPreferences.token != null){
+                } else {
+                    //저장된 토큰이 있다면
+                    if (QuickstartPreferences.token != null) {
                         Log.d("-진우-", "PwfindActivity editTextMail.getText: " + editTextMail.getText() + ", Token: " + QuickstartPreferences.token);
                         FindPwTask task = new FindPwTask(editTextMail.getText().toString(), QuickstartPreferences.token);
                         task.execute();
-                    }else{
+                    } else {
                         Toast.makeText(v.getContext(), R.string.pwfindActivity_notPush, Toast.LENGTH_SHORT).show();
                         Log.d("-진우-", "PwfindActivity - Token 발급 불가");
                     }
@@ -59,23 +60,25 @@ public class PwfindActivity extends BaseActivity {
         });
     }
 
-    //토큰 저장
+    //비밀번호 찾기
     private class FindPwTask extends AsyncTask<Void, Void, String> {
 
         private String mailAddr;
         private String token;
 
-        public FindPwTask(String mailAddr, String token)         {
+        public FindPwTask(String mailAddr, String token) {
             this.mailAddr = mailAddr;
             this.token = token;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             Log.d("-진우-", "FindPwTask onPreExecute");
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
@@ -85,29 +88,28 @@ public class PwfindActivity extends BaseActivity {
             try {
                 result = call.execute().body();
                 Log.d("-진우-", "비밀번호 찾기 결과 : " + result);
-            } catch (IOException e){
+            } catch (IOException e) {
                 Log.d("-진우-", "비밀번호 찾기 실패");
             }
-
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
-
             if (result != null) {
                 if (result.equals("success")) {
-                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_sendPush,Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_sendPush, Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "비밀번호 찾기에 성공하였습니다.");
                     finish();
                 } else if (result.equals("wrongMail")) {
-                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failEmail,Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failEmail, Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "메일주소가 잘못되었습니다.");
                 } else {
-                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failFindPW,Toast.LENGTH_LONG).show();
+                    Toast.makeText(PwfindActivity.this, R.string.pwfindActivity_failFindPW, Toast.LENGTH_LONG).show();
                     Log.d("-진우-", "비밀번호 찾기에 실패하였습니다.");
                 }
-            }else{
+            } else {
                 Log.d("-진우-", "result null");
             }
             super.onPostExecute(result);
@@ -117,6 +119,5 @@ public class PwfindActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 }

@@ -102,6 +102,7 @@ public class MainActivity extends BaseActivity {
 
             if (QuickstartPreferences.token != null){
                 Log.d("-진우-", "MainActivity member_seq: " + member.getMember_seq()+", Token: "+QuickstartPreferences.token);
+                //push를 위해 토큰 정보를 저장
                 RegisterTokenTask task = new RegisterTokenTask(member.getMember_seq(),QuickstartPreferences.token);
                 task.execute();
             }else{
@@ -286,8 +287,6 @@ public class MainActivity extends BaseActivity {
         task.execute(img_profile);
 
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
-
-
         Log.d("-진우-", "MainActivity.onResume() 끝");
     }
 
@@ -299,6 +298,7 @@ public class MainActivity extends BaseActivity {
         private CircularImageView img_profileTask;
         private List<SqlCommntyListView> sqlCommntyListViewTask = null;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -307,6 +307,7 @@ public class MainActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Bitmap doInBackground(Object... objects) {
             //Bitmap mBitmap = null;
@@ -376,6 +377,7 @@ public class MainActivity extends BaseActivity {
             return memberImg;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             if (bitmap != null) {
@@ -459,6 +461,7 @@ public class MainActivity extends BaseActivity {
         private ProgressDialog dialog = new ProgressDialog(MainActivity.this);
         private List<Height> heightTask = new ArrayList<Height>();
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -467,6 +470,7 @@ public class MainActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Void doInBackground(Void... params) {
             //내 아이 메인(분석)정보 계산하기
@@ -480,6 +484,7 @@ public class MainActivity extends BaseActivity {
             return null;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Void aVoid) {
             Log.d("-진우-", heightTask.size() + " 개 조회(메인분석)");
@@ -529,17 +534,19 @@ public class MainActivity extends BaseActivity {
         private int memberSeq;
         private String token;
 
-        public RegisterTokenTask(int memberSeq, String token)         {
+        public RegisterTokenTask(int memberSeq, String token) {
             this.memberSeq = memberSeq;
             this.token = token;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             Log.d("-진우-", "RegisterTokenTask onPreExecute");
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
@@ -552,10 +559,10 @@ public class MainActivity extends BaseActivity {
             } catch (IOException e){
                 Log.d("-진우-", "Token 저장 실패");
             }
-
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result.equals("success")){

@@ -105,7 +105,6 @@ public class BaseActivity extends Activity {
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
 
-
                 if(action.equals(QuickstartPreferences.REGISTRATION_READY)){
                     // 액션이 READY일 경우
                     Log.d("-진우-", "ACTION READY");
@@ -234,7 +233,6 @@ public class BaseActivity extends Activity {
 
         GlobalApplication.setCurrentActivity(this);
         self = BaseActivity.this;
-
     }
 
     public void getToken(){
@@ -301,7 +299,6 @@ public class BaseActivity extends Activity {
 
     //슬라이딩, 메뉴
     public void initSildeMenu() {
-
         // init left menu width
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -326,8 +323,6 @@ public class BaseActivity extends Activity {
             LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
             enableDisableViewGroup(viewGroup, false);
         }
-
-
     }
 
     /**
@@ -377,63 +372,6 @@ public class BaseActivity extends Activity {
         }
     }
 
-    /*
-    //터치이벤트
-    private final View.OnTouchListener ll_mainLayoutListener = new View.OnTouchListener() {
-        int startX, endX;
-
-        @Override
-        public boolean onTouch(View v, MotionEvent event) {
-
-            Log.d("-진우-", "슬라이드 상태 : " + isLeftExpanded);
-            if(isLeftExpanded) {
-            }
-
-            switch (event.getActionMasked()) {
-                case MotionEvent.ACTION_MOVE:
-                    Log.d("-진우-", "MOVE " + event.getX());
-                    break;
-                case MotionEvent.ACTION_DOWN:
-                    startX = (int)event.getX();
-                    Log.d("-진우-", "DOWN " + event.getX());
-                    break;
-                case MotionEvent.ACTION_UP:
-                    endX = (int)event.getX();
-                    Log.d("-진우-", "UP " + event.getX());
-
-                    if(slideCheck(startX, endX)) {
-                        Log.d("-진우-", "슬라이드 실행");
-                        menuLeftSlideAnimationToggle();
-                        return false;
-                    } else {
-                        Log.d("-진우-", "슬라이드 미실행");
-                        //return true;
-                    }
-                    break;
-            }
-
-
-            //return false;   DOWN 한번만 발생
-            return true;
-        }
-    };
-    //스와이프 결정
-    public boolean slideCheck(int startX, int endX) {
-        if (startX <= 50) {
-            Log.d("-진우-", "시작지점 OK");
-        } else {
-            Log.d("-진우-", "시작지점으로 옳지않다");
-            return false;
-        }
-        if ((endX - startX) >= 80) {
-            Log.d("-진우-", "이동 OK");
-        } else {
-            Log.d("-진우-", "이동하기에 옳지않다");
-            return false;
-        }
-        return true;
-    }*/
-
     /**
      * 뷰의 동작을 제어한다. 하위 모든 뷰들이 enable 값으로 설정된다.
      *
@@ -476,7 +414,6 @@ public class BaseActivity extends Activity {
         Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
         Log.d("-진우-", "시간 : " + backKeyPressedTime);
 
-
         Intent intent = null;
         if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
             //두번 클릭시 종료
@@ -493,7 +430,5 @@ public class BaseActivity extends Activity {
         } else {
             super.onBackPressed();
         }
-
     }
-
 }

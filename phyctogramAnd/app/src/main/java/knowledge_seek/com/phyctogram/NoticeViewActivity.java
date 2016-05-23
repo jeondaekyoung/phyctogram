@@ -94,9 +94,11 @@ public class NoticeViewActivity extends BaseActivity {
         tv_content.setMovementMethod(new ScrollingMovementMethod());
         tv_content.setText(notice);
 
+        //공지사항 타이틀
         TextView notice_title = (TextView) findViewById(R.id.notice_title);
         notice_title.setText(title);
 
+        //공지사항 날짜
         TextView notice_date = (TextView) findViewById(R.id.notice_date);
         notice_date.setText(writing_de);
 

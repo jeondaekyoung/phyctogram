@@ -150,6 +150,7 @@ public class NoticeListActivity extends BaseActivity {
             this.pageCntTask = pageCntTask;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -158,9 +159,9 @@ public class NoticeListActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected List<Notice> doInBackground(Void... params) {
-
             //공지사항 목록
             NoticeAPI service = ServiceGenerator.createService(NoticeAPI.class, "Notice");
             Call<List<Notice>> call = service.findnoticeList(pageCntTask);
@@ -172,6 +173,7 @@ public class NoticeListActivity extends BaseActivity {
             return noticeTask;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(List<Notice> notices) {
             if(notices != null && notices.size() > 0){

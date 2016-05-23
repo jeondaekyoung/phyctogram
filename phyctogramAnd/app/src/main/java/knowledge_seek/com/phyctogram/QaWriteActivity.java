@@ -89,6 +89,7 @@ public class QaWriteActivity extends BaseActivity {
 
         et_title = (EditText)findViewById(R.id.et_title);
         et_contents = (EditText)findViewById(R.id.et_contents);
+
         //수다방(커뮤니티) 글 저장
         btn_qa_save = (Button)findViewById(R.id.btn_qa_save);
         btn_qa_save.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +111,6 @@ public class QaWriteActivity extends BaseActivity {
                 onBackPressed();
             }
         });
-
     }
 
     @Override
@@ -157,6 +157,7 @@ public class QaWriteActivity extends BaseActivity {
             this.qa = qa;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -165,6 +166,7 @@ public class QaWriteActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             Log.d("-진우-", Utility.qa2json(qa));
@@ -179,6 +181,7 @@ public class QaWriteActivity extends BaseActivity {
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){

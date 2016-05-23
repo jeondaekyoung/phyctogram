@@ -168,6 +168,7 @@ public class CommunityCommentActivity extends BaseActivity {
         private List<Users> usersTask;
         private CircularImageView img_profileTask;
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -176,6 +177,7 @@ public class CommunityCommentActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected Bitmap doInBackground(Object... params) {
             Bitmap mBitmap = null;
@@ -227,6 +229,7 @@ public class CommunityCommentActivity extends BaseActivity {
             return mBitmap;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             /*if (bitmap != null) {
@@ -271,6 +274,7 @@ public class CommunityCommentActivity extends BaseActivity {
             this.comment = comment;
         }
 
+        //Background 작업 시작전에 UI 작업을 진행 한다.
         @Override
         protected void onPreExecute() {
             dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -279,6 +283,7 @@ public class CommunityCommentActivity extends BaseActivity {
             super.onPreExecute();
         }
 
+        //Background 작업을 진행 한다.
         @Override
         protected String doInBackground(Void... params) {
             String result = null;
@@ -293,6 +298,7 @@ public class CommunityCommentActivity extends BaseActivity {
             return result;
         }
 
+        //Background 작업이 끝난 후 UI 작업을 진행 한다.
         @Override
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){

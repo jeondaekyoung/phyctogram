@@ -119,7 +119,6 @@ public class UsersModActivity extends BaseActivity {
             }
         });
 
-
         //레이아웃 정의
         et_name = (EditText)findViewById(R.id.et_name);
         et_initials = (EditText)findViewById(R.id.et_initials);
