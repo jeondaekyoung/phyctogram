@@ -115,7 +115,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="@dimen/activity_horizontal_margin"
-                    android:text="@string/joinActivity_discordPW"
                     android:textColor="#ff0000" />
 
                 <View

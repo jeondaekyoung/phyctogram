@@ -54,7 +54,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="90dp"
                     android:padding="5dp"
-                    android:src="@drawable/animal_01_01" />
+                    android:src="@drawable/sample" />
             </RelativeLayout>
 
             <TextView
