@@ -3,21 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/activity_horizontal_margin">
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:padding="5dp"
+        android:singleLine="true"
         android:text="제목" />
 
     <TextView
         android:id="@+id/tv_writng_de"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:paddingTop="8dp"
         android:text="2016/01/25"
         android:textColor="#aaaaaa" />
 

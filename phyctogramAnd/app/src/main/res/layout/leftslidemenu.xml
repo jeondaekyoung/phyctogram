@@ -64,8 +64,7 @@
                 android:choiceMode="singleChoice"
                 android:divider="#e0e0e0"
                 android:dividerHeight="1dp"
-                android:drawSelectorOnTop="true"
-                android:paddingLeft="@dimen/activity_horizontal_margin" />
+                android:drawSelectorOnTop="true"/>
 
             <Button
                 android:id="@+id/btn_usersDiary"
