@@ -49,6 +49,7 @@ import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-12-08.
+ * 파일업로드 test activity
  */
 public class FileUploadActivity extends BaseActivity implements View.OnClickListener {
 

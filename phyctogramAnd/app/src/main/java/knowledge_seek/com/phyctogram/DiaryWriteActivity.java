@@ -1,11 +1,13 @@
 package knowledge_seek.com.phyctogram;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -178,18 +180,47 @@ public class DiaryWriteActivity extends BaseActivity {
         btn_pic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //롤리팝 버전 이상이라면 권한 체크 요청함
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    try {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 11);
+                    }catch (Exception e){
+                        Log.d("-진우-","ParingActivity requestPermissions Exception : "+ e.getMessage());
+                    }
+                }else{
+                    //파일업로드 테스트
+                    //Intent intent = new Intent(getApplicationContext(), FileUploadActivity.class);
+                    //startActivity(intent);
 
-                //파일업로드 테스트
-                //Intent intent = new Intent(getApplicationContext(), FileUploadActivity.class);
-                //startActivity(intent);
+                    try {
+                        //사진 가져오기
+                        Intent intent = new Intent(Intent.ACTION_PICK);
+                        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
+                        intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(intent, SELECT_IMAGE);
+                    }catch (Exception e){
+                        Log.d("-진우-","ParingActivity requestPermissions Exception : "+ e.getMessage());
+                    }
+                }
+            }
+        });
+    }
 
+    //권한 체크 결과 받음
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (requestCode == 11) {
+            //허용 0, 비허용 -1
+            if (grantResults[0] == 0){
                 //사진 가져오기
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
                 intent.setData(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, SELECT_IMAGE);
+            }else{
+                Log.d("-진우-", "fail");
             }
-        });
+        }
     }
 
     @Override

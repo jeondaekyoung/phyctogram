@@ -121,6 +121,7 @@ public class WifiPopUpActivity extends Activity{
 		});
 	}
 
+	//기기에 데이터 전송 쓰레드 (기기에서 데이터를 수신하는대 시간이 걸려서 쓰레드 사용)
 	class SendMessageThread extends Thread {
 		private ProgressDialog dialog = new ProgressDialog(WifiPopUpActivity.this);
 		private boolean isPlay = false;
