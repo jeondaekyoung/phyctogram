@@ -38,7 +38,6 @@ public class WifiPopUpActivity extends Activity{
 	private WifiListAdapter wifiListAdapter;
 	private String ipAddress;
 
-	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
