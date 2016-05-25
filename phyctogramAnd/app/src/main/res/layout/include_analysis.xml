@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -251,7 +251,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="@dimen/activity_horizontal_margin">
 
                 <!--분석글-->
                 <TextView
@@ -282,10 +282,9 @@
                 <Button
                     android:id="@+id/btn_share"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/btn_border_radius"
                     android:gravity="center"
-                    android:paddingRight="12dp"
                     android:onClick="onClick"
                     android:text="@string/includeAnalysis_analysisShare"
                     android:textColor="@color/color6" />
@@ -297,7 +296,6 @@
                     android:layout_height="260dp"
                     android:layout_marginTop="10dp" />
             </LinearLayout>
-
         </LinearLayout>
     </knowledge_seek.com.phyctogram.util.MyScrollView>
 </LinearLayout>

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -38,77 +38,96 @@
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_diary_date"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
             android:editable="false"
+            android:gravity="center_vertical"
+            android:padding="@dimen/activity_horizontal_margin"
             android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/grey_bg2"/>
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_title"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
             android:hint="@string/includeDiaryView_title"
             android:inputType="text"
+            android:padding="@dimen/activity_horizontal_margin"
             android:textSize="14dp" />
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_contents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/borderbottom"
             android:gravity="top|left"
             android:hint="@string/includeDiaryView_contents"
             android:inputType="textMultiLine"
             android:lines="21"
             android:maxWidth="5.0dip"
             android:minWidth="10.0dip"
+            android:padding="@dimen/activity_horizontal_margin"
             android:scrollHorizontally="false"
             android:textSize="14dp" />
 
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="8dp"
+            android:background="@color/grey_line2" />
 
-            <Button
-                android:id="@+id/btn_pic"
-                android:layout_width="60dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/btn_border_radius2"
-                android:text="@string/includeDiaryWrite_gallery"
-                android:textSize="12dp"
-                android:textColor="@color/purple" />
+                android:gravity="center">
 
-            <Button
-                android:id="@+id/btn_mov"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/btn_pic"
-                android:text="@string/includeDiaryView_video"
-                android:textSize="12dp"
-                android:background="@drawable/btn_border_radius2"
-                android:textColor="@color/purple" />
+                <Button
+                    android:id="@+id/btn_pic"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/btn_border_radius2"
+                    android:text="@string/includeDiaryWrite_gallery"
+                    android:textColor="@color/purple"
+                    android:textSize="12dp" />
 
-            <Button
-                android:id="@+id/btn_diary_save"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/btn_border_radius"
-                android:text="@string/includeComWrite_save"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
+                <Button
+                    android:id="@+id/btn_mov"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/btn_pic"
+                    android:background="@drawable/btn_border_radius2"
+                    android:text="@string/includeDiaryView_video"
+                    android:textColor="@color/purple"
+                    android:textSize="12dp" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_diary_save"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_border_radius"
+                    android:text="@string/includeComWrite_save"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

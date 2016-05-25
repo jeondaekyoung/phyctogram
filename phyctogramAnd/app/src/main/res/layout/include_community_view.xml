@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -34,12 +34,13 @@
         android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyLinearView
+            android:id="@+id/mylinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:background="@drawable/borderbottom"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/activity_horizontal_margin">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -85,19 +86,17 @@
                     android:text="85"
                     android:textColor="#aaaaaa" />
             </LinearLayout>
-
         </knowledge_seek.com.phyctogram.util.MyLinearView>
 
         <knowledge_seek.com.phyctogram.util.MyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="60dp">
+            android:layout_below="@id/mylinear"
+            android:layout_marginBottom="30dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -105,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="150dp"
+                    android:padding="@dimen/activity_horizontal_margin"
                     android:text="@string/includeComView_contents" />
 
                 <TextView
@@ -112,16 +112,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/borderbottom"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="1dp"
+                    android:background="@drawable/border_grey"
+                    android:padding="@dimen/activity_horizontal_margin"
                     android:text="@string/includeComView_reNumber" />
 
                 <ListView
                     android:id="@+id/lv_comments"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="10dp"/>
+                    android:layout_height="200dp" />
             </LinearLayout>
         </knowledge_seek.com.phyctogram.util.MyScrollView>
 
@@ -133,10 +131,11 @@
             <EditText
                 android:id="@+id/et_comment"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:background="@color/color4"
                 android:hint="@string/includeComComment_reWrite"
-                android:padding="5dp" />
+                android:textSize="14dp"
+                android:padding="@dimen/activity_horizontal_margin" />
 
             <Button
                 android:id="@+id/btn_comment_register"
@@ -145,6 +144,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/btn_border_radius"
                 android:text="@string/includeComComment_register"
                 android:textColor="#ffffff" />

@@ -126,10 +126,12 @@
 
     <!-- xml 문자열 -->
     <string name="activityJoin_join">회원가입</string>
+    <string name="activityJoin_welcome">픽토그램 가입을 환영합니다.</string>
     <string name="activityJoin_name">이름</string>
     <string name="activityJoin_emailAddr">이메일 주소</string>
     <string name="activityJoin_password">비밀번호</string>
-    <string name="activityJoin_passwordOk">비밀번호 확인</string>
+    <string name="activityJoin_passwordOk">비밀번호를 다시 입력해주세요</string>
+    <string name="activityJoin_agree">아래의 내용에 모두 동의합니다.</string>
     <string name="activityJoin_agreeClause">이용약관 동의</string>
     <string name="activityJoin_individualInfo">개인정보취급방침 동의</string>
     <string name="activityJoin_joining">가입하기</string>
@@ -180,8 +182,8 @@
     <string name="includeComView_reNumber">댓글 11개</string>
 
     <string name="includeDiaryView_day">날짜</string>
-    <string name="includeDiaryView_title"> 제 목</string>
-    <string name="includeDiaryView_contents"> 내 용</string>
+    <string name="includeDiaryView_title">제목</string>
+    <string name="includeDiaryView_contents">내용</string>
     <string name="includeDiaryView_picture">사진</string>
     <string name="includeDiaryView_video">동영상</string>
 
@@ -224,6 +226,7 @@
     <string name="includeNoticeList_notice">공지사항</string>
 
     <string name="includePwFind_findPw">비밀번호 찾기</string>
+    <string name="includePwFind_dataInput">정보 입력</string>
     <string name="includePwFind_emailAddr">이메일 주소</string>
     <string name="includePwFind_ex">예<![CDATA[")"]]> mail@mail.com</string>
     <string name="includePwFind_find">찾기</string>
@@ -232,7 +235,7 @@
     <string name="includePwModify_modifyPw">비밀번호 변경</string>
     <string name="includePwModify_realPw">현재 비밀번호</string>
     <string name="includePwModify_changePw">변경할 비밀번호</string>
-    <string name="includePwModify_checkChangePw">변경할 비밀번호 확인</string>
+    <string name="includePwModify_checkChangePw">비밀번호를 다시 입력해주세요</string>
     <string name="includePwModify_change">변경하기</string>
     <string name="includePwModify_joinChannel">가입경로</string>
 
@@ -256,7 +259,7 @@
 
     <string name="includeUsersAdd_addChild">내 아이 추가</string>
     <string name="includeUsersAdd_name">이름</string>
-    <string name="includeUsersAdd_initials">이니셜</string>
+    <string name="includeUsersAdd_initials">이니셜 (최대 3자리. 영문과 숫자 사용가능)</string>
     <string name="includeUsersAdd_sign">제품에 표시될 이름입니다. 예:ABC 또는 AB2(영문 3자 또는 영문 2자+숫자 1자)</string>
     <string name="includeUsersAdd_birthday">생년월일</string>
     <string name="includeUsersAdd_sex">성별</string>

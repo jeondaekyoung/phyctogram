@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="@dimen/activity_horizontal_margin">
 
         <knowledge_seek.com.phyctogram.util.MyScrollView
             android:layout_width="match_parent"
@@ -41,45 +41,43 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:focusable="true"
-                android:focusableInTouchMode="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/includeUsersAdd_name" />
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/border_grey"
+                    android:hint="@string/includeUsersAdd_name"
+                    android:inputType="text"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textSize="14dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/includeUsersAdd_initials" />
-
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/includeUsersAdd_sign"
                     android:textColor="#ff0000"
-                    android:textSize="10dp" />
+                    android:textSize="10dp" />-->
 
                 <EditText
                     android:id="@+id/et_initials"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/border_grey"
+                    android:hint="@string/includeUsersAdd_initials"
                     android:inputType="textCapCharacters|textUri"
-                    android:maxLength="3" />
+                    android:maxLength="3"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/includeUsersAdd_birthday" />
 
                 <DatePicker
@@ -101,12 +99,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checkedButton="@+id/rb_female"
+                    android:padding="10dp"
                     android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/rb_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
                         android:text="@string/includeUsersAdd_girl" />
 
                     <RadioButton
@@ -114,9 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/includeUsersAdd_boy" />
-
                 </RadioGroup>
-
             </LinearLayout>
         </knowledge_seek.com.phyctogram.util.MyScrollView>
 
@@ -127,7 +125,7 @@
             <knowledge_seek.com.phyctogram.util.MyButtonView
                 android:id="@+id/btn_usersadd"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/btn_border_radius"
                 android:text="@string/includeUsersAdd_add"

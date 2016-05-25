@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -33,33 +33,27 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp"
         android:focusable="true"
-        android:focusableInTouchMode="true">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/includeMain_height" />
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_input_height"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:textSize="14dp"
-            android:textColor="#000000"
-            android:paddingLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@drawable/border_grey"
             android:hint="@string/includeUsersDataInput_writeHeight"
-            android:background="@drawable/linedate"
-            android:numeric="decimal" />
+            android:numeric="decimal"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:textColor="#000000"
+            android:textSize="14dp" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:text="@string/includeRecord_day" />
 
         <DatePicker
@@ -69,13 +63,13 @@
             android:layout_gravity="center"
             android:calendarViewShown="false"
             android:spinnersShown="true"
-            android:theme="@android:style/Theme.Holo.Light"/>
+            android:theme="@android:style/Theme.Holo.Light" />
 
         <Button
             android:id="@+id/btn_users_height"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:background="@drawable/btn_border_radius"
             android:text="@string/includeComComment_register"
             android:textColor="#ffffff" />

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -38,90 +38,110 @@
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_diary_date"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
             android:editable="false"
             android:enabled="false"
-            android:hint="@string/includeDiaryView_day"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/includeDiaryView_day"
             android:textColor="@color/color7"
             android:textSize="14dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/grey_line2" />
+
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_title"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:hint="@string/includeDiaryView_title"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borderbottom"
             android:inputType="text"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="@string/includeDiaryView_title"
             android:textSize="14dp" />
 
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_contents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/borderbottom"
             android:gravity="top|left"
-            android:hint="@string/includeDiaryView_contents"
             android:inputType="textMultiLine"
             android:lines="21"
             android:maxWidth="5.0dip"
             android:minWidth="10.0dip"
+            android:padding="@dimen/activity_horizontal_margin"
             android:scrollHorizontally="false"
+            android:text="@string/includeDiaryView_contents"
             android:textSize="14dp" />
 
-        <RelativeLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="8dp"
+            android:background="@color/grey_line2" />
 
-            <Button
-                android:id="@+id/pic"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/btn_border_radius2"
-                android:text="@string/includeDiaryView_picture"
-                android:textColor="@color/purple"
-                android:textSize="12dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="8dp">
 
-            <Button
-                android:id="@+id/mov"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@id/pic"
-                android:background="@drawable/btn_border_radius2"
-                android:text="@string/includeDiaryView_video"
-                android:textColor="@color/purple"
-                android:textSize="12dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
 
-            <Button
-                android:id="@+id/btn_diary_delete"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/btn_diary_modify"
-                android:background="@drawable/btn_border_radius2"
-                android:text="@string/commonActivity_delete"
-                android:textColor="@color/purple"
-                android:textSize="12dp" />
+                <Button
+                    android:id="@+id/pic"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/btn_border_radius2"
+                    android:text="@string/includeDiaryView_picture"
+                    android:textColor="@color/purple"
+                    android:textSize="12dp" />
 
-            <Button
-                android:id="@+id/btn_diary_modify"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/btn_border_radius"
-                android:text="@string/commonActivity_modify"
-                android:textColor="#ffffff"
-                android:textSize="12dp" />
+                <Button
+                    android:id="@+id/mov"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/pic"
+                    android:background="@drawable/btn_border_radius2"
+                    android:text="@string/includeDiaryView_video"
+                    android:textColor="@color/purple"
+                    android:textSize="12dp" />
 
-        </RelativeLayout>
+                <Button
+                    android:id="@+id/btn_diary_delete"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="5dp"
+                    android:layout_toLeftOf="@+id/btn_diary_modify"
+                    android:background="@drawable/btn_border_radius2"
+                    android:text="@string/commonActivity_delete"
+                    android:textColor="@color/purple"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/btn_diary_modify"
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_border_radius"
+                    android:text="@string/commonActivity_modify"
+                    android:textColor="#ffffff"
+                    android:textSize="12dp" />
+            </RelativeLayout>
+        </LinearLayout>
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>
