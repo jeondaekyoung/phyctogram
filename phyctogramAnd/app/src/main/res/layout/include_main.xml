@@ -54,7 +54,10 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="90dp"
                     android:padding="5dp"
-                    android:src="@drawable/sample" />
+                    android:src="@drawable/sample"
+                    app:border="true"
+                    app:border_color="#272727"
+                    app:border_width="1dp" />
             </RelativeLayout>
 
             <TextView
@@ -206,8 +209,8 @@
                     android:textColor="@color/color1" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="6dp"
+                    android:layout_height="9dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/btn_main" />
@@ -240,8 +243,8 @@
                     android:textColor="@color/color1" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="6dp"
+                    android:layout_height="9dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/btn_main" />
