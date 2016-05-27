@@ -44,7 +44,6 @@ public class SettingActivity extends BaseActivity {
     //레이아웃정의
     private TextView tv_notice;     //공지사항
     private TextView tv_equip;      //내기기
-    private TextView tv_logout;     //로그아웃
     private TextView tv_pwmod;      ///비밀번호 변경
     private TextView tv_withdraw;       //회원탈퇴
     private TextView tv_qa;             //문의하기
@@ -107,46 +106,6 @@ public class SettingActivity extends BaseActivity {
                 //intent.putExtra("member", member);
                 startActivity(intent);
                 //finish();
-            }
-        });
-        //로그아웃
-        tv_logout = (TextView)findViewById(R.id.tv_logout);
-        tv_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
-                builder.setMessage(R.string.settingActivity_logout)
-                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
-                        .setPositiveButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                if(member.getJoin_route().equals("facebook")){
-                                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                                    //accessToken 값이 있다면 로그인 상태라고 판단
-                                    if (accessToken != null) {
-                                        LoginManager.getInstance().logOut();
-                                    }
-                                    redirectLoginActivity();
-                                } else if(member.getJoin_route().equals("kakao")){
-                                    UserManagement.requestLogout(new LogoutResponseCallback() {
-                                        @Override
-                                        public void onCompleteLogout() {
-                                            redirectLoginActivity();
-                                        }
-                                    });
-
-                                } else if(member.getJoin_route().equals("phyctogram")){
-                                    SaveSharedPreference.clearMemberSeq(getApplicationContext());
-                                    redirectLoginActivity();
-                                }
-                            }
-                        })
-                        .setNegativeButton(R.string.commonActivity_cancel, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
             }
         });
         //비밀번호 변경

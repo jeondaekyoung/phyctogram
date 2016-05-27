@@ -147,7 +147,7 @@ public class EquipmentActivity extends BaseActivity {
 
     //wifi 초기화 및 검색 start
     public void searchStartWifi(){
-        //롤리팝 버전 이상이라면 권한 체크 요청함
+        //마시멜로 버전 이상이라면 권한 체크 요청함
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
                 requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 11);

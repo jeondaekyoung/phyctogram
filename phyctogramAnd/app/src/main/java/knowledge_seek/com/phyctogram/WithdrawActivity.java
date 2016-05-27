@@ -101,9 +101,7 @@ public class WithdrawActivity extends BaseActivity {
 
         tv_join_route = (TextView) findViewById(R.id.tv_join_route);
         tv_name = (TextView) findViewById(R.id.tv_name);
-        tv_pw = (TextView)findViewById(R.id.tv_pw);
         et_pw = (EditText) findViewById(R.id.et_pw);
-        tv_pw1 = (TextView)findViewById(R.id.tv_pw1);
         et_pw1 = (EditText) findViewById(R.id.et_pw1);
         btn_withdraw = (Button) findViewById(R.id.btn_withdraw);
         btn_withdraw.setOnClickListener(new View.OnClickListener() {

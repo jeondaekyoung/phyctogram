@@ -56,7 +56,7 @@
                     android:padding="5dp"
                     android:src="@drawable/sample"
                     app:border="true"
-                    app:border_color="#272727"
+                    app:border_color="#e7e7e7"
                     app:border_width="1dp" />
             </RelativeLayout>
 

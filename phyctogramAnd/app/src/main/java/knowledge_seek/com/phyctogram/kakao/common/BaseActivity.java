@@ -3,11 +3,13 @@ package knowledge_seek.com.phyctogram.kakao.common;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -20,10 +22,15 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +48,7 @@ import knowledge_seek.com.phyctogram.gcm.MyRegistrationIntentService;
 import knowledge_seek.com.phyctogram.gcm.QuickstartPreferences;
 import knowledge_seek.com.phyctogram.kakao.common.widget.WaitingDialog;
 import knowledge_seek.com.phyctogram.listAdapter.UsersListSlideAdapter;
+import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.util.AnimationClose;
 import knowledge_seek.com.phyctogram.util.AnimationOpen;
 
@@ -80,6 +88,7 @@ public class BaseActivity extends Activity {
     private Button btn_dataInput;           //직접입력
     private Button btn_usersManage;     //내아이관리
     private Button btn_setup;               //설정
+    private TextView tv_logout;
 
     //GCM
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -155,6 +164,7 @@ public class BaseActivity extends Activity {
 
         //슬라이드 내 이동 버튼 정의
         btn_home = (Button) findViewById(R.id.btn_home);
+
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             //Toast.makeText(BaseActivity.this, "메인페이지 가기", Toast.LENGTH_SHORT).show();
@@ -222,6 +232,47 @@ public class BaseActivity extends Activity {
                 //finish();
             }
         });
+
+        tv_logout = (TextView) findViewById(R.id.tv_logout);
+        tv_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(BaseActivity.this);
+                builder.setMessage(R.string.settingActivity_logout)
+                        .setCancelable(false)        // 뒤로 버튼 클릭시 취소 가능
+                        .setPositiveButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                if(member.getJoin_route().equals("facebook")){
+                                    AccessToken accessToken = AccessToken.getCurrentAccessToken();
+                                    //accessToken 값이 있다면 로그인 상태라고 판단
+                                    if (accessToken != null) {
+                                        LoginManager.getInstance().logOut();
+                                    }
+                                    redirectLoginActivity();
+                                } else if(member.getJoin_route().equals("kakao")){
+                                    UserManagement.requestLogout(new LogoutResponseCallback() {
+                                        @Override
+                                        public void onCompleteLogout() {
+                                            redirectLoginActivity();
+                                        }
+                                    });
+
+                                } else if(member.getJoin_route().equals("phyctogram")){
+                                    SaveSharedPreference.clearMemberSeq(getApplicationContext());
+                                    redirectLoginActivity();
+                                }
+                            }
+                        })
+                        .setNegativeButton(R.string.commonActivity_cancel, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
     }//end create
 
     @Override

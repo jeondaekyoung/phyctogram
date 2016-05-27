@@ -91,16 +91,6 @@
             android:text="@string/includeEquipment_myHW" />
 
         <knowledge_seek.com.phyctogram.util.MyTextView
-            android:id="@+id/tv_logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="32dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="@string/includeSetting_logout" />
-
-
-        <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_qa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
