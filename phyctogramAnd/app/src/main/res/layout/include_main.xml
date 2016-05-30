@@ -58,15 +58,24 @@
                     app:border="true"
                     app:border_color="#e7e7e7"
                     app:border_width="1dp" />
-            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/tv_users_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:text="name" />
+                <TextView
+                    android:id="@+id/tv_users_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_my_animal"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="name" />
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignBottom="@id/tv_users_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/icon_refresh" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
