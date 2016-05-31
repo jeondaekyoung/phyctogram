@@ -1,5 +1,10 @@
 package naree.rest.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.MulticastResult;
+import com.google.android.gcm.server.Result;
+import com.google.android.gcm.server.Sender;
 
 import naree.db.domain.Member;
 import naree.service.MemberService;
@@ -169,6 +180,66 @@ public class MemberRestController {
 			return "success";
 		} else {
 			return "fail";
+		}
+	}
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param mailAddr
+	 * @param token
+	 * @return
+	 */
+	@RequestMapping(value = "findPw", method = RequestMethod.POST)
+	public String findPwMember(@RequestParam("mailAddr") String mailAddr, @RequestParam("token") String token){
+		logger.info("비밀번호 찾기 mailAddr: " + mailAddr + ", token : " + token);
+		
+		int result = memberService.findPwMember(mailAddr);
+		logger.info("비밀번호 찾기 result: " + result);
+		if(result == -1) {
+			return "wrongMail";
+		}
+		
+		Member member = new Member();
+		
+		String[] strArray = {"a","b","c","d","e","f","g","h","j","k","m","n","p","q","r","s","t","u","x","z"};
+		
+		Random random = new Random();
+		String newpw = "";
+		for (int i = 0; i < 9; i++) {
+			if(i%2==0){
+				newpw += strArray[random.nextInt(19)];
+			}else{
+				newpw += random.nextInt(9)+1+"";
+			}
+		}
+		member.setMember_seq(result);
+		member.setPassword(newpw);
+		result = memberService.modifyPwByMember(member);
+		if(result == -1){
+			return "fail";
+		} else {
+			// 프로젝트 서버 API key 입력
+	        Sender sender = new Sender("AIzaSyA9vY7Rh_e5g-5ZGz_lyaVk4OMRKVIsoNk"); 
+	        // GCM으로부터 발급받은 단말기 RegID 입력. 
+	        String regId = token;
+	        Message message = new Message.Builder().addData("title", "Phytogram").addData("message", "변경된 비밀번호는 : "+newpw+" 입니다. 로그인 후 비밀번호를 변경해주세요.")
+	                .build();
+	        List<String> list = new ArrayList<String>();
+	        list.add(regId);
+	        MulticastResult multiResult;
+	        try {
+	            multiResult = sender.send(message, list, 5);
+	            if (multiResult != null) {
+	                List<Result> resultList = multiResult.getResults();
+	                for (Result results : resultList) {
+	                    System.out.println(results.getMessageId());
+	                }
+	            }
+	        } catch (IOException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+			return "success";
 		}
 	}
 	

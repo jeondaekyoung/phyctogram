@@ -12,6 +12,11 @@ import naree.util.factory.ConnectionFactory;
 @Repository
 public class CommentDaoImpl implements CommentDao {
 
+	/**
+	 * 커뮤니티(수다방) 글의 댓글 조회하기
+	 * @param commnty_seq
+	 * @return
+	 */
 	@Override
 	public List<Comment> selectCommentByCommntySeq(int commnty_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -25,6 +30,11 @@ public class CommentDaoImpl implements CommentDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 글의 댓글 쓰기
+	 * @param comment
+	 * @return
+	 */
 	@Override
 	public int insertComment(Comment comment) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -39,6 +49,11 @@ public class CommentDaoImpl implements CommentDao {
 		return result;
 	}
 
+	/**
+	 * 멤버가 쓴 수다방 댓글 지우기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteCommentByMemberSeq(int member_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -53,6 +68,10 @@ public class CommentDaoImpl implements CommentDao {
 		return result;
 	}
 
+	/**
+	 * 수다방 글의 댓글 지우기
+	 * @param commnty_seq
+	 */
 	@Override
 	public int deleteCommentByCommntySeq(int commnty_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -66,9 +85,4 @@ public class CommentDaoImpl implements CommentDao {
 		}
 		return result;
 	}
-	
-	
-	
-	
-
 }

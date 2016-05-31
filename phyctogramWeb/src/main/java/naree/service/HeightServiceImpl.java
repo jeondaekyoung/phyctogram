@@ -19,6 +19,10 @@ public class HeightServiceImpl implements HeightService {
 	@Autowired
 	private HeightDao heightDao;
 	
+	/**
+	 * 키정보 저장하기
+	 * @param insHeight
+	 */
 	@Override
 	public void registerHeight(Height insHeight) {
 		String nowHeightSeq = heightDao.selectHeightSeq();
@@ -66,12 +70,24 @@ public class HeightServiceImpl implements HeightService {
 		
 	}
 
+	/**
+	 * user_seq의 height 불러오기
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> selectHeightByUser_seq(String user_seq) {
 		
 		return heightDao.selectHeightByUser_seq(user_seq);
 	}
 
+	/**
+	 * 내 아이(유저) 기록조회
+	 * @param user_seq
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return
+	 */
 	@Override
 	public List<Height> findHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCnt) {
 		//기록조회
@@ -86,12 +102,21 @@ public class HeightServiceImpl implements HeightService {
 		return heights;
 	}
 
+	/**
+	 * 키 삭제
+	 * @param height_seq
+	 * @return
+	 */
 	@Override
 	public int delHeightByHeightSeq(String height_seq) {
 		
 		return heightDao.deleteHeightByHeightSeq(height_seq);
 	}
 
+	/**
+	 * 키 시퀀스 만들기
+	 * @return
+	 */
 	@Override
 	public String nextHeightSeq() {
 		String nowHeightSeq = heightDao.selectHeightSeq();
@@ -136,6 +161,11 @@ public class HeightServiceImpl implements HeightService {
 		return nextHeightSeq;
 	}
 
+	/**
+	 * (안드로이드에서) 키 저장하기
+	 * @param height
+	 * @return
+	 */
 	@Override
 	public int registerHeightAnd(Height height) {
 		

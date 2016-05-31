@@ -21,7 +21,6 @@
 		<typeAlias type="naree.db.domain.Admin" alias="Admin"/>
 		<typeAlias type="naree.db.domain.Notice" alias="Notice"/>
 		<typeAlias type="naree.db.domain.Qa" alias="Qa"/>
-		
 	</typeAliases>
 
   <environments default="development">
@@ -35,11 +34,10 @@
         <property name="password" value="phyctogram123"/>
         <property name="poolPingQuery" value="select 1"/>
         <property name="poolPingEnabled" value="true"/>
-        <property name="poolPingConnectionsNotUsedFor" value="7200000"/>
+        <property name="poolPingConnectionsNotUsedFor" value="43200"/>
       </dataSource>
     </environment>
   </environments>
-  
   
   <mappers>
     <mapper resource="mapper/HeightMapper.xml"/>
@@ -53,5 +51,4 @@
     <mapper resource="mapper/QaMapper.xml"/>
     <mapper resource="mapper/PushMapper.xml"/>
   </mappers>
-  
 </configuration>

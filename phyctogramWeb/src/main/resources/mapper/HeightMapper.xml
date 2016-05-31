@@ -46,7 +46,7 @@
 		   FROM height_tb
 		 WHERE user_seq = #{user_seq}
 		 AND #{dateFrom} <= date(mesure_date) AND date(mesure_date) <= #{dateTo}
-		 ORDER BY mesure_date DESC
+		 ORDER BY input_date DESC
 		 LIMIT #{pageCntFirstIndex}, 10
 	]]>
 	</select>
@@ -78,7 +78,7 @@
 		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM  height_tb 
 	     WHERE user_seq = #{user_seq} 
-	 ORDER BY mesure_date DESC
+	 ORDER BY input_date DESC
            LIMIT 12
 	</select>
 	
@@ -159,7 +159,7 @@
 	</select>
 	
 	<select id="selectExistHeightByUserSeq" parameterType="Integer" resultType="Integer">
-		SELECT count(*)
+		SELECT count(height_seq)
 		  FROM height_tb
 		WHERE user_seq = #{user_seq}
 	</select>
@@ -168,7 +168,7 @@
 		SELECT height_seq, height, mesure_date, user_seq, input_date
 		  FROM height_tb
 		WHERE user_seq = #{user_seq}
-	 ORDER BY mesure_date DESC
+	 ORDER BY input_date DESC
 	      LIMIT 2 
 	</select>
 </mapper>

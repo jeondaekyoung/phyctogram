@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="naree.db.mapper.testMapper">
+
+
+	<select id="testtestlist" parameterType="Integer" resultType="Test">
+		SELECT test_seq, id, pw
+		FROM test_tb
+		ORDER BY tset_seq DESC
+		LIMIT #{pageCnt}, 10
+	</select>	
+	
+</mapper>

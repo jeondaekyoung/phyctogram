@@ -15,6 +15,10 @@ import naree.util.factory.ConnectionFactory;
 @Repository
 public class HeightDaoImpl implements HeightDao {
 
+	/**
+	 * 키정보 저장하기
+	 * @param insHeight
+	 */
 	@Override
 	public void insertHeight(Height insHeight) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -29,6 +33,11 @@ public class HeightDaoImpl implements HeightDao {
 
 	}
 
+	/**
+	 * user_seq의 height 조회하기
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> selectHeightByUser_seq(String user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -43,6 +52,10 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	/**
+	 * 내 아이(유저)의 키 데이터 삭제
+	 * @param user_seq
+	 */
 	@Override
 	public void deleteHeightByUserSeq(String user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -57,6 +70,13 @@ public class HeightDaoImpl implements HeightDao {
 		
 	}
 
+	/**
+	 * 내 아이(유저) 기록조회
+	 * @param user_seq
+	 * @param dateFrom
+	 * @param dateTo
+	 * @return
+	 */
 	@Override
 	public List<Height> selectHeightByUserSeqFT(String user_seq, String dateFrom, String dateTo, int pageCntFirstIndex) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -76,6 +96,10 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	/**
+	 * 최근 키시퀀스 찾기
+	 * @return
+	 */
 	@Override
 	public String selectHeightSeq() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -90,6 +114,11 @@ public class HeightDaoImpl implements HeightDao {
 		return height_seq;
 	}
 
+	/**
+	 * 키 삭제
+	 * @param height_seq
+	 * @return
+	 */
 	@Override
 	public int deleteHeightByHeightSeq(String height_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -104,6 +133,11 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	/**
+	 * (안드로이드에서) 키 저장하기
+	 * @param height
+	 * @return
+	 */
 	@Override
 	public int insertHeightAnd(Height height) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -118,6 +152,11 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	/**
+	 * 최근 키 기록 가져오기(12개)
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> selectHeightForGraphByUserSeq(int user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -132,6 +171,11 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	/**
+	 * 상위가져오기(나이가 19세초과,개월로 228개월초과시, 19세를 기준으로 상위를가져온다)
+	 * 키가 커서 데이터가 없을 경우 상위3%가져온다
+	 * @param h
+	 */
 	@Override
 	public int selectRankByHeight(Height h) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -153,6 +197,11 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	/**
+	 * 평균키가져오기(아이 생일, 마지막킨잰날)
+	 * @param h
+	 * @return
+	 */
 	@Override
 	public double selectAveHeightByHeight(Height h) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -167,6 +216,11 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	/**
+	 * 입력된 키가 있는지 확인
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public int selectExistHeightByUserSeq(int user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -180,6 +234,11 @@ public class HeightDaoImpl implements HeightDao {
 		return result;
 	}
 
+	/**
+	 * 최근신장 2개 불러오기
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> selectMax2HeightByUserSeq(int user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -194,6 +253,12 @@ public class HeightDaoImpl implements HeightDao {
 		return heights;
 	}
 
+	/**
+	 * 캐릭터가져오기(나이가 19세초과,개월로 228개월초과시, 19세를 기준으로 상위를가져온다)
+	 * 키가 커서 데이터가 없을 경우 상위3%가져온다
+	 * @param h
+	 * @return
+	 */
 	@Override
 	public String selectAnimalByHeight(Height h) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -206,7 +271,6 @@ public class HeightDaoImpl implements HeightDao {
 				//키가 커서 데이터가 없을 경우 상위3%가져온다
 				result = heightMapper.selectMaxAnimalByHeight(h);
 			}
-			
 		}finally{
 			sqlSession.close();
 		}

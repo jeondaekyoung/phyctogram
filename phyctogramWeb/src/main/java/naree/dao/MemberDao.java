@@ -118,6 +118,13 @@ public interface MemberDao {
 	int updatePwByMember(Member member);
 	
 	/**
+	 * 비밀번호 찾기
+	 * @param mailAddr
+	 * @return
+	 */
+	int findPwMember(String mailAddr);
+	
+	/**
 	 * Device Token 저장 확인
 	 * @param member
 	 * @return

@@ -13,6 +13,11 @@ import naree.util.factory.ConnectionFactory;
 @Repository
 public class DiaryDaoImpl implements DiaryDao {
 
+	/**
+	 * 일기 저장
+	 * @param diary
+	 * @return
+	 */
 	@Override
 	public int insertDiary(Diary diary) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -28,6 +33,13 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 일기 불러오기
+	 * @param user_seq
+	 * @param writng_year
+	 * @param writng_mt
+	 * @return
+	 */
 	@Override
 	public List<Diary> selectDiaryByUserSeqYearMt(int user_seq, String writng_year, String writng_mt) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -45,6 +57,10 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 내 아이 일기 지우기
+	 * @param user_seq
+	 */
 	@Override
 	public int deleteDiaryByUserSeq(int user_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -59,6 +75,11 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 저장된 일기 찾기
+	 * @param diary
+	 * @return
+	 */
 	@Override
 	public int selectDiaryByDiary(Diary diary) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -73,6 +94,11 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 일기 수정하기
+	 * @param diary
+	 * @return
+	 */
 	@Override
 	public int updateDiaryByDiary(Diary diary) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -87,6 +113,11 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 일기 삭제하기
+	 * @param diary_seq
+	 * @return
+	 */
 	@Override
 	public int deleteDiaryByDiary(int diary_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -101,6 +132,11 @@ public class DiaryDaoImpl implements DiaryDao {
 		return result;
 	}
 
+	/**
+	 * 일기 이미지정보 저장하기
+	 * @param diary
+	 * @return
+	 */
 	@Override
 	public int updateDiaryForFile(Diary diary) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -114,5 +150,4 @@ public class DiaryDaoImpl implements DiaryDao {
 		}
 		return result;
 	}
-
 }

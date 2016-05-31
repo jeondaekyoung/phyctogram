@@ -23,7 +23,7 @@
     			(SELECT member_seq, case join_route when 'phyctogram' then name when 'facebook' then facebook_name
                                   when 'kakao' then kakao_nickname end as name FROM member_tb ) b
   			where a.member_seq = b.member_seq) a1
-		LEFT OUTER JOIN ( SELECT commnty_seq, count(*) as cnt
+		LEFT OUTER JOIN ( SELECT commnty_seq, count(comment_seq) as cnt
         				            FROM comment_tb GROUP BY commnty_seq ) a2
 		ON a1.commnty_seq = a2.commnty_seq
 		ORDER BY a1.writng_de DESC
@@ -36,7 +36,7 @@
     			(SELECT member_seq, case join_route when 'phyctogram' then name when 'facebook' then facebook_name
                                   when 'kakao' then kakao_nickname end as name FROM member_tb ) b
   			where a.member_seq = b.member_seq) a1
-		LEFT OUTER JOIN ( SELECT commnty_seq, count(*) as cnt
+		LEFT OUTER JOIN ( SELECT commnty_seq, count(comment_seq) as cnt
         				            FROM comment_tb GROUP BY commnty_seq ) a2
 		ON a1.commnty_seq = a2.commnty_seq
 		ORDER BY a1.hits_co DESC
@@ -60,7 +60,7 @@
     			(SELECT member_seq, case join_route when 'phyctogram' then name when 'facebook' then facebook_name
                                   when 'kakao' then kakao_nickname end as name FROM member_tb ) b
   			where a.member_seq = b.member_seq) a1
-		LEFT OUTER JOIN ( SELECT commnty_seq, count(*) as cnt
+		LEFT OUTER JOIN ( SELECT commnty_seq, count(comment_seq) as cnt
         				            FROM comment_tb GROUP BY commnty_seq ) a2
 		ON a1.commnty_seq = a2.commnty_seq
 		ORDER BY a1.hits_co DESC

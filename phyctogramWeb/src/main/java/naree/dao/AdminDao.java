@@ -1,6 +1,9 @@
 package naree.dao;
 
+import java.util.List;
+
 import naree.db.domain.Admin;
+import naree.db.domain.Notice;
 
 public interface AdminDao {
 
@@ -31,5 +34,6 @@ public interface AdminDao {
 	 * @return
 	 */
 	int totalPrice();
-
+	
+	
 }

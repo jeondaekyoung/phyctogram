@@ -35,7 +35,7 @@
 	</delete>
 	
 	<select id="selectDiaryByDiary" parameterType="Diary" resultType="Integer">
-		SELECT count(*) as cnt
+		SELECT count(diary_seq) as cnt
 		  FROM diary_tb
 		WHERE user_seq = #{user_seq}
 		    AND writng_year = #{writng_year}

@@ -2,6 +2,8 @@ package naree.dao;
 
 import java.util.List;
 
+import naree.db.domain.Member;
+
 public interface PushDao {
 	
 	/**
@@ -9,5 +11,5 @@ public interface PushDao {
 	 * @param
 	 * @return
 	 */
-	List<String> selectBoxList();
+	List<Member> selectBoxList();
 }

@@ -134,6 +134,7 @@
   
   //목록 읽어오기
   var noticeList = function(){
+	  console.log(rootPath + "sfsdfsdf");
 	  $.ajax({
 		  url: rootPath + "/notice/list.do"
 		  ,type: "POST"

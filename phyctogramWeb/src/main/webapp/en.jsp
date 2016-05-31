@@ -11,6 +11,7 @@
   <meta name="robots" content="all" />
   <meta property="og:title" content="Phyctogram">
   <meta property="og:description" content=", IoT" >
+  <link rel="shortcut icon" href="<%=application.getContextPath()%>/resources/images/favicon.ico"/>
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/animate.css" type="text/css" />
   <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/font-awesome.min.css" type="text/css" />
@@ -36,9 +37,9 @@
         <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<%=application.getContextPath()%>/resources/images/en.jpg" alt="english"/></a>
         <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<%=application.getContextPath()%>/resources/images/kr.jpg" alt="korean"/></a>
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="index.jsp#content">Home</a></li>
-          <li><a href="index.jsp#about">Features</a></li>
-          <li><a href="index.jsp#purchase">Purchase</a></li>
+          <li class="active"><a href="en.jsp#content">Home</a></li>
+          <li><a href="en.jsp#about">Features</a></li>
+          <li><a href="en.jsp#purchase">Purchase</a></li>
         </ul>
       </div>
     </div>

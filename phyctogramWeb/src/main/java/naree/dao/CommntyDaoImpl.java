@@ -13,6 +13,11 @@ import naree.util.factory.ConnectionFactory;
 @Repository
 public class CommntyDaoImpl implements CommntyDao {
 
+	/**
+	 * 커뮤니티(수다방) 글 저장
+	 * @param commnty
+	 * @return
+	 */
 	@Override
 	public int insertCommnty(Commnty commnty) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -27,6 +32,10 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 최신 글 목록 읽어오기
+	 * @return
+	 */
 	@Override
 	public List<SqlCommntyListView> selectCommntyLatest(int pageCntFirstIndex) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -40,6 +49,10 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 인기 글 목록 읽어오기
+	 * @return
+	 */
 	@Override
 	public List<SqlCommntyListView> selectCommntyPopular(int pageCntFirstIndex) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -53,6 +66,11 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 글 조회하기
+	 * @param commnty_seq
+	 * @return
+	 */
 	@Override
 	public Commnty selectCommntyByCommntySeq(int commnty_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -66,6 +84,11 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 조회 카운트하기
+	 * @param commnty
+	 * @return
+	 */
 	@Override
 	public int updateHitsCoByCommnty(Commnty commnty) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -80,6 +103,10 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 커뮤니티(수다방) 인기 Top3 목록 읽어오기
+	 * @return
+	 */
 	@Override
 	public List<SqlCommntyListView> selectCommntyPopularTop3() {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -93,6 +120,11 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 멤버가 쓴 수다방글 읽어오기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public List<Commnty> selectCommntyByMemberSeq(int member_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -106,6 +138,11 @@ public class CommntyDaoImpl implements CommntyDao {
 		return result;
 	}
 
+	/**
+	 * 멤버가 쓴 수다방글 지우기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteCommntyByMemberSeq(int member_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -119,6 +156,4 @@ public class CommntyDaoImpl implements CommntyDao {
 		}
 		return result;
 	}
-
-
 }

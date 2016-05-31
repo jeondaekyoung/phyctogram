@@ -28,18 +28,33 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	private DiaryDao diaryDao;
 
+	/**
+	 * 유저(내 아이) 등록하기
+	 * @param users
+	 * @return
+	 */
 	@Override
 	public int registerUsers(Users users) {
 		
 		return usersDao.insertUsers(users);
 	}
 
+	/**
+	 * 멤버로 유저(내 아이) 찾기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public List<Users> findUsersByMemberSeq(String member_seq) {
 		
 		return usersDao.selectUsersByMemberSeq(member_seq);
 	}
 
+	/**
+	 * 내 아이(유저) 삭제(키도 삭제)
+	 * @param user_seq
+	 * @return 
+	 */
 	@Override
 	public int delUsersByUserSeq(String user_seq) {
 		logger.info(user_seq);
@@ -52,12 +67,22 @@ public class UsersServiceImpl implements UsersService {
 		return usersDao.deleteUsersByUserSeq(user_seq);
 	}
 
+	/**
+	 * 내 아이(유저) 수정
+	 * @param users
+	 * @return
+	 */
 	@Override
 	public int modifyUsersByUsers(Users users) {
 		
 		return usersDao.updateUsersByUsers(users);
 	}
 
+	/**
+	 * 아이의 개월수와 캐릭터 계산하기
+	 * @param users
+	 * @return
+	 */
 	@Override
 	public Analysis findMonthNumAnimalByUserSeq(int user_seq) {
 		
@@ -75,6 +100,11 @@ public class UsersServiceImpl implements UsersService {
 		return analysis;
 	}
 
+	/**
+	 * 메인페이지 내 아이 메인(분석)정보 계산하기
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> findUsersMainInfoByUserSeq(int user_seq) {
 		// 최근신장 2개 불러오기
@@ -89,6 +119,11 @@ public class UsersServiceImpl implements UsersService {
 		return heights;
 	}
 
+	/**
+	 * 분석페이지 내 아이 키성장 분석
+	 * @param user_seq
+	 * @return
+	 */
 	@Override
 	public List<Height> findUsersAnalysisByUserSeq(int user_seq) {
 		//그래프 그리기 : 최근 키 기록 가져오기(12개)
@@ -106,7 +141,4 @@ public class UsersServiceImpl implements UsersService {
 		}
 		return heights;
 	}
-
-
-
 }

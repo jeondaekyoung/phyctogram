@@ -1,5 +1,7 @@
 package naree.jsp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import naree.db.domain.Admin;
+import naree.db.domain.Notice;
 import naree.db.domain.Qa;
 import naree.service.AdminService;
 
@@ -87,4 +90,5 @@ public class AdminController {
 		mv.setViewName("admin/data");
 		return mv;
 	}
+	
 }

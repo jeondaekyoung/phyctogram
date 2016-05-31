@@ -40,6 +40,11 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private DiaryDao diaryDao;
 	
+	/**
+	 * member 저장
+	 * @param member
+	 * @return 
+	 */
 	@Override
 	public int registerMember(Member member) {
 		int result = 100;
@@ -78,6 +83,11 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	/**
+	 * 가입정보를 통하야 가입된 정보를 불러온다(member_seq)
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public Member findMemberByJoinRoute(Member member) {
 		Member m = new Member();
@@ -91,30 +101,55 @@ public class MemberServiceImpl implements MemberService{
 		return m;
 	}
 
+	/**
+	 * member_seq로 멤버찾기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public Member findMemberByMemberSeq(int member_seq) {
 		
 		return memberDao.selectMemberByMemberSeq(member_seq);
 	}
 
+	/**
+	 * 페이스북 가입 정보로 멤버찾기
+	 * @param memberResult
+	 * @return
+	 */
 	@Override
 	public Member findMemberByFacebookInfo(Member member) {
 		
 		return memberDao.selectMemberByFacebookInfo(member);
 	}
 
+	/**
+	 * 픽토그램 멤버 로그인하기
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public Member loginMemberByPhycto(Member member) {
 		
 		return memberDao.selectMemberByPhycto(member);
 	}
 
+	/**
+	 * member_seq와 pw로 멤버 찾기
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public int findMemberByMemberSeqPw(Member member) {
 		
 		return memberDao.selectMemberByMemberSeqPw(member);
 	}
 
+	/**
+	 * 멤버가 쓴 댓글, 수다방 지우기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteCommntyCommentByMemberSeq(int member_seq) {
 		//멤버가 쓴 댓글 지우기
@@ -134,6 +169,11 @@ public class MemberServiceImpl implements MemberService{
 		return result1;
 	}
 
+	/**
+	 * 멤버의 내 아이 지우기(키, 일기 포함)
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteUsersHeightDiaryByMemberSeq(int member_seq) {
 		//멤버의 내 아이 목록 가져오기
@@ -151,6 +191,11 @@ public class MemberServiceImpl implements MemberService{
 		return result;
 	}
 
+	/**
+	 * 멤버의 가입동의 지우기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteJoinAgreByMemberSeq(int member_seq) {
 		//멤버의 가입동의 지우기
@@ -158,6 +203,11 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.deleteJoinAgreByMemberSeq(member_seq);
 	}
 
+	/**
+	 * 멤버 지우기
+	 * @param member_seq
+	 * @return
+	 */
 	@Override
 	public int deleteMemberByMemberSeq(int member_seq) {
 		//멤버 지우기
@@ -165,23 +215,54 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.deleteMemberByMemberSeq(member_seq);
 	}
 
+	/**
+	 * 비빌번호 변경
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public int modifyPwByMember(Member member) {
 		
 		return memberDao.updatePwByMember(member);
 	}
 
+	/**
+	 * 비빌번호 찾기
+	 * @param mailAddr
+	 * @return
+	 */
+	@Override
+	public int findPwMember(String mailAddr) {
+		// TODO Auto-generated method stub
+		return memberDao.findPwMember(mailAddr);
+	}
+
+	/**
+	 * Device Token 저장 확인
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public String findMemberByToken(Member member) {
 		// TODO Auto-generated method stub
 		return memberDao.findMemberByToken(member);
 	}
 
+	/**
+	 * Save Device Token
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public int registerToken(Member member) {
 		return memberDao.registerToken(member);
 	}
 
+	/**
+	 * Update Device Token
+	 * @param member
+	 * @return
+	 */
 	@Override
 	public int updateToken(Member member) {
 		// TODO Auto-generated method stub

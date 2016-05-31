@@ -12,7 +12,7 @@
 	</select>
 
 	<select id="searchAdminByAdmin" parameterType="Admin" resultType="Integer">
-		SELECT count(*)
+		SELECT count(admin_seq)
 		  FROM admin_tb
 		 WHERE id = #{id}
 		    AND pw = password(#{pw})
@@ -27,4 +27,12 @@
 		SELECT sum(price)
 		  FROM buy_tb
 	</select>
+	
+	<select id="test_list" parameterType="Integer" resultType="Admin">
+		SELECT test_seq, id, pw
+		  FROM test_tb
+		ORDER BY test_seq DESC
+		LIMIT #{pageCnt}, 10
+	</select>
+	
 </mapper>

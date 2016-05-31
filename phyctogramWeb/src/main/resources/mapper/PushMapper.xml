@@ -4,8 +4,10 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="naree.db.mapper.PushMapper">
-	<select id="selectBoxList" resultType="String">
-		SELECT IFNULL(IFNULL(name, kakao_nickname),facebook_name) 
+	<select id="selectBoxList" resultType="Member">
+		SELECT IFNULL(IFNULL(name, kakao_nickname),facebook_name) AS name,
+		           B.member_seq,
+		           B.token 
 		  FROM member_tb AS A 
 		 INNER JOIN push_tb AS B 
 		     ON A.member_seq = B.member_seq

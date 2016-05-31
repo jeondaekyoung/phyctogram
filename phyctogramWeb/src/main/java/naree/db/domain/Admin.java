@@ -27,6 +27,4 @@ public class Admin {
 	public String toString() {
 		return "Admin [admin_seq=" + admin_seq + ", id=" + id + ", pw=" + pw + "]";
 	}
-	
-	
 }

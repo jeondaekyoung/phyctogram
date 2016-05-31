@@ -82,6 +82,13 @@ public interface MemberService {
 	int modifyPwByMember(Member member);
 	
 	/**
+	 * 비빌번호 찾기
+	 * @param mailAddr
+	 * @return
+	 */
+	int findPwMember(String mailAddr);
+	
+	/**
 	 * Device Token 저장 확인
 	 * @param member
 	 * @return

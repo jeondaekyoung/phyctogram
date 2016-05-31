@@ -63,7 +63,7 @@
                    <div class="form-group">
                      <label class="col-sm-3 control-label">제목</label>
                      <div class="col-sm-9">
-                       <input type="text" class="form-control" data-type="email" data-required="true" placeholder="제목을 입력하세요">    
+                       <input id="pushTitle" type="text" class="form-control" data-type="email" data-required="true" placeholder="제목을 입력하세요">    
                      </div>
                    </div>
                    <div class="line line-dashed line-lg pull-in"></div>
@@ -71,7 +71,7 @@
                      <label class="col-sm-3 control-label">내용</label>
                      <div class="col-sm-9">
                        <div id="editor">
-							<textarea rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" placeholder="내용을 입력하세요"></textarea>
+							<textarea id="pushContents" rows="20" cols="100" class="form-control" style="overflow:auto;min-height:300px;" placeholder="내용을 입력하세요"></textarea>
 						</div>
                      </div>
                    </div>
@@ -79,16 +79,16 @@
                    <div class="form-group">
                      <label class="col-sm-3 control-label">대상</label>
                      <div class="col-sm-9">
-                       <select id="pushSelectBox">
+                       <select id="pushSelectBox" multiple="multiple" style="height:50px;width:100px;">
                        	<option value="0">전체</option>
                        </select>                         
                      </div>
                    </div>
                  </div>
                </section>
-           	   <div class="col-sm-6"><button class="btn btn-default btn-block btn-lg m-b">취소</button></div>
-           	   <div class="col-sm-6"><button class="btn btn-danger btn-block btn-lg m-b" id="send">전송</button></div>
+	           	 <div class="col-sm-6"><button class="btn btn-default btn-block btn-lg m-b">취소</button></div>
              </form>
+           	 <div class="col-sm-6"><button class="btn btn-danger btn-block btn-lg m-b" id="send">전송</button></div>
           </div>
         </div>        
       </div>
@@ -118,7 +118,6 @@
   </footer>
   <!-- / footer --> 
   
-    
   <script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>
@@ -127,54 +126,72 @@
   
   <script type="text/javascript">
 		var rootPath = window.location.protocol + '//' + window.location.host;
-		var pageCnt = 0;
-		var pageEnd = false;
-		var searchState = "answer";
-		var answerState;
+		var tokenArray = new Array();
 		
 		$(document).ready(function() {
 			//목록읽어오기
 			selectList();
 			
+			$("#pushTitle").val("Phytogram");
+			
 		      //전송
-			  $("#sned").click(function(){
-				  alert("전송");
+			  $("#send").click(function(){
+				  sendPush();
 			  });
+			  $("#pushSelectBox option:eq(0)").click(function(){
+		    	  $('#pushSelectBox option').each( function(i){
+		    		  if(i==0) return;
+		    		  $("#pushSelectBox option:eq("+i+")").removeAttr('selected'); 
+	    		  });
+		      });
 		});
 		
-		//답변 저장
-		function saveAnswer(obj){
-			if($(obj).prev().val().length<=0){
-				alert("답변 내용을 입력해주세요.");
+		//푸쉬 전송
+		function sendPush(){
+			
+			var arr = new Array();
+			
+			if($("#pushTitle").val().length<=0){
+				alert("푸쉬 타이틀을 입력해주세요.");
+			}else if($("#pushContents").val().length<=0){
+				alert("푸쉬 내용을 입력해주세요.");
+			}else if($("#pushSelectBox").val()==null){
+				alert("푸쉬 대상자를 선택해주세요.");
 			}else{
-				answerState="answerState"+$(obj).prev().attr('id');
-				saveAnswerAjax($(obj).prev().attr('id'), $(obj).prev().val());
+				var tempArray = $("#pushSelectBox").val();
+				for(var i=0; i<tempArray.length; i++){
+					if(tempArray[i] == 0){
+						for(var j=0; j<tokenArray.length; j++){
+							arr.push(tokenArray[j]);
+						}
+						break;
+					}else{
+						arr.push(tempArray[i]);
+					}
+				}
+				var allData = {"token":arr, "title":$("#pushTitle").val(), "contents":$("#pushContents").val()};
+				sendPushAjax(allData);
 			}
 		}
 		
-		//답변 저장하기
-		var saveAnswerAjax = function(qa_seq, answer) {
+		//푸쉬 전송하기
+		var sendPushAjax = function(allData) {
 			$.ajax({
-				url : rootPath + "/qa/modify.do",
+				url : rootPath + "/push/sendPush.do",
 				type : "POST",
-				data : {
-					qa_seq : qa_seq,
-					answer : answer
-				},
-				success : answerSuccess,
+				data : allData,
+				success : sendPushSuccess,
 				error : errorCallback
 			})
-		}
+		};
 		
-		//답변 저장하기
-		var answerSuccess = function(resultData) {
+		//푸쉬 전송 성공
+		var sendPushSuccess = function(resultData) {
 			if(resultData=="success"){
-				$("#"+answerState).removeClass();
-				$("#"+answerState).addClass("fa fa-check text-success text");
-				$("#"+answerState).text("답변완료");
-				alert("저장 되었습니다.");
+				alert("전송 되었습니다.");
+				$("#pushContents").val("");
 			}else{
-				alert("저장에 실패 하였습니다. 다시 시도해 주세요.");
+				alert("전송에 실패 하였습니다. 다시 시도해 주세요.");
 			}
 		};
 
@@ -186,7 +203,7 @@
 				success : listSuccess,
 				error : errorCallback
 			})
-		}
+		};
 
 		//selectBox 리스트 조회
 		var listSuccess = function(resultData) {
@@ -199,13 +216,19 @@
 		//테이블 생성 html
 		var sbmHtmlTemplate = {
 			  makesbmTr : function(index, item){
-				  var sbmTr = '<option value="'+(index+1)+'">'+item+'</option>';	
+				  tokenArray.push(item.token);
+				  var sbmTr = '<option value="'+(item.token)+'" onclick="javascript:clickOption();" >'+item.name+'</option>';	
 	          return sbmTr;
 			  }
 		  }
+		
+		function clickOption(){
+			$("#pushSelectBox option:eq(0)").removeAttr('selected'); 
+		}
 
 		//Ajax 에러 콜백함수
-		var errorCallback = function() {
+		var errorCallback = function(request,status,error) {
+			//alert(request.status+":"+request.responseText+":"+error);
 			alert("수행 중 오류가 발생했습니다");
 		};
 		

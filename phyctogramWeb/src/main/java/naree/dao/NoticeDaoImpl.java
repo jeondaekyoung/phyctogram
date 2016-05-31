@@ -13,6 +13,10 @@ import naree.util.factory.ConnectionFactory;
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
 
+	/**
+	 * 공지사항 저장
+	 * @param notice
+	 */
 	@Override
 	public void registerNotice(Notice notice) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -26,6 +30,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 	}
 
+	/**
+	 * 공지사항 목록 읽어오기
+	 * @param pageCnt
+	 * @return
+	 */
 	@Override
 	public List<Notice> listNotices(int pageCnt) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -39,6 +48,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		return result;
 	}
 
+	/**
+	 * 공지사항 읽어오기
+	 * @param notice_seq
+	 * @return
+	 */
 	@Override
 	public Notice selectByNoticeSeq(int notice_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -52,6 +66,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		return result;
 	}
 
+	/**
+	 * 공지사항 수정하기
+	 * @param notice
+	 * @return
+	 */
 	@Override
 	public int updateByNotice(Notice notice) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
@@ -66,6 +85,11 @@ public class NoticeDaoImpl implements NoticeDao {
 		return result;
 	}
 
+	/**
+	 * 공지사항 삭제하기
+	 * @param notice_seq
+	 * @return
+	 */
 	@Override
 	public int deleteByNoticeSeq(int notice_seq) {
 		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();

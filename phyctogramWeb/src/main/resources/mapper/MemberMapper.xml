@@ -45,12 +45,12 @@
 	</insert>
 	
 	<select id="selectMemberExistByKakao_id" parameterType="String" resultType="Integer">
-		SELECT count(*) FROM member_tb
+		SELECT count(member_seq) FROM member_tb
 		WHERE kakao_id = #{kakao_id}
 	</select>
 	
 	<select id="selectMemberExistByEmail" parameterType="String" resultType="Integer">
-		SELECT count(*) FROM member_tb
+		SELECT count(member_seq) FROM member_tb
 		WHERE email = #{email}
 	</select>
 	
@@ -131,7 +131,7 @@
 	</select>
 	
 	<select id="selectMemberByMemberSeqPw" parameterType="Member" resultType="Integer">
-		SELECT count(*)
+		SELECT count(member_seq)
 		  FROM member_tb
 		WHERE member_seq = #{member_seq}
             AND password = password(#{password})
@@ -151,6 +151,12 @@
 		UPDATE member_tb SET password = password(#{password})
 		 WHERE member_seq = #{member_seq}
 	</update>
+	
+	<select id="findPwMember" parameterType="String" resultType="Integer">
+		SELECT member_seq
+		  FROM member_tb
+		WHERE email = #{mailAddr}
+	</select>
 	
 	<select id="findMemberByToken" parameterType="Member" resultType="String">
 		SELECT token 
