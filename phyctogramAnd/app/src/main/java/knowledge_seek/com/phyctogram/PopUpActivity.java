@@ -113,18 +113,15 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 			while (isPlay) {
 				if(i==0){
 					Log.d("-진우-","1");
-					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"??");
+					new EqAsyncTask().execute("192.168.4.1:80", "?SSID", ssid+"**");
 				}else if(i==1){
 					Log.d("-진우-","2");
-					new EqAsyncTask().execute("192.168.4.1:80", "PW", pw+"??");
-				}else if(i==2){
-					Log.d("-진우-","3");
-					new EqAsyncTask().execute("192.168.4.1:80", "END_SERVER","0");
+					new EqAsyncTask().execute("192.168.4.1:80", "?PW", pw+"**");
 				}else{
-					Log.d("-진우-","4");
+					Log.d("-진우-","3");
 					wifiPopUpActivity.connectWifi(ssid, pw, capabilities);
 				}
-				if (i==3){
+				if (i==2){
 					stopThread();
 				}else {
 					i++;

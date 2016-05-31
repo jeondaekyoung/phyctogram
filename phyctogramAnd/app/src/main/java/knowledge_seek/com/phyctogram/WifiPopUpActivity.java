@@ -152,9 +152,9 @@ public class WifiPopUpActivity extends Activity{
 			super.run();
 			while (isPlay) {
 				if(i==0){
-					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"??");
+					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"**");
 				}else if(i==1){
-					new EqAsyncTask().execute("192.168.4.1:80", "PW", "??");
+					new EqAsyncTask().execute("192.168.4.1:80", "PW", "**");
 				}else if(i==2){
 					new EqAsyncTask().execute("192.168.4.1:80", "END_SERVER", "END_SERVER");
 				}else{

@@ -201,6 +201,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
+            android:name=".AdminActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
             android:name=".PopUpActivity"
             android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait"/>

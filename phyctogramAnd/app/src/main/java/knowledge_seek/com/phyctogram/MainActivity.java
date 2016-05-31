@@ -6,12 +6,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -62,6 +64,7 @@ public class MainActivity extends BaseActivity {
     private TextView tv_height;                         //최종신장
     private TextView tv_grow;                           //성장 값
     private TextView tv_rank;                           //상위
+    private ImageView img_refresh; //리플래시 이미지
 
     private TextView tv_popularTop1_title;          //수다방 인기 Top3
     //private TextView tv_popularTop1_name;
@@ -77,6 +80,18 @@ public class MainActivity extends BaseActivity {
 
     //데이터정의
     private List<SqlCommntyListView> sqlCommntyListViewList = null;     //수다방 인기 Top3
+
+    private final android.os.Handler mHandler = new android.os.Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 3:
+                    reptView();
+                    break;
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -272,8 +287,26 @@ public class MainActivity extends BaseActivity {
         tv_rank = (TextView) findViewById(R.id.tv_rank);
 
         //sv_main = (ScrollView)findViewById(R.id.sv_main);
+
+        img_refresh = (ImageView) findViewById(R.id.img_refresh);
+        img_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
+                MainDataTask task = new MainDataTask();
+                task.execute(img_profile);
+            }
+        });
     }
 
+    public void reptView(){
+        Log.d("-진우-", "reptView() 실행");
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
+        MainDataTask task = new MainDataTask();
+        task.execute(img_profile);
+    }
+
+    //private SendInitMessageThread sendInitMessageThread;
     @Override
     protected void onResume() {
         super.onResume();
@@ -286,8 +319,46 @@ public class MainActivity extends BaseActivity {
         MainDataTask task = new MainDataTask();
         task.execute(img_profile);
 
+        /*sendInitMessageThread = new SendInitMessageThread(true);
+        sendInitMessageThread.start();*/
+
         Log.d("-진우-", "MainActivity 에 onResume() : " + member.toString());
         Log.d("-진우-", "MainActivity.onResume() 끝");
+    }
+
+    //init send message thread
+    class SendInitMessageThread extends Thread {
+        private boolean isPlay = false;
+
+        public SendInitMessageThread(boolean isPlay) {
+            this.isPlay = isPlay;
+        }
+
+        public void stopThread() {
+            isPlay = !isPlay;
+        }
+
+        @Override
+        public void run() {
+            super.run();
+            while (isPlay) {
+                Log.d("-진우-", "SendInitMessageThread");
+                Message msg = mHandler.obtainMessage();
+                msg.what = 3;
+                mHandler.sendMessage(msg);
+                try {
+                    Thread.sleep(1000*30);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //sendInitMessageThread.stopThread();
     }
 
     //메인페이지 초기 데이터조회(슬라이드 내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
@@ -513,7 +584,7 @@ public class MainActivity extends BaseActivity {
             Log.d("-진우-", "확인 : " + imgName);
             iv_my_animal.setImageResource(getResources().getIdentifier(imgName, "drawable", packName));
             //최종신장
-            tv_height.setText(String.valueOf(heightTask.get(0).getHeight()));
+            tv_height.setText(String.format("%.1f", heightTask.get(0).getHeight()));
             //성장키
             if (heightTask.size() == 2) {
                 if (Double.valueOf(heightTask.get(0).getGrow()) >= 0) {

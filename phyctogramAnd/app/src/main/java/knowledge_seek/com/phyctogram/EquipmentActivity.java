@@ -99,7 +99,13 @@ public class EquipmentActivity extends BaseActivity {
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EqAsyncTask().execute("192.168.4.1:80", "REF", "190??");
+                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                startActivity(intent);
+                //finish();
+                //new EqAsyncTask().execute("192.168.4.1:80", "?END_SERVER", "END_SERVER");
+                //new EqAsyncTask().execute("192.168.4.1:80", "?REF", "190**");
+                //new EqAsyncTask().execute("192.168.4.1:80", "?ADJ", "190**");
+                //new EqAsyncTask().execute("192.168.4.1:80", "?USEQ", "190**");
             }
         });
 
@@ -372,7 +378,7 @@ public class EquipmentActivity extends BaseActivity {
             Log.d("-진우-", "ipAddress: " + ipAddress);
 
             //기기에 member_seq 전송
-            new EqAsyncTask().execute("192.168.4.1:80", "member_seq", member.getMember_seq()+"??");
+            new EqAsyncTask().execute("192.168.4.1:80", "member_seq", member.getMember_seq()+"**");
 
             //연결된 픽토그램 기기에 보내줄 wifi 선택 팝업을 오픈
             Intent i = new Intent(getApplicationContext(), WifiPopUpActivity.class);

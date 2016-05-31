@@ -612,7 +612,7 @@ public class UsersAnalysisActivity extends BaseActivity {
             Log.d("-진우-", "확인 : " + imgName + ", " + packName);
             iv_my_animal.setImageResource(getResources().getIdentifier(imgName, "drawable", packName));
             //최종신장
-            tv_height.setText(String.valueOf(heightTask.get(0).getHeight()));
+            tv_height.setText(String.format("%.1f", heightTask.get(0).getHeight()));
             //성장키
             if(heightTask.size() == 2) {
                 if (Double.valueOf(heightTask.get(0).getGrow()) >= 0) {

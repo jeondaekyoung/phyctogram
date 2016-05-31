@@ -25,18 +25,22 @@ public class EqAsyncTask extends AsyncTask<Object, Integer, Void> {
         String ip = (String) params[0];
         String key = (String) params[1];
         String value = (String)params[2];
-        if (value.equals("0")){
-            value = "";
-        }
         Log.d("-진우-", "ip : " + ip + ", key : " + key + ", value : " + value);
         try {
-            URL reqUrl = new URL("http://"+ip+"/");
+            URL reqUrl = new URL("http://"+ip+"/"+key+"="+value);
             HttpURLConnection urlConn = (HttpURLConnection) reqUrl.openConnection();
             urlConn.setRequestMethod("GET");
-            urlConn.setRequestProperty(key, value);
 
-            int resCode = urlConn.getResponseCode();
-            if (resCode != HttpURLConnection.HTTP_OK) return null;
+            try {
+                int resCode = urlConn.getResponseCode();
+            }catch (Exception e){
+                Log.d("-진우-", "Exception1 : " + e.getMessage());
+            }
+            urlConn.disconnect();
+
+            Log.d("-진우-", "urlConn.disconnect()");
+
+            /*if (resCode != HttpURLConnection.HTTP_OK) return null;
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
             String input;
@@ -44,11 +48,17 @@ public class EqAsyncTask extends AsyncTask<Object, Integer, Void> {
 
             while ((input = reader.readLine()) != null){
                 sb.append(input);
-            }
+            }*/
         }catch (Exception e){
-            Log.d("-진우-", "Exception : " + e.getMessage());
+            Log.d("-진우-", "Exception2 : " + e.getMessage());
         }
         return null;
+    }
+
+    @Override
+    protected void onCancelled() {
+        super.onCancelled();
+        Log.d("-진우-", "onCancelled");
     }
 
     // 모든 작업이 끝난 후 처리되는 메소드
