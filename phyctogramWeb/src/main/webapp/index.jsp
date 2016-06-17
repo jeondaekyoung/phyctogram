@@ -83,7 +83,7 @@
           <p class="text-muted">
             <span class="text-info">자녀의 성장과정 평생소장</span>,
             <span class="text-info">성조숙증 조기 발견</span>,
-            <span class="text-info">올바른 성장관리 지식슥듭</span>에 있습니다.
+            <span class="text-info">올바른 성장관리 지식습득</span>에 있습니다.
           </p>
         </div>
         <div class="row m-t-xl m-b-xl text-center">
@@ -104,7 +104,7 @@
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="900">
             <p class="h3 m-b-lg"><i class="fa fa-rocket fa-3x text-info"></i></p>
             <div class="">
-              <h4 class="m-t-none">올바른 성장관리 지식슥듭</h4>
+              <h4 class="m-t-none">올바른 성장관리 지식습득</h4>
               <p class="text-muted m-t-lg">자녀를 올바르게 성장시키는 것만큼 부모의 도움이 필요한 것이 있을까요? 자녀의 성장 추이를 분석하여 키가 더디게 자라는 지, 비정상적으로 빨리 자라는 지 통계 분석을 통해 판단해주고 올바른 길을 제시 해드립니다.</p>
             </div>
           </div>
