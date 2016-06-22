@@ -305,7 +305,7 @@
           <div class="col-sm-4">
             <i class="fa fa-phone fa-3x icon-muted"></i>
             <h5 class="text-uc m-b m-t-lg">유선</h5>
-            <p class="text-sm">070-8624-4532</p>
+            <p class="text-sm">070-8624-4536</p>
           </div>
         </div>
         <div class="m-t-xl m-b-xl">
