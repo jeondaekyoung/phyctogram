@@ -35,11 +35,11 @@
 	                <div id="contents">
 	                    <div class="formgroup">
 	                        <label>ID</label>
-	                        <input type="text" name="id" placeholder=" 아이디를 입력하세요">
+	                        <input type="text" name="id" placeholder=" 아이디를 입력하세요!">
 	                    </div>
 	                    <div class="formgroup">
 	                        <label>Password</label>
-	                        <input type="password" name="pw" placeholder=" 비밀번호를 입력하세요">
+	                        <input type="password" name="pw" placeholder=" 비밀번호를 입력하세요!">
 	                    </div>
 	                    <input type="submit" value="로그인" class="loginBtn">
 	                </div>

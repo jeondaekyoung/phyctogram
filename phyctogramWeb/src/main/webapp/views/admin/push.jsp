@@ -118,7 +118,7 @@
     </div>
   </footer>
  -->
- <jsp:include page="/common/footer.jsp"/>
+<jsp:include page="footer.jsp" flush="false"/>
   <!-- / footer --> 
   
   <script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>

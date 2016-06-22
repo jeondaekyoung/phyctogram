@@ -105,7 +105,7 @@
     </div>
   </footer>
  -->
- <jsp:include page="/common/footer.jsp"/>
+ <jsp:include page="footer.jsp" flush="false"/>
   <!-- / footer --> 
   
     
