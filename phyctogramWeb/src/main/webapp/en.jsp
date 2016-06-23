@@ -254,7 +254,7 @@
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">
-                  <div class="padder-v"><span class="text-danger font-bold h1">scheduled</span></div>
+                  <div class="padder-v"><span class="text-danger font-bold h1">Coming Soon</span></div>
                 </li>
                 <li class="list-group-item">
                     <label for="bk"><input type="radio" id="bk" name="color" disabled>Stone Black</label>
