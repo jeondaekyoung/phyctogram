@@ -254,7 +254,7 @@
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">
-                  <div class="padder-v"><span class="text-danger font-bold h1">Price pendency</span></div>
+                  <div class="padder-v"><span class="text-danger font-bold h1">scheduled</span></div>
                 </li>
                 <li class="list-group-item">
                     <label for="bk"><input type="radio" id="bk" name="color" disabled>Stone Black</label>
@@ -303,7 +303,7 @@
           <div class="col-sm-4">
             <i class="fa fa-phone fa-3x icon-muted"></i>
             <h5 class="text-uc m-b m-t-lg">Call</h5>
-            <p class="text-sm">070-8624-4532</p>
+            <p class="text-sm">070-8624-4536</p>
           </div>
         </div>
         <div class="m-t-xl m-b-xl">
