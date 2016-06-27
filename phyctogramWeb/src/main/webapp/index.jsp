@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +18,9 @@
           <i class="fa fa-bars"></i>
         </button>
       </div>
-      <div class="collapse navbar-collapse">
-        <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<%=application.getContextPath()%>/resources/images/en.jpg" alt="english"/></a>
-        <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<%=application.getContextPath()%>/resources/images/kr.jpg" alt="korean"/></a>
+      <div class="collapse navbar-collapse"> 
+        <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<c:url value='/resources/images/en.jpg'/>" alt="english"/></a>
+        <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<c:url value='/resources/images/kr.jpg'/>" alt="korean"/></a>
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="index.jsp#content">Home</a></li>
           <li><a href="index.jsp#about">Features</a></li>
@@ -48,7 +49,8 @@
           <aside class="col-md-3 v-bottom text-right"></aside>
           <aside class="col-md-6">
             <section class="m-b-n-lg no-border device animated fadeInUp">
-              <img src="<%=application.getContextPath()%>/resources/images/main1.jpg" class="img-full" >
+            
+              <img src="<c:url value='/resources/images/main1.jpg'/>" class="img-full" >
             </section>
           </aside>
           <aside class="col-md-3 v-bottom"></aside>
@@ -135,8 +137,8 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone0.png" class="img-full"></div>
-                    <div class="item text-center"><img src="<%=application.getContextPath()%>/resources/images/phone1.png" class="img-full"></div>
+                    <div class="item active text-center"><img src=<c:url value='/resources/images/phone0.png'/> class="img-full"></div>
+                    <div class="item text-center"><img src="<c:url value='/resources/images/phone1.png'/>" class="img-full"></div>
                   </div>
                 </div>
               </div>
@@ -152,7 +154,7 @@
       <div class="container">
         <div class="row m-t-xl m-b-xl">
           <div class="col-sm-5 text-center clearfix m-t-xl" data-ride="animated" data-animation="fadeInLeftBig">
-            <img src="<%=application.getContextPath()%>/resources/images/Phyctogram.jpg" width="360px">
+            <img src="<c:url value='/resources/images/Phyctogram.jpg'/>" width="360px">
           </div>
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg">단순한 조작 & 심플한 UI</h2>
@@ -175,7 +177,7 @@
               <header class="panel-heading text-center">
                 <i class="fa fa-minus fa-2x icon-muted m-b-n-xs block"></i>
               </header>
-              <div class="m-l-xs m-r-xs"><img src="<%=application.getContextPath()%>/resources/images/phone1.png" class="img-full" ></div>
+              <div class="m-l-xs m-r-xs"><img src="<c:url value='/resources/images/phone1.png'/>" class="img-full" ></div>
               <footer class="bg-dark text-center panel-footer no-border">
                 <i class="fa fa-circle icon-muted fa-lg"></i>
               </footer>
@@ -207,8 +209,8 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone3.png" class="img-full" ></div>
-                    <div class="item text-center"><img src="<%=application.getContextPath()%>/resources/images/phone4.png" class="img-full" ></div>
+                    <div class="item active text-center"><img src="<c:url value='/resources/images/phone3.png'/>" class="img-full" ></div>
+                    <div class="item text-center"><img src="<c:url value ='/resources/images/phone4.png'/>" class="img-full" ></div>
                   </div>
                 </div>
               </div>
@@ -228,7 +230,7 @@
         </div>
       </div>
     </div>
-    <div id="purchase" class="container bg-white" style="background: url(<%=application.getContextPath()%>/resources/images/Phyctogram.jpg); background-size:100% 100%">
+    <div id="purchase" class="container bg-white" style="background: url(<c:url value='/resources/images/Phyctogram.jpg'/>); background-size:100% 100%">
       <div class="clearfix">
         <div class="row m-b-xl">
           <div class="col-sm-4"></div>
