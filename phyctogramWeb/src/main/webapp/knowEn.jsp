@@ -5,7 +5,7 @@
 <html>
 <head>
  <meta charset="utf-8" />
-  <title>픽토그램-회사소개</title>
+  <title>Phyctogram-company introduction</title>
   <jsp:include page="head.jsp"/>
 </head>
 <body>
@@ -32,15 +32,15 @@
   <section id="content">
     
     <div class="m-t-xl m-b-xl text-center wrapper">
-    <h3>회사 소개</h3>
-      <img src="http://knowledge-seek.com/resources/images/img/aboutUs.png" alt="나리지식앤컴퍼니는 지식을 필요로하는 사람과 지식을 가진 사람을 이어주는 일을 하고있습니다.">
+    <h3>company introduction</h3>
+      <img src="http://knowledge-seek.com/resources/images/img/aboutUs.png" alt="Knowledge-Seek&Company that connects people with knowledge from the people who need it and knowledge do.">
       
     </div>
         
   </section>
   
   <!-- footer -->
- <jsp:include page="footer.jsp"/>
+ <jsp:include page="footerEn.jsp"/>
   <!-- / footer -->
   
  
