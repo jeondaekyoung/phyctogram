@@ -27,19 +27,27 @@ public class EqAsyncTask extends AsyncTask<Object, Integer, Void> {
         String value = (String)params[2];
         Log.d("-진우-", "ip : " + ip + ", key : " + key + ", value : " + value);
         try {
-            URL reqUrl = new URL("http://"+ip+"/"+key+"="+value);
+            //url 생성
+                    URL reqUrl = new URL("http://"+ip+"/"+key+"="+value);
+            //connection open
             HttpURLConnection urlConn = (HttpURLConnection) reqUrl.openConnection();
+            //set method type
             urlConn.setRequestMethod("GET");
 
             try {
+                //현재 기기에서 수신 처리가 제대로 안되서 보내면서 오류 발생으로 인해
+                //커넥션을 닫아주어야 해서 인셉션 다시 처리함
                 int resCode = urlConn.getResponseCode();
             }catch (Exception e){
                 Log.d("-진우-", "Exception1 : " + e.getMessage());
             }
+
+            //close connect
             urlConn.disconnect();
 
             Log.d("-진우-", "urlConn.disconnect()");
 
+            //기기에서 result 처리가 될 경우 아래 내용을 응용 필요
             /*if (resCode != HttpURLConnection.HTTP_OK) return null;
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
@@ -53,12 +61,6 @@ public class EqAsyncTask extends AsyncTask<Object, Integer, Void> {
             Log.d("-진우-", "Exception2 : " + e.getMessage());
         }
         return null;
-    }
-
-    @Override
-    protected void onCancelled() {
-        super.onCancelled();
-        Log.d("-진우-", "onCancelled");
     }
 
     // 모든 작업이 끝난 후 처리되는 메소드

@@ -2,116 +2,200 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\network\1.1.7\jars\classes.jar"
-        jumboMode="false"
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.4\3bae85a076241828810bf8fbcc12e5891d5fc34c\android-async-http-1.4.4.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="83d318091bcf5a6599895cfd210c09ec5d5e99f7">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-e83bd2526109ea21591df59765fdf72194620f6d.jar" />
+        sha1="3bae85a076241828810bf8fbcc12e5891d5fc34c">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\android-async-http-1.4.4_99643a9f77de80350ff230207db94d1b36400bb9\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\storage\1.1.17\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-22d2053a18811256c73947a22a54f3cbfdeae3a1.jar" />
+        sha1="3d350e857e16b6889122cd89090492a7d60b6bff">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-storage-1.1.17_cadca9445a54e3840074dd2c0c9be229a7e58cda\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\usermgmt\1.1.7\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.pkmmte.view\circularimageview\1.1\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="db5778b91fccdd64b42bf28eaf7bf3c2c6cad256">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-d2d47888f522f580dd75b9337bdda07d8c8d6df3.jar" />
+        sha1="c341a7ad32bc2eef9dcfab239262b77ac60788cc">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.pkmmte.view-circularimageview-1.1_29f9353843c8080dd4678d28bb2dc260839fe907\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
-        jumboMode="false"
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\retrofit\2.0.0-beta2\880d9e0997b2d1bfc98e0d121ced33ee5d04aac4\retrofit-2.0.0-beta2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="880d9e0997b2d1bfc98e0d121ced33ee5d04aac4">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\retrofit-2.0.0-beta2_433027677f2942df5cb2b1d294aae1974e2c9459\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\kakaostory\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="a61fbcfff2c9915c3404cbcc107ea68d4261130d">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-kakaostory-1.1.17_f31f18307378dc0bc835f10d6fb9e9ff727478b9\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.7.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="5bdb38b7e4b6094891648c1dc4dc08589b460f97">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.facebook.android-facebook-android-sdk-4.7.0_f4f11b160179ce2de758445a8f6c0eecce744fa7\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.squareup.retrofit\converter-gson\2.0.0-beta2\392c3d09e0f5e7087544093cc0cb23bb9c7af5fa\converter-gson-2.0.0-beta2.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="392c3d09e0f5e7087544093cc0cb23bb9c7af5fa">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\converter-gson-2.0.0-beta2_f4ef6a721b7baf0da12530116f78f6a188d8a92b\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
         revision="23.0.1"
         sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-0228e88278bd4c744cde3ca72a287d20d8df4865.jar" />
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_035693625c6e460b6a082adf27ea31d59150b9ec\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.8\ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2\library-1.0.8.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\library-1.0.8-6180845f9e8d0032deadcce38577f6450cec0824.jar" />
+        sha1="6951637c0cddfbad3a3457aa5cc9b42a1cefe8e4">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_412523ce2af53448feb1d2dd556945c9deaf1251\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\kakaostory\1.1.7\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="595bb813c154c1d426c67eccbadaa446f5e960cb">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-6ba4686efacd7a7a9d5e806365626995fae244a5.jar" />
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_7c5fa828c068b649972f7dc7dc79b4828fcdacd0\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\push\1.1.7\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\push\1.1.17\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="e0f2c5de7cbc0b077f4504cbe45aebca78b4f6cf">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-348115d32b57b4535c207801c4634a309c228a5e.jar" />
+        sha1="c03f690e321646509c03c0b2c061e87cb5630373">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-push-1.1.17_591a764ec49f9d721190b46b855160db541a1f67\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-64d1c4d04ab97a544ed28938366a784340bbc65c.jar" />
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.3.1_e18638af5da499b04feae98c473bff964158e271\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\util\1.1.17\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-f541795fba47878ac7430c793e24c5ff86f7bab3.jar" />
+        sha1="8d5bb0154b7a172bfe867c145723ec5af6159af4">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-util-1.1.17_73ff43e35ff451c7d221fa342354688ceeff65e2\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\friends\1.1.7\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="f05003d1c70f11e61a06c996621f2904f157be7f">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-2cbfb8abe2076b92f33e172ca33d67f42344483e.jar" />
-    </item>
-    <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\auth\1.1.7\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="35708bf7ef298d7d79c22fe0e6d7dce4a5d8805f">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-b68e5d644a4fac4ac28379fb464c1932fe04337d.jar" />
-    </item>
-    <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-2e57ffa468e61f29b85ae70ecde10ad9d8db28d0.jar" />
-    </item>
-    <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\util\1.1.7\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="cd274d51f5c8edd33f90cd59439813f1b8e0da6a">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-38dc254159cba3b42e88f4ff4b845aac8cce66c1.jar" />
-    </item>
-    <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\kakaotalk\1.1.7\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="718b18113a82af949ac7ccb280663dcedaf7838a">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-4d4b3219844035dcfef24a255d8490102a4d9f0d.jar" />
-    </item>
-    <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
-        jumboMode="false"
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\jars\classes.jar"
+        jumboMode="true"
         revision="23.0.1"
         sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-8bba6627d6d536db19c91cd9b8c6c340b5eaa49a.jar" />
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-7.8.0_58c7513b3b1b1045f93e62c5bc4020b6a83c35f0\classes.dex" />
     </item>
     <item
-        jar="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\exploded-aar\com.kakao.sdk\storage\1.1.7\jars\classes.jar"
-        jumboMode="false"
+        jar="C:\Users\sjw\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
         revision="23.0.1"
-        sha1="085003b58cf4bed4f8d205cf766124f60ff7890b">
-        <dex dex="C:\Users\dkfka\AndroidStudioProjects\Phyctogram\app\build\intermediates\pre-dexed\debug\classes-07b74d49b1811b6e09d7dfe6c79f08bc3c8629a8.jar" />
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_4a460e3e6e533fa526970b6c43e7838f6da8be54\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\auth\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="14653167eb391c6e191fee689732e41f6bf5de75">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-auth-1.1.17_b2dceb7dc0705a0f83affc0e946a15fa94516755\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.mcxiaoke.volley\library\1.0.8\ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2\library-1.0.8.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="ec0f15c77ddd390e5ac514ac72ebbb9f2e0e31e2">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\library-1.0.8_6812d1e618d412b9f9ba6160da417cb3e2fe955b\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.5.0\4de2b4ed3445c37ec1720a7d214712e845a24636\okhttp-2.5.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="4de2b4ed3445c37ec1720a7d214712e845a24636">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.5.0_02cab98d81f6acef01dedbc4c17a15f4892dec43\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\friends\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="9d53b5de70f00cf322ecd53cd260d52db3936234">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-friends-1.1.17_9c5e7cb8d2b55e3e9e6b45328b85057c13d58254\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\usermgmt\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="b2820d7b356a1044ac784bbcc2a78f82e0415334">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-usermgmt-1.1.17_1b19e7caddc58c72718b9e76170dc887fe52a7be\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\bolts-android-1.2.0_245e903c389994c05c5b4604591c016686a0e451\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.github.PhilJay\MPAndroidChart\v2.1.6\b036abbb61656165da99cf44898e4b9123687e65\MPAndroidChart-v2.1.6.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="b036abbb61656165da99cf44898e4b9123687e65">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\MPAndroidChart-v2.1.6_212a7b2f394388344eff955676f2c27802ad44f6\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\sjw\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_2eced0c4d519ca4ae55b9cd586d3926ac90b3e15\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_f4e6130d312c4581640c266e32763e88a2c43747\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="18bc5148e90813009213f5b9c53e168214b531a2">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f7cb26fb9cd5edb03c42bfa061f1a250b3aeb16d\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\network\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c7518e07067556fd0e0af541839157db3362505c">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-network-1.1.17_c760afff8bb947bdc3227712d38fa0e85a2695d5\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.kakao.sdk\kakaotalk\1.1.17\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="cb47c838202add249b07733855d260f01f58a6e3">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.kakao.sdk-kakaotalk-1.1.17_228efb69f10235053efd604a2ba8335255c066d1\classes.dex" />
+    </item>
+    <item
+        jar="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.1"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-7.8.0_52801753012c5f878397dd02d2f9e0dc3936c1c7\classes.dex" />
     </item>
 
 </items>

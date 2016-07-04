@@ -52,7 +52,6 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 		capabilities = getIntent().getStringExtra("capabilities");
 		ipAddress = getIntent().getStringExtra("ipAddress");
 
-
 		tv_ssid = (TextView) findViewById(R.id.tv_ssid);
 		edit_password = (EditText) findViewById(R.id.edit_password);
 		tv_ssid.setText(ssid);
@@ -71,6 +70,7 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 			}else{
 				String password = edit_password.getText().toString();
 
+				//기기에 메세지를 보내고 보낸 후 입력한 wifi로 다시 연결
 				SendMessageThread sendMessageThread = new SendMessageThread(true, 0, ipAddress, ssid, password);
 				sendMessageThread.start();
 			}
@@ -81,6 +81,8 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 		}
 	}
 
+	//기기에 메세지를 보내고 보낸 후 입력한 wifi로 다시 연결
+	//기기에 데이터 전송 쓰레드 (기기에서 데이터를 수신하는대 시간이 걸려서 쓰레드 사용)
 	class SendMessageThread extends Thread {
 		private ProgressDialog dialog = new ProgressDialog(wifiPopUpActivity);
 		private boolean isPlay = false;
@@ -113,13 +115,13 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 			while (isPlay) {
 				if(i==0){
 					Log.d("-진우-","1");
-					new EqAsyncTask().execute("192.168.4.1:80", "?SSID", ssid+"**");
+					new EqAsyncTask().execute("192.168.4.1:80", "?SSID", ssid+"**"); //wifi ssid 전송
 				}else if(i==1){
 					Log.d("-진우-","2");
-					new EqAsyncTask().execute("192.168.4.1:80", "?PW", pw+"**");
+					new EqAsyncTask().execute("192.168.4.1:80", "?PW", pw+"**"); //wifi pw 전송
 				}else{
 					Log.d("-진우-","3");
-					wifiPopUpActivity.connectWifi(ssid, pw, capabilities);
+					wifiPopUpActivity.connectWifi(ssid, pw, capabilities); //기기 연결을 끊고 선택한 wifi로 접속
 				}
 				if (i==2){
 					stopThread();
@@ -127,7 +129,7 @@ public class PopUpActivity extends Activity implements View.OnClickListener{
 					i++;
 				}
 				try {
-					Thread.sleep(1000*5);
+					Thread.sleep(1000*5); //기기에서 수신처리 속도때문에 5초 간격으로 설정
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}

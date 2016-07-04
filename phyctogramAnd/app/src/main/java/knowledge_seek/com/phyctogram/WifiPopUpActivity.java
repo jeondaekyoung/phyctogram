@@ -50,7 +50,7 @@ public class WifiPopUpActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onResume();
 
-		ipAddress = getIntent().getStringExtra("ipAddress");
+		ipAddress = getIntent().getStringExtra("ipAddress"); //기기의 ip address 현재 필요 없음
 	}
 
 	//wifi 초기화 및 검색 start
@@ -98,20 +98,23 @@ public class WifiPopUpActivity extends Activity{
 		wifiListAdapter = new WifiListAdapter(this, wifiList, R.layout.list_wifi);
 		lv_wifilist.setAdapter(wifiListAdapter);
 
+		//wifi 목록 클릭
 		lv_wifilist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Wifi wifi = (Wifi) wifiListAdapter.getItem(position);
-				String capabilities = wifi.getCapabilities();
+				Wifi wifi = (Wifi) wifiListAdapter.getItem(position); //선택된 wifi 정보 가져옴
+				String capabilities = wifi.getCapabilities(); //보안방식을 가져옴
+				//wifi에 암호가 있다면
 				if (capabilities.contains("WEP") || capabilities.contains("WPA") || capabilities.contains("WPA2") || capabilities.contains("OPEN")) {
-					PopUpActivity.activity = null;
-					PopUpActivity.wifiPopUpActivity = WifiPopUpActivity.this;
-					Intent i = new Intent(getApplicationContext(), PopUpActivity.class);
-					i.putExtra("ipAddress", ipAddress);
-					i.putExtra("ssid", wifi.getSsid());
-					i.putExtra("capabilities", capabilities);
+					PopUpActivity.activity = null; //첫번째 wifi 선택창과 구분
+					PopUpActivity.wifiPopUpActivity = WifiPopUpActivity.this; //WifiPopUpActivity의 주소를 넘겨서 WifiPopUpActivity의 메소드를 사용가능하게 함
+					Intent i = new Intent(getApplicationContext(), PopUpActivity.class); //set PopUpActivity
+					i.putExtra("ipAddress", ipAddress); //set ipAddress
+					i.putExtra("ssid", wifi.getSsid()); //set ssid
+					i.putExtra("capabilities", capabilities); //set 보안 방식
 					i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					startActivity(i);
+					startActivity(i); //비밀번호 입력 팝업 생성
+				//wifi에 암호가 없다면	바로 기기로 메시지를 보냄.
 				} else {
 					SendMessageThread sendMessageThread = new SendMessageThread(true, 0, ipAddress, wifi.getSsid(), capabilities);
 					sendMessageThread.start();
@@ -120,6 +123,7 @@ public class WifiPopUpActivity extends Activity{
 		});
 	}
 
+	//기기에 메세지를 보내고 보낸 후 입력한 wifi로 다시 연결
 	//기기에 데이터 전송 쓰레드 (기기에서 데이터를 수신하는대 시간이 걸려서 쓰레드 사용)
 	class SendMessageThread extends Thread {
 		private ProgressDialog dialog = new ProgressDialog(WifiPopUpActivity.this);
@@ -152,21 +156,19 @@ public class WifiPopUpActivity extends Activity{
 			super.run();
 			while (isPlay) {
 				if(i==0){
-					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"**");
+					new EqAsyncTask().execute("192.168.4.1:80", "SSID", ssid+"**"); //wifi ssid 전송
 				}else if(i==1){
-					new EqAsyncTask().execute("192.168.4.1:80", "PW", "**");
-				}else if(i==2){
-					new EqAsyncTask().execute("192.168.4.1:80", "END_SERVER", "END_SERVER");
-				}else{
-					connectWifi(ssid, "", capabilities);
+					new EqAsyncTask().execute("192.168.4.1:80", "PW", "**"); //wifi pw 전송
+				}else {
+					connectWifi(ssid, "", capabilities); //기기 연결을 끊고 선택한 wifi로 접속
 				}
-				if (i==3){
+				if (i==2){
 					stopThread();
 				}else {
 					i++;
 				}
 				try {
-					Thread.sleep(1000*5);
+					Thread.sleep(1000*5); //기기에서 수신처리 속도때문에 5초 간격으로 설정
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -178,9 +180,9 @@ public class WifiPopUpActivity extends Activity{
 		Log.d("-진우-", "ssid: " + ssid+",password: "+password+",capablities: "+capabilities);
 		WifiConfiguration wfc = new WifiConfiguration();
 
-		wfc.SSID = "\"".concat( ssid ).concat("\"");
-		wfc.status = WifiConfiguration.Status.DISABLED;
-		wfc.priority = 40;
+		wfc.SSID = "\"".concat( ssid ).concat("\""); //보안 방식 별 공통 사항 set ssid
+		wfc.status = WifiConfiguration.Status.DISABLED; //보안 방식 별 공통 사항 set status
+		wfc.priority = 40; ////보안 방식 별 공통 사항 set priority
 
 		if(capabilities.contains("WEP") == true ){
 			Log.d("-진우-", "WEP 셋팅");
@@ -230,7 +232,7 @@ public class WifiPopUpActivity extends Activity{
 			wfc.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
 		}
 
-		int networkId = -1;
+		int networkId = -1; //-1 연결 정보 없음
 		List<WifiConfiguration> networks = wm.getConfiguredNetworks();
 		Log.d("-진우-", "networks : " + networks.toString());
 
@@ -238,25 +240,33 @@ public class WifiPopUpActivity extends Activity{
 			Log.d("-진우-", "networks.get(i).SSID : " + networks.get(i).SSID);
 			if(networks.get(i).SSID.equals("\"".concat( ssid ).concat("\""))){
 				Log.d("-진우-", "networks.get(i).networkId : " + networks.get(i).networkId);
-				networkId = networks.get(i).networkId;
+				networkId = networks.get(i).networkId; //-1을 연결 정보가 있다면 해당 id로 변경
 			}
 		}
+
+		//연결 정보가 없다면 네트워크를 추가하고 id를 받음
 		if(networkId == -1) {
 			networkId = wm.addNetwork(wfc);
 		}
 		Log.d("-진우-", "networkId : " + networkId);
 
+		//연결 여부 : false
 		boolean connection = false;
+
+		//해당 부분은 쓰레드로 동작하며, Toast도 쓰레드로 돌아가기 때문에 Toast 사용을 할 수 없음 (이중 쓰레드 안됨)
 
 		if(networkId != -1){
 			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_settingHW, Toast.LENGTH_SHORT).show();
-			connection = wm.enableNetwork(networkId, true);
+			//해당 networkId로 wifi를 연결함
+			connection = wm.enableNetwork(networkId, true); //연결이 되면 true를 반환
 			Log.d("-진우-", "connection : "+connection);
 		}else{
 			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_reSettingHWPW, Toast.LENGTH_SHORT).show();
 		}
 
+		//연결이 되었다면
 		if(connection==true) {
+			//wifi정보를 저장
 			wm.setWifiEnabled(true);
 			//Toast.makeText(getApplicationContext(), R.string.wifiPopUpActivity_successSettingHW, Toast.LENGTH_SHORT).show();
 		}else{

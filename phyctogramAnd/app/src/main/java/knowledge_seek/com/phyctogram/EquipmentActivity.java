@@ -99,13 +99,9 @@ public class EquipmentActivity extends BaseActivity {
         img_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //어드민 모드 화면 진입
                 Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                 startActivity(intent);
-                //finish();
-                //new EqAsyncTask().execute("192.168.4.1:80", "?END_SERVER", "END_SERVER");
-                //new EqAsyncTask().execute("192.168.4.1:80", "?REF", "190**");
-                //new EqAsyncTask().execute("192.168.4.1:80", "?ADJ", "190**");
-                //new EqAsyncTask().execute("192.168.4.1:80", "?USEQ", "190**");
             }
         });
 
@@ -272,7 +268,7 @@ public class EquipmentActivity extends BaseActivity {
         Log.d("-진우-", "ssid: " + ssid + ",password: " + password + ",capablities: " + capabilities);
         WifiConfiguration wfc = new WifiConfiguration();
 
-        //wifi 고통 규칙
+        //wifi 공통 규칙
         wfc.SSID = "\"".concat( ssid ).concat("\"");
         wfc.status = WifiConfiguration.Status.DISABLED;
         wfc.priority = 40;

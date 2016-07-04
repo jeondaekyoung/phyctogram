@@ -1,8 +1,5 @@
 package knowledge_seek.com.phyctogram;
 
-import android.app.ProgressDialog;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,21 +10,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.pkmmte.view.CircularImageView;
 
-import java.util.List;
-
-import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
-import knowledge_seek.com.phyctogram.retrofitapi.ServiceGenerator;
 import knowledge_seek.com.phyctogram.util.EqAsyncTask;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * Created by dkfka on 2015-11-25.
@@ -94,6 +81,7 @@ public class AdminActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 new EqAsyncTask().execute("192.168.4.1:80", "?REF", et_ref.getText() + "**");
+
             }
         });
         btn_adj = (Button) findViewById(R.id.btn_adj);
@@ -117,7 +105,6 @@ public class AdminActivity extends BaseActivity {
                 new EqAsyncTask().execute("192.168.4.1:80", "?END_SERVER", "END_SERVER");
             }
         });
-
     }
 
     @Override

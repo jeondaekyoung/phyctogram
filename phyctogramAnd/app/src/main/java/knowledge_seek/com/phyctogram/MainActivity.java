@@ -91,6 +91,12 @@ public class MainActivity extends BaseActivity {
             }
         }
     };
+    public void reptView(){
+        Log.d("-진우-", "reptView() 실행");
+        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
+        MainDataTask task = new MainDataTask();
+        task.execute(img_profile);
+    }
 
 
     @Override
@@ -299,12 +305,7 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    public void reptView(){
-        Log.d("-진우-", "reptView() 실행");
-        //슬라이드메뉴 셋팅(내 아이 목록, 계정이미지, 수다방인기Top3, 내 아이 메인(분석)정보)
-        MainDataTask task = new MainDataTask();
-        task.execute(img_profile);
-    }
+
 
     //private SendInitMessageThread sendInitMessageThread;
     @Override
