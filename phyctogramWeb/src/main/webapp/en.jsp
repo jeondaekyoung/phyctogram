@@ -241,7 +241,7 @@
                   <div class="padder-v"><span class="text-danger font-bold h1">Coming Soon</span></div>
                 </li>
                 <li class="list-group-item">
-                    <label for="bk"><input type="radio" id="bk" name="color" disabled>Stone Black</label>
+                    <label for="bk" ><input title="preparing" type="radio" id="bk" name="color" disabled>Stone Black</label>
                 </li>
                 <li class="list-group-item">
                     <label for="wh"><input type="radio" id="wh" name="color" checked>Ceramic white</label>
