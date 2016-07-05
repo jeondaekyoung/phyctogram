@@ -19,7 +19,7 @@
           <div class="col-sm-4">
             <i class="fa fa-map-marker fa-3x icon-muted"></i>
             <h5 class="text-uc m-b m-t-lg">주소</h5>
-            <p class="text-sm">경기도 성남시 분당구 판교로 289번길 20 (삼평동, 스타트업 캠퍼스) 3동 310호</p>
+            <p class="text-sm">경기도 성남시 분당구 판교로289번길 20<br>3동 310호(삼평동, 스타트업캠퍼스)</p>
           </div>
           <div class="col-sm-4">
             <i class="fa fa-envelope-o fa-3x icon-muted"></i>
