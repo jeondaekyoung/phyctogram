@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +49,6 @@
           <aside class="col-md-3 v-bottom text-right"></aside>
           <aside class="col-md-6">
             <section class="m-b-n-lg no-border device animated fadeInUp">
-            
               <img src="<c:url value='/resources/images/main1.jpg'/>" class="img-full" >
             </section>
           </aside>
@@ -230,7 +229,7 @@
         </div>
       </div>
     </div>
-    <div id="purchase" class="container bg-white" style="background: url(<c:url value='/resources/images/Phyctogram.jpg'/>); background-size:100% 100%">
+    <div id="purchase" class="container bg-white" style="background: url(<c:url value='/resources/images/Phyctogram.jpg'/>) no-repeat; background-size:100%">
       <div class="clearfix">
         <div class="row m-b-xl">
           <div class="col-sm-4"></div>
@@ -262,9 +261,8 @@
 	</section>
   
   <!-- footer -->
-<jsp:include page="footer.jsp"/>
+  <jsp:include page="footer.jsp"/>
   <!-- / footer -->
-  
   
   <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
   <!-- Bootstrap -->
