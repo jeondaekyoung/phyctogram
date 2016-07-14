@@ -35,9 +35,9 @@
       <div class="text-center wrapper">
         <div class="m-t-xl m-b-xl">
           <div class="text-uc h1 font-bold inline">
-            <div class="pull-left m-r-sm text-white">THE MOST ADVANCED <span class="font-thin text-muted">child growth management solutions</span></div>
+            <div class="pull-left m-r-sm text-white">THE MOST ADVANCED <div class="font-thin text-muted">growth management solutions for kids</div></div>
           </div>
-          <div class="h4 text-muted m-t-sm">Phyctogram Allows the recording and analysis of the height measurement by ultrasonic sensors to smartphones</div>
+          <div class="h4 text-muted m-t-sm">Phyctogram measures height with ultrasonic sensors and send data to an application for management and analysis.</div>
         </div>
         <!-- <p class="text-center m-b-xl">
           <a href="http://themeforest.net/user/Flatfull/portfolio?ref=flatfull" target="_blank" class="btn btn-lg btn-dark m-sm">앱 다운로드</a>
@@ -63,33 +63,33 @@
     <div id="about">
       <div class="container">
         <div class="m-t-xl m-b-xl text-center wrapper">
-          <h3>Why You Need a Smart Growth Management</h3>
-          <p class="text-muted">
+          <h3>Why Phyctogram?</h3>
+          <!-- <p class="text-muted">
             <span class="text-info">Keeping children's growing up</span>,
             <span class="text-info">Early discovery of 'Precocious Puberty'</span>,
             <span class="text-info">and Learning proper growth management knowledge</span> in
-          </p>
+          </p> -->
         </div>
         <div class="row m-t-xl m-b-xl text-center">
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="300">
             <p class="h3 m-b-lg"><i class="fa fa-lightbulb-o fa-3x text-info"></i></p>
             <div class="">
-              <h4 class="m-t-none">Keep your children's life growing up</h4>
-              <p class="text-muted m-t-lg">How funny watch the photo albums? We will give you that enjoyment. The process of growth recorded in the phyctogram does not disappear forever. Please present the memories for your children!</p>
+              <h4 class="m-t-none">Keep children’s growth diary with you<br>at all times</h4>
+              <p class="text-muted m-t-lg">An old photo album gives us a time to reminisce about the past. Every phase of children’s growth is kept in Phyctogram. History of children’s growth will be always by your side. Sense beautiful memories and share the pleasure with family.</p>
             </div>
           </div>
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="600">
             <p class="h3 m-b-lg"><i class="fa fa-signal fa-3x text-info"></i></p>
             <div class="">
-              <h4 class="m-t-none">Early discover of 'Precocious Puberty'</h4>
-              <p class="text-muted m-t-lg">The symptoms of precocious puberty is secondary sexual characteristics which started unusually early. Precocious puberty children are 4.4 times increase over the past five years to nearly 28,000 people. Precocious puberty is difficult to treat and include depression if you are not early dicover.</p>
+              <h4 class="m-t-none">Discover abnormal growth issue<br>in an early stage</h4>
+              <p class="text-muted m-t-lg">The number of precocious puberty children has increased nearly 28,000 people over the past 5 years in Korea. Growth failure is also a big concern of parents as well. The keys are to notice the sign of symptoms in an early stage and treat it appropriately.</p>
             </div>
           </div>
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="900">
             <p class="h3 m-b-lg"><i class="fa fa-rocket fa-3x text-info"></i></p>
             <div class="">
-              <h4 class="m-t-none">Learn proper growth management knowledge</h4>
-              <p class="text-muted m-t-lg">To grow your children proper, you need to help them. Phyctogram determine 'Precocious Puberty' or 'Short Stature' through statistical analysis and Gives you proper growth management knowledge.</p>
+              <h4 class="m-t-none">Adequate knowledge of growth management</h4>
+              <p class="text-muted m-t-lg">All parents want to bring up their kids without any health issue. Phyctogram diagnose the symptoms of short statue or precocious puberty based on statistical analysis at the right moment and help parents find solutions.</p>
             </div>
           </div>
         </div>
@@ -99,23 +99,24 @@
       <div class="text-center">
         <div class="container">
           <div class="m-t-xl m-b-xl wrapper">
-            <h3 class="text-white">This application helps you manage growth smarter.</h3>
+            <h3 class="text-white">Our application helps you use Phyctogram smarter and easier.</h3>
           </div>
           <div class="row m-t-xl m-b-xl"></div>
         </div>
       </div>
+      
     </div>
     <div>
       <div class="container m-t-xl">
         <div class="row">
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg"><span class="text-info">IoT-based</span> growth data management platform</h2>
-            <p class="h4 m-b-lg l-h-1x">Phyctogram makes measurement and management conveniently</p>
+            <p class="h4 m-b-lg l-h-1x">It is convenient to measure height and manage growth data.</p>
             <div class="row m-b-xl">
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Smart and easy input method</div>
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Baby book platform containing the growth</div>
-              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Systematic data management growth</div>
-              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Information sharing through community</div>
+              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Platform of kid’s diary</div>
+              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Open community to share the information</div>
             </div>
             <p class="clearfix">&nbsp;</p>
             <div class="row m-b-xl">
@@ -154,10 +155,14 @@
             <img src="<c:url value='/resources/images/Phyctogram.jpg'/>" width="360px">
           </div>
           <div class="col-sm-7">
-            <h2 class="font-thin m-b-lg">Easy operating and simple UI</h2>
-            <p class="h4 m-b-lg l-h-1x">You can get the growth data by easy operating, and we consider aesthetic value by applying a simple UI design.</p>
-            <p class="m-b-xl">Also, children's data can be linked up applilcation via Wi-Fi and manage systematic</p>
-            <p class="m-t-xl m-b-xl h4"><i class="fa fa-quote-left fa-fw fa-1x icon-muted"></i> Baby book platforms based on IoT, 「Phyctogram」</p>
+            <h2 class="font-thin m-b-lg">Easy to use & Simple UI</h2>
+            <p class="h4 m-b-lg l-h-1x">Phyctogram provides a simple method to measure height and its aesthetic design aims at simpleness.</p>
+            <p class="m-b-xl">In addition, a kid is paired with an own character which grows up depending on kid’s growth in application.</p>
+            <!-- <ul class="m-b-xl fa-ul">
+              <li><i class="fa fa-li fa-check text-muted"></i>Manage the schedule and kid’s diary at the same time</li>
+              <li><i class="fa fa-li fa-check text-muted"></i>Share kid’s growth data with character</li>
+            </ul> -->
+            <p class="m-t-xl m-b-xl h4"><i class="fa fa-quote-left fa-fw fa-1x icon-muted"></i>A baby book platform based on IoT techonolgy, 「Phyctogram」</p>
           </div>
         </div>
       </div>
@@ -166,8 +171,8 @@
       <div class="container m-t-xl">
         <div class="row">
           <div class="col-sm-7">
-            <h2 class="font-thin m-b-lg"><br><Br>Growth comparing solution available</h2>
-            <p class="h4 m-b-lg l-h-1x">Phyctogram can be systematic growth management by comparing your children's data with other members data.</p>
+            <h2 class="font-thin m-b-lg"><br><Br>Systematic management solution</h2>
+            <p class="h4 m-b-lg l-h-1x">You can perform statistical analysis based on data all users input on Phyctogram and manage data of your kids specifically.</p>
           </div>
           <div class="col-sm-5 text-center"  data-ride="animated" data-animation="fadeInUp" >
             <section class="panel bg-dark inline aside-md no-border device phone animated fadeInUp">
@@ -218,10 +223,10 @@
           </div>
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg">Calendar & Character</h2>
-            <p class="h4 m-b-lg l-h-1x">We offer to calendarview the baby book list, children and character to grow together.</p>
+            <p class="h4 m-b-lg l-h-1x">You can manage the schedule and kid’s diary with the exiting calendar app. In addition, a kid is paired with an own character which grows up depending on kid’s growth in application</p>
             <ul class="m-b-xl fa-ul">
-              <li><i class="fa fa-li fa-check text-muted"></i>Recording baby book in calendarview</li>
-              <li><i class="fa fa-li fa-check text-muted"></i>Sharing children's character and growth data</li>
+              <li><i class="fa fa-li fa-check text-muted"></i>Manage the schedule and kid’s diary at the same time</li>
+              <li><i class="fa fa-li fa-check text-muted"></i>Share kid’s growth data with character</li>
             </ul>
           </div>
         </div>
@@ -234,7 +239,7 @@
           <div class="col-sm-4 animated fadeInUp" style="padding: 150px 0 50px">
             <section class="panel b-primary text-center">
               <header class="panel-heading bg-primary">
-                <h3 class="m-t-sm">Choose a color</h3>
+                <h3 class="m-t-sm">Color</h3>
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">

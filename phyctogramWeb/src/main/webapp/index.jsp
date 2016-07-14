@@ -101,7 +101,7 @@
         <div class="container">
           <div class="m-t-xl m-b-xl wrapper">
             <h3 class="text-white">어플리케이션이 더욱 똑똑한 성장관리를 도와줍니다.</h3>
-            <p>This application helps you manage growth smarter.</p>
+            <p>Our application helps you use Phyctogram smarter and easier.</p>
           </div>
           <div class="row m-t-xl m-b-xl"></div>
         </div>
