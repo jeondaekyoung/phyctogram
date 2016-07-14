@@ -89,7 +89,7 @@
             <p class="h3 m-b-lg"><i class="fa fa-rocket fa-3x text-info"></i></p>
             <div class="">
               <h4 class="m-t-none">Adequate knowledge of growth management</h4>
-              <p class="text-muted m-t-lg">All parents want to bring up their kids without any health issue. Phyctogram diagnose the symptoms of short statue or precocious puberty based on statistical analysis at the right moment and help parents find solutions.</p>
+              <p class="text-muted m-t-lg">All parents want to bring up their kids without any health issue. Phyctogram diagnose the symptoms of growth failure or precocious puberty based on statistical analysis at the right moment and help parents find solutions.</p>
             </div>
           </div>
         </div>
