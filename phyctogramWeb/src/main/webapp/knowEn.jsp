@@ -5,7 +5,7 @@
 <html>
 <head>
  <meta charset="utf-8" />
-  <title>Phyctogram-company introduction</title>
+  <title>Phyctogram-Company Introduction</title>
   <jsp:include page="head.jsp"/>
 </head>
 <body>
@@ -32,7 +32,7 @@
   <section id="content">
     
     <div class="m-t-xl m-b-xl text-center wrapper">
-    <h3>company introduction</h3>
+    <h3>Company Introduction</h3>
       <img src="http://knowledge-seek.com/resources/images/img/aboutUs.png" alt="Knowledge-Seek&Company that connects people with knowledge from the people who need it and knowledge do.">
       
     </div>

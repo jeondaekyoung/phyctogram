@@ -236,8 +236,8 @@
           <div class="col-sm-4 animated fadeInUp" style="padding: 150px 0 50px">
             <section class="panel b-primary text-center">
               <header class="panel-heading bg-primary">
-                <h3 class="m-t-sm">색상을 고르세요</h3>
-                <p>Choose a color</p>
+                <h3 class="m-t-sm">Color</h3>
+                
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">
