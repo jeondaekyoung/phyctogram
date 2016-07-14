@@ -6,7 +6,7 @@ html {
 }
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   color: #717171;
   background-color: transparent;
   -webkit-font-smoothing: antialiased;
@@ -532,7 +532,7 @@ fieldset[disabled] .btn-gplus.active {
   line-height: 2em;
 }
 .l-h-1x {
-  line-height: 1.2;
+  line-height: 1.5;
 }
 .v-bottom {
   vertical-align: bottom !important;
