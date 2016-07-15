@@ -38,7 +38,7 @@
           <div class="text-uc h1 font-bold inline">
             <div class="pull-left m-r-sm text-white">가장 진보한 <span class="font-thin text-muted">유아용 성장관리 솔루션</span></div>
           </div>
-          <div class="h4 text-muted m-t-sm">픽토그램은 초음파 센서로 측정된 키를 스마트폰으로 기록·분석 해줍니다.</div>
+          <div class="h4 text-muted m-t-sm">픽토그램은 초음파 센서로 측정된 자녀의 키를 스마트폰으로 기록·분석 해줍니다.</div>
         </div>
         <!-- <p class="text-center m-b-xl">
           <a href="http://themeforest.net/user/Flatfull/portfolio?ref=flatfull" target="_blank" class="btn btn-lg btn-dark m-sm">앱 다운로드</a>
@@ -65,32 +65,32 @@
       <div class="container">
         <div class="m-t-xl m-b-xl text-center wrapper">
           <h3>스마트한 성장관리가 필요한 이유</h3>
-          <p class="text-muted">
+          <!-- <p class="text-muted">
             <span class="text-info">자녀의 성장과정 평생소장</span>,
             <span class="text-info">성조숙증 조기 발견</span>,
             <span class="text-info">올바른 성장관리 지식습득</span>에 있습니다.
-          </p>
+          </p> -->
         </div>
         <div class="row m-t-xl m-b-xl text-center">
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="300">
             <p class="h3 m-b-lg"><i class="fa fa-lightbulb-o fa-3x text-info"></i></p>
             <div class="">
               <h4 class="m-t-none">성장과정 평생소장</h4>
-              <p class="text-muted m-t-lg">오래된 앨범을 구경하는 것만큼 재밌는 게 있을까요? 픽토그램이 그런 즐거움을 제공 해드리겠습니다. 스마트폰에 기록된 성장과정은 평생 없어지지 않습니다. 자녀에게 뜻깊은 추억을 선물해주세요!</p>
+              <p class="text-muted m-t-lg">오래된 앨범을 보는 것만큼 흥미로운 게 있을까요? 픽토그램이 성장과정자료의 관리를 통해 그러한 즐거움을 제공해드리겠습니다. 어플리케이션에 기록된 성장과정은 언제나 조회가 가능합니다. 자녀에게 뜻 깊은 추억을 선물해주세요!</p>
             </div>
           </div>
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="600">
             <p class="h3 m-b-lg"><i class="fa fa-signal fa-3x text-info"></i></p>
             <div class="">
-              <h4 class="m-t-none">성조숙증 조기 발견</h4>
-              <p class="text-muted m-t-lg">성조숙증이란 2차 성징이 비정상적으로 빨리 시작되는 증세입니다. 최근 5년간 성조숙증 어린이가 4.4배 증가하여 2만 8천명에 육박합니다. 때를 놓치면 치료할 수 없고 저(低)신장, 우울증을 동반하기 때문에 조기에 발견하여 치료해야 합니다.</p>
+              <h4 class="m-t-none">성장 관련 이상증상 조기 발견 및 대처</h4>
+              <p class="text-muted m-t-lg">성조숙증이란 2차 성징이 비정상적으로 빨리 시작되는 증세입니다. 국내에서 최근 5년간 이에 해당하는 어린이 수가 4.4배 증가하여 2만 8천명에 육박하고 있습니다. 뿐만 아니라 성장부진 또한 모든 부모님들의 크나큰 고민거리 입니다. 이러한 질환은 조기에 발견하여 전문가를 통해 적절한 치료를 받는 것이 중요합니다</p>
             </div>
           </div>
           <div class="col-sm-4" data-ride="animated" data-animation="fadeInLeft" data-delay="900">
             <p class="h3 m-b-lg"><i class="fa fa-rocket fa-3x text-info"></i></p>
             <div class="">
               <h4 class="m-t-none">올바른 성장관리 지식습득</h4>
-              <p class="text-muted m-t-lg">자녀를 올바르게 성장시키는 것만큼 부모의 도움이 필요한 것이 있을까요? 자녀의 성장 추이를 분석하여 키가 더디게 자라는 지, 비정상적으로 빨리 자라는 지 통계 분석을 통해 판단해주고 올바른 길을 제시 해드립니다.</p>
+              <p class="text-muted m-t-lg">자녀를 올바르게 성장시키는 데에는 부모의 도움이 필수적입니다. 픽토그램은 자녀의 성장 추이를 분석하여 키가 더디게 자라는 지, 비정상적으로 빨리 자라지는 않는지 통계 분석을 통해 판단해주고, 이에 대한 올바른 길을 제시 해드립니다</p>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@
       <div class="text-center">
         <div class="container">
           <div class="m-t-xl m-b-xl wrapper">
-            <h3 class="text-white">어플리케이션이 더욱 똑똑한 성장관리를 도와줍니다.</h3>
+            <h3 class="text-white">어플리케이션이 스마트한 성장관리를 도와줍니다.</h3>
             <p>Our application helps you use Phyctogram smarter and easier.</p>
           </div>
           <div class="row m-t-xl m-b-xl"></div>
@@ -114,7 +114,7 @@
             <h2 class="font-thin m-b-lg"><span class="text-info">IoT 기반</span> 성장데이터 관리 플랫폼</h2>
             <p class="h4 m-b-lg l-h-1x">자녀의 키를 편리하게 측정하고 관리할 수 있게 해줍니다</p>
             <div class="row m-b-xl">
-              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>스마트하고 쉬운 입력방식</div>
+              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>간편한 입력방식</div>
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>성장 과정을 담은 육아일기 플랫폼</div>
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>체계적인 성장 데이터 관리</div>
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>커뮤니티를 통한 정보 공유</div>
@@ -157,8 +157,8 @@
           </div>
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg">단순한 조작 & 심플한 UI</h2>
-            <p class="h4 m-b-lg l-h-1x">정보를 손쉽게 얻을 수 있으며, 단순한 조작&심플한 UI적용 디자인으로 심미적 가치를 고려하였습니다.</p>
-            <p class="m-b-xl">또한 신장 정보를 Wi-Fi를 통해 가정용 AP에 전송하여 웹 및 어플리케이션까지 연동할 수 있어, 아동의 성장 정보를 체계적으로 관리할 수 있습니다.</p>
+            <p class="h4 m-b-lg l-h-1x">손쉬운 조작 방법과 심플한 UI디자인으로 사용자에게 편리성과 심미적인 가치를 제공합니다.</p>
+            <p class="m-b-xl">측정된 신장 데이터는 WI-FI를 통해 자동으로 어플리케이션으로 연동이 되어 부모가 아이의 성장 정보를 체계적으로 관리할 수 있도록 도와줍니다</p>
             <p class="m-t-xl m-b-xl h4"><i class="fa fa-quote-left fa-fw fa-1x icon-muted"></i> IoT 기반 육아일기 플랫폼 「픽토그램」</p>
           </div>
         </div>
@@ -169,7 +169,7 @@
         <div class="row">
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg"><br><Br>성장비교 솔루션 제공</h2>
-            <p class="h4 m-b-lg l-h-1x">자녀의 성장 정도를 기존의 추상적 비교가 아닌 다른 회원들의 사례와 수치를 통한 비교가 가능함으로써 성장 발달 사항의 체계적인 관리가 가능합니다.</p>
+            <p class="h4 m-b-lg l-h-1x">아이의 성장 정도를 기존의 추상적인 비교가 아닌 실제 데이터를 바탕으로 한 수치적인 정보를 제공함으로써 성장 과정의 체계적인 관리 및 분석이 가능합니다</p>
           </div>
           <div class="col-sm-5 text-center"  data-ride="animated" data-animation="fadeInUp" >
             <section class="panel bg-dark inline aside-md no-border device phone animated fadeInUp">
@@ -220,7 +220,7 @@
           </div>
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg">캘린더 & 캐릭터</h2>
-            <p class="h4 m-b-lg l-h-1x">사용자가 기존에 사용하던 캘린더 앱을 연동하여 스케줄과 육아일지를 동시에 기록할 수 있으며, 자신의 아이를 캐릭터화하여 함께 성장합니다.</p>
+            <p class="h4 m-b-lg l-h-1x">사용자가 기존에 사용하던 캘린더 앱을 연동하여 스케줄과 육아일지를 함께 관리할 수 있으며, 어플리케이션 내의 캐릭터가 아이와 짝이 되어 함께 성장해나가는 환경을 제공합니다.</p>
             <ul class="m-b-xl fa-ul">
               <li><i class="fa fa-li fa-check text-muted"></i>스케줄과 육아일지를 동시에 기록</li>
               <li><i class="fa fa-li fa-check text-muted"></i>아이를 캐릭터화하여 성장정보 공유</li>
@@ -236,8 +236,8 @@
           <div class="col-sm-4 animated fadeInUp" style="padding: 150px 0 50px">
             <section class="panel b-primary text-center">
               <header class="panel-heading bg-primary">
-                <h3 class="m-t-sm">Color</h3>
-                
+                <h3 class="m-t-sm">색상</h3>
+                <p>color</p>
               </header>
               <ul class="list-group">
                 <li class="list-group-item text-center bg-light lt">

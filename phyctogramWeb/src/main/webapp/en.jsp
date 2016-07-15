@@ -114,8 +114,8 @@
             <p class="h4 m-b-lg l-h-1x">It is convenient to measure height and manage growth data.</p>
             <div class="row m-b-xl">
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Smart and easy input method</div>
-              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Baby book platform containing the growth</div>
-              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Platform of kid’s diary</div>
+              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Platform of children’s diary</div>
+              <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Systematic management of growth information</div>
               <div class="col-sm-6"><i class="fa fa-fw fa-angle-right"></i>Open community to share the information</div>
             </div>
             <p class="clearfix">&nbsp;</p>
@@ -157,7 +157,7 @@
           <div class="col-sm-7">
             <h2 class="font-thin m-b-lg">Easy to use & Simple UI</h2>
             <p class="h4 m-b-lg l-h-1x">Phyctogram provides a simple method to measure height and its aesthetic design aims at simpleness.</p>
-            <p class="m-b-xl">In addition, a kid is paired with an own character which grows up depending on kid’s growth in application.</p>
+            <!-- <p class="m-b-xl">In addition, a kid is paired with an own character which grows up depending on kid’s growth in application.</p> -->
             <!-- <ul class="m-b-xl fa-ul">
               <li><i class="fa fa-li fa-check text-muted"></i>Manage the schedule and kid’s diary at the same time</li>
               <li><i class="fa fa-li fa-check text-muted"></i>Share kid’s growth data with character</li>
@@ -226,7 +226,7 @@
             <p class="h4 m-b-lg l-h-1x">You can manage the schedule and kid’s diary with the exiting calendar app. In addition, a kid is paired with an own character which grows up depending on kid’s growth in application</p>
             <ul class="m-b-xl fa-ul">
               <li><i class="fa fa-li fa-check text-muted"></i>Manage the schedule and kid’s diary at the same time</li>
-              <li><i class="fa fa-li fa-check text-muted"></i>Share kid’s growth data with character</li>
+              <li><i class="fa fa-li fa-check text-muted"></i>Share growth data and characters with others</li>
             </ul>
           </div>
         </div>

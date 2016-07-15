@@ -23,7 +23,7 @@
           </div>
           <div class="col-sm-4">
             <i class="fa fa-envelope-o fa-3x icon-muted"></i>
-            <h5 class="text-uc m-b m-t-lg">메일</h5>
+            <h5 class="text-uc m-b m-t-lg">이메일</h5>
             <p class="text-sm"><a href="mailto:hey@example.com">seek-knowledge@knowledge-seek.com</a></p>
           </div>
           <div class="col-sm-4">
