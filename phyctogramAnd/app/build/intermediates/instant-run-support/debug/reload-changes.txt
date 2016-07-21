@@ -1,0 +1,5 @@
+CHANGED,D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\knowledge_seek\com\phyctogram\JoinActivity$RegisterMemberTask$override.class
+CHANGED,D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\knowledge_seek\com\phyctogram\JoinActivity$6$override.class
+CHANGED,D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\knowledge_seek\com\phyctogram\JoinActivity$6$1$override.class
+CHANGED,D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\knowledge_seek\com\phyctogram\JoinActivity$override.class

@@ -1,0 +1,370 @@
+[
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_community_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_community_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_main.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_main.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_notice_list.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_notice_list.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_diary_write.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_diary_write.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popup_wifi.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\popup_wifi.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_login_fragment.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\com_facebook_login_fragment.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_pw_modify.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_pw_modify.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_base.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\activity_base.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_notice.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_notice.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\kakao_layout_waiting_dialog.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\kakao_layout_waiting_dialog.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_users_manage.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_users_manage.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_qa_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_qa_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_month_item.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_month_item.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_join.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\activity_join.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_mycharacter.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_mycharacter.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_equipment.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_equipment.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_report_share.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\activity_report_share.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\leftslidemenu.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\leftslidemenu.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_comment.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_comment.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_diary_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_diary_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_activity_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\com_facebook_activity_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_notice_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_notice_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_round.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_blue_round.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_qa_write.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_qa_write.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_record.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_record.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_withdraw.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_withdraw.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_small.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_white_small.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\kakao_login_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.1.17\\res\\layout\\kakao_login_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_admin.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_admin.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_setting.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_setting.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popup_wifi_list.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\popup_wifi_list.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_pw_find.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_pw_find.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_analysis.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_analysis.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popup_agree.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\popup_agree.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_users_mod.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_users_mod.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_round.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_white_round.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_qa_list.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_qa_list.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_wifi.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_wifi.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_white_large.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_white_large.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_users_data_input.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_users_data_input.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_login.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_community_list.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_community_list.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\kakao_internal_login_activity.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.kakao.sdk\\util\\1.1.17\\res\\layout\\kakao_internal_login_activity.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_record.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_record.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\popup_agree2.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\popup_agree2.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_calendar.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_calendar.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_community_comment.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_community_comment.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_fileupload.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_fileupload.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_community.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_community.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_small.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_blue_small.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\messenger_button_send_blue_large.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\messenger_button_send_blue_large.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_commuinity_write.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_commuinity_write.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\com_facebook_tooltip_bubble.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.facebook.android\\facebook-android-sdk\\4.7.0\\res\\layout\\com_facebook_tooltip_bubble.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\list_qa.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\list_qa.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_users_add.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\src\\main\\res\\layout\\include_users_add.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "D:\\PhyctogramApp\\phyctogramAnd\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    }
+]

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="23"
+    density="xxhdpi"
+    format="7"
+    timestamp="11013085480420"
+    token="3807521563027099174"
+    verifier="IMPLEMENTED_INTERFACES_CHANGE" >
+
+    <task
+        name="javac"
+        duration="1067" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="26" />
+    <task
+        name="verifier"
+        duration="8" />
+
+    <artifact
+        location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_6\classes.dex"
+        type="DEX" />
+
+    <build timestamp="9189851316020" >
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="10844205746922"
+        verifier="R_CLASS_CHANGE" >
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\res\resources-debug.ap_"
+            type="RESOURCES" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_7\classes.dex"
+            type="DEX" />
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="11013085480420"
+        verifier="IMPLEMENTED_INTERFACES_CHANGE" >
+        <artifact
+            location="D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_6\classes.dex"
+            type="DEX" />
+    </build>
+
+</instant-run>

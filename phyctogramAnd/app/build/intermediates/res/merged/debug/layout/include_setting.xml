@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/purpledk"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_left"
+            android:layout_width="42dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/btn_menu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/includeSetting_setting"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:text="회원정보"
+        android:textColor="@color/purple" />
+
+    <knowledge_seek.com.phyctogram.util.MyTextView
+        android:id="@+id/tv_pwmod"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="32dp"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingBottom="8dp"
+        android:text="@string/includePwModify_modifyPw" />
+
+    <knowledge_seek.com.phyctogram.util.MyTextView
+        android:id="@+id/tv_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:paddingLeft="32dp"
+        android:paddingTop="8dp"
+        android:text="@string/includeSetting_memberLeave" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grey_line" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="픽토그램 정보"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:textColor="@color/purple" />
+
+    <knowledge_seek.com.phyctogram.util.MyLinearView
+        android:id="@+id/ll_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <knowledge_seek.com.phyctogram.util.MyTextView
+            android:id="@+id/tv_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:paddingBottom="8dp"
+            android:text="@string/includeNoticeList_notice" />
+
+        <knowledge_seek.com.phyctogram.util.MyTextView
+            android:id="@+id/tv_equip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/includeEquipment_myHW" />
+
+        <knowledge_seek.com.phyctogram.util.MyTextView
+            android:id="@+id/tv_qa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="@string/includeQaList_qa" />
+    </knowledge_seek.com.phyctogram.util.MyLinearView>
+</LinearLayout>
