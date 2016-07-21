@@ -382,7 +382,7 @@ public class UsersAnalysisActivity extends BaseActivity {
 
             height50.add(new BarEntry(Float.parseFloat(String.format("%.1f", heights.get(index).getHeight_50())), index));
             heightMy.add(new Entry(Float.parseFloat(String.format("%.1f", heights.get(index).getHeight())), index));
-            //Log.d("-진우-", "소수점 확인 : " + Float.parseFloat(String.format("%.1f", heights.get(index).getHeight_50())) + ", " + heights.get(index).getHeight_50());
+           Log.d("-진우-", "소수점 확인 : " + Float.parseFloat(String.format("%.1f", heights.get(index).getHeight_50())) + ", " + heights.get(index).getHeight_50());
         }
 
         CombinedData data = new CombinedData(xAxis);
@@ -390,6 +390,7 @@ public class UsersAnalysisActivity extends BaseActivity {
         data.setData(generateBarData(height50));
         mChart.setData(data);
         mChart.invalidate();
+
     }
 
 
@@ -404,7 +405,9 @@ public class UsersAnalysisActivity extends BaseActivity {
 
         LineDataSet set = new LineDataSet(my, getString(R.string.usersAnalysisActivity_childChart));
         set.setColor(Color.rgb(151, 118, 197));
-        set.setLineWidth(2.5f);
+        set.setLineWidth(2.0f);
+
+
         set.setCircleColor(Color.rgb(151, 118, 197));
         set.setCircleSize(5f);
         set.setFillColor(Color.rgb(151, 118, 197));

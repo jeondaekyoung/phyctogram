@@ -33,6 +33,10 @@ public class UsersListSlideAdapter extends BaseAdapter {
         usersList.addAll(list);
     }
 
+    public void setSelectUsers(int selectUsers) {
+        this.selectUsers = selectUsers;
+    }
+
     @Override
     public int getCount() {
         return usersList.size();
@@ -48,9 +52,7 @@ public class UsersListSlideAdapter extends BaseAdapter {
         return position;
     }
 
-    public void setSelectUsers(int selectUsers) {
-        this.selectUsers = selectUsers;
-    }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

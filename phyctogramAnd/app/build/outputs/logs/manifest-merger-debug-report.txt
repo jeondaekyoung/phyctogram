@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:2:1-264:12
-	xmlns:android
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:2:11-69
 	package
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml
@@ -15,6 +13,8 @@ ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:2:1-2
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml
 		INJECTED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:23.1.1] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\AndroidManifest.xml:20:5-43
@@ -121,10 +121,10 @@ MERGED from [com.android.support:support-v4:23.1.1] D:\PhyctogramApp\phyctogramA
 MERGED from [com.google.android.gms:play-services-gcm:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.8.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.gms:play-services-base:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:23.1.1] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\AndroidManifest.xml:22:5-20
-	android:supportsRtl
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:35:9-35
 	android:label
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:34:9-41
+	android:supportsRtl
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:35:9-35
 	android:allowBackup
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:32:9-35
 	android:icon
@@ -137,12 +137,12 @@ activity#knowledge_seek.com.phyctogram.LoginActivity
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:38:9-47:20
 	android:screenOrientation
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:41:13-49
+	android:launchMode
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:40:13-44
 	android:theme
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:42:13-69
 	android:name
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:39:13-42
-	android:launchMode
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:40:13-44
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:43:13-46:29
 action#android.intent.action.MAIN
@@ -155,20 +155,20 @@ ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:45:17
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:45:27-74
 meta-data#com.kakao.sdk.AppKey
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:51:9-53:53
-	android:name
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:52:13-48
 	android:value
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:53:13-50
+	android:name
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:52:13-48
 activity#knowledge_seek.com.phyctogram.kakao.common.SampleSignupActivity
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:60:9-64:72
 	android:screenOrientation
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:63:13-49
+	android:launchMode
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:62:13-44
 	android:theme
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:64:13-69
 	android:name
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:61:13-62
-	android:launchMode
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:62:13-44
 activity#com.facebook.FacebookActivity
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:73:9-78:72
 	android:screenOrientation
@@ -183,22 +183,22 @@ ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:73:9-
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:74:13-57
 meta-data#com.facebook.sdk.ApplicationId
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:80:9-82:55
-	android:name
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:81:13-58
 	android:value
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:82:13-52
+	android:name
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:81:13-58
 meta-data#com.facebook.sdk.ApplicationName
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:83:9-85:57
-	android:name
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:84:13-60
 	android:value
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:85:13-54
+	android:name
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:84:13-60
 provider#com.facebook.FacebookContentProvider
 ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:87:9-90:39
-	android:exported
-		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:90:13-36
 	android:authorities
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:89:13-91
+	android:exported
+		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:90:13-36
 	android:name
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:88:13-64
 receiver#knowledge_seek.com.phyctogram.facebook.FacebookBroadcastReceiver
@@ -497,7 +497,7 @@ ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:256:9
 		ADDED from D:\PhyctogramApp\phyctogramAnd\app\src\main\AndroidManifest.xml:257:13-89
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-base:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:21:9-23:69
-	android:name
-		ADDED from [com.google.android.gms:play-services-base:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:22:13-58
 	android:value
 		ADDED from [com.google.android.gms:play-services-base:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:7.8.0] D:\PhyctogramApp\phyctogramAnd\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.8.0\AndroidManifest.xml:22:13-58

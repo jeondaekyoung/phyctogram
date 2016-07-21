@@ -76,7 +76,7 @@ public class LoginActivity extends BaseActivity {
     private CallbackManager callbackManager;
     private AccessTokenTracker accessTokenTracker;
     private Button btn_login_kko;                                                           //카카오
-    private com.facebook.login.widget.LoginButton facebookLoginButton;      //페이스북
+    private com.facebook.login.widget.LoginButton btn_login_fb;      //페이스북
     private EditText et_email;
     private EditText et_pw;
     private Button btn_member_login;                                                    //픽토그램
@@ -96,93 +96,15 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
-        //카카오 로그인 세션 검사
-        callback = new SessionCallback();
-        //카카오 로그인이 되어있을 경우 메인화면으로 간다.
-        Session.getCurrentSession().addCallback(callback);
-        if (!Session.getCurrentSession().checkAndImplicitOpen()) {
-            Log.d("-진우-", "카카오 로그인 체크 안됨");
-        } else {
-            Log.d("-진우-", "카카오 로그인 완료 상태");
-        }
-
-        //페이스북 로그인 세션 검사
-        if (AccessToken.getCurrentAccessToken() != null) {
-            Log.d("-진우-", "페이스북 로그인 완료 상태");
-            Profile profile = Profile.getCurrentProfile();
-
-            Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
-            //member class에 페이스북 정보를 담음
-            Member member = new Member();
-            member.setJoin_route("facebook");
-            member.setFacebook_id(profile.getId());
-
-            //member 정보로 로그인 체크
-            FindMemberByFacebookTask task = new FindMemberByFacebookTask();
-            task.execute(member);
-        } else {
-            Log.d("-진우-", "페이스북 로그인 체크 안됨");
-        }
-
-        //픽토그램 로그인 검사
-        if (SaveSharedPreference.getMemberSeq(getApplicationContext()).length() == 0) {
-            Log.d("-진우-", "픽토그램 로그인 안됨");
-        } else {
-            //디바이스에 저장된 멤버 정보 확인
-            String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
-            Log.d("-진우-", "픽토그램 로그인 됨 : " + member_seq);
-
-            //서버에서 멤버 정보 불러오기
-            FindMemberByMemberSeqTask task = new FindMemberByMemberSeqTask();
-            task.execute(member_seq);
-        }
-
-        //페이스북 - This class can be extended to receive notifications of access token changes
-        //액세스토큰이 변경시 실행
-        callbackManager = CallbackManager.Factory.create();
-        accessTokenTracker = new AccessTokenTracker() {
-            @Override
-            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
-                Log.d("-진우-", "onCurrentAccessTokenChanged() 실행");
-                if (currentAccessToken != null) {
-                    /*startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();*/
-                } else {
-                    setContentView(R.layout.activity_login);
-                }
-            }
-
-        };
-
-        //카카오 로그인 버튼
-        btn_login_kko = (Button) findViewById(R.id.btn_login_kko);
-        btn_login_kko.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("-진우-", "카카오 계정으로 로그인, LoginActivity");
-                kakaoLogin();
-            }
-        });
-
-        //비밀번호 찾기 버튼
-        tv_find_pw = (TextView) findViewById(R.id.tv_find_pw);
-        tv_find_pw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("-진우-", "비밀번호 찾기, LoginActivity");
-                Intent intent = new Intent(getApplicationContext(), PwfindActivity.class);
-                startActivity(intent);
-            }
-        });
+        sessionCheck();
 
         //페이스북 로그인 버튼 관련
-        facebookLoginButton = (com.facebook.login.widget.LoginButton) findViewById(R.id.btn_login_fb);
-        facebookLoginButton.setBackgroundResource(R.drawable.log_fb);
-        facebookLoginButton.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-        facebookLoginButton.setReadPermissions(Arrays.asList("user_photos", "email", "user_birthday", "user_friends"));
+        btn_login_fb = (com.facebook.login.widget.LoginButton) findViewById(R.id.btn_login_fb);
+        btn_login_fb.setBackgroundResource(R.drawable.log_fb);
+        btn_login_fb.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        btn_login_fb.setReadPermissions(Arrays.asList("user_photos", "email", "user_birthday", "user_friends"));
         //LoginResult : This class shows the results of a login operation.
-        facebookLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        btn_login_fb.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 Log.d("-진우-", "페이스북 로그인 성공");
@@ -249,6 +171,26 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+        //카카오 로그인 버튼
+        btn_login_kko = (Button) findViewById(R.id.btn_login_kko);
+        btn_login_kko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "카카오 계정으로 로그인, LoginActivity");
+                kakaoLogin();
+            }
+        });
+
+        //비밀번호 찾기 버튼
+        tv_find_pw = (TextView) findViewById(R.id.tv_find_pw);
+        tv_find_pw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("-진우-", "비밀번호 찾기, LoginActivity");
+                Intent intent = new Intent(getApplicationContext(), PwfindActivity.class);
+                startActivity(intent);
+            }
+        });
 
         et_email = (EditText) findViewById(R.id.et_email);
         et_pw = (EditText) findViewById(R.id.et_pw);
@@ -351,14 +293,6 @@ public class LoginActivity extends BaseActivity {
         startActivity(intent);
         finish();
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Session.getCurrentSession().removeCallback(callback);
-        accessTokenTracker.stopTracking();
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -384,6 +318,76 @@ public class LoginActivity extends BaseActivity {
         AppEventsLogger.deactivateApp(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Session.getCurrentSession().removeCallback(callback);
+        accessTokenTracker.stopTracking();
+    }
+
+    protected void sessionCheck(){
+        //카카오 로그인 세션 검사
+        callback = new SessionCallback();
+        //카카오 로그인이 되어있을 경우 메인화면으로 간다.
+        Session.getCurrentSession().addCallback(callback);
+        if (!Session.getCurrentSession().checkAndImplicitOpen()) {
+            Log.d("-진우-", "카카오 로그인 체크 안됨");
+        } else {
+            Log.d("-진우-", "카카오 로그인 완료 상태");
+        }
+
+        //페이스북 로그인 세션 검사
+        if (AccessToken.getCurrentAccessToken() != null) {
+            Log.d("-진우-", "페이스북 로그인 완료 상태");
+            Profile profile = Profile.getCurrentProfile();
+
+            Log.d("-진우-", "로그인3 : " + profile.getId() + ", " + profile.getName() + ", " + profile.getLastName());
+            //member class에 페이스북 정보를 담음
+            Member member = new Member();
+            member.setJoin_route("facebook");
+            member.setFacebook_id(profile.getId());
+
+            //member 정보로 로그인 체크
+            FindMemberByFacebookTask task = new FindMemberByFacebookTask();
+            task.execute(member);
+        } else {
+            Log.d("-진우-", "페이스북 로그인 체크 안됨");
+        }
+
+        //픽토그램 로그인 검사
+        if (SaveSharedPreference.getMemberSeq(getApplicationContext()).length() == 0) {
+            Log.d("-진우-", "픽토그램 로그인 안됨");
+        } else {
+            //디바이스에 저장된 멤버 정보 확인
+            String member_seq = SaveSharedPreference.getMemberSeq(getApplicationContext());
+            Log.d("-진우-", "픽토그램 로그인 됨 : " + member_seq);
+
+            //서버에서 멤버 정보 불러오기
+            FindMemberByMemberSeqTask task = new FindMemberByMemberSeqTask();
+            task.execute(member_seq);
+        }
+
+        //////////////////세션검사 end
+
+        //페이스북 - This class can be extended to receive notifications of access token changes
+        //액세스토큰이 변경시 실행
+        callbackManager = CallbackManager.Factory.create();
+        accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(AccessToken oldAccessToken, AccessToken currentAccessToken) {
+                Log.d("-진우-", "onCurrentAccessTokenChanged() 실행");
+                if (currentAccessToken != null) {
+                    /*startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();*/
+                } else {
+                    setContentView(R.layout.activity_login);
+                }
+            }
+
+        };
+    }
+
+    ////////////kakao
 
     //com.kakao.usermgmt.LoginButton
     private void kakaoLogin() {
@@ -501,6 +505,8 @@ public class LoginActivity extends BaseActivity {
             setContentView(R.layout.activity_login);
         }
     }
+
+    //////////////////kakao
 
     //멤버 읽어오기
     private class RegisterMemberTask extends AsyncTask<Object, Void, Member> {

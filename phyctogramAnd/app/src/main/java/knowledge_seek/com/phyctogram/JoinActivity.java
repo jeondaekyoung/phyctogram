@@ -47,7 +47,7 @@ public class JoinActivity extends Activity {
     private EditText et_pw;
     private EditText et_pw1;
     private Button btn_join_member;
-    CheckBox agreement1, agreement2;
+    CheckBox allAgreement,agreement1, agreement2;
     private ScrollView sv_layout;
     private TextView textViewPw;
 
@@ -129,11 +129,30 @@ public class JoinActivity extends Activity {
 
 
         //이용약관 동의 및 개인정보취급방침 동의
+        allAgreement =(CheckBox) findViewById(R.id.allAgreement);
         agreement1 = (CheckBox) findViewById(R.id.agreement1);
         agreement2 = (CheckBox) findViewById(R.id.agreement2);
+
+        allAgreement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                agreement1.setChecked(true);
+                agreement2.setChecked(true);
+                }
+                else{
+                    agreement1.setChecked(false);
+                    agreement2.setChecked(false);
+                }
+            }
+        });
+
         agreement1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(allAgreement.isChecked()){
+                    return;
+                }
                 if (isChecked) {
                     Context mContext = getApplicationContext();
                     LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -158,6 +177,9 @@ public class JoinActivity extends Activity {
         agreement2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(allAgreement.isChecked()){
+                    return;
+                }
                 if (isChecked) {
                     Context mContext2 = getApplicationContext();
                     LayoutInflater inflater2 = (LayoutInflater) mContext2.getSystemService(LAYOUT_INFLATER_SERVICE);

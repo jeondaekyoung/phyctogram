@@ -312,6 +312,34 @@ public class BaseActivity extends Activity {
         super.onDestroy();
     }
 
+    //백버튼 클릭시
+    @Override
+    public void onBackPressed() {
+        Activity nowActivity = GlobalApplication.getCurrentActivity();
+        Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
+        Log.d("-진우-", "시간 : " + backKeyPressedTime);
+
+        Intent intent = null;
+        if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
+            //두번 클릭시 종료
+            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+                backKeyPressedTime = System.currentTimeMillis();
+                Toast.makeText(getApplicationContext(), R.string.baseActivity_exit, Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+                //moveTaskToBack(true);
+                finish();
+                //android.os.Process.killProcess(android.os.Process.myPid());
+            }
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+
+    ///////////메소드
+
     private void clearReferences() {
         Activity currActivity = GlobalApplication.getCurrentActivity();
         if (currActivity != null && currActivity.equals(this)) {
@@ -348,33 +376,6 @@ public class BaseActivity extends Activity {
         //finish();
     }
 
-    //슬라이딩, 메뉴
-    public void initSildeMenu() {
-        // init left menu width
-        metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        leftMenuWidth = (int) ((metrics.widthPixels) * 0.65);
-        displayWidth = metrics.widthPixels;
-
-        // init main view
-        ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
-        //메인뷰에 터치이벤트 적용
-        //ll_mainLayout.setOnTouchListener(ll_mainLayoutListener);
-
-        // init left menu
-        ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
-        leftMenuLayoutPrams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
-        leftMenuLayoutPrams.width = leftMenuWidth;
-        ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
-
-        ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
-        ll_empty.setVisibility(View.GONE);
-
-        if(isLeftExpanded == false) {
-            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
-            enableDisableViewGroup(viewGroup, false);
-        }
-    }
 
     /**
      * left menu toggle
@@ -457,29 +458,33 @@ public class BaseActivity extends Activity {
         listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
         return listViewHeight;
     }
+    //슬라이딩, 메뉴
+    public void initSildeMenu() {
+        // init left menu width
+        metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        leftMenuWidth = (int) ((metrics.widthPixels) * 0.65);
+        displayWidth = metrics.widthPixels;
 
-    //백버튼 클릭시
-    @Override
-    public void onBackPressed() {
-        Activity nowActivity = GlobalApplication.getCurrentActivity();
-        Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
-        Log.d("-진우-", "시간 : " + backKeyPressedTime);
+        // init main view
+        ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
+        //메인뷰에 터치이벤트 적용
+        //ll_mainLayout.setOnTouchListener(ll_mainLayoutListener);
 
-        Intent intent = null;
-        if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
-            //두번 클릭시 종료
-            if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
-                backKeyPressedTime = System.currentTimeMillis();
-                Toast.makeText(getApplicationContext(), R.string.baseActivity_exit, Toast.LENGTH_SHORT).show();
-                return;
-            }
-            if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-                //moveTaskToBack(true);
-                finish();
-                //android.os.Process.killProcess(android.os.Process.myPid());
-            }
-        } else {
-            super.onBackPressed();
+        // init left menu
+        ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
+        leftMenuLayoutPrams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
+        leftMenuLayoutPrams.width = leftMenuWidth;
+        ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
+
+        ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
+        ll_empty.setVisibility(View.GONE);
+
+        if(isLeftExpanded == false) {
+            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
+            enableDisableViewGroup(viewGroup, false);
         }
     }
+
+
 }
