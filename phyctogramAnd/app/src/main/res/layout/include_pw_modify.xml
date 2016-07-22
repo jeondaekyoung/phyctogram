@@ -38,15 +38,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:focusable="true"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="160dp"
+                android:layout_gravity="center"
+                android:src="@drawable/password"/>
 
             <knowledge_seek.com.phyctogram.util.MyEditTextView
                 android:id="@+id/et_now_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:layout_marginTop="@dimen/activity_horizontal_margin"
                 android:background="@drawable/border_grey"
                 android:hint="@string/includePwModify_realPw"
@@ -58,9 +63,7 @@
                 android:id="@+id/et_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_grey"
                 android:hint="@string/includePwModify_changePw"
                 android:inputType="textPassword"
@@ -71,9 +74,7 @@
                 android:id="@+id/et_pw1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/border_grey"
                 android:hint="@string/includePwModify_checkChangePw"
                 android:inputType="textPassword"
@@ -84,22 +85,29 @@
                 android:id="@+id/ll_no_phyctogram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/border_grey"
                 android:orientation="vertical"
                 android:padding="@dimen/activity_horizontal_margin">
 
                 <TextView
-                    android:id="@+id/tv_join_route"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="@string/includePwModify_joinChannel"
                     android:textColor="@color/color7"
                     android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/tv_join_route"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14dp" />
             </knowledge_seek.com.phyctogram.util.MyLinearView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/activity_horizontal_margin">
+                android:layout_height="match_parent">
 
                 <Button
                     android:id="@+id/btn_pw_mod"

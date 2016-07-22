@@ -10,6 +10,7 @@
         android:layout_height="50dp"
         android:background="@color/purpledk"
         android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/btn_left"
             android:layout_width="42dp"
@@ -30,6 +31,10 @@
         android:id="@id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyListView
@@ -39,19 +44,19 @@
             android:divider="#f1f1f1"
             android:dividerHeight="1dp" />
 
-<!--        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <!--        <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imBtn_community_write"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/float_button_03"
-                android:background="#00000000"/>
-        </RelativeLayout>-->
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imBtn_community_write"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/float_button_03"
+                        android:background="#00000000"/>
+                </RelativeLayout>-->
 
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>

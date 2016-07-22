@@ -130,7 +130,10 @@
         <knowledge_seek.com.phyctogram.util.MyListView
             android:id="@+id/lv_record"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/color6"
+            android:divider="@color/grey_bg2"
+            android:dividerHeight="1dp" />
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 
 </LinearLayout>

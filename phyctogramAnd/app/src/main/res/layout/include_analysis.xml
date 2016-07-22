@@ -36,121 +36,184 @@
             android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/activity_horizontal_margin"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_grey"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/iv_ruler"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/report_ruler" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/iv_ruler"
+                    android:padding="4dp"
+                    android:text="나리" />
+
+                <!--그래프-->
+                <com.github.mikephil.charting.charts.CombinedChart
+                    android:id="@+id/chart1"
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:layout_below="@id/iv_ruler"
+                    android:layout_marginTop="8dp" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:id="@+id/ll_capture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/border_grey"
+                    android:orientation="vertical"
+                    android:padding="@dimen/activity_horizontal_margin">
+                    <!-- 작업중 -->
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#C0AAE1"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="25dp"
-                    android:paddingRight="25dp"
-                    android:paddingTop="10dp">
-
-                    <!--캐릭터 이미지-->
-                    <ImageView
-                        android:id="@+id/iv_my_animal"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:background="#fff"
-                        android:src="@drawable/sample" />
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_border_radius_purpledker"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingLeft="10dp">
+                        android:padding="8dp">
 
-                        <!-- 최종신장 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <!--캐릭터 이미지-->
+                        <com.pkmmte.view.CircularImageView
+                            android:id="@+id/iv_my_animal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/sample" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="8dp"
+                            android:text="나리"
+                            android:textColor="@color/color6" />
+                    </LinearLayout>
 
-                            <TextView
-                                android:layout_width="52dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:text="@string/includeAnalysis_finalHeight"
-                                android:textColor="#ffffff" />
+                    <!-- 최종신장 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_grey"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/report_ruler" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tv_height"
-                                android:layout_width="70dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:paddingRight="5dp"
                                 android:text="-"
-                                android:textColor="#ffffff"
+                                android:textColor="@color/purpledker"
                                 android:textSize="24dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                 android:text="cm"
-                                android:textColor="#ffffff" />
+                                android:textColor="@color/purpledker" />
                         </LinearLayout>
 
-                        <!-- 성장 값 -->
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="4dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="52dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:text="("
-                                android:textColor="#ffffff" />
 
                             <TextView
                                 android:id="@+id/tv_grow"
-                                android:layout_width="70dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:paddingRight="5dp"
                                 android:text="-"
-                                android:textColor="#ffffff"
-                                android:textSize="24dp" />
+                                android:textColor="@color/purpledker"
+                                android:textSize="10dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="cm )"
-                                android:textColor="#ffffff" />
+                                android:layout_marginLeft="4dp"
+                                android:text="cm"
+                                android:textColor="@color/purpledker"
+                                android:textSize="10dp" />
                         </LinearLayout>
 
-                        <!-- 상위 -->
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/includeAnalysis_finalHeight"
+                            android:textColor="@color/purpledker" />
+                    </LinearLayout>
+
+                    <!-- 상위 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_border_radius_purpledker"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/report_rank" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="24dp"
+                            android:layout_marginTop="24dp"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:layout_width="52dp"
-                                android:layout_height="45dp"
-                                android:gravity="center"
-                                android:text="@string/includeAnalysis_highRank"
-                                android:textColor="#ffffff" />
-
-                            <TextView
                                 android:id="@+id/tv_rank"
-                                android:layout_width="70dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:gravity="right"
-                                android:paddingRight="5dp"
                                 android:text="-"
                                 android:textColor="#ffffff"
                                 android:textSize="24dp" />
@@ -158,33 +221,42 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
                                 android:text="%"
                                 android:textColor="#ffffff" />
                         </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/includeAnalysis_highRank"
+                            android:textColor="#ffffff" />
+
                     </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/color5"
                     android:orientation="horizontal"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp">
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
 
                     <!--평균-->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
                         android:layout_weight="1"
+                        android:background="@drawable/border_grey"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <TextView
                             android:id="@+id/tv_analysis_height50"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
                             android:text="@string/includeAnalysis_avg" />
 
                         <LinearLayout
@@ -195,15 +267,16 @@
 
                             <ImageView
                                 android:id="@+id/iv_analysis_height50_diff"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:layout_marginRight="10dp" />
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp" />
 
                             <TextView
                                 android:id="@+id/tv_analysis_height50_diff"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="4.5"
+                                android:text="-"
                                 android:textSize="24dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -213,14 +286,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:background="@drawable/border_grey"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:padding="8dp">
 
                         <TextView
                             android:id="@+id/tv_analysis_height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="5dp"
                             android:text="@string/includeAnalysis_growth" />
 
                         <LinearLayout
@@ -231,15 +305,16 @@
 
                             <ImageView
                                 android:id="@+id/iv_analysis_height_diff"
-                                android:layout_width="25dp"
+                                android:layout_width="24dp"
                                 android:layout_height="25dp"
-                                android:layout_marginRight="10dp" />
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp" />
 
                             <TextView
                                 android:id="@+id/tv_analysis_height_diff"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="2.5"
+                                android:text="-"
                                 android:textSize="24dp" />
                         </LinearLayout>
                     </LinearLayout>
@@ -250,11 +325,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/activity_horizontal_margin">
+                android:orientation="vertical">
 
                 <!--분석글-->
-                <TextView
+                <!--<TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
@@ -276,7 +350,7 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/includeAnalysis_analysisContentLink"
-                    android:textColor="#ff0000" />
+                    android:textColor="#ff0000" />-->
 
                 <!--공유버튼-->
                 <Button
@@ -289,12 +363,6 @@
                     android:text="@string/includeAnalysis_analysisShare"
                     android:textColor="@color/color6" />
 
-                <!--그래프-->
-                <com.github.mikephil.charting.charts.CombinedChart
-                    android:id="@+id/chart1"
-                    android:layout_width="match_parent"
-                    android:layout_height="260dp"
-                    android:layout_marginTop="10dp" />
             </LinearLayout>
         </LinearLayout>
     </knowledge_seek.com.phyctogram.util.MyScrollView>

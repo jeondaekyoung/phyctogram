@@ -145,8 +145,8 @@
 
     <string name="includeAnalysis_finalHeight">키</string>
     <string name="includeAnalysis_highRank">상위</string>
-    <string name="includeAnalysis_avg">평균 147cm</string>
-    <string name="includeAnalysis_growth">8개월동안 1.5cm 성장</string>
+    <string name="includeAnalysis_avg">평균보다</string>
+    <string name="includeAnalysis_growth">성장</string>
     <string name="includeAnalysis_analysis">분석:</string>
     <string name="includeAnalysis_analysisContentFirst">평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다.</string>
     <string name="includeAnalysis_analysisContentSecond">Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다.</string>
@@ -243,7 +243,7 @@
 
     <string name="includeQaView_qa">문의사항</string>
 
-    <string name="includeQaWrite_qaWrite">문의하기 글쓰기</string>
+    <string name="includeQaWrite_qaWrite">문의하기</string>
     <string name="includeQaWrite_title"> 제목</string>
     <string name="includeQaWrite_contents"> 내용</string>
 

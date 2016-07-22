@@ -39,6 +39,13 @@
             android:layout_height="1dp"
             android:background="@color/grey_line" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="160dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/password" />
+
         <EditText
             android:id="@+id/editTextMail"
             android:layout_width="match_parent"

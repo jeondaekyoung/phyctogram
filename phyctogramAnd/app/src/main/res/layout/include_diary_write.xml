@@ -32,29 +32,26 @@
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffffff"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyTextView
             android:id="@+id/tv_diary_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/borderbottom"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/border_grey"
             android:editable="false"
             android:gravity="center_vertical"
             android:padding="@dimen/activity_horizontal_margin"
             android:textSize="14dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grey_bg2"/>
-
         <knowledge_seek.com.phyctogram.util.MyEditTextView
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/borderbottom"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/border_grey"
             android:hint="@string/includeDiaryView_title"
             android:inputType="text"
             android:padding="@dimen/activity_horizontal_margin"
@@ -64,8 +61,9 @@
             android:id="@+id/et_contents"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:background="@drawable/borderbottom"
+            android:background="@drawable/border_grey"
             android:gravity="top|left"
             android:hint="@string/includeDiaryView_contents"
             android:inputType="textMultiLine"
@@ -76,18 +74,11 @@
             android:scrollHorizontally="false"
             android:textSize="14dp" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grey_line2" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="8dp">
+            android:background="@drawable/border_grey"
+            android:padding="8dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"

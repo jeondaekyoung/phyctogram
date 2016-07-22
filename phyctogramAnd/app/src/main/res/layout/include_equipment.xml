@@ -30,13 +30,18 @@
     <knowledge_seek.com.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:background="@drawable/border_grey"
         android:orientation="vertical">
 
         <knowledge_seek.com.phyctogram.util.MyImageView
             android:id="@+id/img_btn"
             android:layout_width="match_parent"
-            android:layout_height="103dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/equipment" />
 
         <knowledge_seek.com.phyctogram.util.MyLinearView
@@ -61,7 +66,6 @@
         <knowledge_seek.com.phyctogram.util.MyLinearView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/borderbottom"
             android:orientation="vertical"
             android:padding="@dimen/activity_horizontal_margin">
 
@@ -76,41 +80,36 @@
                 android:text="1.3.0"
                 android:textColor="#aaa" />
         </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </knowledge_seek.com.phyctogram.util.MyLinearView>
 
-        <Button
-            android:id="@+id/connWifiBtn"
+    <Button
+        android:id="@+id/connWifiBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/btn_border_radius"
+        android:text="@string/equipmentActivity_searchHW"
+        android:textColor="#ffffff" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <knowledge_seek.com.phyctogram.util.MyListView
+            android:id="@+id/lv_wifiList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:background="@drawable/btn_border_radius"
-            android:text="@string/equipmentActivity_searchHW"
-            android:textColor="#ffffff" />
-        
-        <!--<Button
-            android:id="@+id/test"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="test"/>-->
+            android:divider="#f1f1f1"
+            android:dividerHeight="1dp" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <knowledge_seek.com.phyctogram.util.MyListView
-                android:id="@+id/lv_wifiList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="#f1f1f1"
-                android:dividerHeight="1dp" />
-
-            <!--<ImageButton
-                android:id="@+id/addEquip"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/float_button_03"
-                android:padding="5dp" />-->
-        </RelativeLayout>-->
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+        <!--<ImageButton
+            android:id="@+id/addEquip"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/float_button_03"
+            android:padding="5dp" />-->
+    </RelativeLayout>
 </LinearLayout>

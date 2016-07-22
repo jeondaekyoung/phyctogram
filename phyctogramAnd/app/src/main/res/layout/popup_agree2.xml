@@ -21,6 +21,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="1. 개인정보의 처리 목적" />
 
             <TextView
@@ -31,7 +32,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가. 홈페이지 회원가입 및 관리" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="① 홈페이지 회원가입 및 관리" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,7 +44,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="나. 민원사무 처리" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="② 민원사무 처리" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -51,7 +56,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="다. 재화 또는 서비스 제공" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="③ 재화 또는 서비스 제공" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +68,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="라. 마케팅 및 광고에의 활용" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="4dp"
+                android:text="④ 마케팅 및 광고에의 활용" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -71,6 +80,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="2. 개인정보 파일 현황" />
 
             <TextView
@@ -106,6 +117,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="3. 개인정보처리 위탁" />
 
             <TextView
@@ -126,6 +139,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="4. 정보주체의 권리,의무 및 그 행사방법 이용자는 개인정보주체로서 다음과 같은 권리를 행사할 수 있습니다." />
 
             <TextView
@@ -136,22 +151,22 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1. 개인정보 열람요구" />
+                android:text="- 개인정보 열람요구" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2. 오류 등이 있을 경우 정정 요구" />
+                android:text="- 오류 등이 있을 경우 정정 요구" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3. 삭제요구" />
+                android:text="- 삭제요구" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4. 처리정지 요구" />
+                android:text="- 처리정지 요구" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -171,6 +186,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="5. 처리하는 개인정보의 항목 작성" />
 
             <TextView
@@ -191,6 +208,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="6. 개인정보의 파기('픽토그램')은 원칙적으로 개인정보 처리목적이 달성된 경우에는 지체없이 해당 개인정보를 파기합니다. 파기의 절차, 기한 및 방법은 다음과 같습니다." />
 
             <TextView
@@ -227,12 +246,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="7. 개인정보의 안전성 확보 조치 ('픽토그램')은 개인정보보호법 제29조에 따라 다음과 같이 안전성 확보에 필요한 기술적/관리적 및 물리적 조치를 하고 있습니다." />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1. 내부관리계획의 수립 및 시행" />
+                android:text="① 내부관리계획의 수립 및 시행" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -242,6 +263,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="8. 개인정보 보호책임자 작성" />
 
             <TextView
@@ -277,13 +300,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
                 android:text="9. 개인정보 처리방침 변경" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="①이 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에 따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의 시행 7일 전부터 공지사항을 통하여 고지할 것입니다." />
-
 
         </LinearLayout>
 

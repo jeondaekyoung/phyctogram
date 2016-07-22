@@ -64,8 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/iv_my_animal"
-                    android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
                     android:text="name" />
 
                 <ImageView
@@ -81,8 +81,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/activity_horizontal_margin"
-                android:background="@drawable/border_radius_grey"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:background="@drawable/border_grey"
                 android:orientation="horizontal">
 
                 <!-- 키 -->
@@ -196,10 +199,10 @@
                 android:id="@+id/btn_users_analysis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/border_radius_grey"
+                android:background="@drawable/border_grey"
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_horizontal_margin">
 
@@ -233,7 +236,7 @@
                 android:layout_marginBottom="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:background="@drawable/border_radius_grey"
+                android:background="@drawable/border_grey"
                 android:orientation="horizontal"
                 android:padding="@dimen/activity_horizontal_margin">
 

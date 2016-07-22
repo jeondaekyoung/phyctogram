@@ -8,14 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/purpledk"
-        android:text="@string/popupWifiList_sign"
         android:gravity="center"
+        android:text="@string/popupWifiList_sign"
         android:textColor="#fff" />
 
     <ListView
         android:id="@+id/list_wifi"
-        android:background="#FFFFFF"
         android:layout_width="match_parent"
-        android:layout_height="450dip"/>
+        android:layout_height="450dip"
+        android:background="#FFFFFF"
+        android:divider="@color/grey_bg2"
+        android:dividerHeight="1dp" />
 
 </LinearLayout>

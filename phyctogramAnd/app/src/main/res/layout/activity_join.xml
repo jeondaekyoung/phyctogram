@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fafafa"
+    android:background="@color/grey_bg"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -132,35 +132,58 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/activityJoin_agree" />
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_horizontal_margin"
                     android:layout_marginLeft="@dimen/activity_horizontal_margin"
                     android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:background="@drawable/border_grey_fill"
+                    android:background="@drawable/border_grey"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="10dp">
 
                     <CheckBox
                         android:id="@+id/agreement1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/activityJoin_agreeClause" />
+
+                    <TextView
+                        android:id="@+id/agreement1_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/agreement1"
+                        android:layout_alignParentRight="true"
+                        android:text="[전문보기]" />
 
                     <CheckBox
                         android:id="@+id/agreement2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/agreement1"
                         android:text="@string/activityJoin_individualInfo" />
-                </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/agreement2_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@id/agreement2"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/agreement1"
+                        android:text="[전문보기]" />
+                </RelativeLayout>
 
 
                 <Button
                     android:id="@+id/btn_join_member"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
                     android:background="@drawable/btn_border_radius"
                     android:text="@string/activityJoin_joining"
                     android:textColor="#ffffff" />
