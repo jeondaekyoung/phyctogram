@@ -47,7 +47,8 @@ public class JoinActivity extends Activity {
     private EditText et_pw;
     private EditText et_pw1;
     private Button btn_join_member;
-    CheckBox allAgreement,agreement1, agreement2;
+    private CheckBox allAgreement,agreement1, agreement2;
+    private TextView agreement1_view,agreement2_view;
     private ScrollView sv_layout;
     private TextView textViewPw;
 
@@ -132,6 +133,8 @@ public class JoinActivity extends Activity {
         allAgreement =(CheckBox) findViewById(R.id.allAgreement);
         agreement1 = (CheckBox) findViewById(R.id.agreement1);
         agreement2 = (CheckBox) findViewById(R.id.agreement2);
+        agreement1_view = (TextView)findViewById(R.id.agreement1_view);
+        agreement2_view = (TextView)findViewById(R.id.agreement2_view);
 
         allAgreement.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -146,8 +149,52 @@ public class JoinActivity extends Activity {
                 }
             }
         });
+        agreement1_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context mContext = getApplicationContext();
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
-        agreement1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                View layout;
+                layout = inflater.inflate(R.layout.popup_agree, (ViewGroup) findViewById(R.id.agreeText));
+                AlertDialog.Builder aDialog = new AlertDialog.Builder(JoinActivity.this);
+
+                aDialog.setTitle(R.string.joinActivity_clause);
+                aDialog.setView(layout);
+
+                aDialog.setNegativeButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog ad = aDialog.create();
+                ad.show();
+            }
+        });
+        agreement2_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context mContext2 = getApplicationContext();
+                LayoutInflater inflater2 = (LayoutInflater) mContext2.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                View layout;
+                layout = inflater2.inflate(R.layout.popup_agree2, (ViewGroup) findViewById(R.id.agreeText));
+                AlertDialog.Builder aDialog2 = new AlertDialog.Builder(JoinActivity.this);
+
+                aDialog2.setTitle(R.string.joinActivity_individualInfo);
+                aDialog2.setView(layout);
+
+                aDialog2.setNegativeButton(R.string.commonActivity_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog ad2 = aDialog2.create();
+                ad2.show();
+            }
+        });
+
+  /*      agreement1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(allAgreement.isChecked()){
@@ -200,7 +247,7 @@ public class JoinActivity extends Activity {
                     ad2.show();
                 }
             }
-        });
+        });*/
     }//onCreate
 
     @Override
