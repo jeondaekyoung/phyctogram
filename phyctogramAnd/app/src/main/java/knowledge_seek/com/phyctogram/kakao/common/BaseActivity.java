@@ -63,7 +63,7 @@ public class BaseActivity extends Activity {
     public static DisplayMetrics metrics;
     public static LinearLayout ll_mainLayout;
     public static LinearLayout ll_menuLayout;
-    public static FrameLayout.LayoutParams leftMenuLayoutPrams;
+    public static FrameLayout.LayoutParams leftMenuLayoutParams;
     public static int leftMenuWidth, displayWidth;
     public boolean isLeftExpanded = false;
     public static LinearLayout ll_empty;
@@ -318,12 +318,18 @@ public class BaseActivity extends Activity {
         Activity nowActivity = GlobalApplication.getCurrentActivity();
         Log.d("-진우-", "지금 실행중인 액티비티 : " + (nowActivity != null ? nowActivity.getClass().getSimpleName() : ""));
         Log.d("-진우-", "시간 : " + backKeyPressedTime);
+        Log.d("-진우-", "슬라이드  : " + isLeftExpanded);
+        if(isLeftExpanded) {
+            menuLeftSlideAnimationToggle();
+            return;
+        }
 
         Intent intent = null;
         if (nowActivity != null && nowActivity.getClass().getSimpleName().equals("MainActivity")) {
             //두번 클릭시 종료
             if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
                 backKeyPressedTime = System.currentTimeMillis();
+
                 Toast.makeText(getApplicationContext(), R.string.baseActivity_exit, Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -473,9 +479,9 @@ public class BaseActivity extends Activity {
 
         // init left menu
         ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
-        leftMenuLayoutPrams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
-        leftMenuLayoutPrams.width = leftMenuWidth;
-        ll_menuLayout.setLayoutParams(leftMenuLayoutPrams);
+        leftMenuLayoutParams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
+        leftMenuLayoutParams.width = leftMenuWidth;
+        ll_menuLayout.setLayoutParams(leftMenuLayoutParams);
 
         ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
         ll_empty.setVisibility(View.GONE);

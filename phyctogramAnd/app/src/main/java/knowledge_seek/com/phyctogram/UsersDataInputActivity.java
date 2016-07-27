@@ -174,10 +174,7 @@ public class UsersDataInputActivity extends BaseActivity {
         Log.d("-진우-", "UsersDataInputActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     //height 내용 체크
     private boolean checkHeight(String height_str){
@@ -228,7 +225,7 @@ public class UsersDataInputActivity extends BaseActivity {
         protected void onPostExecute(String result) {
             if(result != null && result.equals("success")){
                 Toast.makeText(getApplicationContext(), R.string.commonActivity_save, Toast.LENGTH_SHORT).show();
-                onBackPressed();
+               onBackPressed();
             } else {
                 Log.d("-진우-", "저장하는데 실패하였습니다");
             }

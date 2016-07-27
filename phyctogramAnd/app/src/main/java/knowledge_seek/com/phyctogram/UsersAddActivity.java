@@ -186,10 +186,7 @@ public class UsersAddActivity extends BaseActivity {
         Log.d("-진우-", "UsersAddActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     //users의 내용 체크
     private boolean checkUsers(Users users) {

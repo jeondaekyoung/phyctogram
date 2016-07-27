@@ -133,10 +133,7 @@ public class QaWriteActivity extends BaseActivity {
         Log.d("-진우-", "QaWriteActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     //Commnty의 내용체크
     private boolean checkQa(Qa qa){

@@ -275,11 +275,6 @@ public class DiaryViewActivity extends BaseActivity {
         Log.d("-진우-", "DiaryViewActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
     //날짜 입력
     /*private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
         @Override

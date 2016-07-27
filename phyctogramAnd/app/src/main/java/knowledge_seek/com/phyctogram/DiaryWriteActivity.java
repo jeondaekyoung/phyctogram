@@ -247,10 +247,7 @@ public class DiaryWriteActivity extends BaseActivity {
         Log.d("-진우-", "DiaryWriteActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 
     //갤러리 선택 결과 받는 함수
     @Override

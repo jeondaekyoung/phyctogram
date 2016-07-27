@@ -137,11 +137,6 @@ public class CommunityWriteActivity extends BaseActivity {
         Log.d("-진우-", "CommunityWriteActivity.onResume() 끝");
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
     //Commnty의 내용체크
     private boolean checkCommnty(Commnty commnty){
         if(commnty.getTitle().length() <= 0 || commnty.getContents().length() <= 0){
