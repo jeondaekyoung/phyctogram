@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.common.ConnectionResult;
@@ -154,6 +156,47 @@ public class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.d("-진우-", "BaseActivity.onCreate() 실행");
         setContentView(R.layout.activity_base);
+
+        View view = findViewById(R.id.ripple);
+        MaterialRippleLayout.on(view)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+        View view1 = findViewById(R.id.ripple1);
+        MaterialRippleLayout.on(view1)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view2 = findViewById(R.id.ripple2);
+        MaterialRippleLayout.on(view2)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view3 = findViewById(R.id.ripple3);
+        MaterialRippleLayout.on(view3)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view4 = findViewById(R.id.ripple4);
+        MaterialRippleLayout.on(view4)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view5 = findViewById(R.id.ripple5);
+        MaterialRippleLayout.on(view5)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
 
         //데이터셋팅
 

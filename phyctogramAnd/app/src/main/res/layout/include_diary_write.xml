@@ -28,97 +28,101 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
-        android:id="@+id/ll_fragment"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <knowledge_seek.com.phyctogram.util.MyTextView
-            android:id="@+id/tv_diary_date"
+        <knowledge_seek.com.phyctogram.util.MyLinearView
+            android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/border_grey"
-            android:editable="false"
-            android:gravity="center_vertical"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:textSize="14dp" />
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
 
-        <knowledge_seek.com.phyctogram.util.MyEditTextView
-            android:id="@+id/et_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/border_grey"
-            android:hint="@string/includeDiaryView_title"
-            android:inputType="text"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:textSize="14dp" />
-
-        <knowledge_seek.com.phyctogram.util.MyEditTextView
-            android:id="@+id/et_contents"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/border_grey"
-            android:gravity="top|left"
-            android:hint="@string/includeDiaryView_contents"
-            android:inputType="textMultiLine"
-            android:lines="21"
-            android:maxWidth="5.0dip"
-            android:minWidth="10.0dip"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:scrollHorizontally="false"
-            android:textSize="14dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_grey"
-            android:padding="8dp">
-
-            <RelativeLayout
+            <knowledge_seek.com.phyctogram.util.MyTextView
+                android:id="@+id/tv_diary_date"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:gravity="center">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_grey"
+                android:editable="false"
+                android:gravity="center_vertical"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="14dp" />
 
-                <Button
-                    android:id="@+id/btn_pic"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:background="@drawable/btn_border_radius2"
-                    android:text="@string/includeDiaryWrite_gallery"
-                    android:textColor="@color/purple"
-                    android:textSize="12dp" />
+            <knowledge_seek.com.phyctogram.util.MyEditTextView
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_grey"
+                android:hint="@string/includeDiaryView_title"
+                android:inputType="text"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:textSize="14dp" />
 
-                <Button
-                    android:id="@+id/btn_mov"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/btn_pic"
-                    android:background="@drawable/btn_border_radius2"
-                    android:text="@string/includeDiaryView_video"
-                    android:textColor="@color/purple"
-                    android:textSize="12dp" />
+            <knowledge_seek.com.phyctogram.util.MyEditTextView
+                android:id="@+id/et_contents"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/border_grey"
+                android:gravity="top|left"
+                android:hint="@string/includeDiaryView_contents"
+                android:inputType="textMultiLine"
+                android:lines="18"
+                android:maxWidth="5.0dip"
+                android:minWidth="10.0dip"
+                android:padding="@dimen/activity_horizontal_margin"
+                android:scrollHorizontally="false"
+                android:textSize="14dp" />
 
-                <Button
-                    android:id="@+id/btn_diary_save"
-                    android:layout_width="60dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_grey"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/btn_border_radius"
-                    android:text="@string/includeComWrite_save"
-                    android:textColor="#ffffff"
-                    android:textSize="12dp" />
-            </RelativeLayout>
-        </LinearLayout>
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btn_pic"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/btn_border_radius2"
+                        android:text="@string/includeDiaryWrite_gallery"
+                        android:textColor="@color/purple"
+                        android:textSize="12dp" />
+
+                    <Button
+                        android:id="@+id/btn_mov"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/btn_pic"
+                        android:background="@drawable/btn_border_radius2"
+                        android:text="@string/includeDiaryView_video"
+                        android:textColor="@color/purple"
+                        android:textSize="12dp" />
+
+                    <Button
+                        android:id="@+id/btn_diary_save"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/btn_border_radius"
+                        android:text="@string/includeComWrite_save"
+                        android:textColor="#ffffff"
+                        android:textSize="12dp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </ScrollView>
 </LinearLayout>

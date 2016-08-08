@@ -431,8 +431,8 @@ public class UsersAnalysisActivity extends BaseActivity {
         BarData d = new BarData();
 
         BarDataSet set = new BarDataSet(ave, getString(R.string.usersAnalysisActivity_avgChart));
-        set.setColor(Color.rgb(220, 220, 220));
-        set.setValueTextColor(Color.rgb(220, 220, 220));
+        set.setColor(Color.rgb(255, 242, 202));
+        set.setValueTextColor(Color.rgb(255, 242, 202));
         set.setValueTextSize(10f);
 
         d.addDataSet(set);

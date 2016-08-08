@@ -41,8 +41,8 @@
             android:id="@+id/lv_qaList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="#f1f1f1"
-            android:dividerHeight="1dp" />
+            android:divider="@color/grey_bg"
+            android:dividerHeight="8dp" />
 
         <RelativeLayout
             android:layout_width="wrap_content"

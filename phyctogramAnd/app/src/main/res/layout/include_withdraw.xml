@@ -27,99 +27,105 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
-        android:id="@+id/ll_fragment"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <knowledge_seek.com.phyctogram.util.MyLinearView
+            android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:orientation="vertical"
-            android:padding="@dimen/activity_horizontal_margin">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <knowledge_seek.com.phyctogram.util.MyLinearView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_grey"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:orientation="vertical"
                 android:padding="@dimen/activity_horizontal_margin">
 
-                <knowledge_seek.com.phyctogram.util.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/includePwModify_joinChannel" />
-
-                <knowledge_seek.com.phyctogram.util.MyTextView
-                    android:id="@+id/tv_join_route"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:text="카카오, 페이스북, 픽토그램"
-                    android:textColor="@color/grey_txt" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_grey"
-                android:orientation="vertical"
-                android:padding="@dimen/activity_horizontal_margin">
-
-                <knowledge_seek.com.phyctogram.util.MyTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/includeUsersAdd_name" />
-
-                <knowledge_seek.com.phyctogram.util.MyTextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:text="카카오닉네임, 페이스북이름, 픽토그램이름"
-                    android:textColor="@color/grey_txt" />
-            </LinearLayout>
-
-            <knowledge_seek.com.phyctogram.util.MyEditTextView
-                android:id="@+id/et_pw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/border_grey"
-                android:hint="@string/includeWithdraw_pw"
-                android:inputType="textPassword"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textSize="14dp" />
-
-            <knowledge_seek.com.phyctogram.util.MyEditTextView
-                android:id="@+id/et_pw1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_grey"
-                android:hint="@string/includeWithdraw_checkPw"
-                android:inputType="textPassword"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:textSize="14dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/btn_withdraw"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@drawable/btn_border_radius"
-                    android:text="@string/includeWithdraw_leave"
-                    android:textColor="#ffffff" />
-            </RelativeLayout>
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_grey"
+                    android:orientation="vertical"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <knowledge_seek.com.phyctogram.util.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/includePwModify_joinChannel" />
+
+                    <knowledge_seek.com.phyctogram.util.MyTextView
+                        android:id="@+id/tv_join_route"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="카카오, 페이스북, 픽토그램"
+                        android:textColor="@color/grey_txt" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_grey"
+                    android:orientation="vertical"
+                    android:padding="@dimen/activity_horizontal_margin">
+
+                    <knowledge_seek.com.phyctogram.util.MyTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/includeUsersAdd_name" />
+
+                    <knowledge_seek.com.phyctogram.util.MyTextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:text="카카오닉네임, 페이스북이름, 픽토그램이름"
+                        android:textColor="@color/grey_txt" />
+                </LinearLayout>
+
+                <knowledge_seek.com.phyctogram.util.MyEditTextView
+                    android:id="@+id/et_pw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/border_grey"
+                    android:hint="@string/includeWithdraw_pw"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textSize="14dp" />
+
+                <knowledge_seek.com.phyctogram.util.MyEditTextView
+                    android:id="@+id/et_pw1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_grey"
+                    android:hint="@string/includeWithdraw_checkPw"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/activity_horizontal_margin"
+                    android:textSize="14dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btn_withdraw"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/btn_border_radius"
+                        android:text="@string/includeWithdraw_leave"
+                        android:textColor="#ffffff" />
+                </RelativeLayout>
+            </knowledge_seek.com.phyctogram.util.MyLinearView>
         </knowledge_seek.com.phyctogram.util.MyLinearView>
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </ScrollView>
 </LinearLayout>

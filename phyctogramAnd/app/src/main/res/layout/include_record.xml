@@ -56,7 +56,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/linedate"
+                    android:background="@drawable/border_grey"
                     android:gravity="center"
                     android:hint="@string/includeRecord_writeDay"
                     android:padding="@dimen/activity_horizontal_margin" />
@@ -73,7 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/linedate"
+                    android:background="@drawable/border_grey"
                     android:gravity="center"
                     android:hint="@string/includeRecord_writeDay"
                     android:padding="@dimen/activity_horizontal_margin" />

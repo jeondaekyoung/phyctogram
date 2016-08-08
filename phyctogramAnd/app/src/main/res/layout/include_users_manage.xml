@@ -43,6 +43,7 @@
         <knowledge_seek.com.phyctogram.util.MyListView
             android:id="@+id/lv_usersList_manage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/color6" />
     </knowledge_seek.com.phyctogram.util.MyLinearView>
 </LinearLayout>
