@@ -21,6 +21,7 @@
         </button>
       </div>
       <div class="collapse navbar-collapse"> 
+        <a href="cn.jsp" style="float:right; margin:15px 5px 0"><img src="<%=application.getContextPath()%>/resources/images/cn.jpg" alt="chinese"/></a>
         <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<%=application.getContextPath()%>/resources/images/en.jpg" alt="english"/></a>
         <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<%=application.getContextPath()%>/resources/images/kr.jpg" alt="korean"/></a>
         <ul class="nav navbar-nav navbar-right">
@@ -138,7 +139,7 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone0.jpg" class="img-full"></div>
+                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone1.jpg" class="img-full"></div>
                   </div>
                 </div>
               </div>
@@ -177,7 +178,7 @@
               <header class="panel-heading text-center">
                 <i class="fa fa-minus fa-2x icon-muted m-b-n-xs block"></i>
               </header>
-              <div class="m-l-xs m-r-xs"><img src="<%=application.getContextPath()%>/resources/images/phone1.jpg" class="img-full" ></div>
+              <div class="m-l-xs m-r-xs"><img src="<%=application.getContextPath()%>/resources/images/phone2.jpg" class="img-full" ></div>
               <footer class="bg-dark text-center panel-footer no-border">
                 <i class="fa fa-circle icon-muted fa-lg"></i>
               </footer>

@@ -135,7 +135,7 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<c:url value='/resources/images/cn/phone0.png'/>" class="img-full"></div>
+                    <div class="item active text-center"><img src="<c:url value='/resources/images/cn/phone1.jpg'/>" class="img-full"></div>
                   </div>
                 </div>
               </div>
@@ -178,7 +178,7 @@
               <header class="panel-heading text-center">
                 <i class="fa fa-minus fa-2x icon-muted m-b-n-xs block"></i>
               </header>
-              <div class="m-l-xs m-r-xs"><img src="<c:url value='/resources/images/cn/phone1.png'/>" class="img-full" ></div>
+              <div class="m-l-xs m-r-xs"><img src="<c:url value='/resources/images/cn/phone2.jpg'/>" class="img-full" ></div>
               <footer class="bg-dark text-center panel-footer no-border">
                 <i class="fa fa-circle icon-muted fa-lg"></i>
               </footer>
@@ -210,8 +210,8 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<c:url value='/resources/images/cn/phone3.png'/>" class="img-full" ></div>
-                    <div class="item text-center"><img src="<c:url value='/resources/images/cn/phone4.png'/>" class="img-full" ></div>
+                    <div class="item active text-center"><img src="<c:url value='/resources/images/cn/phone3.jpg'/>" class="img-full" ></div>
+                    <div class="item text-center"><img src="<c:url value='/resources/images/cn/phone4.jpg'/>" class="img-full" ></div>
                   </div>
                 </div>
               </div>
