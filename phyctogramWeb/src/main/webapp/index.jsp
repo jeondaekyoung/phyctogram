@@ -138,8 +138,7 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src=<%=application.getContextPath()%>/resources/images/phone0.jpg class="img-full"></div>
-                    <div class="item text-center"><img src="<%=application.getContextPath()%>/resources/images/phone1.jpg" class="img-full"></div>
+                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone0.jpg" class="img-full"></div>
                   </div>
                 </div>
               </div>
