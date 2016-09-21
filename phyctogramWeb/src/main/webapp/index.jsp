@@ -138,7 +138,7 @@
               <div class="m-l-xs m-r-xs">
                 <div class="carousel auto slide" id="c-fade" data-interval="3000">
                   <div class="carousel-inner">
-                    <div class="item active text-center"><img src="<%=application.getContextPath()%>/resources/images/phone0.jpg" class="img-full"></div>
+                    <div class="item active text-center"><img src=<%=application.getContextPath()%>/resources/images/phone0.jpg class="img-full"></div>
                     <div class="item text-center"><img src="<%=application.getContextPath()%>/resources/images/phone1.jpg" class="img-full"></div>
                   </div>
                 </div>
@@ -266,14 +266,14 @@
   <jsp:include page="footer.jsp"/>
   <!-- / footer -->
   
-  <script src="<c:url value='/resources/js/jquery.min.js'/>"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
   <!-- Bootstrap -->
-  <script src="<c:url value='/resources/js/bootstrap.js'/>"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>
   <!-- App -->
-  <script src="<c:url value='/resources/js/app.js'/>"></script>
-  <script src="<c:url value='/resources/js/app.plugin.js'/>"></script>
-  <script src="<c:url value='/resources/js/appear/jquery.appear.js'/>"></script>
-  <script src="<c:url value='/resources/js/smoothscroll.js'/>"></script>
-  <script src="<c:url value='/resources/js/landing.js'/>"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/app.plugin.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/appear/jquery.appear.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/smoothscroll.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/js/landing.js"></script>
 </body>
 </html>
