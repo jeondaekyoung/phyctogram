@@ -10,6 +10,7 @@
         </button>
       </div>
       <div class="collapse navbar-collapse">
+        <a href="cn.jsp" style="float:right; margin:15px 5px 0"><img src="<c:url value='/resources/images/cn.jpg'/>" alt="chinese"/></a>
         <a href="en.jsp" style="float:right; margin:15px 5px 0"><img src="<c:url value='/resources/images/en.jpg'/>" alt="english"/></a>
         <a href="index.jsp" style="float:right; margin:15px 5px 0 15px"><img src="<c:url value='/resources/images/kr.jpg'/>" alt="korean"/></a>
         <ul class="nav navbar-nav navbar-right">
