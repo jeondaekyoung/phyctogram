@@ -1,12 +1,10 @@
 package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,19 +12,13 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
-import com.kakao.usermgmt.UserManagement;
-import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
-import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 
 /**
  * Created by dkfka on 2015-12-02.
@@ -42,11 +34,11 @@ public class SettingActivity extends BaseActivity {
     private TextView tv_member_name;            //슬라이드 내 이름
 
     //레이아웃정의
-    private TextView tv_notice;     //공지사항
-    private TextView tv_equip;      //내기기
-    private TextView tv_pwmod;      ///비밀번호 변경
-    private TextView tv_withdraw;       //회원탈퇴
-    private TextView tv_qa;             //문의하기
+    private LinearLayout tv_notice;     //공지사항
+    private LinearLayout tv_equip;      //내기기
+    private LinearLayout tv_pwmod;      ///비밀번호 변경
+    private LinearLayout tv_withdraw;       //회원탈퇴
+    private LinearLayout tv_qa;             //문의하기
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,8 +78,44 @@ public class SettingActivity extends BaseActivity {
                 menuLeftSlideAnimationToggle();
             }
         });
+
+        /*View view1 = findViewById(R.id.ripple01);
+        MaterialRippleLayout.on(view1)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view2 = findViewById(R.id.ripple02);
+        MaterialRippleLayout.on(view2)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view3 = findViewById(R.id.ripple03);
+        MaterialRippleLayout.on(view3)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view4 = findViewById(R.id.ripple04);
+        MaterialRippleLayout.on(view4)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+
+        View view5 = findViewById(R.id.ripple05);
+        MaterialRippleLayout.on(view5)
+                .rippleColor(Color.parseColor("#C0AAE1"))
+                .rippleAlpha(0.2f)
+                .rippleHover(true)
+                .create();
+*/
         //공지사항
-        tv_notice = (TextView)findViewById(R.id.tv_notice);
+        tv_notice = (LinearLayout)findViewById(R.id.tv_notice);
         tv_notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +125,7 @@ public class SettingActivity extends BaseActivity {
             }
         });
         //내기기
-        tv_equip = (TextView)findViewById(R.id.tv_equip);
+        tv_equip = (LinearLayout)findViewById(R.id.tv_equip);
         tv_equip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +137,7 @@ public class SettingActivity extends BaseActivity {
             }
         });
         //비밀번호 변경
-        tv_pwmod = (TextView)findViewById(R.id.tv_pwmod);
+        tv_pwmod = (LinearLayout)findViewById(R.id.tv_pwmod);
         tv_pwmod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +149,7 @@ public class SettingActivity extends BaseActivity {
             }
         });
         //회원탈퇴
-        tv_withdraw = (TextView)findViewById(R.id.tv_withdraw);
+        tv_withdraw = (LinearLayout)findViewById(R.id.tv_withdraw);
         tv_withdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,7 +161,7 @@ public class SettingActivity extends BaseActivity {
             }
         });
         //문의하기
-        tv_qa = (TextView)findViewById(R.id.tv_qa);
+        tv_qa = (LinearLayout)findViewById(R.id.tv_qa);
         tv_qa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -95,7 +95,7 @@
     <string name="usersAnalysisActivity_initkakao">카카오톡을 설치해주세요.</string>
     <string name="usersAnalysisActivity_childChart">내 아이 성장곡선</string>
     <string name="usersAnalysisActivity_avgChart">평균 성장 그래프</string>
-    <string name="usersAnalysisActivity_avg">평균</string>
+    <string name="usersAnalysisActivity_avg">평균키보다</string>
     <string name="usersAnalysisActivity_month">개월동안</string>
     <string name="usersAnalysisActivity_grow">성장</string>
 

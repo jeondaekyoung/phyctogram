@@ -37,6 +37,7 @@
 
         <Button
             android:id="@+id/btn_monthPrevious"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="15dp"
             android:layout_height="30dp"
             android:layout_alignParentLeft="true"
@@ -56,6 +57,7 @@
 
         <Button
             android:id="@+id/btn_monthNext"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="15dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

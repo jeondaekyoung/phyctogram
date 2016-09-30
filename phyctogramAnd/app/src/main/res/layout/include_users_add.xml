@@ -145,6 +145,7 @@
 
             <knowledge_seek.com.phyctogram.util.MyButtonView
                 android:id="@+id/btn_usersadd"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

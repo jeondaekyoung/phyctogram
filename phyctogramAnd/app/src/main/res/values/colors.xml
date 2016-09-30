@@ -28,5 +28,6 @@
 <color name="purpledker">#412f5d</color>
 <color name="yellow">#F6D14C</color>
 <color name="grey_alpha">#88B2B2B2</color>
+<color name="dkgrey_alpha">#88000000</color>
 
 </resources>

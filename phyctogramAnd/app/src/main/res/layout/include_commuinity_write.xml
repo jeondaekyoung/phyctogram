@@ -77,6 +77,7 @@
 
                 <Button
                     android:id="@+id/pic"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
@@ -88,6 +89,7 @@
 
                 <Button
                     android:id="@+id/mov"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"
@@ -100,6 +102,7 @@
 
                 <Button
                     android:id="@+id/btn_community_save"
+                    style="?android:attr/borderlessButtonStyle"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_alignParentBottom="true"

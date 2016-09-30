@@ -431,8 +431,8 @@ public class UsersAnalysisActivity extends BaseActivity {
         BarData d = new BarData();
 
         BarDataSet set = new BarDataSet(ave, getString(R.string.usersAnalysisActivity_avgChart));
-        set.setColor(Color.rgb(255, 242, 202));
-        set.setValueTextColor(Color.rgb(255, 242, 202));
+        set.setColor(Color.rgb(255, 240, 205));
+        set.setValueTextColor(Color.rgb(255, 200, 90));
         set.setValueTextSize(10f);
 
         d.addDataSet(set);
@@ -645,7 +645,8 @@ public class UsersAnalysisActivity extends BaseActivity {
                 Log.d("-진우-", "키성장분석 : " + h.toString());
             }
             StringBuilder analysis_height50 = new StringBuilder();
-            analysis_height50.append(getString(R.string.usersAnalysisActivity_avg)+" ").append(analysisTask.get(0).getHeight_50()).append(" cm");
+            /*analysis_height50.append(getString(R.string.usersAnalysisActivity_avg)+" ").append(analysisTask.get(0).getHeight_50()).append("cm 보다");*/
+            analysis_height50.append(getString(R.string.usersAnalysisActivity_avg));
             double analysis_height050_diff = Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight() - analysisTask.get(0).getHeight_50()));
             //Log.d("-진우-", "분석 결과 : " + analysis_height50 + ", " + analysis_height050_diff);
             tv_analysis_height50.setText(analysis_height50);
@@ -680,7 +681,8 @@ public class UsersAnalysisActivity extends BaseActivity {
             double analysis_height50_diff =  Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight_50() - analysisTask.get(analysisSize-1).getHeight_50()));
             double analysis_height_diff =  Double.parseDouble(String.format("%.1f", analysisTask.get(0).getHeight() - analysisTask.get(analysisSize-1).getHeight()));
             StringBuilder analysis_height = new StringBuilder();
-            analysis_height.append(month_diff).append(getString(R.string.usersAnalysisActivity_month)+" ").append(analysis_height50_diff).append("cm "+getString(R.string.usersAnalysisActivity_grow));
+            /*analysis_height.append(month_diff).append(getString(R.string.usersAnalysisActivity_month)+" ").append(analysis_height50_diff).append("cm "+getString(R.string.usersAnalysisActivity_grow));*/
+            analysis_height.append(month_diff).append(getString(R.string.usersAnalysisActivity_month));
             double diff = Double.parseDouble(String.format("%.1f", analysis_height_diff - analysis_height50_diff));
             Log.d("-진우-", "분석 결과2 : " + analysis_height + ", " + analysis_height_diff + ", " + analysis_height50_diff + " = "
                     + (analysis_height_diff - analysis_height50_diff) + ", " + diff);
