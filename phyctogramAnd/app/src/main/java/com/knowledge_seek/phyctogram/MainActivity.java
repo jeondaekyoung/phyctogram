@@ -19,6 +19,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.knowledge_seek.phyctogram.domain.Height;
+import com.knowledge_seek.phyctogram.domain.Member;
+import com.knowledge_seek.phyctogram.domain.SqlCommntyListView;
+import com.knowledge_seek.phyctogram.domain.Users;
+import com.knowledge_seek.phyctogram.gcm.QuickstartPreferences;
+import com.knowledge_seek.phyctogram.kakao.common.BaseActivity;
+import com.knowledge_seek.phyctogram.retrofitapi.MemberAPI;
+import com.knowledge_seek.phyctogram.retrofitapi.ServiceGenerator;
+import com.knowledge_seek.phyctogram.retrofitapi.UsersAPI;
+import com.knowledge_seek.phyctogram.util.Utility;
 import com.pkmmte.view.CircularImageView;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -30,16 +40,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.knowledge_seek.phyctogram.domain.Height;
-import com.knowledge_seek.phyctogram.domain.Member;
-import com.knowledge_seek.phyctogram.domain.SqlCommntyListView;
-import com.knowledge_seek.phyctogram.domain.Users;
-import com.knowledge_seek.phyctogram.gcm.QuickstartPreferences;
-import com.knowledge_seek.phyctogram.kakao.common.BaseActivity;
-import com.knowledge_seek.phyctogram.retrofitapi.MemberAPI;
-import com.knowledge_seek.phyctogram.retrofitapi.ServiceGenerator;
-import com.knowledge_seek.phyctogram.retrofitapi.UsersAPI;
-import com.knowledge_seek.phyctogram.util.Utility;
 import retrofit.Call;
 
 /**
@@ -113,11 +113,11 @@ public class MainActivity extends BaseActivity {
             member = (Member) bundle.getSerializable("member");
             Log.d("-진우-", "MainActivity 에서 onCreate() : " + member.toString());
             if (member.getJoin_route().equals("kakao")) {
-                memberName = member.getKakao_nickname() + " 님";
+                memberName = member.getKakao_nickname();
             } else if (member.getJoin_route().equals("facebook")) {
-                memberName = member.getFacebook_name() + " 님";
+                memberName = member.getFacebook_name();
             } else {
-                memberName = member.getName() + " 님";
+                memberName = member.getName();
             }
 
             if (QuickstartPreferences.token != null){
@@ -401,9 +401,11 @@ public class MainActivity extends BaseActivity {
                 InputStream in = null;
                 try {
                     Log.d("-진우-", "이미지 주소 : " + image_url);
-                    in = new URL(image_url).openStream();
-                    memberImg = BitmapFactory.decodeStream(in);
-                    in.close();
+                    if(!image_url.equals("")) {
+                        in = new URL(image_url).openStream();
+                        memberImg = BitmapFactory.decodeStream(in);
+                        in.close();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -415,15 +417,17 @@ public class MainActivity extends BaseActivity {
                     //페이스북은 jpg파일이 링크 걸린 것이 아니다.
                     //http://graph.facebook.com/userid/picture?type=large
                     Log.d("-진우-", "이미지 주소 : " + image_url);
+                    if(!image_url.equals("")) {
+                        OkHttpClient client = new OkHttpClient();
+                        Request request = new Request.Builder()
+                                .url(image_url)
+                                .build();
+                        Response response = client.newCall(request).execute();
+                        in = response.body().byteStream();
+                        memberImg = BitmapFactory.decodeStream(in);
+                        in.close();
+                    }
 
-                    OkHttpClient client = new OkHttpClient();
-                    Request request = new Request.Builder()
-                            .url(image_url)
-                            .build();
-                    Response response = client.newCall(request).execute();
-                    in = response.body().byteStream();
-                    memberImg = BitmapFactory.decodeStream(in);
-                    in.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
