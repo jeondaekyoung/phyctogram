@@ -27,23 +27,23 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
+    <com.knowledge_seek.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <knowledge_seek.com.phyctogram.util.MyButtonView
+        <com.knowledge_seek.phyctogram.util.MyButtonView
             android:id="@+id/btn_usersadd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#f2f2f2"
             android:text="@string/includeUsersMenage_addChild" />
 
-        <knowledge_seek.com.phyctogram.util.MyListView
+        <com.knowledge_seek.phyctogram.util.MyListView
             android:id="@+id/lv_usersList_manage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color6" />
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </com.knowledge_seek.phyctogram.util.MyLinearView>
 </LinearLayout>

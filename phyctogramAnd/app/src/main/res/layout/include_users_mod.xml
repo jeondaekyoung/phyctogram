@@ -28,11 +28,11 @@
     </RelativeLayout>
 
 
-    <knowledge_seek.com.phyctogram.util.MyScrollView
+    <com.knowledge_seek.phyctogram.util.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <knowledge_seek.com.phyctogram.util.MyLinearView
+        <com.knowledge_seek.phyctogram.util.MyLinearView
             android:id="@+id/ll_fragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,12 +134,12 @@
 
             </LinearLayout>
 
-            <knowledge_seek.com.phyctogram.util.MyRelativeView
+            <com.knowledge_seek.phyctogram.util.MyRelativeView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp">
 
-                <knowledge_seek.com.phyctogram.util.MyButtonView
+                <com.knowledge_seek.phyctogram.util.MyButtonView
                     android:id="@+id/btn_usersmod"
                     style="?android:attr/borderlessButtonStyle"
                     android:layout_width="match_parent"
@@ -148,8 +148,8 @@
                     android:background="@drawable/btn_border_radius"
                     android:text="@string/includeUsersMode_modify"
                     android:textColor="#ffffff" />
-            </knowledge_seek.com.phyctogram.util.MyRelativeView>
-        </knowledge_seek.com.phyctogram.util.MyLinearView>
+            </com.knowledge_seek.phyctogram.util.MyRelativeView>
+        </com.knowledge_seek.phyctogram.util.MyLinearView>
 
-    </knowledge_seek.com.phyctogram.util.MyScrollView>
+    </com.knowledge_seek.phyctogram.util.MyScrollView>
 </LinearLayout>

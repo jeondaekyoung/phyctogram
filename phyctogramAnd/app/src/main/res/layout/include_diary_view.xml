@@ -28,14 +28,14 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
+    <com.knowledge_seek.phyctogram.util.MyLinearView
         android:id="@id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:orientation="vertical">
 
-        <knowledge_seek.com.phyctogram.util.MyEditTextView
+        <com.knowledge_seek.phyctogram.util.MyEditTextView
             android:id="@+id/et_diary_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
             android:textColor="@color/color7"
             android:textSize="14dp" />
 
-        <knowledge_seek.com.phyctogram.util.MyEditTextView
+        <com.knowledge_seek.phyctogram.util.MyEditTextView
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:text="@string/includeDiaryView_title"
             android:textSize="14dp" />
 
-        <knowledge_seek.com.phyctogram.util.MyEditTextView
+        <com.knowledge_seek.phyctogram.util.MyEditTextView
             android:id="@+id/et_contents"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -137,5 +137,5 @@
                     android:textSize="12dp" />
             </RelativeLayout>
         </LinearLayout>
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </com.knowledge_seek.phyctogram.util.MyLinearView>
 </LinearLayout>

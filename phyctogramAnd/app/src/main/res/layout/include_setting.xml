@@ -56,7 +56,7 @@
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/settings_01" />
 
-            <knowledge_seek.com.phyctogram.util.MyTextView
+            <com.knowledge_seek.phyctogram.util.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp"
@@ -87,7 +87,7 @@
                 android:layout_marginLeft="16dp"
                 android:src="@drawable/settings_02" />
 
-            <knowledge_seek.com.phyctogram.util.MyTextView
+            <com.knowledge_seek.phyctogram.util.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp"
@@ -111,7 +111,7 @@
         android:textColor="@color/purple"
         android:textSize="16dp" />
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
+    <com.knowledge_seek.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -137,7 +137,7 @@
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/settings_03" />
 
-                <knowledge_seek.com.phyctogram.util.MyTextView
+                <com.knowledge_seek.phyctogram.util.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
@@ -168,7 +168,7 @@
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/settings_04" />
 
-                <knowledge_seek.com.phyctogram.util.MyTextView
+                <com.knowledge_seek.phyctogram.util.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
@@ -199,7 +199,7 @@
                     android:layout_marginLeft="16dp"
                     android:src="@drawable/settings_05" />
 
-                <knowledge_seek.com.phyctogram.util.MyTextView
+                <com.knowledge_seek.phyctogram.util.MyTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
@@ -248,7 +248,7 @@
                         android:layout_marginLeft="16dp"
                         android:src="@drawable/settings_06" />
 
-                    <knowledge_seek.com.phyctogram.util.MyTextView
+                    <com.knowledge_seek.phyctogram.util.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="4dp"
@@ -279,7 +279,7 @@
                         android:layout_marginLeft="16dp"
                         android:src="@drawable/settings_06" />
 
-                    <knowledge_seek.com.phyctogram.util.MyTextView
+                    <com.knowledge_seek.phyctogram.util.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="4dp"
@@ -310,7 +310,7 @@
                         android:layout_marginLeft="16dp"
                         android:src="@drawable/settings_06" />
 
-                    <knowledge_seek.com.phyctogram.util.MyTextView
+                    <com.knowledge_seek.phyctogram.util.MyTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="4dp"
@@ -322,5 +322,5 @@
             </com.balysv.materialripple.MaterialRippleLayout>
         </LinearLayout>
 
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+    </com.knowledge_seek.phyctogram.util.MyLinearView>
 </LinearLayout>

@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <knowledge_seek.com.phyctogram.util.MyLinearView
+        <com.knowledge_seek.phyctogram.util.MyLinearView
             android:id="@+id/mylinear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -86,9 +86,9 @@
                     android:text="85"
                     android:textColor="#aaaaaa" />
             </LinearLayout>
-        </knowledge_seek.com.phyctogram.util.MyLinearView>
+        </com.knowledge_seek.phyctogram.util.MyLinearView>
 
-        <knowledge_seek.com.phyctogram.util.MyScrollView
+        <com.knowledge_seek.phyctogram.util.MyScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/mylinear"
@@ -121,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp" />
             </LinearLayout>
-        </knowledge_seek.com.phyctogram.util.MyScrollView>
+        </com.knowledge_seek.phyctogram.util.MyScrollView>
 
         <RelativeLayout
             android:layout_width="match_parent"

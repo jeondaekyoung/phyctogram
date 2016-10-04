@@ -27,7 +27,7 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
+    <com.knowledge_seek.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:background="@drawable/border_grey"
         android:orientation="vertical">
 
-        <knowledge_seek.com.phyctogram.util.MyImageView
+        <com.knowledge_seek.phyctogram.util.MyImageView
             android:id="@+id/img_btn"
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -44,7 +44,7 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/equipment" />
 
-        <knowledge_seek.com.phyctogram.util.MyLinearView
+        <com.knowledge_seek.phyctogram.util.MyLinearView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/borderbottom"
@@ -61,9 +61,9 @@
                 android:layout_height="wrap_content"
                 android:text="00:24:E4:28:38:5D"
                 android:textColor="#aaa" />
-        </knowledge_seek.com.phyctogram.util.MyLinearView>
+        </com.knowledge_seek.phyctogram.util.MyLinearView>
 
-        <knowledge_seek.com.phyctogram.util.MyLinearView
+        <com.knowledge_seek.phyctogram.util.MyLinearView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -79,8 +79,8 @@
                 android:layout_height="wrap_content"
                 android:text="1.3.0"
                 android:textColor="#aaa" />
-        </knowledge_seek.com.phyctogram.util.MyLinearView>
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
+        </com.knowledge_seek.phyctogram.util.MyLinearView>
+    </com.knowledge_seek.phyctogram.util.MyLinearView>
 
     <Button
         android:id="@+id/connWifiBtn"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <knowledge_seek.com.phyctogram.util.MyListView
+        <com.knowledge_seek.phyctogram.util.MyListView
             android:id="@+id/lv_wifiList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

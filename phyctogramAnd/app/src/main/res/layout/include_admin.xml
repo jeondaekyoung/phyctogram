@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<knowledge_seek.com.phyctogram.util.MyLinearView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.knowledge_seek.phyctogram.util.MyLinearView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_bg"
@@ -27,7 +27,7 @@
             android:textColor="#ffffff" />
     </RelativeLayout>
 
-    <knowledge_seek.com.phyctogram.util.MyLinearView
+    <com.knowledge_seek.phyctogram.util.MyLinearView
         android:id="@+id/ll_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
-            <knowledge_seek.com.phyctogram.util.MyEditTextView
+            <com.knowledge_seek.phyctogram.util.MyEditTextView
                 android:id="@+id/et_ref"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:id="@+id/btn_ref"
                 android:layout_gravity="center_horizontal" />
 
-            <knowledge_seek.com.phyctogram.util.MyEditTextView
+            <com.knowledge_seek.phyctogram.util.MyEditTextView
                 android:id="@+id/et_adj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
                 android:id="@+id/btn_adj"
                 android:layout_gravity="center_horizontal" />
 
-            <knowledge_seek.com.phyctogram.util.MyEditTextView
+            <com.knowledge_seek.phyctogram.util.MyEditTextView
                 android:id="@+id/et_useq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -106,5 +106,5 @@
                 android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
-    </knowledge_seek.com.phyctogram.util.MyLinearView>
-</knowledge_seek.com.phyctogram.util.MyLinearView>
+    </com.knowledge_seek.phyctogram.util.MyLinearView>
+</com.knowledge_seek.phyctogram.util.MyLinearView>
