@@ -21,16 +21,16 @@ import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
-import com.pkmmte.view.CircularImageView;
-
-import java.io.IOException;
-import java.util.List;
-
 import com.knowledge_seek.phyctogram.domain.Users;
 import com.knowledge_seek.phyctogram.kakao.common.BaseActivity;
 import com.knowledge_seek.phyctogram.phyctogram.SaveSharedPreference;
 import com.knowledge_seek.phyctogram.retrofitapi.MemberAPI;
 import com.knowledge_seek.phyctogram.retrofitapi.ServiceGenerator;
+import com.pkmmte.view.CircularImageView;
+
+import java.io.IOException;
+import java.util.List;
+
 import retrofit.Call;
 
 /**
@@ -138,16 +138,16 @@ public class WithdrawActivity extends BaseActivity {
         if (member.getJoin_route().equals("kakao")) {
             tv_join_route.setText(com.knowledge_seek.phyctogram.R.string.withdrawActivity_kakaoName);
             tv_name.setText(member.getKakao_nickname());
-            tv_pw.setVisibility(View.GONE);
+
             et_pw.setVisibility(View.GONE);
-            tv_pw1.setVisibility(View.GONE);
+
             et_pw1.setVisibility(View.GONE);
         } else if (member.getJoin_route().equals("facebook")) {
             tv_join_route.setText(com.knowledge_seek.phyctogram.R.string.withdrawActivity_facebookName);
             tv_name.setText(member.getFacebook_name());
-            tv_pw.setVisibility(View.GONE);
+
             et_pw.setVisibility(View.GONE);
-            tv_pw1.setVisibility(View.GONE);
+
             et_pw1.setVisibility(View.GONE);
         } else {
             tv_join_route.setText(com.knowledge_seek.phyctogram.R.string.withdrawActivity_pyhtogramName);
