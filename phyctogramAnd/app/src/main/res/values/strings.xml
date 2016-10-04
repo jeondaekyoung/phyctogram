@@ -241,9 +241,9 @@
 
     <string name="includeQaList_qa">문의하기</string>
 
-    <string name="includeQaList_lan_en">언어 변경(영문)</string>
+    <string name="includeQaList_lan_en">English</string>
 
-    <string name="includeQaList_lan_ko">언어 변경(한글)</string>
+    <string name="includeQaList_lan_ko">한국어</string>
 
     <string name="includeQaView_qa">문의사항</string>
 
