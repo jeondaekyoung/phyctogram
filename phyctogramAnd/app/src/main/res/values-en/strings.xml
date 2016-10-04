@@ -265,32 +265,32 @@
     <string name="includeUsersAdd_addChild">Add</string>
     <string name="includeUsersAdd_name">Name</string>
     <string name="includeUsersAdd_initials">Initials (3 letters limit. Number available)</string>
-    <string name="includeUsersAdd_sign">Your product show It is displayed제품에 표시될 이름입니다. 예:ABC 또는 AB2(영문 3자 또는 영문 2자+숫자 1자)</string>
-    <string name="includeUsersAdd_birthday">생년월일</string>
+    <string name="includeUsersAdd_sign">Product shows your Initials. ex:AAA or AA2(max 3 letters)</string>
+    <string name="includeUsersAdd_birthday">Birth date</string>
     <string name="includeUsersAdd_sex">Sex</string>
     <string name="includeUsersAdd_girl">Girl</string>
     <string name="includeUsersAdd_boy">Boy</string>
     <string name="includeUsersAdd_add">Add</string>
 
-    <string name="includeUsersDataInput_writeHeight">키를 입력하세요.</string>
+    <string name="includeUsersDataInput_writeHeight">Input height.</string>
 
-    <string name="includeUsersMenage_manegeChild">내 아이 관리</string>
-    <string name="includeUsersMenage_addChild"><![CDATA["+"]]> 내 아이 추가</string>
+    <string name="includeUsersMenage_manegeChild">Manage my child</string>
+    <string name="includeUsersMenage_addChild"><![CDATA["+"]]> Add child</string>
 
-    <string name="includeUsersMode_modifyChild">내 아이 수정</string>
-    <string name="includeUsersMode_modify">수정하기</string>
+    <string name="includeUsersMode_modifyChild">Modify child</string>
+    <string name="includeUsersMode_modify">Modify</string>
 
-    <string name="includeWithdraw_pw">비밀번호</string>
-    <string name="includeWithdraw_checkPw">비밀번호 확인</string>
-    <string name="includeWithdraw_leave">탈퇴</string>
+    <string name="includeWithdraw_pw">Password</string>
+    <string name="includeWithdraw_checkPw">Password again</string>
+    <string name="includeWithdraw_leave">Withdraw</string>
 
     <string name="leftSlideMenu_home">HOME</string>
-    <string name="leftSlideMenu_diary">육아일기</string>
-    <string name="leftSlideMenu_selfWriteHeight">직접 키 입력</string>
+    <string name="leftSlideMenu_diary">Diary</string>
+    <string name="leftSlideMenu_selfWriteHeight">Write height</string>
 
-    <string name="popupWifi_connection">연결</string>
+    <string name="popupWifi_connection">Connect</string>
 
-    <string name="popupWifiList_sign">기기에서 연결할 Wi-fi를 선택해 주세요</string>
+    <string name="popupWifiList_sign">Please choose Wi-fi server.</string>
 
     <!-- popup_agree.xml, popup_agree2.xml 는 제외  -->
     <!-- ic_launcher.png, btn_start.png, shareform.png 이미지 파일에 한글 존재  -->

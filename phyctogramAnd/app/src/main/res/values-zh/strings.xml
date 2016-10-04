@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">픽토그램</string>
+    <string name="app_name">Phyctogram</string>
 
     <!-- Java 문자열 -->
-    <string name="commonActivity_wait">잠시만 기다려주세요.</string>
-    <string name="commonActivity_save">저장하였습니다.</string>
-    <string name="commonActivity_cancel">취소</string>
-    <string name="commonActivity_ok">확인</string>
-    <string name="commonActivity_yes">네</string>
-    <string name="commonActivity_no">아니오</string>
-    <string name="commonActivity_delete">삭제</string>
-    <string name="commonActivity_modify">수정</string>
+    <string name="commonActivity_wait">等等我。</string>
+    <string name="commonActivity_save">储存了。</string>
+    <string name="commonActivity_cancel">取消</string>
+    <string name="commonActivity_ok">确认</string>
+    <string name="commonActivity_yes">是</string>
+    <string name="commonActivity_no">不</string>
+    <string name="commonActivity_delete">删除</string>
+    <string name="commonActivity_modify">修整</string>
 
     <string name="characterActivity_choiceChild">아이를 선택하였습니다.</string>
 
@@ -25,7 +25,7 @@
     <string name="diaryViewActivity_deleteDiaryTitle">일기 삭제하기</string>
     <string name="diaryViewActivity_respect">님의</string>
     <string name="diaryViewActivity_deleteAsk">일기를 삭제하시겠습니까?</string>
-    <string name="diaryViewActivity_delete">삭제</string>
+    <string name="diaryViewActivity_delete">删除</string>
     <string name="diaryViewActivity_deleteAlert">삭제하였습니다.</string>
     <string name="diaryViewActivity_notModifyAlert">수정할 일기가 없습니다.</string>
     <string name="diaryViewActivity_notChangeAlert">변경된 내용이 없습니다.</string>
@@ -101,8 +101,8 @@
 
     <string name="usersDataInputActivity_checkHeight">키를 확인해주세요.</string>
 
-    <string name="usersDiaryActivity_year">년</string>
-    <string name="usersDiaryActivity_month">월</string>
+    <string name="usersDiaryActivity_year">年</string>
+    <string name="usersDiaryActivity_month">月</string>
 
     <string name="usersManageActivity_deleteChildAsk">아이를 삭제할 경우 아이의 키와 일기도 삭제됩니다. 아이를 삭제하시겠습니까?</string>
     <string name="usersManageActivity_successDeleteChild">내 아이 삭제에 성공하였습니다.</string>
@@ -153,14 +153,15 @@
     <string name="includeAnalysis_analysisContentLink">Tanner 분류법 (바로가기 링크)</string>
     <string name="includeAnalysis_analysisShare">공유하기</string>
 
-    <string name="includeCalendar_sunday">일</string>
-    <string name="includeCalendar_monday">월</string>
-    <string name="includeCalendar_tuesday">화</string>
-    <string name="includeCalendar_wednesday">수</string>
-    <string name="includeCalendar_thursday">목</string>
-    <string name="includeCalendar_friday">금</string>
-    <string name="includeCalendar_saturday">토</string>
+    <string name="includeCalendar_sunday">日</string>
+    <string name="includeCalendar_monday">月</string>
+    <string name="includeCalendar_tuesday">火</string>
+    <string name="includeCalendar_wednesday">水</string>
+    <string name="includeCalendar_thursday">木</string>
+    <string name="includeCalendar_friday">金</string>
+    <string name="includeCalendar_saturday">土</string>
 
+    <!--삭제-->
     <string name="includeComWrite_writeRoom">수다방 글쓰기</string>
     <string name="includeComWrite_title">제목</string>
     <string name="includeComWrite_contents">내용</string>
@@ -180,6 +181,7 @@
     <string name="includeComView_search">조회</string>
     <string name="includeComView_contents">내용</string>
     <string name="includeComView_reNumber">댓글 11개</string>
+    <!--삭제-->
 
     <string name="includeDiaryView_day">날짜</string>
     <string name="includeDiaryView_title">제목</string>
@@ -196,32 +198,32 @@
     <string name="includeFileUpload_myCharacter">MY 캐릭터</string>
     <string name="includeFileUpload_fileUpload">파일업로드</string>
 
-    <string name="includeMain_height">키</string>
-    <string name="includeMain_highRank">상위</string>
-    <string name="includeMain_reportAnalysis">성장 분석</string>
-    <string name="includeMain_listSearch">얼마나 컸을까?</string>
+    <string name="includeMain_height">身高</string>
+    <string name="includeMain_highRank">前</string>
+    <string name="includeMain_reportAnalysis">成长分析</string>
+    <string name="includeMain_listSearch">个子增高了多少？?</string>
 
-    <string name="includeMyCharacter_age0">0세</string>
-    <string name="includeMyCharacter_age1">0.5세</string>
-    <string name="includeMyCharacter_age2">1세</string>
-    <string name="includeMyCharacter_age3">2세</string>
-    <string name="includeMyCharacter_age4">3세</string>
-    <string name="includeMyCharacter_age5">4세</string>
-    <string name="includeMyCharacter_age6">5세</string>
-    <string name="includeMyCharacter_age7">6세</string>
-    <string name="includeMyCharacter_age8">7세</string>
-    <string name="includeMyCharacter_age9">8세</string>
-    <string name="includeMyCharacter_age10">9세</string>
-    <string name="includeMyCharacter_age11">10세</string>
-    <string name="includeMyCharacter_age12">11세</string>
-    <string name="includeMyCharacter_age13">12세</string>
-    <string name="includeMyCharacter_age14">13세</string>
-    <string name="includeMyCharacter_age15">14세</string>
-    <string name="includeMyCharacter_age16">15세</string>
-    <string name="includeMyCharacter_age17">16세</string>
-    <string name="includeMyCharacter_age18">17세</string>
-    <string name="includeMyCharacter_age19">18세</string>
-    <string name="includeMyCharacter_sign"><![CDATA["*"]]> 만 나이 기준입니다.</string>
+    <string name="includeMyCharacter_age0">0㱑</string>
+    <string name="includeMyCharacter_age1">0.5㱑</string>
+    <string name="includeMyCharacter_age2">1㱑</string>
+    <string name="includeMyCharacter_age3">2㱑</string>
+    <string name="includeMyCharacter_age4">3㱑</string>
+    <string name="includeMyCharacter_age5">4㱑</string>
+    <string name="includeMyCharacter_age6">5㱑</string>
+    <string name="includeMyCharacter_age7">6㱑</string>
+    <string name="includeMyCharacter_age8">7㱑</string>
+    <string name="includeMyCharacter_age9">8㱑</string>
+    <string name="includeMyCharacter_age10">9㱑</string>
+    <string name="includeMyCharacter_age11">10㱑</string>
+    <string name="includeMyCharacter_age12">11㱑</string>
+    <string name="includeMyCharacter_age13">12㱑</string>
+    <string name="includeMyCharacter_age14">13㱑</string>
+    <string name="includeMyCharacter_age15">14㱑</string>
+    <string name="includeMyCharacter_age16">15㱑</string>
+    <string name="includeMyCharacter_age17">16㱑</string>
+    <string name="includeMyCharacter_age18">17㱑</string>
+    <string name="includeMyCharacter_age19">18㱑</string>
+    <string name="includeMyCharacter_sign"><![CDATA["*"]]> 我的卡通形象</string>
 
     <string name="includeNoticeList_notice">공지사항</string>
 
