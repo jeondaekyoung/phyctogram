@@ -2,15 +2,11 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -48,8 +44,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import knowledge_seek.com.phyctogram.domain.Member;
-import knowledge_seek.com.phyctogram.gcm.MyRegistrationIntentService;
-import knowledge_seek.com.phyctogram.gcm.QuickstartPreferences;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
 import knowledge_seek.com.phyctogram.phyctogram.SaveSharedPreference;
 import knowledge_seek.com.phyctogram.retrofitapi.MemberAPI;
@@ -59,9 +53,6 @@ import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 
 /**
  * 로그인 페이지

@@ -120,7 +120,7 @@
     <string name="withdrawActivity_facebookName">페이스북</string>
     <string name="withdrawActivity_pyhtogramName">픽토그램</string>
 
-    <string name="baseActivity_exit"><![CDATA["'"]]>뒤로<![CDATA["'"]]> 버튼을 한번 더 누르시면 종료됩니다.</string>
+    <string name="baseActivity_exit"><![CDATA["'"]]>뒤로<![CDATA["'"]]>Pressing the button once more to quit.</string>
 
     <string name="kakaoStoryShare_successUpload">카카오스토리에 사진을 올렸습니다.</string>
 
@@ -240,10 +240,6 @@
     <string name="includePwModify_joinChannel">가입경로</string>
 
     <string name="includeQaList_qa">문의하기</string>
-
-    <string name="includeQaList_lan_en">언어 변경(영문)</string>
-
-    <string name="includeQaList_lan_ko">언어 변경(한글)</string>
 
     <string name="includeQaView_qa">문의사항</string>
 

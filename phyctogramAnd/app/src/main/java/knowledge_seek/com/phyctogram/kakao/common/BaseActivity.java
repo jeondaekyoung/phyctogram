@@ -379,7 +379,7 @@ public class BaseActivity extends Activity {
             if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
                 //moveTaskToBack(true);
                 finish();
-                //android.os.Process.killProcess(android.os.Process.myPid());
+              //android.os.Process.killProcess(android.os.Process.myPid());
             }
         } else {
             super.onBackPressed();
@@ -422,9 +422,35 @@ public class BaseActivity extends Activity {
         final Intent intent = new Intent(this, SampleSignupActivity.class);
         //intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        //finish();
+        finish();
     }
+    //슬라이딩, 메뉴
+    public void initSildeMenu() {
+        // init left menu width
+        metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        leftMenuWidth = (int) ((metrics.widthPixels) * 0.65);
+        displayWidth = metrics.widthPixels;
 
+        // init main view
+        ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
+        //메인뷰에 터치이벤트 적용
+        //ll_mainLayout.setOnTouchListener(ll_mainLayoutListener);
+
+        // init left menu
+        ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
+        leftMenuLayoutParams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
+        leftMenuLayoutParams.width = leftMenuWidth;
+        ll_menuLayout.setLayoutParams(leftMenuLayoutParams);
+
+        ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
+        ll_empty.setVisibility(View.GONE);
+
+        if(isLeftExpanded == false) {
+            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
+            enableDisableViewGroup(viewGroup, false);
+        }
+    }
 
     /**
      * left menu toggle
@@ -507,33 +533,7 @@ public class BaseActivity extends Activity {
         listViewHeight = listView.getMeasuredHeight() * adapter.getCount() + (adapter.getCount() * listView.getDividerHeight());
         return listViewHeight;
     }
-    //슬라이딩, 메뉴
-    public void initSildeMenu() {
-        // init left menu width
-        metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        leftMenuWidth = (int) ((metrics.widthPixels) * 0.65);
-        displayWidth = metrics.widthPixels;
 
-        // init main view
-        ll_mainLayout = (LinearLayout) findViewById(R.id.ll_mainlayout);
-        //메인뷰에 터치이벤트 적용
-        //ll_mainLayout.setOnTouchListener(ll_mainLayoutListener);
-
-        // init left menu
-        ll_menuLayout = (LinearLayout) findViewById(R.id.ll_menuLayout);
-        leftMenuLayoutParams = (FrameLayout.LayoutParams) ll_menuLayout.getLayoutParams();
-        leftMenuLayoutParams.width = leftMenuWidth;
-        ll_menuLayout.setLayoutParams(leftMenuLayoutParams);
-
-        ll_empty = (LinearLayout) findViewById(R.id.ll_empty);
-        ll_empty.setVisibility(View.GONE);
-
-        if(isLeftExpanded == false) {
-            LinearLayout viewGroup = (LinearLayout) findViewById(R.id.ic_leftslidemenu).getParent();
-            enableDisableViewGroup(viewGroup, false);
-        }
-    }
 
 
 }

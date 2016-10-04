@@ -2,6 +2,7 @@ package knowledge_seek.com.phyctogram;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
+import java.util.Locale;
 
 import knowledge_seek.com.phyctogram.domain.Users;
 import knowledge_seek.com.phyctogram.kakao.common.BaseActivity;
@@ -39,7 +41,8 @@ public class SettingActivity extends BaseActivity {
     private LinearLayout tv_pwmod;      ///비밀번호 변경
     private LinearLayout tv_withdraw;       //회원탈퇴
     private LinearLayout tv_qa;             //문의하기
-
+    private LinearLayout li_lan_en; //언어변경 (영문)
+    private LinearLayout li_lan_ko; //언어변경 (한글)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -170,6 +173,36 @@ public class SettingActivity extends BaseActivity {
                 //intent.putExtra("member", member);
                 startActivity(intent);
                 //finish();
+            }
+        });
+
+        //언어변경 (영문)
+        li_lan_en = (LinearLayout)findViewById(R.id.li_lan_en);
+        li_lan_en.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Locale en = Locale.US;
+                Configuration config = new Configuration();
+                config.locale = en;
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+                Intent intent = new Intent(SettingActivity.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
+            }
+        });
+        //언어변경 (영문)
+        li_lan_ko = (LinearLayout)findViewById(R.id.li_lan_ko);
+        li_lan_ko.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Locale ko = Locale.KOREAN;
+                Configuration config = new Configuration();
+                config.locale = ko;
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+               Intent intent = new Intent(SettingActivity.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
