@@ -93,7 +93,7 @@
     <string name="usersAnalysisActivity_initFacebook">페이스북을을 설치해주세요.</string>
     <string name="usersAnalysisActivity_initkakaoStroy">카카오스토리를 설치해주세요.</string>
     <string name="usersAnalysisActivity_initkakao">카카오톡을 설치해주세요.</string>
-    <string name="usersAnalysisActivity_childChart">내 아이 성장곡선</string>
+    <string name="usersAnalysisActivity_childChart">성장 그래프</string>
     <string name="usersAnalysisActivity_avgChart">평균 성장 그래프</string>
     <string name="usersAnalysisActivity_avg">평균키보다</string>
     <string name="usersAnalysisActivity_month">개월동안</string>
@@ -147,10 +147,8 @@
     <string name="includeAnalysis_highRank">상위</string>
     <string name="includeAnalysis_avg">평균보다</string>
     <string name="includeAnalysis_growth">성장</string>
-    <string name="includeAnalysis_analysis">분석:</string>
-    <string name="includeAnalysis_analysisContentFirst">평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다.</string>
-    <string name="includeAnalysis_analysisContentSecond">Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다.</string>
-    <string name="includeAnalysis_analysisContentLink">Tanner 분류법 (바로가기 링크)</string>
+    <string name="includeAnalysis_analysis">8~9세 미만에 사춘기증세, 성조숙증 의심해보세요</string>
+    <string name="includeAnalysis_analysisContentLink">솔루션 보기 +</string>
     <string name="includeAnalysis_analysisShare">공유하기</string>
 
     <string name="includeCalendar_sunday">일</string>
@@ -240,9 +238,9 @@
     <string name="includePwModify_joinChannel">가입경로</string>
 
     <string name="includeQaList_qa">문의하기</string>
-
+    <string name="includeQaList_lan">언어 설정</string>
     <string name="includeQaList_lan_en">English</string>
-
+    <string name="includeQaList_lan_cn">中文</string>
     <string name="includeQaList_lan_ko">한국어</string>
 
     <string name="includeQaView_qa">문의사항</string>

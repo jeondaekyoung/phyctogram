@@ -240,6 +240,10 @@
     <string name="includePwModify_joinChannel">가입경로</string>
 
     <string name="includeQaList_qa">문의하기</string>
+    <string name="includeQaList_lan">Language</string>
+    <string name="includeQaList_lan_en">English</string>
+    <string name="includeQaList_lan_cn">中文</string>
+    <string name="includeQaList_lan_ko">한국어</string>
 
     <string name="includeQaView_qa">문의사항</string>
 

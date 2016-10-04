@@ -23,7 +23,7 @@
 
     <string name="diaryViewActivity_notDeleteDiary">No deleted journal.</string>
     <string name="diaryViewActivity_deleteDiaryTitle">To delete a diary</string>
-    <string name="diaryViewActivity_respect">님의</string>
+    <string name="diaryViewActivity_respect">'s</string>
     <string name="diaryViewActivity_deleteAsk">Are you sure you want to delete this diary?</string>
     <string name="diaryViewActivity_delete">delete</string>
     <string name="diaryViewActivity_deleteAlert">It has been removed.</string>
@@ -36,131 +36,130 @@
     <string name="diaryWriteActivity_alreadyDiary">Already it has written a diary.</string>
 
     <string name="equipmentActivity_searchHW">Search for devices</string>
-    <string name="equipmentActivity_searching">검색중 입니다...</string>
-    <string name="equipmentActivity_endSearch">검색 완료 (재검색)</string>
-    <string name="equipmentActivity_connectionAlert">연결 시도합니다.</string>
-    <string name="equipmentActivity_failPW">비밀번호가 틀렸습니다. 다시 시도해주세요.</string>
-    <string name="equipmentActivity_successConnection">연결 되었습니다.</string>
-    <string name="equipmentActivity_failConnection">연결에 실패하였습니다. 다시 시도해주세요.</string>
-    <string name="equipmentActivity_addHW">기기 추가</string>
-    <string name="equipmentActivity_addSerial">일련번호를 입력하세요.</string>
+    <string name="equipmentActivity_searching">Searching...</string>
+    <string name="equipmentActivity_endSearch">Finished (retry)</string>
+    <string name="equipmentActivity_connectionAlert">Connecting.</string>
+    <string name="equipmentActivity_failPW">Password is wrong. Plaese retry.</string>
+    <string name="equipmentActivity_successConnection">Connected.</string>
+    <string name="equipmentActivity_failConnection">Failed to connection. Please retry.</string>
+    <string name="equipmentActivity_addHW">Add</string>
+    <string name="equipmentActivity_addSerial">Input your serial number.</string>
 
     <string name="fileUploadActivity_upLoadingAlert">Uploading file...</string>
     <string name="fileUploadActivity_startUpLoading">uploading started...</string>
-    <string name="fileUploadActivity_fileInfo">업로드 파일 정보 :</string>
+    <string name="fileUploadActivity_fileInfo">Uploaded file information :</string>
 
-    <string name="joinActivity_agreePW">비밀번호가 일치합니다.</string>
-    <string name="joinActivity_discordPW">비밀번호가 일치하지 않습니다.</string>
-    <string name="joinActivity_agreeClause">이용약관 및 개인정보취급방침에 동의해주십시요.</string>
-    <string name="joinActivity_clause">이용약관</string>
-    <string name="joinActivity_individualInfo">개인정보취급방침</string>
-    <string name="joinActivity_checkPW">비밀번호를 확인해주세요.</string>
-    <string name="joinActivity_checkContents">내용을 확인해주세요.</string>
-    <string name="joinActivity_checkEmail">이메일 형식을 확인해주세요.</string>
-    <string name="joinActivity_successJoinAlert">픽토그램 회원이 되셨습니다.</string>
-    <string name="joinActivity_alreadyJoinAlert">이미 가입된 이메일입니다.</string>
+    <string name="joinActivity_agreePW">Your password is correct.</string>
+    <string name="joinActivity_discordPW">Password is not correct.</string>
+    <string name="joinActivity_agreeClause">Agree to privacy and agreement.</string>
+    <string name="joinActivity_clause">Terms and conditions</string>
+    <string name="joinActivity_individualInfo">Privacy</string>
+    <string name="joinActivity_checkPW">Check your password</string>
+    <string name="joinActivity_checkContents">Check your information.</string>
+    <string name="joinActivity_checkEmail">Check your e-mail address.</string>
+    <string name="joinActivity_successJoinAlert">Welcome to Phyctogram.</string>
+    <string name="joinActivity_alreadyJoinAlert">It is already in use.</string>
 
-    <string name="loginActivity_checkPWEmail">이메일과 패스워드를 확인해주세요.</string>
+    <string name="loginActivity_checkPWEmail">Check your e-mail and password.</string>
 
-    <string name="mainActivity_respect">님</string>
+    <string name="mainActivity_respect"></string>
 
-    <string name="pwfindActivity_registerEmail">이메일 주소를 입력해주세요.</string>
-    <string name="pwfindActivity_notPush">푸쉬 사용이 불가능한 기기로 비밀번호 찾기가 불가능합니다. 고객센터로 문의해주세요.</string>
-    <string name="pwfindActivity_sendPush">변경된 비밀번호가 Push 메시지로 발송 되었습니다. (최대 3분 소요)</string>
-    <string name="pwfindActivity_failEmail">메일주소가 잘못되었습니다. 다시 입력해주세요.</string>
-    <string name="pwfindActivity_failFindPW">비밀번호 찾기에 실패하였습니다. 다시 시도해주세요.</string>
+    <string name="pwfindActivity_registerEmail">E-mail address is missing.</string>
+    <string name="pwfindActivity_notPush">You can't find your password because your phone is not available Push Service. Please call customer center.</string>
+    <string name="pwfindActivity_sendPush">Changed password will be arrived Push message. (within 3 minutes)</string>
+    <string name="pwfindActivity_failEmail">E-mail address is wrong.</string>
+    <string name="pwfindActivity_failFindPW">Failed to find password. please retry.</string>
 
-    <string name="pwmodActivity_failPW">비밀번호가 잘못되었습니다.</string>
-    <string name="pwmodActivity_failChangePW">비밀번호 변경에 실패하였습니다.</string>
-    <string name="pwmodActivity_successChangePW">비밀번호가 변경되었습니다.</string>
-    <string name="pwmodActivity_kakaoPW">카카오 가입자입니다. 카카오 비밀번호 변경은 해당앱을 이용해주세요.</string>
-    <string name="pwmodActivity_facebookPW">페이스북 가입자입니다. 페이스북 비밀번호 변경은 해당앱을 이용해주세요.</string>
-    <string name="pwmodActivity_checkChangePW">변경할 비밀번호를 확인해주세요.</string>
+    <string name="pwmodActivity_failPW">Password is wrong.</string>
+    <string name="pwmodActivity_failChangePW">failed to changing password.</string>
+    <string name="pwmodActivity_successChangePW">Your password is changed.</string>
+    <string name="pwmodActivity_kakaoPW">You are Kakao member. You can change password in KakaoTalk.</string>
+    <string name="pwmodActivity_facebookPW">You are Facebook member. You can change password in Facebook.</string>
+    <string name="pwmodActivity_checkChangePW">Password is not match.</string>
 
-    <string name="qaViewActivity_qsContents">문의 내용</string>
-    <string name="qaViewActivity_answerContents">답변 내용</string>
-    <string name="qaViewActivity_answerState">답변 대기중 입니다.</string>
+    <string name="qaViewActivity_qsContents">Question</string>
+    <string name="qaViewActivity_answerContents">Answer</string>
+    <string name="qaViewActivity_answerState">Answer is not yet.</string>
 
-    <string name="recordActivity_deleteData">다음 데이터를 삭제하시겠습니까?</string>
-    <string name="recordActivity_sucessDeleteHeight">키 삭제에 성공하였습니다.</string>
+    <string name="recordActivity_deleteData">Are you sure want to delete this data?</string>
+    <string name="recordActivity_sucessDeleteHeight">Success.</string>
 
-    <string name="settingActivity_logout">로그아웃 하시겠습니까?</string>
+    <string name="settingActivity_logout">Are you sure logout?</string>
 
-    <string name="usersAddActivity_registerChild">내 아이 등록에 성공하였습니다.</string>
-    <string name="usersAddActivity_checkName">이름을 확인해주세요.</string>
-    <string name="usersAddActivity_checkInitials">이니셜을 확인해주세요.</string>
+    <string name="usersAddActivity_registerChild">Success.</string>
+    <string name="usersAddActivity_checkName">Name is missing.</string>
+    <string name="usersAddActivity_checkInitials">Initial is missing.</string>
 
-    <string name="usersAnalysisActivity_initFacebook">페이스북을을 설치해주세요.</string>
-    <string name="usersAnalysisActivity_initkakaoStroy">카카오스토리를 설치해주세요.</string>
-    <string name="usersAnalysisActivity_initkakao">카카오톡을 설치해주세요.</string>
-    <string name="usersAnalysisActivity_childChart">내 아이 성장곡선</string>
-    <string name="usersAnalysisActivity_avgChart">평균 성장 그래프</string>
-    <string name="usersAnalysisActivity_avg">평균키보다</string>
-    <string name="usersAnalysisActivity_month">개월동안</string>
-    <string name="usersAnalysisActivity_grow">성장</string>
+    <string name="usersAnalysisActivity_initFacebook">Please download facebook.</string>
+    <string name="usersAnalysisActivity_initkakaoStroy">Please download KakaoStory.</string>
+    <string name="usersAnalysisActivity_initkakao">Please download KakaoTalk.</string>
+    <string name="usersAnalysisActivity_childChart">My growth graph</string>
+    <string name="usersAnalysisActivity_avgChart">Average growth graph</string>
+    <string name="usersAnalysisActivity_avg">Average For</string>
+    <string name="usersAnalysisActivity_month">months</string>
+    <string name="usersAnalysisActivity_grow">grow</string>
 
-    <string name="usersDataInputActivity_checkHeight">키를 확인해주세요.</string>
+    <string name="usersDataInputActivity_checkHeight">Height is missing.</string>
 
-    <string name="usersDiaryActivity_year">년</string>
-    <string name="usersDiaryActivity_month">월</string>
+    <string name="usersDiaryActivity_year"></string>
+    <string name="usersDiaryActivity_month"></string>
 
-    <string name="usersManageActivity_deleteChildAsk">아이를 삭제할 경우 아이의 키와 일기도 삭제됩니다. 아이를 삭제하시겠습니까?</string>
-    <string name="usersManageActivity_successDeleteChild">내 아이 삭제에 성공하였습니다.</string>
-    <string name="usersManageActivity_failDeleteChild">내아이를 삭제하는 실패하였습니다.</string>
+    <string name="usersManageActivity_deleteChildAsk">Are you sure want to delete? It cannot be undone.</string>
+    <string name="usersManageActivity_successDeleteChild">Success</string>
+    <string name="usersManageActivity_failDeleteChild">Failed</string>
 
-    <string name="wifiPopUpActivity_settingHW">기기 설정을 시도 합니다.</string>
-    <string name="wifiPopUpActivity_reSettingHWPW">비밀번호가 틀렸습니다. 기기 설정을 다시 해주세요.</string>
-    <string name="wifiPopUpActivity_successSettingHW">기기 설정을 모두 완료 했습니다.</string>
-    <string name="wifiPopUpActivity_reSettingHWConnection">연결에 실패하였습니다. 기기 설정을 다시 해주세요.</string>
+    <string name="wifiPopUpActivity_settingHW">Connecting...</string>
+    <string name="wifiPopUpActivity_reSettingHWPW">Password is wrong. Please try again.</string>
+    <string name="wifiPopUpActivity_successSettingHW">Done.</string>
+    <string name="wifiPopUpActivity_reSettingHWConnection">Failed to connect. Please try again.</string>
 
-    <string name="withdrawActivity_leaveTitle">탈퇴하기</string>
-    <string name="withdrawActivity_leaveAsk">회원 탈퇴시 모든 데이터가 삭제되므로 복구가 되지 않습니다. 탈퇴 하시겠습니까?</string>
-    <string name="withdrawActivity_leave">탈퇴</string>
-    <string name="withdrawActivity_kakaoName">카카오</string>
-    <string name="withdrawActivity_facebookName">페이스북</string>
-    <string name="withdrawActivity_pyhtogramName">픽토그램</string>
+    <string name="withdrawActivity_leaveTitle">Membership Withdrawal</string>
+    <string name="withdrawActivity_leaveAsk">Are you sure want to withdraw? It cannot be undone.</string>
+    <string name="withdrawActivity_leave">Withdraw</string>
+    <string name="withdrawActivity_kakaoName">KakaoTalk</string>
+    <string name="withdrawActivity_facebookName">Facebook</string>
+    <string name="withdrawActivity_pyhtogramName">Phyctogram</string>
 
     <string name="baseActivity_exit"><![CDATA["'"]]>back<![CDATA["'"]]>Pressing the button once more to quit.</string>
 
-    <string name="kakaoStoryShare_successUpload">카카오스토리에 사진을 올렸습니다.</string>
+    <string name="kakaoStoryShare_successUpload">Success upload in KakaoStory.</string>
 
     <!-- xml 문자열 -->
-    <string name="activityJoin_join">회원가입</string>
-    <string name="activityJoin_welcome">픽토그램 가입을 환영합니다.</string>
-    <string name="activityJoin_name">이름</string>
-    <string name="activityJoin_emailAddr">이메일 주소</string>
-    <string name="activityJoin_password">비밀번호</string>
-    <string name="activityJoin_passwordOk">비밀번호를 다시 입력해주세요</string>
-    <string name="activityJoin_agree">아래의 내용에 모두 동의합니다.</string>
-    <string name="activityJoin_agreeClause">이용약관 동의</string>
-    <string name="activityJoin_individualInfo">개인정보취급방침 동의</string>
-    <string name="activityJoin_joining">가입하기</string>
+    <string name="activityJoin_join">Join</string>
+    <string name="activityJoin_welcome">Welcome to Phyctogram.</string>
+    <string name="activityJoin_name">Name</string>
+    <string name="activityJoin_emailAddr">E-mail</string>
+    <string name="activityJoin_password">Password</string>
+    <string name="activityJoin_passwordOk">Password </string>
+    <string name="activityJoin_agree">I agree all condition.</string>
+    <string name="activityJoin_agreeClause">Agree with Terms and conditions</string>
+    <string name="activityJoin_individualInfo">Agree with privacy</string>
+    <string name="activityJoin_joining">Join</string>
 
-    <string name="activityLogin_login">회원 로그인</string>
-    <string name="activityLogin_kakaoLogin">카카오톡 로그인</string>
-    <string name="activityLogin_facebookLogin">페이스북 로그인</string>
-    <string name="activityLogin_findPW">비밀번호 찾기</string>
+    <string name="activityLogin_login">Login</string>
+    <string name="activityLogin_kakaoLogin">KakaoTalk login</string>
+    <string name="activityLogin_facebookLogin">Facebook login</string>
+    <string name="activityLogin_findPW">Find password</string>
 
-    <string name="activityReport_close">닫기</string>
+    <string name="activityReport_close">Close</string>
 
-    <string name="includeAnalysis_finalHeight">키</string>
-    <string name="includeAnalysis_highRank">상위</string>
-    <string name="includeAnalysis_avg">평균보다</string>
-    <string name="includeAnalysis_growth">성장</string>
-    <string name="includeAnalysis_analysis">분석:</string>
-    <string name="includeAnalysis_analysisContentFirst">평균적인 아이의 성장 시기를 고려했을 때 성장 정도가 급격하여 성조숙증이 의심됩니다.</string>
-    <string name="includeAnalysis_analysisContentSecond">Tanner 분류법에 의한 성적 성숙도를 체크하여 전문이와 상의해볼 것을 추천합니다.</string>
-    <string name="includeAnalysis_analysisContentLink">Tanner 분류법 (바로가기 링크)</string>
-    <string name="includeAnalysis_analysisShare">공유하기</string>
+    <string name="includeAnalysis_finalHeight">Height</string>
+    <string name="includeAnalysis_highRank">Rank</string>
+    <string name="includeAnalysis_avg">Average</string>
+    <string name="includeAnalysis_growth">grow</string>
+    <string name="includeAnalysis_analysis">If puberty comes fast for your childresn, it might be 'Precocious Puberty'</string>
+    <string name="includeAnalysis_analysisContentLink">View Solution +</string>
+    <string name="includeAnalysis_analysisShare">Share</string>
 
-    <string name="includeCalendar_sunday">일</string>
-    <string name="includeCalendar_monday">월</string>
-    <string name="includeCalendar_tuesday">화</string>
-    <string name="includeCalendar_wednesday">수</string>
-    <string name="includeCalendar_thursday">목</string>
-    <string name="includeCalendar_friday">금</string>
-    <string name="includeCalendar_saturday">토</string>
+    <string name="includeCalendar_sunday">Sun</string>
+    <string name="includeCalendar_monday">Mon</string>
+    <string name="includeCalendar_tuesday">Tue</string>
+    <string name="includeCalendar_wednesday">Wed</string>
+    <string name="includeCalendar_thursday">Thu</string>
+    <string name="includeCalendar_friday">Fri</string>
+    <string name="includeCalendar_saturday">Sat</string>
 
+    <!--삭제-->
     <string name="includeComWrite_writeRoom">수다방 글쓰기</string>
     <string name="includeComWrite_title">제목</string>
     <string name="includeComWrite_contents">내용</string>
@@ -180,94 +179,98 @@
     <string name="includeComView_search">조회</string>
     <string name="includeComView_contents">내용</string>
     <string name="includeComView_reNumber">댓글 11개</string>
+    <!--삭제-->
 
-    <string name="includeDiaryView_day">날짜</string>
-    <string name="includeDiaryView_title">제목</string>
-    <string name="includeDiaryView_contents">내용</string>
-    <string name="includeDiaryView_picture">사진</string>
-    <string name="includeDiaryView_video">동영상</string>
+    <string name="includeDiaryView_day">Date</string>
+    <string name="includeDiaryView_title">Subject</string>
+    <string name="includeDiaryView_contents">Contents</string>
+    <string name="includeDiaryView_picture">Picture</string>
+    <string name="includeDiaryView_video">Video</string>
 
-    <string name="includeDiaryWrite_gallery">갤러리</string>
+    <string name="includeDiaryWrite_gallery">Gallery</string>
 
-    <string name="includeEquipment_myHW">내 기기</string>
-    <string name="includeEquipment_serialNumber">일련번호</string>
-    <string name="includeEquipment_swVersion">펌웨어 버전</string>
+    <string name="includeEquipment_myHW">My Phyctogram</string>
+    <string name="includeEquipment_serialNumber">Serial number</string>
+    <string name="includeEquipment_swVersion">S/W version</string>
 
-    <string name="includeFileUpload_myCharacter">MY 캐릭터</string>
-    <string name="includeFileUpload_fileUpload">파일업로드</string>
+    <string name="includeFileUpload_myCharacter">MY Character</string>
+    <string name="includeFileUpload_fileUpload">Upload file</string>
 
-    <string name="includeMain_height">height</string>
-    <string name="includeMain_highRank">high rank</string>
-    <string name="includeMain_reportAnalysis">Growth Analysis</string>
-    <string name="includeMain_listSearch">How much been great?</string>
+    <string name="includeMain_height">Height</string>
+    <string name="includeMain_highRank">Rank</string>
+    <string name="includeMain_reportAnalysis">Growth Report</string>
+    <string name="includeMain_listSearch">How tall I am?</string>
 
-    <string name="includeMyCharacter_age0">0세</string>
-    <string name="includeMyCharacter_age1">0.5세</string>
-    <string name="includeMyCharacter_age2">1세</string>
-    <string name="includeMyCharacter_age3">2세</string>
-    <string name="includeMyCharacter_age4">3세</string>
-    <string name="includeMyCharacter_age5">4세</string>
-    <string name="includeMyCharacter_age6">5세</string>
-    <string name="includeMyCharacter_age7">6세</string>
-    <string name="includeMyCharacter_age8">7세</string>
-    <string name="includeMyCharacter_age9">8세</string>
-    <string name="includeMyCharacter_age10">9세</string>
-    <string name="includeMyCharacter_age11">10세</string>
-    <string name="includeMyCharacter_age12">11세</string>
-    <string name="includeMyCharacter_age13">12세</string>
-    <string name="includeMyCharacter_age14">13세</string>
-    <string name="includeMyCharacter_age15">14세</string>
-    <string name="includeMyCharacter_age16">15세</string>
-    <string name="includeMyCharacter_age17">16세</string>
-    <string name="includeMyCharacter_age18">17세</string>
-    <string name="includeMyCharacter_age19">18세</string>
-    <string name="includeMyCharacter_sign"><![CDATA["*"]]> 만 나이 기준입니다.</string>
+    <string name="includeMyCharacter_age0">0</string>
+    <string name="includeMyCharacter_age1">0.5</string>
+    <string name="includeMyCharacter_age2">1</string>
+    <string name="includeMyCharacter_age3">2</string>
+    <string name="includeMyCharacter_age4">3</string>
+    <string name="includeMyCharacter_age5">4</string>
+    <string name="includeMyCharacter_age6">5</string>
+    <string name="includeMyCharacter_age7">6</string>
+    <string name="includeMyCharacter_age8">7</string>
+    <string name="includeMyCharacter_age9">8</string>
+    <string name="includeMyCharacter_age10">9</string>
+    <string name="includeMyCharacter_age11">10</string>
+    <string name="includeMyCharacter_age12">11</string>
+    <string name="includeMyCharacter_age13">12</string>
+    <string name="includeMyCharacter_age14">13</string>
+    <string name="includeMyCharacter_age15">14</string>
+    <string name="includeMyCharacter_age16">15</string>
+    <string name="includeMyCharacter_age17">16</string>
+    <string name="includeMyCharacter_age18">17</string>
+    <string name="includeMyCharacter_age19">18</string>
+    <string name="includeMyCharacter_sign"></string>
 
-    <string name="includeNoticeList_notice">공지사항</string>
+    <string name="includeNoticeList_notice">Notice</string>
 
-    <string name="includePwFind_findPw">비밀번호 찾기</string>
-    <string name="includePwFind_dataInput">정보 입력</string>
-    <string name="includePwFind_emailAddr">이메일 주소</string>
-    <string name="includePwFind_ex">예<![CDATA[")"]]> mail@mail.com</string>
-    <string name="includePwFind_find">찾기</string>
-    <string name="includePwFind_sign"><![CDATA["*"]]>카카오톡이나 페이스북으로 가입된 회원에게는 비밀번호 찾기 서비스가 지원되지 않습니다.</string>
+    <string name="includePwFind_findPw">Find pqssword</string>
+    <string name="includePwFind_dataInput">Please write your information</string>
+    <string name="includePwFind_emailAddr">E-mail</string>
+    <string name="includePwFind_ex">ex<![CDATA[")"]]> mail@mail.com</string>
+    <string name="includePwFind_find">Dind</string>
+    <string name="includePwFind_sign"><![CDATA["*"]]>Password finding Service is not available to KakaoTalk or Facebook member.</string>
 
-    <string name="includePwModify_modifyPw">비밀번호 변경</string>
-    <string name="includePwModify_realPw">현재 비밀번호</string>
-    <string name="includePwModify_changePw">변경할 비밀번호</string>
-    <string name="includePwModify_checkChangePw">비밀번호를 다시 입력해주세요</string>
-    <string name="includePwModify_change">변경하기</string>
-    <string name="includePwModify_joinChannel">가입경로</string>
+    <string name="includePwModify_modifyPw">Change password</string>
+    <string name="includePwModify_realPw">Current Password</string>
+    <string name="includePwModify_changePw">New password</string>
+    <string name="includePwModify_checkChangePw">Input Password again.</string>
+    <string name="includePwModify_change">Change</string>
+    <string name="includePwModify_joinChannel">Join route</string>
 
-    <string name="includeQaList_qa">문의하기</string>
+    <string name="includeQaList_qa">Question</string>
 
-    <string name="includeQaList_lan">언어 변경</string>
+    <string name="includeQaList_lan">Language</string>
+    <string name="includeQaList_lan_en">English</string>
+    <string name="includeQaList_lan_cn">中文</string>
+    <string name="includeQaList_lan_ko">한국어</string>
 
-    <string name="includeQaView_qa">문의사항</string>
+    <string name="includeQaView_qa">Q&amp;A</string>
 
-    <string name="includeQaWrite_qaWrite">문의하기</string>
-    <string name="includeQaWrite_title"> 제목</string>
-    <string name="includeQaWrite_contents"> 내용</string>
+    <string name="includeQaWrite_qaWrite">Inqure</string>
+    <string name="includeQaWrite_title"> Subject</string>
+    <string name="includeQaWrite_contents"> Contents</string>
 
-    <string name="includeRecord_searchDay">조회기간</string>
-    <string name="includeRecord_writeDay">날짜를 입력하세요</string>
-    <string name="includeRecord_search">검색</string>
-    <string name="includeRecord_day">날짜</string>
-    <string name="includeRecord_increase">증감</string>
+    <string name="includeRecord_searchDay">Inquiry period</string>
+    <string name="includeRecord_writeDay">Input date</string>
+    <string name="includeRecord_search">Search</string>
+    <string name="includeRecord_day">Date</string>
+    <string name="includeRecord_increase">Growth</string>
 
-    <string name="includeSetting_setting">설정</string>
-    <string name="includeSetting_logout">로그아웃</string>
-    <string name="includeSetting_memberLeave">회원탈퇴</string>
+    <string name="includeSetting_setting">Setting</string>
+    <string name="includeSetting_logout">Logout</string>
+    <string name="includeSetting_memberLeave">Unregister</string>
 
-    <string name="includeUsersAdd_addChild">내 아이 추가</string>
-    <string name="includeUsersAdd_name">이름</string>
-    <string name="includeUsersAdd_initials">이니셜 (최대 3자리. 영문과 숫자 사용가능)</string>
-    <string name="includeUsersAdd_sign">제품에 표시될 이름입니다. 예:ABC 또는 AB2(영문 3자 또는 영문 2자+숫자 1자)</string>
+    <string name="includeUsersAdd_addChild">Add</string>
+    <string name="includeUsersAdd_name">Name</string>
+    <string name="includeUsersAdd_initials">Initials (3 letters limit. Number available)</string>
+    <string name="includeUsersAdd_sign">Your product show It is displayed제품에 표시될 이름입니다. 예:ABC 또는 AB2(영문 3자 또는 영문 2자+숫자 1자)</string>
     <string name="includeUsersAdd_birthday">생년월일</string>
-    <string name="includeUsersAdd_sex">성별</string>
-    <string name="includeUsersAdd_girl">여자</string>
-    <string name="includeUsersAdd_boy">남자</string>
-    <string name="includeUsersAdd_add">추가하기</string>
+    <string name="includeUsersAdd_sex">Sex</string>
+    <string name="includeUsersAdd_girl">Girl</string>
+    <string name="includeUsersAdd_boy">Boy</string>
+    <string name="includeUsersAdd_add">Add</string>
 
     <string name="includeUsersDataInput_writeHeight">키를 입력하세요.</string>
 
