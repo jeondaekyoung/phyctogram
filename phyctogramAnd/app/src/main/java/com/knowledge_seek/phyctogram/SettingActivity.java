@@ -14,13 +14,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.knowledge_seek.phyctogram.domain.Users;
+import com.knowledge_seek.phyctogram.kakao.common.BaseActivity;
 import com.pkmmte.view.CircularImageView;
 
 import java.util.List;
 import java.util.Locale;
-
-import com.knowledge_seek.phyctogram.domain.Users;
-import com.knowledge_seek.phyctogram.kakao.common.BaseActivity;
 
 /**
  * Created by dkfka on 2015-12-02.
@@ -43,6 +42,7 @@ public class SettingActivity extends BaseActivity {
     private LinearLayout tv_qa;             //문의하기
     private LinearLayout li_lan_en; //언어변경 (영문)
     private LinearLayout li_lan_ko; //언어변경 (한글)
+    private LinearLayout li_lan_cn; //언어변경 (중문)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -191,7 +191,21 @@ public class SettingActivity extends BaseActivity {
 
             }
         });
-        //언어변경 (영문)
+        //언어변경 (중문)
+        li_lan_cn = (LinearLayout)findViewById(com.knowledge_seek.phyctogram.R.id.li_lan_cn);
+        li_lan_cn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Locale cn = Locale.CHINA;
+                Configuration config = new Configuration();
+                config.locale = cn;
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+                Intent intent = new Intent(SettingActivity.this , MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+        //언어변경 (한글)
         li_lan_ko = (LinearLayout)findViewById(com.knowledge_seek.phyctogram.R.id.li_lan_ko);
         li_lan_ko.setOnClickListener(new View.OnClickListener() {
             @Override
