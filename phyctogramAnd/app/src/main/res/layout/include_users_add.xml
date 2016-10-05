@@ -136,23 +136,26 @@
                             android:text="@string/includeUsersAdd_boy" />
                     </RadioGroup>
                 </LinearLayout>
+
+                <com.knowledge_seek.phyctogram.util.MyRelativeView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp">
+
+                    <com.knowledge_seek.phyctogram.util.MyButtonView
+                        android:id="@+id/btn_usersadd"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/btn_border_radius"
+                        android:text="@string/includeUsersAdd_add"
+                        android:textColor="#ffffff" />
+                </com.knowledge_seek.phyctogram.util.MyRelativeView>
+
             </LinearLayout>
         </com.knowledge_seek.phyctogram.util.MyScrollView>
 
-        <com.knowledge_seek.phyctogram.util.MyRelativeView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.knowledge_seek.phyctogram.util.MyButtonView
-                android:id="@+id/btn_usersadd"
-                style="?android:attr/borderlessButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@drawable/btn_border_radius"
-                android:text="@string/includeUsersAdd_add"
-                android:textColor="#ffffff" />
-        </com.knowledge_seek.phyctogram.util.MyRelativeView>
     </com.knowledge_seek.phyctogram.util.MyLinearView>
 
 </LinearLayout>
