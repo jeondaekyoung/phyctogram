@@ -160,8 +160,8 @@
     <string name="includeCalendar_saturday">土</string>
 
     <string name="includeDiaryView_day">日期</string>
-    <string name="includeDiaryView_title">제목</string>
-    <string name="includeDiaryView_contents">내용</string>
+    <string name="includeDiaryView_title">题目</string>
+    <string name="includeDiaryView_contents">内容</string>
     <string name="includeDiaryView_picture">照片</string>
     <string name="includeDiaryView_video">视频</string>
 
@@ -201,7 +201,7 @@
     <string name="includeMyCharacter_age19">18㱑</string>
     <string name="includeMyCharacter_sign"><![CDATA["*"]]> 我的卡通形象</string>
 
-    <string name="includeNoticeList_notice">공지사항</string>
+    <string name="includeNoticeList_notice">最新消息</string>
 
     <string name="includePwFind_findPw">明码寻找</string>
     <string name="includePwFind_dataInput">输入信息</string>

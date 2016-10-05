@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="18"
-        android:targetSdkVersion="21" />
+        android:targetSdkVersion="23" />
 
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -98,7 +98,7 @@
         <activity
             android:name="com.knowledge_seek.phyctogram.CharacterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name="com.knowledge_seek.phyctogram.CommunityCommentActivity"
             android:screenOrientation="portrait"
