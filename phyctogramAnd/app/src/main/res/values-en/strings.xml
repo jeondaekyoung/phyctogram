@@ -73,8 +73,8 @@
     <string name="pwmodActivity_failPW">Password is wrong.</string>
     <string name="pwmodActivity_failChangePW">failed to changing password.</string>
     <string name="pwmodActivity_successChangePW">Your password is changed.</string>
-    <string name="pwmodActivity_kakaoPW">You are Kakao member. You can change password in KakaoTalk.</string>
-    <string name="pwmodActivity_facebookPW">You are Facebook member. You can change password in Facebook.</string>
+    <string name="pwmodActivity_kakaoPW">You are Kakao member. You can change password at KakaoTalk.</string>
+    <string name="pwmodActivity_facebookPW">You are Facebook member. You can change password at Facebook.</string>
     <string name="pwmodActivity_checkChangePW">Password is not match.</string>
 
     <string name="qaViewActivity_qsContents">Question</string>
