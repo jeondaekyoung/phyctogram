@@ -169,7 +169,7 @@
 
     <string name="includeComComment_reWrite">댓글쓰기</string>
     <string name="includeComComment_sign">악플은 경고조치 없이 삭제되며 징계 대상이 될 수 있습니다.</string>
-    <string name="includeComComment_register">등록</string>
+
 
     <string name="includeComList_communityRoom">수다방</string>
     <string name="includeComList_new">최신</string>
@@ -181,6 +181,7 @@
     <string name="includeComView_reNumber">댓글 11개</string>
     <!--삭제-->
 
+    <string name="includeComComment_register">Registration</string>
     <string name="includeDiaryView_day">Date</string>
     <string name="includeDiaryView_title">Subject</string>
     <string name="includeDiaryView_contents">Contents</string>
