@@ -6,7 +6,7 @@
       <div class="container wrapper">
         <div class="m-t-xl m-b"><!--  스마트폰으로 자녀의 성장 과정을 기록해보세요. 픽토그램이 자세히 분석해드립니다. -->
           <!-- <a href="#" target="_blank" class="btn btn-lg btn-dark b-white bg-empty m-sm">다운로드</a> -->
-          <a href="knowEn.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">About Us</a>
+          <a href="aboutUsEn.jsp" target="_blank" class="btn btn-dark b-white bg-empty m-sm">About Us</a>
           <a href="#" target="_blank" class="btn btn-dark b-white bg-empty m-sm"  style="cursor: not-allowed;">Agreement</a>
           <a href="#" target="_blank" class="btn btn-dark b-white bg-empty m-sm" style="cursor: not-allowed;">Privacy</a>
           <a href="#" target="_blank" class="btn btn-dark b-white bg-empty m-sm" style="cursor: not-allowed;">Partnership</a>
