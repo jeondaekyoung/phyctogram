@@ -4,6 +4,13 @@
 <head>	
   <jsp:include page="../include/head.jsp"/>
   <jsp:include page="../include/head-index.jsp"/>
+  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
+  <script>
+	  $(function () {
+	      var typewriter = new Typewriter($("#typewriter"));
+	      typewriter.typeText("最先进的幼儿专用成长管理仪器");
+	  });
+  </script>
 </head>
 
 <body>
@@ -16,7 +23,7 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <h1>最先进的幼儿专用成长管理仪器</h1>
+        <h1 id="typewriter"></h1>
         <p>phyctogram测孩子的身高和体重很容易和准确，把测量的数据自动分析，提供生长解决方案。</p>
         <!-- <a class="linkProd" href="product.html">제품보기</a> -->
       </div>

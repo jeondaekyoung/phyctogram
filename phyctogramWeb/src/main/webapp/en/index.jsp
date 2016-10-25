@@ -3,7 +3,14 @@
 <html>
 <head>	
   <jsp:include page="../include/head.jsp"/>
-  <jsp:include page="../include/head-index.jsp"/>  
+  <jsp:include page="../include/head-index.jsp"/>
+  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
+  <script>
+	  $(function () {
+	      var typewriter = new Typewriter($("#typewriter"));
+	      typewriter.typeText("The Most Advanced Growth Measuring, Management Device For Kids");
+	  });
+  </script>
 </head>
 
 <body>
@@ -17,7 +24,7 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <h1>THE MOST ADVANCED GROWTH MEASURING·MANAGEMENT DEVICE FOR KIDS</h1>
+        <h1 id="typewriter"></h1>
         <p>Phyctogram measures height and weight easily and accurately, and provides growth solution by automatically analysis</p>
         <!-- <a class="linkProd" href="product.html">제품보기</a> -->
       </div>

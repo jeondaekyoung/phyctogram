@@ -3,7 +3,26 @@
 <html>
 <head>	
   <jsp:include page="/include/head.jsp"/>
-  <jsp:include page="/include/head-index.jsp"/>  
+  <jsp:include page="/include/head-index.jsp"/> 
+  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter-bundle.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/res/js/hangul.min.js"></script>
+  <script>
+	var typewriter = require('typewriter');
+	
+	var twSpan = document.getElementById('typewriter');
+	var tw = typewriter(twSpan).withAccuracy(100)
+	    .withMinimumSpeed(5)
+	    .withMaximumSpeed(17)
+	    .build();
+	
+	var msg = '가장 진보한 유아용 성장 측정, 관리 기기';
+	msg = Hangul.disassemble(msg);
+	msg = Hangul.typewrite(msg);
+	
+	tw.wait(1000)
+	    .type(msg)
+	    .wait(500);
+</script>
 </head>
 
 <body>
@@ -15,10 +34,9 @@
       <source src="<%=application.getContextPath()%>/resources/res/imgs/video-phyctogram.mp4" type="video/mp4">
     </video>
     <div class="modal">
-      <div class="layer animated dur400 fadeInUp">
-        <h1>가장 진보한 유아용 성장 측정·관리 기기</h1>
+      <div class="layer ">
+        <h1 id="typewriter"></h1>
         <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p>
-        <!-- <a class="linkProd" href="product.html">제품보기</a> -->
       </div>
     </div>
   </div>
