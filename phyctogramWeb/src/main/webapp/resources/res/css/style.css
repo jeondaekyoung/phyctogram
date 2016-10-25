@@ -67,7 +67,7 @@ button { border: none; background: none;}
 .lang>a {
     color: #fff;
 }
-.lang>a.active::before {
+.lang>a:hover::before {
     content: '';
     position: absolute;
     top: 2px;
