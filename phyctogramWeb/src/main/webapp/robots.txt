@@ -1,3 +1,0 @@
-User-agent:Yeti
-Disallow:/private*/
-Sitemap:http://www.phyctogram.com/sitemap.xml
