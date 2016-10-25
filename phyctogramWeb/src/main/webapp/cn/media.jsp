@@ -3,7 +3,7 @@
 <html>
 <head>	
   <jsp:include page="../include/head.jsp"/>
-  
+  <jsp:include page="../include/head-media.jsp"/>
   <style>
     h3 {
         font-size: 1.5em;

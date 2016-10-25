@@ -3,41 +3,7 @@
 <html>
 <head>	
   <jsp:include page="/include/head.jsp"/>
-  
-  <style>
-    h3 {
-        font-size: 1.5em;
-        margin: 0.5rem 0 0;
-    }
-    h4 {margin: 0.5rem 0 0;}
-    .intro p {
-        font-size: 0.875rem;
-        line-height: 1.5;
-        color: #444;
-        text-shadow: none;
-        width: 100%;
-    }
-    .section {text-align:center;}
-    #section0 {padding: 40px 0;}
-  </style>
-  
-  <script type="text/javascript">
-	  $(document).ready(function() {
-	      $('#fullpage').fullpage({
-	          sectionsColor: ['#eeeeee'],
-	          autoScrolling: false
-	      });
-	  });
-	  $(window).scroll(function(){
-	      if($(this).scrollTop()>=80){
-	          $('#header').css({'background-color': '#000'});
-	          $('#footer').css({'background-color': '#000', 'color':'#fff'});
-	      } else {
-	          $('#header').css({'background-color': 'transparent'});
-	          $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	      }
-	  });
-  </script>
+  <jsp:include page="/include/head-media.jsp"/>
 </head>
 <body>
   <jsp:include page="include/nav.jsp"/>

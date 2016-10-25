@@ -259,10 +259,10 @@ img{
     top: 50%;
 }
 #section2 .box{
-    top: 22%;
-    left: 42%;
+    top:32%;
+    left: 53%;
     position: absolute;
-    width: 582px;
+    width: 595px;
 }
 
 #iphone-yellow{
@@ -270,12 +270,12 @@ img{
     left: -222px;
 }
 #iphone-red{
-    top: -194px;
-    left: 106px;
+    top: -80px;
+    left: 0px;
 }
 #iphone-blue{
-    top: 320px;
-    left: 448px;
+    top: 0px;
+    left: 300px;
 }
 #iphone-green{
     left: 106px;
@@ -325,13 +325,13 @@ img{
     top: 50%;
 }
 #section3 img{
-    top: 155px;
-    left: 455px;
+    top: 105px;
+    left: 300px;
     position: absolute;
 }
 #section3 .box{
     text-align: center;
-    margin: 10% 0 0 0;
+    margin: 12% 0 0 0;
 }
 /* Overwriting fullPage.js tooltip color
 * --------------------------------------- */
@@ -536,11 +536,11 @@ img{
     color: #fff;
 }
 .contact .contact-info li:first-child {
-    background: url(imgs/addr.svg) no-repeat 0% center;
+    background: url(../imgs/addr.svg) no-repeat 0% center;
 }
 .contact .contact-info li:nth-child(2) {
-    background: url(imgs/call.svg) no-repeat 0% center;
+    background: url(../imgs/call.svg) no-repeat 0% center;
 }
 .contact .contact-info li:last-child {
-    background: url(imgs/email.svg) no-repeat 0% center;
+    background: url(../imgs/email.svg) no-repeat 0% center;
 }

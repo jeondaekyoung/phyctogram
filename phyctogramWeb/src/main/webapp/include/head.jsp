@@ -21,12 +21,6 @@
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/examples.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/style.css">
 
-<!--[if lt IE 9]>
-  <script src="js/ie/html5shiv.js"></script>
-  <script src="js/ie/respond.min.js"></script>
-  <script src="js/ie/excanvas.js"></script>
-<![endif]-->
-
 <!--[if IE]>
 <script type="text/javascript">
 	 var console = { log: function() {} };
@@ -37,7 +31,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/res/js/jquery.fullPage.js"></script>
-<script type="text/javascript" src="<%=application.getContextPath()%>/resources/res/js/examples.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/res/js/examples.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/res/vendors/jquery.easings.min.js"></script>
 <script type="text/javascript" src="<%=application.getContextPath()%>/resources/res/vendors/jquery.slimscroll.min.js"></script>
