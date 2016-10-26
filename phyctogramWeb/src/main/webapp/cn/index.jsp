@@ -3,7 +3,6 @@
 <html>
 <head>	
   <jsp:include page="../include/head.jsp"/>
-  <jsp:include page="../include/head-index.jsp"/>
   <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
   <script>
 	  $(function () {
@@ -11,6 +10,7 @@
 	      typewriter.typeText("最先进的幼儿专用成长管理仪器");
 	  });
   </script>
+  <jsp:include page="../include/head-index.jsp"/>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
     <div class="headlineProd animated">
       <h3>指按压一次，很容易的测量</h3>
       <p>通过简单的操作办法以及简洁的设计，让用户提供便利性和审美观</p>
-      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-16">
+      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-12">
     </div>
 	</div>
 	<div class="section" id="section1">

@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>	
   <jsp:include page="/include/head.jsp"/>
-  <jsp:include page="/include/head-index.jsp"/>
   <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
   <script>
- $(function () {
-     var typewriter = new Typewriter($("#typewriter"));
-     typewriter.typeText("가장 진보한 유아용 성장 측정·관리 기기");
- });	    
-</script>
+	 $(function () {
+	     var typewriter = new Typewriter($("#typewriter"));
+	     typewriter.typeText("가장 진보한 유아용 성장 측정·관리 기기");
+	 });	    
+  </script>
+  <jsp:include page="/include/head-index.jsp"/>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
       <source src="<%=application.getContextPath()%>/resources/res/imgs/video-phyctogram.mp4" type="video/mp4">
     </video>
     <div class="modal">
-      <div class="layer ">
+      <div class="layer animated dur400 fadeInUp">
         <div class="col-6 prefix-3 suffix-3">
 			<h1 id="typewriter"></h1>
 	        <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p>        
@@ -34,7 +34,7 @@
     <div class="headlineProd animated">
       <h3>단 한 번의 터치로 손쉬운 측정</h3>
       <p>간편한 조작 방법과 간결한 디자인으로 사용자에게 편리함과 심미적 가치를 제공합니다</p>
-      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-16">
+      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-12">
     </div>
 	</div>
 	<div class="section" id="section1">

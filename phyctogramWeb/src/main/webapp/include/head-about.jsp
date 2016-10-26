@@ -30,13 +30,12 @@ h1 {
 			scrollOverflow: true,
 
 			'afterLoad': function(anchorLink, index){
-				if(index == 2){
-                       $('#header').css({'background-color': '#000'});
-                       $('#footer').css({'background-color': '#000', 'color':'#fff'});
-				}
+				
                 if(index == 1){                        
                     $('#header').css({'background-color': 'transparent'});
                     $('#footer').css({'color': 'transparent'});
+                    $('.timeline-item').addClass('fadeInLeft');
+                    $('.timeline-item.alt').addClass('fadeInRight');
                 }
 			}
 		});

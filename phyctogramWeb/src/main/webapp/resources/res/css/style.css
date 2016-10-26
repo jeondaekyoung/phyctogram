@@ -20,7 +20,7 @@ body{
  
 /***** 글로벌 메뉴 *****/
 .nav {
-    min-width: 1366px;
+    max-width: 1366px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 96px;

@@ -3,7 +3,6 @@
 <html>
 <head>	
   <jsp:include page="../include/head.jsp"/>
-  <jsp:include page="../include/head-index.jsp"/>
   <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
   <script>
 	  $(function () {
@@ -11,6 +10,7 @@
 	      typewriter.typeText("The Most Advanced Growth Measuring, Management Device For Kids");
 	  });
   </script>
+  <jsp:include page="../include/head-index.jsp"/>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
     <div class="headlineProd animated">
       <h3>Easy to use & Simple UI</h3>
       <p>Phyctogram provides a simple method to measure height and its aesthetic design aims at simpleness.</p>
-      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-16">
+      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-12">
     </div>
 	</div>
 	<div class="section" id="section1">

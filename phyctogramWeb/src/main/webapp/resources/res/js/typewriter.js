@@ -101,16 +101,16 @@ Typewriter.prototype.setCaretPeriod = function (period) {
         clearInterval(this._caretInterval);
     }
 
-    if (period) {
+    if (period) { //아람: 커서 깜빡임 수정
         this._caretInterval = setInterval(function () {
-            if (that._caretElement.style.display == "none") {
-                that._caretElement.style.display = "";
+            if (that._caretElement.style.color == "transparent") {
+                that._caretElement.style.color = "white";
             } else {
-                that._caretElement.style.display = "none";
+                that._caretElement.style.color = "transparent";
             }
         }, period);
     } else {
-        that._caretElement.style.display = "";
+        that._caretElement.style.color = "white";
     }
 }
 

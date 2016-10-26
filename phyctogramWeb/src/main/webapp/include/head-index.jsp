@@ -1,5 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#fullpage').fullpage({
+		'verticalCentered': false,
+		'css3': true,
+		'navigation': true,
+		'navigationPosition': 'right',
+
+		'afterLoad': function(anchorLink, index){
+	         if(index == 1){
+	           $('#header').css({'background-color': 'transparent'});
+	           $('.modal').css({'display': 'block'});
+	           $('#footer').css({'color': 'transparent'});
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	         }
+	         if(index == 2){
+	           $('.headlineProd').addClass('fadeInUp');
+	           $('.modal').css({'display': 'none'});
+	           $('#header').css({'background-color': '#000'});
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	         }
+			 if(index == 3){
+			   $('#iphone3, #iphone2, #iphone4').addClass('active');
+	           $('.box-1').addClass('fadeInRight');
+			 }
+	         if(index == 4){
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	           $('.box-2').addClass('fadeInUp');
+	         }
+	         if(index == 5){ 
+	           $('#footer').css({'background-color': '#000', 'color':'#fff'});
+	           $('.box-3').addClass('fadeInUp');
+	         }
+		},
+
+		'onLeave': function(index, nextIndex, direction){
+			if (index == 4 && direction == 'down'){
+				$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
+          			$('#header').css({'background-color': '#000'});
+			}
+			else if(index == 4 && direction == 'up'){
+				$('.section').eq(index -1).removeClass('moveUp').addClass('moveDown');
+			}
+
+			$('#staticImg').toggleClass('active', (index == 3 && direction == 'down' ) || (index == 5 && direction == 'up'));
+			$('#staticImg').toggleClass('moveDown', nextIndex == 5);
+			$('#staticImg').toggleClass('moveUp', index == 5 && direction == 'up');
+		},
+		
+		'afterRender': function(section){
+			//playing the video
+			$('video').get(0).play();
+		}
+	});
+});
+</script>
 <style>
   /* Style for our header texts
   * --------------------------------------- */  
@@ -92,55 +149,3 @@
     background: #f5f5f5;
   }        
 </style>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#fullpage').fullpage({
-		'verticalCentered': false,
-		'css3': true,
-		'navigation': true,
-		'navigationPosition': 'right',
-
-		'afterLoad': function(anchorLink, index){
-	         if(index == 1){
-	           $('#header').css({'background-color': 'transparent'});
-	           $('.modal').css({'display': 'block'});
-	           $('#footer').css({'color': 'transparent'});
-	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	         }
-	         if(index == 2){
-	           $('.headlineProd').addClass('fadeInUp');
-	           $('.modal').css({'display': 'none'});
-	           $('#header').css({'background-color': '#000'});
-	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	         }
-			 if(index == 3){
-			   $('#iphone3, #iphone2, #iphone4').addClass('active');
-	           $('.box-1').addClass('fadeInRight');
-			 }
-	         if(index == 4){
-	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	           $('.box-2').addClass('fadeInUp');
-	         }
-	         if(index == 5){ 
-	           $('#footer').css({'background-color': '#000', 'color':'#fff'});
-	           $('.box-3').addClass('fadeInUp');
-	         }
-		},
-
-		'onLeave': function(index, nextIndex, direction){
-			if (index == 4 && direction == 'down'){
-				$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
-          			$('#header').css({'background-color': '#000'});
-			}
-			else if(index == 4 && direction == 'up'){
-				$('.section').eq(index -1).removeClass('moveUp').addClass('moveDown');
-			}
-
-			$('#staticImg').toggleClass('active', (index == 3 && direction == 'down' ) || (index == 5 && direction == 'up'));
-			$('#staticImg').toggleClass('moveDown', nextIndex == 5);
-			$('#staticImg').toggleClass('moveUp', index == 5 && direction == 'up');
-		}
-	});
-});
-</script>

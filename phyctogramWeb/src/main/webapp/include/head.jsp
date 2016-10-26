@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/jquery.fullPage.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/examples.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/style.css">
+<link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/resources/res/css/animate.css">
 
 <!--[if IE]>
 <script type="text/javascript">

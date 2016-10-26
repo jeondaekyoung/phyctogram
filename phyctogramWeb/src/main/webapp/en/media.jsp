@@ -13,7 +13,7 @@
         <div class="intro row">
             <div class="col-10 prefix-1">
                 <!-- start: .col-6 -->
-                <div class="col-6">
+                <div class="col-6 animated fadeInUp">
                     <ul>
                         <li>
                             <iframe width="100%" height="500" src="https://www.youtube.com/embed/0GFoH9eSiBU" frameborder="0" allowfullscreen></iframe>

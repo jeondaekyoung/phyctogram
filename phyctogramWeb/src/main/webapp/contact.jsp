@@ -10,7 +10,7 @@
   <div id="fullpage">
     
 	<div class="section" id="section0">
-        <div class="row contact">        
+        <div class="row contact animated fadeInUp">        
             <div class="col-7">
               <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
