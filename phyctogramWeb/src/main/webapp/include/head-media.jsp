@@ -31,7 +31,8 @@
     $(document).ready(function() {
         $('#fullpage').fullpage({
             sectionsColor: ['#eeeeee'],
-            autoScrolling: false
+            autoScrolling: false,
+			fitToSection: false
         });
     });
     $(window).scroll(function(){

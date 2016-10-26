@@ -1,38 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>	
   <jsp:include page="/include/head.jsp"/>
   <jsp:include page="/include/head-index.jsp"/>
-   <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>  
-  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter-bundle.js"></script>
-  <script src="<%=application.getContextPath()%>/resources/res/js/hangul.min.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
   <script>
-   /* 가장 진보한 유아용 성장 측정, 관리 기기 */
-	/*     var typewriter = require('#typewriter');
-
-	    var twSpan = document.getElementById('typewriter');
-	    var tw = typewriter(twSpan).withAccuracy(100)
-	        .withMinimumSpeed(5)
-	        .withMaximumSpeed(17)
-	        .build();
-
-	    var msg = 'asdasd';
-	    msg = Hangul.disassemble(msg);
-	    msg = Hangul.typewrite(msg);
-
-	    tw.wait(1000)
-	        .type(msg)
-	        .wait(500)
-	        .type('', function () {
-	        document.getElementById("caret").style.display = 'none';
-	    });
- */	    
  $(function () {
      var typewriter = new Typewriter($("#typewriter"));
-     typewriter.typeText("가장 진보한 유아용 성장 측정, 관리 기기");
- });
-	    
+     typewriter.typeText("가장 진보한 유아용 성장 측정·관리 기기");
+ });	    
 </script>
 </head>
 
@@ -46,8 +23,10 @@
     </video>
     <div class="modal">
       <div class="layer ">
-		<h1 id="typewriter"></h1>
-        <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p> 
+        <div class="col-6 prefix-3 suffix-3">
+			<h1 id="typewriter"></h1>
+	        <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p>        
+        </div>
       </div>
     </div> 
   </div> 

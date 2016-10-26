@@ -104,11 +104,13 @@ $(document).ready(function() {
 		'afterLoad': function(anchorLink, index){
 	         if(index == 1){
 	           $('#header').css({'background-color': 'transparent'});
+	           $('.modal').css({'display': 'block'});
 	           $('#footer').css({'color': 'transparent'});
 	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
 	         }
 	         if(index == 2){
 	           $('.headlineProd').addClass('fadeInUp');
+	           $('.modal').css({'display': 'none'});
 	           $('#header').css({'background-color': '#000'});
 	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
 	         }
