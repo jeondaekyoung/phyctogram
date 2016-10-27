@@ -11,7 +11,7 @@
     
 	<div class="section" id="section0">
         <div class="row contact animated fadeInUp">        
-            <div class="col-7">
+            <div class="col-7 m-col-12">
               <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
 	          <script type="text/javascript">
@@ -33,7 +33,7 @@
             </div>
             <!-- end: .col-7 -->
             
-            <div class="col-5">
+            <div class="col-5 m-col-12">
                 <ul class="contact-info">
                     <li>경기도 성남시 분당구 판교로289번길 20, 3동 310호(삼평동, 스타트업캠퍼스)</li>
                     <li>070-8624-4536</li>

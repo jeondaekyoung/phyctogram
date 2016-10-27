@@ -4,40 +4,6 @@
 <head>	
   <jsp:include page="../include/head.jsp"/>
   <jsp:include page="../include/head-media.jsp"/>
-  <style>
-    h3 {
-        font-size: 1.5em;
-        margin: 0.5rem 0 0;
-    }
-    h4 {margin: 0.5rem 0 0;}
-    .intro p {
-        font-size: 0.875rem;
-        line-height: 1.5;
-        color: #444;
-        text-shadow: none;
-        width: 100%;
-    }
-    .section {text-align:center;}
-    #section0 {padding: 40px 0;}
-  </style>
-  
-  <script type="text/javascript">
-	  $(document).ready(function() {
-	      $('#fullpage').fullpage({
-	          sectionsColor: ['#eeeeee'],
-	          autoScrolling: false
-	      });
-	  });
-	  $(window).scroll(function(){
-	      if($(this).scrollTop()>=80){
-	          $('#header').css({'background-color': '#000'});
-	          $('#footer').css({'background-color': '#000', 'color':'#fff'});
-	      } else {
-	          $('#header').css({'background-color': 'transparent'});
-	          $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	      }
-	  });
-  </script>
 </head>
 <body>
   <jsp:include page="../include/nav.jsp"/>
@@ -47,7 +13,7 @@
         <div class="intro row">
             <div class="col-10 prefix-1">
                 <!-- start: .col-6 -->
-                <div class="col-6 animated fadeInUp">
+                <div class="col-6 animated fadeInUp m-col-12">
                     <ul>
                         <li>
                             <iframe width="100%" height="500" src="https://www.youtube.com/embed/0GFoH9eSiBU" frameborder="0" allowfullscreen></iframe>
@@ -71,7 +37,7 @@
                 <!-- end: .col-6 -->
                 
                 <!-- start: .col-3 -->
-                <div class="col-3">
+                <div class="col-3 animated fadeInUp dur400 m-col-12">
                     <ul>
                         <li>
                             <img src="http://img.etnews.com/news/article/2016/06/14/article_14095010697237.jpg" width="100%" alt="수상자 단체사진">
@@ -98,7 +64,7 @@
                 <!-- end: .col-3 -->
                 
                 <!-- start: .col-3 -->
-                <div class="col-3">
+                <div class="col-3 animated fadeInUp dur800 m-col-12">
                     <ul>                    
                         <li>
                             <img src="http://img.etnews.com/photonews/1403/536384_20140228180956_679_0001.jpg" width="100%" alt="수상자 단체사진">

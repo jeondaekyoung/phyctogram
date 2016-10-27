@@ -62,6 +62,12 @@ body.show-leading::before {
 .col-11 { width: 89.58333333333334%; }
 .col-12 { width: 97.91666666666666%; }
 
+@media screen and (max-width: 768px){
+	.m-col-12 {
+		width: 97.91666666666666% !important;
+	}
+}
+
 [class*="push-"],
 [class*="pull-"] {
   position: relative;

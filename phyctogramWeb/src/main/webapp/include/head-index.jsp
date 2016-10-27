@@ -24,13 +24,16 @@ $(document).ready(function() {
 	         }
 			 if(index == 3){
 			   $('#iphone3, #iphone2, #iphone4').addClass('active');
+	           $('#header').css({'background-color': '#000'});
 	           $('.box-1').addClass('fadeInRight');
 			 }
 	         if(index == 4){
+		       $('#header').css({'background-color': '#000'});
 	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
 	           $('.box-2').addClass('fadeInUp');
 	         }
 	         if(index == 5){ 
+		       $('#header').css({'background-color': '#000'});
 	           $('#footer').css({'background-color': '#000', 'color':'#fff'});
 	           $('.box-3').addClass('fadeInUp');
 	         }
@@ -123,8 +126,8 @@ $(document).ready(function() {
   #section1 img{
     position:absolute;
     left: 40px;
-    top: 100px;
-    height: 100%;
+    top: 180px;
+    width: 322px;
   }
   #section1 .box{
     position: absolute;

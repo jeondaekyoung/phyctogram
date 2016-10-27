@@ -2,14 +2,14 @@
 
 <div id="header">
     <div class="row nav">
-        <div class="col-9">
+        <div class="col-9 m-col-12">
             <div class="col-3">            
                 <h1 class="fl">Phyctogram</h1>
             </div>
             <div class="col-9">
                 <button type="button" class="hidden m-block btn-menu fr"><img src="<%=application.getContextPath()%>/resources/res/imgs/menu.svg" width="36" alt="menu"></button>
                 <nav class="menu m-hidden">
-                    <button type="button" class="hidden fr"><img src="<%=application.getContextPath()%>/resources/res/imgs/close.svg" alt="close"></button>
+                    <button type="button" class="hidden btn-close fr"><img src="<%=application.getContextPath()%>/resources/res/imgs/close.svg" width="36" alt="close"></button>
                     <ul class="row">
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="about.jsp">About Us</a></li>

@@ -23,7 +23,7 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <div class="col-6 prefix-3 suffix-3">
+        <div class="col-6 m-col-12 prefix-3 suffix-3">
 			<h1 id="typewriter"></h1>
 	        <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p>        
         </div>
@@ -39,12 +39,12 @@
 	</div>
 	<div class="section" id="section1">
 		<div class="wrap row">
-			<div class="imgsContainer col-7">
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/0.png" alt="메인 이미지" id="iphone2" />
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/2.png" alt="성장카드 페이지" id="iphone3" />
+			<div class="col-7">
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/0.png" id="iphone2" alt="메인 이미지" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/2.png" id="iphone3" alt="성장카드 페이지" />
 			</div>
 
-			<div class="box box-1 col-5 animated">
+			<div class="box box-1 col-5 m-col-12 animated">
 				<h2>어플리케이션을 통한<br>스마트 성장관리 서비스</h2>
 				측정된 키·체중 데이터는 Wi-Fi를 통해 자동으로 어플리케이션에 연동되어 아이의 성장을 체계적으로 관리할 수 있게 합니다
 			</div>
@@ -52,13 +52,13 @@
 	</div>
 
 	<div class="section moveDown" id="section2">
-		<div class="wrap">
-			<div class="imgsContainer">
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/4.png" width="322" alt="리포트" id="iphone-red" />
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/3.png" width="322" alt="체크리스트" id="iphone-blue" />
+		<div class="wrap row">
+			<div class=" col-6">
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/4.png" alt="리포트" id="iphone-red" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/3.png" alt="체크리스트" id="iphone-blue" />
 			</div>
 
-			<div class="box box-2 animated">
+			<div class="col-6 m-col-12 box box-2 animated">
 				<h2>성장비교 솔루션 및 예측 수치 제공</h2>
 				<ul>
 		          <li>아이의 성장 정도를 추상적인 비교가 아닌 실제 데이터를 기반으로 제공하여, 성장 과정의 체계적인 관리·분석이 가능합니다</li>
@@ -73,9 +73,11 @@
 				<h2>성장 관련 콘텐츠 제공</h2>
 				성장 과정을 포함한 육아일기 및 관련 콘텐츠 작성이 가능합니다
 			</div>
-		</div>
-		<div class="imgsContainer">
-			<img src="<%=application.getContextPath()%>/resources/res/imgs/11.png" alt="리포트 분석 페이지" id="iphone-two" />
+			<div class="row">
+				<div class="col-8 prefix-2 suffix-2">			
+					<img src="<%=application.getContextPath()%>/resources/res/imgs/11.png" alt="리포트 분석 페이지" width="100%" />
+				</div>
+			</div>
 		</div>
 	</div>
   </div><!-- 끝: #fullpage -->

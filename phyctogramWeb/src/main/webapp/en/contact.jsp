@@ -10,8 +10,8 @@
   
   <div id="fullpage">    
 	<div class="section" id="section0">
-		<div class="row contact">
-			<div class="col-7">
+		<div class="row contact animated fadeInUp">
+			<div class="col-7 m-col-12">
 				<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 		          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
 		          <script type="text/javascript">
@@ -32,7 +32,7 @@
 		          </script>
 		        </div>
 		        
-				<div class="col-5">
+				<div class="col-5 m-col-12">
 		            <ul class="contact-info">
 	                <li>Address<span>Suite 310, Startup Campus Building 3, 20, Pangyo-ro 289beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea</span></li>
 	                <li>Call<span>+82 70-8624-4536</span></li>

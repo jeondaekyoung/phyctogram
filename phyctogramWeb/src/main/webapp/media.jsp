@@ -13,7 +13,7 @@
         <div class="intro row">
             <div class="col-10 prefix-1">
                 <!-- start: .col-6 -->
-                <div class="col-6 animated fadeInUp">
+                <div class="col-6 animated fadeInUp m-col-12">
                     <ul>
                         <li>
                             <iframe width="100%" height="500" src="https://www.youtube.com/embed/0GFoH9eSiBU" frameborder="0" allowfullscreen></iframe>
@@ -37,7 +37,7 @@
                 <!-- end: .col-6 -->
                 
                 <!-- start: .col-3 -->
-                <div class="col-3">
+                <div class="col-3 animated fadeInUp dur400 m-col-12">
                     <ul>
                         <li>
                             <img src="http://img.etnews.com/news/article/2016/06/14/article_14095010697237.jpg" width="100%" alt="수상자 단체사진">
@@ -64,7 +64,7 @@
                 <!-- end: .col-3 -->
                 
                 <!-- start: .col-3 -->
-                <div class="col-3">
+                <div class="col-3 animated fadeInUp dur800 m-col-12">
                     <ul>                    
                         <li>
                             <img src="http://img.etnews.com/photonews/1403/536384_20140228180956_679_0001.jpg" width="100%" alt="수상자 단체사진">

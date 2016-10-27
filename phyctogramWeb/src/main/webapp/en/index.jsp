@@ -24,9 +24,10 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <h1 id="typewriter"></h1>
-        <p>Phyctogram measures height and weight easily and accurately, and provides growth solution by automatically analysis</p>
-        <!-- <a class="linkProd" href="product.html">제품보기</a> -->
+        <div class="col-6 m-col-12 prefix-3 suffix-3">
+	        <h1 id="typewriter"></h1>
+	        <p>Phyctogram measures height and weight easily and accurately, and provides growth solution by automatically analysis</p>
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +46,7 @@
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/2.png" alt="growth card" id="iphone3" />
 			</div>
 
-			<div class="box box-1 col-5 animated">
+			<div class="box box-1 col-5 m-col-12 animated">
 				<h2>Smart growth management service by the application</h2>
 				Children’s data can be linked up application via WI-FI and manage systematic.
 			</div>
@@ -55,11 +56,11 @@
 	<div class="section moveDown" id="section2">
 		<div class="wrap">
 			<div class="imgsContainer">
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/4-en.png" width="322" alt="report" id="iphone-red" />
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/3-en.png" width="322" alt="check lists" id="iphone-blue" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/4-en.png" alt="report" id="iphone-red" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/3-en.png" alt="check lists" id="iphone-blue" />
 			</div>
 
-			<div class="box box-2 animated">
+			<div class="box box-2 m-col-12 animated">
 				<h2>Provide growth comparison solution and predicted data</h2>
 				<ul>
 		          <li>You can perform statistical analysis based on data all users input on Phyctogram and manage data of your kids specifically</li>
@@ -74,9 +75,12 @@
 				<h2>Offer contents associated growth</h2>
 				You can creating contents about baby book and childcare  including the process of growth.
 			</div>
-		</div>
-		<div class="imgsContainer">
-			<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" id="iphone-two" />
+			
+			<div class="row">
+				<div class="col-8 prefix-2 suffix-2">		
+					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" id="iphone-two" />
+				</div>
+			</div>
 		</div>
 	</div>
   </div><!-- 끝: #fullpage -->
