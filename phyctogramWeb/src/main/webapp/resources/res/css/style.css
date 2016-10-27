@@ -564,9 +564,25 @@ img{
 	    float: none;
 	}
 	.btn-close {
-	    position: absolute;
+	   position: absolute;
   	  right: 10px;
 	}
+	.btn-close>img:hover,
+	.btn-close>img:active {
+		-webkit-animation-fill-mode:both;
+		-moz-animation-fill-mode:both;
+		-ms-animation-fill-mode:both;
+		-o-animation-fill-mode:both;
+		animation-fill-mode:both;
+		-webkit-animation-duration:0.5s;
+		-moz-animation-duration:0.5s;
+		-ms-animation-duration:0.5s;
+		-o-animation-duration:0.5s;
+		animation-duration:0.5s;
+		-ms-transform: rotate(90deg);
+	    -webkit-transform: rotate(90deg);
+	    transform: rotate(90deg);
+    }
 
 	.layer .prefix-3{
 	 	margin-left: 0;
