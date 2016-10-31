@@ -89,19 +89,25 @@
               <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
 	          <script type="text/javascript">
-	            var mapOptions = {
-	              center: new naver.maps.LatLng(37.4046237, 127.1058193),
-	              zoom: 14,
-	              scaleControl: false,
-	              logoControl: false,
-	              mapDataControl: false,
-	              zoomControl: true
-	            };
-	            var marker = new naver.maps.Marker({
-	              position: new naver.maps.LatLng(37.4046237, 127.1058193),
-	              map: map
-	            });
-	            var map = new naver.maps.Map('map', mapOptions);
+	          var position = new naver.maps.LatLng(37.4045237, 127.1064496);
+
+              var map = new naver.maps.Map('map', {
+                  center: position,
+                  scrollWheel : false,
+                  scaleControl: false,
+                  logoControl: false,
+                  mapDataControl: false,
+                  zoomControl: true,
+                  minZoom: 1,
+                  zoom: 13
+              });
+
+              var markerOptions = {
+                  position: position,
+                  map: map
+              };
+
+              var marker = new naver.maps.Marker(markerOptions);
 	            /* 이미지 마커 추가 예정 */
 	          </script>
             </div>
