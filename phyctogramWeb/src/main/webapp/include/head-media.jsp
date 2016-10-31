@@ -37,8 +37,8 @@
     });
     $(window).scroll(function(){
         if($(this).scrollTop()>=80){
-            $('#header').css({'background-color': '#000'});
-            $('#footer').css({'display':'block', 'background-color': '#000', 'color':'#fff'});
+            $('#header').css({'background-color': '#776096'});
+            $('#footer').css({'display':'block', 'background-color': '#8E71BE', 'color':'#fff'});
         } else {
             $('#header').css({'background-color': 'transparent'});
             $('#footer').css({'display': 'none'});

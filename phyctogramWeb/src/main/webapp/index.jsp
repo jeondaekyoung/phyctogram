@@ -53,7 +53,7 @@
 
 	<div class="section moveDown" id="section2">
 		<div class="wrap row">
-			<div class=" col-6">
+			<div class="col-6">
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/4.png" alt="리포트" id="iphone-red" />
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/3.png" alt="체크리스트" id="iphone-blue" />
 			</div>
@@ -80,6 +80,43 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="section" id="section4">
+        <div class="row contact animated fadeInUp">        
+            <div class="col-12">
+              <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
+	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
+	          <script type="text/javascript">
+	            var mapOptions = {
+	              center: new naver.maps.LatLng(37.4046237, 127.1058193),
+	              zoom: 14,
+	              scaleControl: false,
+	              logoControl: false,
+	              mapDataControl: false,
+	              zoomControl: true
+	            };
+	            var marker = new naver.maps.Marker({
+	              position: new naver.maps.LatLng(37.4046237, 127.1058193),
+	              map: map
+	            });
+	            var map = new naver.maps.Map('map', mapOptions);
+	            /* 이미지 마커 추가 예정 */
+	          </script>
+            </div>
+            <!-- end: .col-7 -->
+            
+            <div class="col-12">
+                <ul class="contact-info row">
+                    <li class="col-4">경기도 성남시 분당구 판교로289번길 20, 3동 310호<br>(삼평동, 스타트업캠퍼스)</li>
+                    <li class="col-4">070-8624-4536</li>
+                    <li class="col-4">seek-knowledge@knowledge-seek.com</li>
+                </ul>
+            </div>
+            <!-- end: .col-5 -->
+        </div>
+        <!-- end: .contact -->
+	</div>
+    <!-- end: #section4 -->
   </div><!-- 끝: #fullpage -->
   
   <jsp:include page="include/footer.jsp"/>

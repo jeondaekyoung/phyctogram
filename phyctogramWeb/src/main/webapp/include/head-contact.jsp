@@ -19,7 +19,7 @@
            background: rgba(0,0,0,0.5)
        }        
        #section0 {
-          background: #000; 
+          background: #776096; 
        }
 </style>
  

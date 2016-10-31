@@ -33,7 +33,7 @@ h1 {
 				
                 if(index == 1){                        
                     $('#header').css({'background-color': 'transparent'});
-                    $('#footer').css({'color': 'transparent'});
+                    $('#footer').css({'color': '#fff'});
                     $('.timeline-item').addClass('fadeInLeft');
                     $('.timeline-item.alt').addClass('fadeInRight');
                 }

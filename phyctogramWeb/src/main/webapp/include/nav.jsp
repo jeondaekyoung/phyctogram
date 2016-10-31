@@ -4,7 +4,7 @@
     <div class="row nav">
         <div class="col-9 m-col-12">
             <div class="col-3">            
-                <h1 class="fl">Phyctogram</h1>
+                <h1 class="fl"><a href="index.jsp">Phyctogram</a></h1>
             </div>
             <div class="col-9">
                 <button type="button" class="hidden m-block btn-menu fr"><img src="<%=application.getContextPath()%>/resources/res/imgs/menu.svg" width="36" alt="menu"></button>
@@ -14,15 +14,15 @@
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="about.jsp">About Us</a></li>
                         <li><a href="media.jsp">Media</a></li>
-                        <li><a href="contact.jsp">Contact Us</a></li>
+                        <!-- <li><a href="contact.jsp">Contact Us</a></li> -->
                     </ul>
                 </nav>            
             </div>
         </div>
-        <div class="col-3">
-            <div class="lang"><a href="<%=application.getContextPath()%>/index.jsp">KOR</a></div>
-            <div class="lang"><a href="<%=application.getContextPath()%>/en/index.jsp">ENG</a></div>
-            <div class="lang"><a href="<%=application.getContextPath()%>/cn/index.jsp">CHN</a></div>
+        <div class="col-3 m-col-12">
+            <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/index.jsp">한국어</a></div>
+            <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/en/index.jsp">English</a></div>
+            <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/cn/index.jsp">中国語</a></div>
         </div>
     </div>
 </div>

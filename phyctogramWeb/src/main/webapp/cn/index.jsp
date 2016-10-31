@@ -25,7 +25,7 @@
       <div class="layer animated dur400 fadeInUp">
         <div class="col-6 m-col-12 prefix-3 suffix-3">
 	        <h1 id="typewriter"></h1>
-	        <p>phyctogram测孩子的身高和体重很容易和准确，把测量的数据自动分析，提供生长解决方案。</p>
+	        <p>phyctogram测孩子的身高和体重很容易和准确，把测量的数据自动分析，提供生长解决方案</p>
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
 	</div>
 	<div class="section" id="section1">
 		<div class="wrap row">
-			<div class="imgsContainer col-7">
+			<div class="col-7">
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/0-cn.png" alt="main" id="iphone2" />
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/2-cn.png" alt="growth card" id="iphone3" />
 			</div>
@@ -53,13 +53,13 @@
 	</div>
 
 	<div class="section moveDown" id="section2">
-		<div class="wrap">
-			<div class="imgsContainer">
+		<div class="wrap row">
+			<div class="col-6">
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/4-cn.png" alt="report" id="iphone-red" />
 				<img src="<%=application.getContextPath()%>/resources/res/imgs/3-cn.png" alt="check lists" id="iphone-blue" />
 			</div>
 
-			<div class="box box-2 m-col-12 animated">
+			<div class="box box-2 col-6 m-col-12 animated">
 				<h2>成长比较解决方案以及<br>提供预测数据</h2>
 				<ul>
 		          <li>儿童的成长情况不是抽象的比较，而是通过实际数据和具体的信息分析ㅡ可以提供成长过程的系统的管理及分析</li>
@@ -77,11 +77,48 @@
 			
 			<div class="row">
 				<div class="col-8 prefix-2 suffix-2">		
-					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-cn.png" alt="baby book" id="iphone-two" />
+					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-cn.png" alt="baby book" width="100%" />
 				</div>
 			</div>
 		</div>
 	</div>
+	
+	<div class="section" id="section4">
+        <div class="row contact animated fadeInUp">        
+            <div class="col-12">
+              <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
+	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
+	          <script type="text/javascript">
+	            var mapOptions = {
+	              center: new naver.maps.LatLng(37.4046237, 127.1058193),
+	              zoom: 14,
+	              scaleControl: false,
+	              logoControl: false,
+	              mapDataControl: false,
+	              zoomControl: true
+	            };
+	            var marker = new naver.maps.Marker({
+	              position: new naver.maps.LatLng(37.4046237, 127.1058193),
+	              map: map
+	            });
+	            var map = new naver.maps.Map('map', mapOptions);
+	            /* 이미지 마커 추가 예정 */
+	          </script>
+            </div>
+            <!-- end: .col-7 -->
+            
+            <div class="col-12">
+                <ul class="contact-info row">
+                    <li class="col-4">Suite 310, Startup Campus Building 3, 20, Pangyo-ro 289beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea</li>
+                    <li class="col-4">+82 70-8624-4536</li>
+                    <li class="col-4">seek-knowledge@knowledge-seek.com</li>
+                </ul>
+            </div>
+            <!-- end: .col-5 -->
+        </div>
+        <!-- end: .contact -->
+	</div>
+    <!-- end: #section4 -->
   </div><!-- 끝: #fullpage -->
   
   <jsp:include page="../include/footer.jsp"/>

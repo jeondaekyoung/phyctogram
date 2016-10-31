@@ -63,9 +63,8 @@ body.show-leading::before {
 .col-12 { width: 97.91666666666666%; }
 
 @media screen and (max-width: 768px){
-	.m-col-12 {
-		width: 97.91666666666666% !important;
-	}
+	.m-col-12 { width: 97.91666666666666% !important;	}
+	.m-col-4  { width: 31.25%; }
 }
 
 [class*="push-"],

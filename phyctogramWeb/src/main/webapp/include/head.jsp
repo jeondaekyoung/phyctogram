@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<title>픽토그램 : 가장 진보한 유아용 성장 솔루션</title>
+<title>Phyctogram : The most advanced growth solution for kids</title>
 <meta charset="utf-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
 <meta http-equiv="Content-Style-Type" content="text/css">
@@ -39,10 +39,12 @@
 $(document).ready(function(){
     $(".btn-menu").click(function(){
         $(".menu").show();
+        $(".lang").show();
         $(".btn-close").show();
     });
     $(".btn-close").click(function(){
         $(".menu").hide();
+        $(".lang").hide();
     });
 });
 </script>

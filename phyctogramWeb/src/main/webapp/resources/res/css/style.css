@@ -19,8 +19,9 @@ body{
     padding-left: 96px;
     padding-right: 96px;
 }
-.nav h1 {margin: 0 1em; padding: 1em 0; -webkit-margin-before: 0; -webkit-margin-after: 0; font-size: 1.5em; color: #fff}
-
+.nav h1 {margin: 0 1em; padding: 1em 0; -webkit-margin-before: 0; -webkit-margin-after: 0; font-size: 1.5em; color: #fff;}
+.nav h1 a {color: #fff;}
+.nav h1 a:hover {color: #C8B1EB;}
 .nav .menu li {
     float: left;
     font-size: 1em;
@@ -325,6 +326,16 @@ img{
     text-align: center;
     margin: 12% 0 0 0;
 }
+#section4 {
+   background: #776096; 
+}
+#section4 .contact {
+	margin-top: 80px;
+}
+#section4 .contact li.col-4{
+	text-align: center;
+}
+	
 /* Overwriting fullPage.js tooltip color
 * --------------------------------------- */
 .fp-tooltip{
@@ -524,17 +535,17 @@ img{
 }
 .contact .contact-info li {
     text-align: left;
-    padding: 1em 3em;
+    padding: 3em 1em;
     color: #fff;
 }
 .contact .contact-info li:first-child {
-    background: url(../imgs/addr.svg) no-repeat 0% center;
+    background: url(../imgs/addr.svg) no-repeat 50% 0%;
 }
 .contact .contact-info li:nth-child(2) {
-    background: url(../imgs/call.svg) no-repeat 0% center;
+    background: url(../imgs/call.svg) no-repeat 50% 0%;
 }
 .contact .contact-info li:last-child {
-    background: url(../imgs/email.svg) no-repeat 0% center;
+    background: url(../imgs/email.svg) no-repeat 50% 0%;
 }
 
 
@@ -546,7 +557,7 @@ img{
     }
 	.m-hidden {display: none;}
     .m-block {display: block;}
-    .lang {display: none;}
+    .lang {display: none; background: #000; line-height:1.5; margin: 0em; top: 180px; left:3%}
         
     .nav {
     	padding-left: 0;
