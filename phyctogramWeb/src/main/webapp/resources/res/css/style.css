@@ -1,6 +1,6 @@
 @charset "utf-8";
 @import url(http://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
-*{font-family: 'Spoqa Han Sans', sans-serif}
+*, *:after, *:before, *::after, *::before{font-family: 'Spoqa Han Sans', sans-serif;}
 
 body{
     color: #333;
@@ -530,6 +530,62 @@ img{
 
 
 /* contact us */
+
+/* contact us */
+.contact {
+	margin-top: -80px;
+}
+.contact .qna {
+	margin-left: 17.708333333333336%; 
+}
+.contact .qna h3 {
+	color: #fff;
+	font-size: 1.75rem;
+	line-height: 1.5;
+	margin-bottom: 0.5em;
+}
+.contact .qna a,
+.contact .qna input,
+.contact .qna label,
+.contact .qna textarea {
+	display: block;
+    width: 100%;
+    height: 7vh;
+    background: none;
+    padding: 1em;
+    margin-bottom: 0.5em;
+    border: 1px solid #fff;
+    color: #fff;
+}
+.contact .qna textarea {
+    height: 21vh;
+}
+.contact .qna label {
+	cursor: pointer;
+	height: 5vh;
+}
+.contact .qna a {
+    display: block;
+    height: 7vh;
+    background: #fff;
+    color: #776096;
+    padding: 1.5em;
+}
+.contact .qna a:hover,
+.contact .qna a:focus,
+.contact .qna input:active,
+.contact .qna input:focus,
+.contact .qna label:hover,
+.contact .qna label:focus,
+.contact .qna textarea:active,
+.contact .qna textarea:focus  {
+	outline: none !important;
+    border-color: #EFB400;
+    color: #EFB400;
+}
+#upload {
+	display: none;
+}
 .contact .contact-info {
     margin-top: 10em;
 }
@@ -648,6 +704,9 @@ img{
 	.box-map{
 		margin-top: -120px;
 		height: 300px !important;
+	}
+	.contact .qna {
+		margin-left: 1.0416666666666665%; 
 	}
 	.contact .contact-info {
 	    margin-top: 1em;

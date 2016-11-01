@@ -10,37 +10,23 @@
   
   <div id="fullpage">    
 	<div class="section" id="section0">
-		<div class="row contact animated fadeInUp">
-			<div class="col-7 m-col-12">
-				<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
-		          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
-		          <script type="text/javascript">
-		            var mapOptions = {
-		              center: new naver.maps.LatLng(37.4046237, 127.1058193),
-		              zoom: 14,
-		              scaleControl: false,
-		              logoControl: false,
-		              mapDataControl: false,
-		              zoomControl: true
-		            };
-		            var marker = new naver.maps.Marker({
-		              position: new naver.maps.LatLng(37.4046237, 127.1058193),
-		              map: map
-		            });
-		            var map = new naver.maps.Map('map', mapOptions);
-		            /* 이미지 마커 추가 예정 */
-		          </script>
-	        </div>
-	        
-			<div class="col-5 m-col-12">
-	            <ul class="contact-info">
-	                <li>地址<span>Suite 310, Startup Campus Building 3, 20, Pangyo-ro 289beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea</span></li>
-	                <li>电话号码<span>+82 70-8624-4536</span></li>
-	                <li>电子邮件<span>seek-knowledge@knowledge-seek.com</span></li>
-	            </ul>
-	        </div>
-		</div>
+        <div class="row contact">            
+            <div class="col-8 m-col-12 qna">
+            	<h3>如果有疑问, 如何咨询</h3>
+            	<form>
+	                <input type="text" placeholder="名字">
+	                <input type="text" placeholder="电子邮件">
+	                <input type="text" placeholder="电话号码">
+	                <textarea placeholder="咨询内容"></textarea>
+	                <label for="upload">文件上传</label><input type="file" id="upload">
+	                <a href="" class="btn">咨询</a>
+            	</form>
+            </div>
+            
+        </div>
+        <!-- end: .contact -->
 	</div>
+    <!-- end: #section0 -->
   </div>
   
   <jsp:include page="../include/footer.jsp"/>

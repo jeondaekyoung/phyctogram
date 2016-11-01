@@ -10,37 +10,19 @@
   <div id="fullpage">
     
 	<div class="section" id="section0">
-        <div class="row contact animated fadeInUp">        
-            <div class="col-7 m-col-12">
-              <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
-	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
-	          <script type="text/javascript">
-	            var mapOptions = {
-	              center: new naver.maps.LatLng(37.4046237, 127.1058193),
-	              zoom: 14,
-	              scaleControl: false,
-	              logoControl: false,
-	              mapDataControl: false,
-	              zoomControl: true
-	            };
-	            var marker = new naver.maps.Marker({
-	              position: new naver.maps.LatLng(37.4046237, 127.1058193),
-	              map: map
-	            });
-	            var map = new naver.maps.Map('map', mapOptions);
-	            /* 이미지 마커 추가 예정 */
-	          </script>
+        <div class="row contact">            
+            <div class="col-8 m-col-12 qna">
+            	<h3>궁금하신 사항을 문의해주세요</h3>
+            	<form>
+	                <input type="text" placeholder="이름">
+	                <input type="text" placeholder="메일주소">
+	                <input type="text" placeholder="연락처">
+	                <textarea placeholder="문의 내용"></textarea>
+	                <label for="upload">파일 업로드</label><input type="file" id="upload">
+	                <a href="" class="btn">문의하기</a>
+            	</form>
             </div>
-            <!-- end: .col-7 -->
             
-            <div class="col-5 m-col-12">
-                <ul class="contact-info">
-                    <li>경기도 성남시 분당구 판교로289번길 20, 3동 310호(삼평동, 스타트업캠퍼스)</li>
-                    <li>070-8624-4536</li>
-                    <li>seek-knowledge@knowledge-seek.com</li>
-                </ul>
-            </div>
-            <!-- end: .col-5 -->
         </div>
         <!-- end: .contact -->
 	</div>

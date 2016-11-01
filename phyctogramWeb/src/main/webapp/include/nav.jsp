@@ -14,7 +14,7 @@
                         <li><a href="index.jsp">Home</a></li>
                         <li><a href="about.jsp">About Us</a></li>
                         <li><a href="media.jsp">Media</a></li>
-                        <!-- <li><a href="contact.jsp">Contact Us</a></li> -->
+                        <li><a href="contact.jsp">Contact Us</a></li>
                     </ul>
                 </nav>            
             </div>
