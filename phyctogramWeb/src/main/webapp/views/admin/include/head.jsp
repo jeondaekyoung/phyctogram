@@ -11,4 +11,7 @@
   <script src="<%=application.getContextPath()%>/resources/res/js/bootstrap.js"></script>
   <!-- App -->
   <script src="<%=application.getContextPath()%>/resources/res/js/app.js"></script>
+  <script type="text/javascript">
+  var rootPath = window.location.protocol + '//' + window.location.host+'/phyctogramWeb';
+</script>
   

@@ -116,7 +116,7 @@
   <!-- / footer --> 
   
   <script type="text/javascript">
-		var rootPath = window.location.protocol + '//' + window.location.host;
+		
 		var tokenArray = new Array();
 		
 		$(document).ready(function() {

@@ -105,7 +105,7 @@
     
   
   <script type="text/javascript">
-  var rootPath = window.location.protocol + '//' + window.location.host;
+  
   var pageCnt = 0;
   var pageEnd = false;
   

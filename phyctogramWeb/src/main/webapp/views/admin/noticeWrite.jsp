@@ -106,7 +106,7 @@
   <!-- / footer --> 
 
   <script type="text/javascript">
-  var rootPath = window.location.protocol + '//' + window.location.host;
+  
   $(document).ready(function(){
 	  
 	  var mode = $("#mode").val();

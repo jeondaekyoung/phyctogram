@@ -48,7 +48,7 @@ public class PushController {
 
 		List<Member> lists = pushService.selectBoxList();
 		
-		System.out.println(lists);
+		//System.out.println(lists);
 
 		return lists;
 	}
