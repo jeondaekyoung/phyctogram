@@ -5,12 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <title>공지사항</title>
-  <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-  <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/font-awesome.min.css" type="text/css" />
-  <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/landing.css" type="text/css" />
-  <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/app.css" type="text/css" />
+  <jsp:include page="include/head.jsp"/>
   
 </head>
 
@@ -133,12 +128,6 @@
 <jsp:include page="footer.jsp" flush="false"/>
   <!-- / footer --> 
   
-    
-  <script src="<%=application.getContextPath()%>/resources/js/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="<%=application.getContextPath()%>/resources/js/bootstrap.js"></script>
-  <!-- App -->
-  <script src="<%=application.getContextPath()%>/resources/js/app.js"></script>
 
 </body>
 </html>

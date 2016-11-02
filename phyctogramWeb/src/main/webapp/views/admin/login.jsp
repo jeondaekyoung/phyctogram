@@ -40,6 +40,7 @@
 	                    <div class="formgroup">
 	                        <label>Password</label>
 	                        <input type="password" name="pw" placeholder=" 비밀번호를 입력하세요!">
+	                        <font color="red">${loginError}</font>
 	                    </div>
 	                    <input type="submit" value="로그인" class="loginBtn">
 	                </div>
