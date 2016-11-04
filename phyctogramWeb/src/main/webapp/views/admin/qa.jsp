@@ -82,7 +82,7 @@
   </section>
   
   <!-- footer -->
-	<jsp:include page="footer.jsp" flush="false"/>
+	<jsp:include page="include/footer.jsp" flush="false"/>
   <!-- / footer -->
 
 </body>
