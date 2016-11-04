@@ -12,6 +12,11 @@
   <!-- App -->
   <script src="<%=application.getContextPath()%>/resources/res/js/app.js"></script>
   <script type="text/javascript">
-  var rootPath = window.location.protocol + '//' + window.location.host+'/phyctogramWeb';
+  //로컬과 실서버 구분 로직
+  if( window.location.host =='phyctogram.com'){
+	  var rootPath = window.location.protocol + '//' + window.location.host;  
+  }
+  else
+	  var rootPath = window.location.protocol + '//' + window.location.host+'/phyctogramWeb';
 </script>
   

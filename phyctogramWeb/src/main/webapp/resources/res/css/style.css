@@ -564,16 +564,18 @@ img{
 	cursor: pointer;
 	height: 5vh;
 }
-.contact .qna a {
+.contact .qna input.btn {
     display: block;
     height: 7vh;
     background: #fff;
     color: #776096;
     padding: 1.5em;
+    cursor: pointer;
 }
 .contact .qna a:hover,
 .contact .qna a:focus,
 .contact .qna input:active,
+.contact .qna input:hover,
 .contact .qna input:focus,
 .contact .qna label:hover,
 .contact .qna label:focus,
