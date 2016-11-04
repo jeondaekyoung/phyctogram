@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>공지사항</title>
+  <title>문의(Web)</title>
   	<jsp:include page="include/head.jsp"/>
 </head>
     
@@ -18,8 +18,8 @@
     <div class="bg-dark lt">
       <div class="container">
         <div class="m-b-lg m-t-lg">
-          <h3 class="m-b-none">공지사항</h3>
-          <small class="text-muted">Notice</small>
+			<h3 class="m-b-none">고객센터 (Web)</h3>
+			<small class="text-muted">Customer (Web)</small>
         </div>
       </div>
     </div>
@@ -27,22 +27,21 @@
       <div class="container m-t-xl">
         <div class="row">
           <div class="col-sm-12">
-            <a href="<%=application.getContextPath()%>/views/admin/noticeWrite.jsp" class="btn btn-danger btn-block btn-lg m-b-sm">공지 작성하기</a>
             <section class="list-group alt">
                 <ul class="list-group list-group-lg min-h" id="myul">
                 
-                  <!-- <li class="list-group-item">
+                  <li class="list-group-item">
                     <span class="pull-right" >
-                      <a href="#"><i class="fa fa-pencil icon-muted fa-fw m-r-xs"></i></a>수정
-                      <a href="#"><i class="fa fa-times icon-muted fa-fw"></i></a>        삭제
+                      <a href="#"><i class="fa fa-check text-success text" id="answerState'+item.qa_seq+'">답변완료</i></a>
+                      <!-- <a href="#"><i class="fa fa-times text-danger text" id="answerState'+item.qa_seq+'">답변대기</i></a> -->
                     </span>
                     <div class="media">
                       <div class="media-body m-b">
-                        <div><a href="noticeView.jsp">장문 메시지를 바로 볼 수 있는 텍스트뷰어, 그릅콜 중 친구 초대 기능 등 2.0.9 업데이트 안내</a></div>
+                        <div><a href="qaView-web.jsp">장문 메시지를 바로 볼 수 있는 텍스트뷰어, 그릅콜 중 친구 초대 기능 등 2.0.9 업데이트 안내</a></div>
                         <small class="text-muted">2016/01/12</small>
                       </div>
                     </div>
-                  </li> -->
+                  </li>
                   
                 </ul>
                 <button class="btn btn-danger btn-block btn-lg m-b-sm" id="moreBtn">더보기</button>

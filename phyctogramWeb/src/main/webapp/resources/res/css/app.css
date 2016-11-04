@@ -150,6 +150,9 @@ small {
 .icon-muted {
   color: #ccc;
 }
+.icon-muted:hover {
+  color: #666;
+}
 
 @media (min-width: 768px) {
   .hbox {
