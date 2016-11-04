@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>공지사항</title>
+  <title>문의사항</title>
   <jsp:include page="include/head.jsp"/>
 </head>
 
