@@ -3,7 +3,7 @@
 <header id="header" class="navbar navbar-fixed-top bg-white box-shadow b-b b-light"  data-spy="affix" data-offset-top="1">
     <div class="container">
       <div class="navbar-header">        
-        <a href="#" class="navbar-brand"><span class="text-muted">Phyctogram</span></a>
+        <a href="<%=application.getContextPath()%>" class="navbar-brand"><span class="text-muted">Phyctogram</span></a>
         <button class="btn btn-link visible-xs" type="button" data-toggle="collapse" data-target=".navbar-collapse">
           <i class="fa fa-bars"></i>
         </button>

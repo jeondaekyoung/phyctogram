@@ -65,7 +65,7 @@
   
   $(document).ready(function(){
 	  //목록읽어오기
-	  noticeList();
+	  //noticeList();
 	  
 	  //더보기
 	  $("#moreBtn").click(function(){

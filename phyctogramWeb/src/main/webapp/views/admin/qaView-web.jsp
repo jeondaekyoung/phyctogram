@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>공지사항</title>
+  <title>문의사항</title>
   <jsp:include page="include/head.jsp"/>
 </head>
     
@@ -18,8 +18,8 @@
     <div class="bg-dark lt">
       <div class="container">
         <div class="m-b-lg m-t-lg">
-          <h3 class="m-b-none">공지사항</h3>
-          <small class="text-muted">Notice</small>
+          <h3 class="m-b-none">고객센터(Web)</h3>
+          <small class="text-muted">Customer (Web)</small>
         </div>
       </div>
     </div>

@@ -10,7 +10,8 @@
 	</settings>
 	
  	<typeAliases>
-		<typeAlias type="naree.db.domain.Height" alias="Height"/>
+ 	<package name="naree.db.domain"/>
+		<!-- <typeAlias type="naree.db.domain.Height" alias="Height"/>
 		<typeAlias type="naree.db.domain.Member" alias="Member"/>
 		<typeAlias type="naree.db.domain.Users" alias="Users"/>
 		<typeAlias type="naree.db.domain.Commnty" alias="Commnty"/>
@@ -21,6 +22,9 @@
 		<typeAlias type="naree.db.domain.Admin" alias="Admin"/>
 		<typeAlias type="naree.db.domain.Notice" alias="Notice"/>
 		<typeAlias type="naree.db.domain.Qa" alias="Qa"/>
+		<typeAlias type="naree.db.domain.Qa_Web" alias="Qa_Web"/>  -->
+		
+		
 	</typeAliases>
 
   <environments default="development">
@@ -49,6 +53,7 @@
     <mapper resource="mapper/AdminMapper.xml"/>
     <mapper resource="mapper/NoticeMapper.xml"/>
     <mapper resource="mapper/QaMapper.xml"/>
+    <mapper resource="mapper/Qa_WebMapper.xml"/>
     <mapper resource="mapper/PushMapper.xml"/>
   </mappers>
 </configuration>
