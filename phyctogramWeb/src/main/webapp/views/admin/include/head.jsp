@@ -13,10 +13,10 @@
   <script src="<%=application.getContextPath()%>/resources/res/js/app.js"></script>
   <script type="text/javascript">
   //로컬과 실서버 구분 로직
-  if( window.location.host =='phyctogram.com'){
-	  var rootPath = window.location.protocol + '//' + window.location.host;  
+  if( window.location.host =='localhost:8080'){
+	  var rootPath = window.location.protocol + '//' + window.location.host+'/phyctogramWeb';  
   }
   else
-	  var rootPath = window.location.protocol + '//' + window.location.host+'/phyctogramWeb';
+  var rootPath = window.location.protocol + '//' + window.location.host;
 </script>
   
