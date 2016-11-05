@@ -65,13 +65,13 @@
   
   $(document).ready(function(){
 	  //목록읽어오기
-	  //noticeList();
+	  qaWebList();
 	  
 	  //더보기
 	  $("#moreBtn").click(function(){
 		  //console.log("더보기 클릭 " + pageCnt);
 		  if(!pageEnd){
-			  noticeList();
+			  qaWebList();
 		  } else {
 			  alert("마지막입니다");
 		  }
@@ -79,10 +79,9 @@
   });
   
   //목록 읽어오기
-  var noticeList = function(){
-	  console.log(rootPath + "sfsdfsdf");
+  var qaWebList = function(){
 	  $.ajax({
-		  url: rootPath + "/notice/list.do"
+		  url: rootPath + "/QaWeb/list.do"
 		  ,type: "POST"
 		  ,data: {
 			  pageCnt: pageCnt
@@ -112,11 +111,22 @@
   var sbmHtmlTemplate = {
 		  makesbmTr : function(index, item){
 			  var sysdate = new Date(item.writng_de);
-			  var sbmTr = "<li class='list-group-item'><span class='pull-right'>"
-			  			+ "<i onclick='modify(" + item.notice_seq + ")' class='fa fa-pencil icon-muted fa-fw m-r-xs'></i> &nbsp;"
-			  			+ "<i onclick='erase(" + item.notice_seq + ")' class='fa fa-times icon-muted fa-fw'></i></a></span>"
-			  			+ "<div class='media'><div class='media-body m-b'><div onclick='view(" + item.notice_seq + ")'>" + item.title + "</div>"
-			  			+ "<small class='text-muted'>" + formatDate(sysdate) + "</small></li>";
+			  var sbmTr = "<li class='list-group-item'><span class='pull-right'>";
+			  console.log(sbmTr);
+			  			//+ "<i onclick='modify(" + item.qa_Web_seq + ")' class='fa fa-pencil icon-muted fa-fw m-r-xs'></i> &nbsp;"
+ 					  		if(item.state=='답변대기'){
+ 					  			sbmTr=sbmTr+'<a href="javascript:answer('+item.qa_Web_seq+')"><i class="fa fa-times text-danger text" >답변대기</i></a>';
+ 					  			console.log("true:"+sbmTr);
+ 					  		}
+ 					  		else{
+ 					  			sbmTr=sbmTr+('<a href="#"><i class="fa fa-check text-success text">답변완료</i></a>');
+ 					  			console.log("false:"+sbmTr);
+ 					  		}
+ 					  
+ 			   sbmTr=sbmTr.concat( "<i onclick='erase(" + item.qa_Web_seq + ")' class='fa fa-times icon-muted fa-fw'></i></a></span>"
+			  			+ "<div class='media'><div class='media-body m-b'><div onclick='view(" + item.qa_Web_seq + ")'>"
+			  			+"연락처:"+item.tel +"<br/>이메일:"+item.email + "<br>내용:"+item.contents +"</div></div><div>"
+			  			+ "<small class='text-muted'>" + formatDate(sysdate) + "</small></li>");
           return sbmTr;
 		  }
   }
@@ -130,7 +140,7 @@
 	  objs.setAttribute('name', 'notice_seq');
 	  objs.setAttribute('value', data);
 	  f.appendChild(objs);
-	  f.setAttribute('action', rootPath+"/notice/modify.do");
+	  f.setAttribute('action', rootPath+"/QaWeb/modify.do");
 	  f.setAttribute('method','post');
 	  document.body.appendChild(f);
 	  f.submit();
@@ -145,7 +155,7 @@
 	  objs.setAttribute('name', 'notice_seq');
 	  objs.setAttribute('value', data);
 	  f.appendChild(objs);
-	  f.setAttribute('action', rootPath+"/notice/erase.do");
+	  f.setAttribute('action', rootPath+"/QaWeb/erase.do");
 	  f.setAttribute('method','post');
 	  document.body.appendChild(f);
 	  f.submit();
@@ -154,8 +164,15 @@
   //보기
   var view = function(data){
 	  //console.log("보기 - " + data);
-	  window.location.href = rootPath + "/notice/view.do?notice_seq=" + data;
+	  window.location.href = rootPath + "/QaWeb/view.do?qa_Web_seq=" + data;
   }
+  
+  //메일로 답변하기
+  var answer = function(data){
+	  //console.log("보기 - " + data);
+	  window.location.href = rootPath + "/QaWeb/answerForm.do?qa_Web_seq=" + data;
+  }
+  
   
   //Ajax 에러 콜백함수
   var errorCallback = function(){

@@ -4,51 +4,37 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="naree.db.mapper.QaWebMapper">
-
-	<select id="selectQaWebByMemberSeq" parameterType="hashmap" resultType="QaWeb">
-		SELECT QaWeb_seq, title, contents, writng_de, answer, member_seq
-					,IF(ISNULL(answer), '답변대기', '답변완료') as state
-		  FROM QaWeb_tb
-		WHERE member_seq = #{member_seq}
-		ORDER BY writng_de DESC
-		LIMIT #{pageCnt}, 10
-	</select>
 	
 	<insert id="insertQaWeb" parameterType="QaWeb">
-		INSERT INTO QaWeb_tb (title
+		INSERT INTO Qa_web_tb (name
+									,email
+									,tel
 									,contents
-									,member_seq ) VALUES (
-									#{title}
+									,state ) VALUES (
+									#{name}
+									,#{email}
+									,#{tel}
 									,#{contents}
-									,#{member_seq} )
+									,#{state} )
 	</insert>
 	
 	<select id="listQaWeb" parameterType="hashmap" resultType="QaWeb">
-		SELECT a.QaWeb_seq as QaWeb_seq
-				   ,a.writng_de as writng_de
-			       ,IFNULL(IFNULL(b.name,b.kakao_nickname),b.facebook_name) as name
-			       ,a.title as title
-			       ,a.contents as contents
-			       ,a.answer as answer
-		  FROM QaWeb_tb AS a INNER JOIN member_tb AS b
-			  ON a.member_seq = b.member_seq
-		<if test = "searchState == 'answer'">
-		WHERE a.answer IS NULL
-		</if>
-		ORDER BY writng_de DESC
-		   LIMIT #{pageCnt}, 10
+	SELECT * FROM qa_web_tb WHERE state='답변대기' 
+	ORDER BY writng_de DESC
+	LIMIT #{pageCnt}, 10
+
 	</select>
 	
 	<update id="modifyQaWeb" parameterType="hashmap">
-		UPDATE QaWeb_tb
+		UPDATE Qa_web_tb
 		     SET answer = #{answer}
-		  WHERE QaWeb_seq = #{QaWeb_seq}
+		  WHERE qa_Web_seq = #{qa_Web_seq}
 	</update>
 	
 	<select id="selectByQaWebSeq" parameterType="Integer" resultType="QaWeb">
-		SELECT QaWeb_seq, title, contents, writng_de, answer, member_seq
-		  FROM QaWeb_tb
-		WHERE QaWeb_seq = #{QaWeb_seq}
+		SELECT *
+		  FROM Qa_web_tb
+		WHERE qa_Web_seq = #{qa_Web_seq}
 	</select>
 
 </mapper>

@@ -35,9 +35,11 @@
                     <div class="media">
                       <div class="media-body">
                         <div class="l-h-2x">
-                        	<p class="text-muted text-center-xs">이름</p>
-                        	<p class="text-muted text-center-xs">이메일</p>
-                        	<p class="text-muted text-center-xs">연락처</p>
+                        <span class="text-muted text-center-xs">문의날짜: <fmt:formatDate value="${QaWeb.writng_de }" type="both" pattern="yyyy/MM/dd"/></span>
+                        	<p class="text-muted text-center-xs">이름 : ${QaWeb.name }</p>
+                        	<p class="text-muted text-center-xs">이메일 : ${QaWeb.email }</p>
+                        	<p class="text-muted text-center-xs">연락처 : ${QaWeb.tel }</p>
+                        	<p class="text-muted text-center-xs">답변상태 : ${QaWeb.state }</p>
                         </div>
                        </div>
                     </div>
@@ -47,11 +49,12 @@
                     <div class="media">
                       <div class="media-body">
                         <div class="l-h-2x">내용</div>
+                        ${QaWeb.contents }
                        </div>
                     </div>
                   </li><!-- 내용영역 -->
                 </ul>
-                
+                <!-- 답변/목록/삭제 -->
             </section>
           </div>
         </div>        

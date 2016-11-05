@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>	
@@ -47,10 +48,10 @@
 					f.tel.focus();
 					return false;
 				}
-				if(!f.content.value){
+				if(!f.contents.value){
 					alert("내용을 입력하세요.");
 					event.preventDefault();
-					f.content.focus();
+					f.contents.focus();
 					return false;
 				}
 				
@@ -70,7 +71,7 @@
 	function onlyNumber(event){
 		event = event || window.event;
 		var keyID = (event.which) ? event.which : event.keyCode;
-		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
 			return;
 		else{
 			alert('번호만 입력해주세요.');
@@ -92,11 +93,12 @@
         <div class="row contact">            
             <div class="col-8 m-col-12 qna">
             	<h3>궁금하신 사항을 문의해주세요</h3>
-            	<form action="" name="adForm" accept="">
+            	<form action="<c:url value="/QaWeb/write.do"/>" name="adForm" method="post">
+            	<input type="hidden" name="state" value="답변대기">
 	                <input type="text" name="name"  placeholder="이름">
 	                <input type="text" name="email" placeholder="메일주소">
 	                <input type="text" name="tel" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' placeholder="연락처">
-	                <textarea name="content" placeholder="문의 내용"></textarea>
+	                <textarea name="contents" placeholder="문의 내용"></textarea>
 	                <!-- <label for="upload">파일 업로드</label><input type="file" id="upload"> -->
 	                <input type="submit" name="submit" onclick="ecilck('submit')" class="btn" value="문의하기"/>
             	</form>

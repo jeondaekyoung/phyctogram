@@ -2,10 +2,15 @@ package naree.jsp.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import naree.db.domain.QaWeb;
 import naree.service.QaWebService;
+import naree.util.Sender_mail;
 
 @Controller
 @RequestMapping("QaWeb")
@@ -38,20 +44,6 @@ public class QaWebController {
 		return QaWebs;
 	}
 	
-	/**
-	 * 문의사항 답변 저장하기
-	 * @param meber_seq, contents
-	 * @return
-	 */
-	@RequestMapping(value = "modify.do", method=RequestMethod.POST)
-	@ResponseBody
-	public String modify(int QaWeb_seq, String answer){
-		logger.info("QaWeb/modify.do - 문의 번호 : " + QaWeb_seq + "답변 내용 : " +  answer);
-		
-		int result = QaWebService.modifyQaWeb(QaWeb_seq, answer);
-		
-		return result == 1?"success":"fail";
-	}
 	
 	/**
 	 * 문의내용 보기
@@ -59,14 +51,71 @@ public class QaWebController {
 	 * @return
 	 */
 	@RequestMapping(value = "view.do", method=RequestMethod.GET)
-	public ModelAndView view(int QaWeb_seq){
-		logger.info("QaWeb/view.do - 문의 번호 : " + QaWeb_seq);
+	public ModelAndView view(@Param("qa_Web_seq")int qa_Web_seq){
+		logger.info("QaWeb/view.do - 문의 번호 : " + qa_Web_seq);
 		ModelAndView mv = new ModelAndView();
 		
-		QaWeb QaWeb = QaWebService.searchByQaWebSeq(QaWeb_seq);
+		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
 		mv.addObject("QaWeb", QaWeb);
 		
-		mv.setViewName("admin/QaWebView");
+		mv.setViewName("admin/qaView-web");
 		return mv;
 	}
+	
+	
+	/**
+	 * 문의내용 저장 (사용자)
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	@RequestMapping(value = "write.do", method=RequestMethod.POST)
+	public String write(QaWeb qaWeb){
+		logger.info("QaWeb/write.do - 문의 하기 : " + qaWeb);
+		
+		QaWebService.registerQaWeb(qaWeb);
+		
+		return "redirect:/contact.jsp";
+	}
+	/**
+	 * 문의내용 답변
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	@RequestMapping(value = "answerForm.do", method=RequestMethod.GET)
+	public String answerForm(@Param("qa_Web_seq")int qa_Web_seq,Model model){
+		logger.info("QaWeb/answerForm.do: 메일로 답변 폼 " + qa_Web_seq);
+		
+		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
+		model.addAttribute("QaWeb", QaWeb);
+		
+		return "admin/answer_mail";
+	}
+	@RequestMapping(value = "sendMail.do", method=RequestMethod.POST)
+	public String sendMail(@Param("qa_Web_seq")int qa_Web_seq,HttpServletRequest request,Model model){
+		logger.info("QaWeb/sendMail.do: 메일 보내기  " + qa_Web_seq);
+		/*
+		ModelAndView mv = new ModelAndView();
+		
+		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
+		mv.addObject("QaWeb", QaWeb);
+		*/
+		//request.setCharacterEncoding("UTF-8");
+		
+		String sender_pw = request.getParameter("sender_pw");
+		String sender = request.getParameter("sender");
+		String receiver = request.getParameter("receiver");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+		
+		String script = Sender_mail.send(sender,sender_pw, receiver, subject, content);
+		System.out.println(script);
+		model.addAttribute("script",script);
+		
+		return "admin/answer_mail";
+	}
+	
+	
+	
+	
+	
 }
