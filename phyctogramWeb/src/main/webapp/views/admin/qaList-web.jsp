@@ -126,7 +126,9 @@
  			   sbmTr=sbmTr.concat( "<i onclick='erase(" + item.qa_Web_seq + ")' class='fa fa-times icon-muted fa-fw'></i></a></span>"
 			  			+ "<div class='media'><div class='media-body m-b'><div onclick='view(" + item.qa_Web_seq + ")'>"
 			  			+"연락처:"+item.tel +"<br/>이메일:"+item.email + "<br>내용:"+item.contents +"</div></div><div>"
-			  			+ "<small class='text-muted'>" + formatDate(sysdate) + "</small><a href='#' ><i class='fa fa-check text-success text'>메일로 답변</i></a> </li>");
+			  			+ "<small class='text-muted'>" + formatDate(sysdate) + "</small>
+			  			<a href='#' class="pull-right"><i class='fa fa-check text-success text'>수동 답변</i></a>
+			  			<a href='#' class="pull-right"><i class='fa fa-check text-success text'>메일로 답변</i></a> </li>");
           return sbmTr;
 		  }
   }
