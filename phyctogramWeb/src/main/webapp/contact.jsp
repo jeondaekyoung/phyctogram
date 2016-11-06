@@ -74,7 +74,7 @@
 		//키번호 48~57 위쪽 번호키 , 96~105 오른쪽 번호키 , 8 backSpace , 46 delete , 37,39 방향키 왼쪽 오른쪽 , 107 오른쪽 +
 		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) ||
 				keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9 || keyID == 107) 
-		
+			return;
 		else{
 			alert('번호만 입력해주세요.');
 			return false;
