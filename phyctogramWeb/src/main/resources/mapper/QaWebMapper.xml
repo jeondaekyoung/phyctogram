@@ -6,7 +6,7 @@
 <mapper namespace="naree.db.mapper.QaWebMapper">
 	
 	<insert id="insertQaWeb" parameterType="QaWeb">
-		INSERT INTO Qa_web_tb (name
+		INSERT INTO qa_web_tb (name
 									,email
 									,tel
 									,contents
@@ -26,13 +26,13 @@
 	</select>
 	
 	<update id="modifyQaWeb" parameterType="hashmap">
-		UPDATE Qa_web_tb
+		UPDATE qa_web_tb
 		     SET answer = #{answer}
 		  WHERE qa_Web_seq = #{qa_Web_seq}
 	</update>
 	
 	<update id="updateStateQaWeb" parameterType="Integer">
-	UPDATE Qa_web_tb
+	UPDATE qa_web_tb
 		     SET state = '답변완료'
 		  WHERE qa_Web_seq = #{qa_Web_seq}
 		  
@@ -40,7 +40,7 @@
 	
 	<select id="selectByQaWebSeq" parameterType="Integer" resultType="QaWeb">
 		SELECT *
-		  FROM Qa_web_tb
+		  FROM qa_web_tb
 		WHERE qa_Web_seq = #{qa_Web_seq}
 	</select>
 

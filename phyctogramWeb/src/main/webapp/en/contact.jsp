@@ -61,7 +61,7 @@
 					return false;
 					}
 				
-				alert("The information you entered will be answered via email or phone with the information \n you entered within 2-3 days. Thank you.");
+				alert("We will respond to your inquiry by email or phone. Thank you.");
 				
 				break;
 			}
