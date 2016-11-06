@@ -33,7 +33,7 @@
 	
 	<update id="updateStateQaWeb" parameterType="Integer">
 	UPDATE Qa_web_tb
-		     SET state = 'ok'
+		     SET state = '답변완료'
 		  WHERE qa_Web_seq = #{qa_Web_seq}
 		  
 	</update>

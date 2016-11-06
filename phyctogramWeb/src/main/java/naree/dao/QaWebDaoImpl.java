@@ -132,6 +132,7 @@ public class QaWebDaoImpl implements QaWebDao {
 			QaWebMapper QaWebMapper = sqlSession.getMapper(QaWebMapper.class);
 			result = QaWebMapper.updateStateQaWeb(qa_Web_seq);
 		} finally {
+			sqlSession.commit();
 			sqlSession.close();
 		}
 		return result;

@@ -76,14 +76,12 @@ public class Sender_mail {
 		} catch (Exception mex) {
 		 mex.printStackTrace();
 		 String script ="alert('메일발송에 실패했습니다.');\n";
-		 script += "history.back();";
-		 
 		 
 		 return  script;
 		}
 		 
-		String script = "alert('메일발송에 성공했습니다.')";
-		
+		String script = "alert('메일발송에 성공했습니다.')\n";
+		script += "location.replace(rootPath+'/views/admin/qaList-web.jsp'); ";
 		
 		return  script;
 	}
