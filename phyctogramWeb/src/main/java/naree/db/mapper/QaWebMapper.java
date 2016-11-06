@@ -44,4 +44,11 @@ public interface QaWebMapper {
 	 * @return
 	 */
 	QaWeb selectByQaWebSeq(int QaWeb_seq);
+
+	/**
+	 * 문의사항 답변상태 변경
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	int updateStateQaWeb(int qa_Web_seq);
 }

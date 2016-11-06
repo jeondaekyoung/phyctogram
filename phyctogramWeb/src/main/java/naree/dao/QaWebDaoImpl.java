@@ -118,4 +118,22 @@ public class QaWebDaoImpl implements QaWebDao {
 		}
 		return result;
 	}
+	
+	/**
+	 * 문의사항 답변상태 변경
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	@Override
+	public int updateStateQaWeb(int qa_Web_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			QaWebMapper QaWebMapper = sqlSession.getMapper(QaWebMapper.class);
+			result = QaWebMapper.updateStateQaWeb(qa_Web_seq);
+		} finally {
+			sqlSession.close();
+		}
+		return result;
+	}
 }

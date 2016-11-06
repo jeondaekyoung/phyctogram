@@ -69,4 +69,10 @@ public class QaWebServiceImpl implements QaWebService {
 		
 		return QaWebDao.selectByQaWebSeq(QaWeb_seq);
 	}
+
+	@Override
+	public int updateStateQaWeb(int QaWeb_seq) {
+		// TODO Auto-generated method stub
+		return QaWebDao.updateStateQaWeb(QaWeb_seq);
+	}
 }

@@ -33,13 +33,20 @@ public interface QaWebService {
 	 * @param QaWeb_seq, answer
 	 * @return
 	 */
-	int modifyQaWeb(int QaWeb_seq, String answer);
+	int modifyQaWeb(int qa_Web_seq, String answer);
 
 	/**
 	 * 문의사항 읽어오기
 	 * @param QaWeb_seq
 	 * @return
 	 */
-	QaWeb searchByQaWebSeq(int QaWeb_seq);
-
+	QaWeb searchByQaWebSeq(int qa_Web_seq);
+	
+	
+	/**
+	 * 문의사항 답변상태 변경
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	int updateStateQaWeb(int qa_Web_seq);
 }

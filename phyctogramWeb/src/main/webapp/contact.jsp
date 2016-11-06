@@ -8,7 +8,7 @@
 </head>
 <body>
   <jsp:include page="include/nav.jsp"/>
-  <div id="fullpage">
+
     <script type="text/javascript">
 	function ecilck(mod) {
 		var f=document.adForm;
@@ -71,8 +71,10 @@
 	function onlyNumber(event){
 		event = event || window.event;
 		var keyID = (event.which) ? event.which : event.keyCode;
-		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
-			return;
+		//키번호 48~57 위쪽 번호키 , 96~105 오른쪽 번호키 , 8 backSpace , 46 delete , 37,39 방향키 왼쪽 오른쪽 , 107 오른쪽 +
+		if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) ||
+				keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9 || keyID == 107) 
+		
 		else{
 			alert('번호만 입력해주세요.');
 			return false;
@@ -81,14 +83,15 @@
 	function removeChar(event) {
 		event = event || window.event;
 		var keyID = (event.which) ? event.which : event.keyCode;
-		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ){
+		if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID==107){
 			
 			return;
 		}
 		else
-			event.target.value = event.target.value.replace(/[^0-9]/g, "");
+			event.target.value = event.target.value.replace(/[^0-9\+]/g, "");
 	}
 	</script>
+	  <div id="fullpage">
 	<div class="section" id="section0">
         <div class="row contact">            
             <div class="col-8 m-col-12 qna">

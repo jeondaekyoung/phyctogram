@@ -47,7 +47,7 @@ public class QaWebController {
 	
 	/**
 	 * 문의내용 보기
-	 * @param QaWeb_seq
+	 * @param qa_Web_seq
 	 * @return
 	 */
 	@RequestMapping(value = "view.do", method=RequestMethod.GET)
@@ -65,7 +65,7 @@ public class QaWebController {
 	
 	/**
 	 * 문의내용 저장 (사용자)
-	 * @param QaWeb_seq
+	 * @param qaWeb
 	 * @return
 	 */
 	@RequestMapping(value = "write.do", method=RequestMethod.POST)
@@ -78,7 +78,7 @@ public class QaWebController {
 	}
 	/**
 	 * 문의내용 답변
-	 * @param QaWeb_seq
+	 * @param QaWeb_seq,model
 	 * @return
 	 */
 	@RequestMapping(value = "answerForm.do", method=RequestMethod.GET)
@@ -90,16 +90,14 @@ public class QaWebController {
 		
 		return "admin/answer_mail";
 	}
+	/**
+	 * 문의내용 답변 메일 발송
+	 * @param QaWeb_seq,HttpServletRequest,Model model
+	 * @return
+	 */
 	@RequestMapping(value = "sendMail.do", method=RequestMethod.POST)
 	public String sendMail(@Param("qa_Web_seq")int qa_Web_seq,HttpServletRequest request,Model model){
 		logger.info("QaWeb/sendMail.do: 메일 보내기  " + qa_Web_seq);
-		/*
-		ModelAndView mv = new ModelAndView();
-		
-		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
-		mv.addObject("QaWeb", QaWeb);
-		*/
-		//request.setCharacterEncoding("UTF-8");
 		
 		String sender_pw = request.getParameter("sender_pw");
 		String sender = request.getParameter("sender");
@@ -110,12 +108,24 @@ public class QaWebController {
 		String script = Sender_mail.send(sender,sender_pw, receiver, subject, content);
 		System.out.println(script);
 		model.addAttribute("script",script);
+		if(script.contains("성공")){
+			QaWebService.updateStateQaWeb(qa_Web_seq);
+		}
 		
 		return "admin/answer_mail";
 	}
 	
-	
-	
+	/**
+	 * 문의내용 수동 답변
+	 * @param QaWeb_seq
+	 * @return
+	 */
+	@RequestMapping(value = "manual_answer.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String manual_answer(@Param("qa_Web_seq")int qa_Web_seq,Model model){
+		QaWebService.updateStateQaWeb(qa_Web_seq);
+		return null;
+	}
 	
 	
 }

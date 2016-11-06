@@ -60,13 +60,21 @@
   </head>
   <body>
     <!-- header -->
- 	<%-- <jsp:include page="include/header.jsp" flush="false"/> --%>
+ 	<jsp:include page="include/header.jsp" flush="false"/>
   <!-- / header -->
- 
+ <section id="content">
+		<div class="bg-dark lt">
+			<div class="container">
+				<div class="m-b-lg m-t-lg">
+				<h3 class="m-b-none">고객센터 (Web)</h3>
+			<small class="text-muted">Customer (Web)</small>
+				</div>
+			</div>
+		</div>
     <!-- 내용영역 시작 -->
     <div class="container">
  
-      <form id="join_form" class="form-horizontal" method="post" action="">
+      <form id="join_form" class="form-horizontal" method="post" action='<c:url value="/QaWeb/sendMail.do"/>'>
       <input type="hidden" value="${QaWeb.qa_Web_seq }" name="qa_Web_seq">
         <fieldset>
           <legend>
@@ -156,7 +164,8 @@
       </div>
  	</fieldset>
     </div>
-       
+    </section>
+    
     <!--// 내용영역 끝 -->
      <!-- footer -->
  	<jsp:include page="include/footer.jsp" flush="false"/>

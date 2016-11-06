@@ -31,6 +31,12 @@
 		  WHERE qa_Web_seq = #{qa_Web_seq}
 	</update>
 	
+	<update id="updateStateQaWeb" parameterType="Integer">
+	UPDATE Qa_web_tb
+		     SET state = '답변완료'
+		  WHERE qa_Web_seq = #{qa_Web_seq}
+	</update>
+	
 	<select id="selectByQaWebSeq" parameterType="Integer" resultType="QaWeb">
 		SELECT *
 		  FROM Qa_web_tb
