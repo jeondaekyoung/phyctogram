@@ -111,22 +111,24 @@
   var sbmHtmlTemplate = {
 		  makesbmTr : function(index, item){
 			  var sysdate = new Date(item.writng_de);
-			  var sbmTr = "<li class='list-group-item'><span class='pull-right'><a href='#' class='pull-right'><i class='fa fa-check text-success text'>수동 답변</i></a><a href='#' class='pull-right m-r-sm'><i class='fa fa-check text-success text'>메일로 답변</i></a>";
-			  console.log(sbmTr);
+			  var sbmTr = "<li class='list-group-item'><span class='pull-right'>"
+			  +"<a href='javascript:answer("+item.qa_Web_seq+")'  class='pull-left m-r-sm'><i class='fa fa-check text-success text'>수동 답변</i></a>"
+			  +"<a href='javascript:answer_mail("+item.qa_Web_seq+")' class='pull-left m-r-sm'><i class='fa fa-check text-success text'>메일로 답변</i></a>";
 			  			//+ "<i onclick='modify(" + item.qa_Web_seq + ")' class='fa fa-pencil icon-muted fa-fw m-r-xs'></i> &nbsp;"
  					  		if(item.state=='답변대기'){
- 					  			sbmTr=sbmTr+'<a href="javascript:answer('+item.qa_Web_seq+')"><i class="fa fa-times text-danger text" >답변대기</i></a>';
- 					  			console.log("true:"+sbmTr);
+ 					  			sbmTr=sbmTr+'<a href="#"><i class="fa fa-times text-danger text" >답변대기</i></a>';
+ 					  			
  					  		}
  					  		else{
  					  			sbmTr=sbmTr+('<a href="#"><i class="fa fa-check text-success text">답변완료</i></a>');
- 					  			console.log("false:"+sbmTr);
+ 					  			
  					  		}
  					  
- 			   sbmTr=sbmTr.concat( "<i onclick='erase(" + item.qa_Web_seq + ")' class='fa fa-times icon-muted fa-fw'></i></a></span>"
+ 			   sbmTr=sbmTr.concat( "<i onclick='erase(" + item.qa_Web_seq + ")' class='fa fa-times icon-muted fa-fw'></i></span>"
 			  			+ "<div class='media'><div class='media-body m-b'><div onclick='view(" + item.qa_Web_seq + ")'>"
 			  			+"연락처:"+item.tel +"<br/>이메일:"+item.email + "<br>내용:"+item.contents +"</div></div><div>"
 			  			+ "<small class='text-muted'>" + formatDate(sysdate) + "</small></li>");
+
           return sbmTr;
 		  }
   }
@@ -168,9 +170,14 @@
   }
   
   //메일로 답변하기
-  var answer = function(data){
+  var answer_mail = function(data){
 	  //console.log("보기 - " + data);
 	  window.location.href = rootPath + "/QaWeb/answerForm.do?qa_Web_seq=" + data;
+  }
+//메일로 답변하기
+  var answer = function(data){
+	  //console.log("보기 - " + data);
+	  window.location.href = rootPath + "/QaWeb/manual_answer.do?qa_Web_seq=" + data;
   }
   
   

@@ -19,7 +19,7 @@
 	</insert>
 	
 	<select id="listQaWeb" parameterType="hashmap" resultType="QaWeb">
-	SELECT * FROM qa_web_tb WHERE state='답변대기' 
+	SELECT * FROM qa_web_tb 
 	ORDER BY writng_de DESC
 	LIMIT #{pageCnt}, 10
 
@@ -33,8 +33,9 @@
 	
 	<update id="updateStateQaWeb" parameterType="Integer">
 	UPDATE Qa_web_tb
-		     SET state = '답변완료'
+		     SET state = 'ok'
 		  WHERE qa_Web_seq = #{qa_Web_seq}
+		  
 	</update>
 	
 	<select id="selectByQaWebSeq" parameterType="Integer" resultType="QaWeb">

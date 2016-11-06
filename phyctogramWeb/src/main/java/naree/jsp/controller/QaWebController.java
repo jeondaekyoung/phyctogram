@@ -121,10 +121,11 @@ public class QaWebController {
 	 * @return
 	 */
 	@RequestMapping(value = "manual_answer.do", method=RequestMethod.GET)
-	@ResponseBody
 	public String manual_answer(@Param("qa_Web_seq")int qa_Web_seq,Model model){
-		QaWebService.updateStateQaWeb(qa_Web_seq);
-		return null;
+		
+		int result=QaWebService.updateStateQaWeb(qa_Web_seq);
+		System.out.println("영향받은 행:"+result);
+		return "redirect:/views/admin/qaList-web.jsp";
 	}
 	
 	
