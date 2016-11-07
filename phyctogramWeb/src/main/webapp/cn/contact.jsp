@@ -29,13 +29,13 @@
 				}
 
 				if(!f.email.value){
-					alert("请输入您的电子邮件。");
+					alert("请输入您的电邮。");
 					event.preventDefault();
 					f.email.focus();
 					return false;
 				}
 				if(f.email.value.indexOf("@")==-1){
-					alert("不是电子邮件格式。请重新输入。");
+					alert("不是电邮格式。请重新输入。");
 					event.preventDefault();
 					f.email.value="";
 					f.email.focus();
@@ -48,7 +48,7 @@
 					return false;
 				}
 				if(!f.contents.value){
-					alert("请输入您的信息。");
+					alert("请输入内容。");
 					event.preventDefault();
 					f.contents.focus();
 					return false;
@@ -56,12 +56,12 @@
 				
 				
 				
-				if (confirm("您将无法更新内容创作。\n 是否仍要发送给管理员？ ")!=1) {
+				if (confirm("您确认以后内容将无法修改。仍要发送，请按是。")!=1) {
 					event.preventDefault();
 					return false;
 					}
 				
-				alert("钻探计划回答通过e-mail您的查询，或致电您所提供的信息。谢谢。");
+				alert("将通过电邮或者电话回答您的查询，谢谢。");
 				
 				break;
 			}

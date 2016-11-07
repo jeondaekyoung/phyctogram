@@ -22,7 +22,7 @@
 				
 			case "submit":
 				if(!f.name.value){
-					alert("Please enter a name.");
+					alert("Please enter your name.");
 					event.preventDefault();
 					f.name.focus();
 					return false;
@@ -35,7 +35,7 @@
 					return false;
 				}
 				if(f.email.value.indexOf("@")==-1){
-					alert("This is not an email format. Please re-enter.");
+					alert("This is not an email format. Please re-enter.");					
 					event.preventDefault();
 					f.email.value="";
 					f.email.focus();
@@ -54,9 +54,7 @@
 					return false;
 				}
 				
-				
-				
-				if (confirm("You can not edit your content.  \n Would you like to send it to your manager? ")!=1) {
+				if (confirm("You cannot edit your content.  \n Would you like to send it to your manager? ")!=1) {
 					event.preventDefault();
 					return false;
 					}
