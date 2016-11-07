@@ -154,7 +154,7 @@
 	  var f = document.createElement('form');
 	  var objs = document.createElement('input');
 	  objs.setAttribute('type','hidden');
-	  objs.setAttribute('name', 'notice_seq');
+	  objs.setAttribute('name', 'qa_Web_seq');
 	  objs.setAttribute('value', data);
 	  f.appendChild(objs);
 	  f.setAttribute('action', rootPath+"/QaWeb/erase.do");
@@ -174,10 +174,11 @@
 	  //console.log("보기 - " + data);
 	  window.location.href = rootPath + "/QaWeb/answerForm.do?qa_Web_seq=" + data;
   }
-//메일로 답변하기
+//수동 답변하기
   var answer = function(data){
 	  //console.log("보기 - " + data);
 	  window.location.href = rootPath + "/QaWeb/manual_answer.do?qa_Web_seq=" + data;
+	  
   }
   
   

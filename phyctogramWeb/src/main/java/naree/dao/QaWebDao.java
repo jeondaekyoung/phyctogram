@@ -30,22 +30,30 @@ public interface QaWebDao {
 	
 	/**
 	 * 문의사항 답변 저장하기
-	 * @param QaWeb_seq, answer
+	 * @param qa_Web_seq, answer
 	 * @return
 	 */
 	int modifyQaWeb(int qa_Web_seq, String answer);
 
 	/**
 	 * 문의사항 읽어오기
-	 * @param QaWeb_seq
+	 * @param qa_Web_seq
 	 * @return
 	 */
 	QaWeb selectByQaWebSeq(int qa_Web_seq);
 	
 	/**
 	 * 문의사항 답변상태 변경
-	 * @param QaWeb_seq
+	 * @param qa_Web_seq
 	 * @return
 	 */
 	int updateStateQaWeb(int qa_Web_seq);
+
+	
+	/**
+	 * 문의사항 삭제
+	 * @param qa_Web_seq
+	 * @return
+	 */
+	int eraseByqa_web_Seq(int qa_Web_seq);
 }

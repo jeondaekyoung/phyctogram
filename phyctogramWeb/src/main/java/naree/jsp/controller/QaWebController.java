@@ -27,7 +27,7 @@ public class QaWebController {
 	private static final Logger logger = LoggerFactory.getLogger(QaWebController.class);
 	
 	@Autowired
-	private QaWebService QaWebService;
+	private QaWebService qaWebService;
 	
 	/**
 	 * 문의사항 목록읽어오기
@@ -39,7 +39,7 @@ public class QaWebController {
 	public List<QaWeb> list(int pageCnt, String searchState){
 		logger.info("QaWeb/list.do - 페이지번호 : " + pageCnt + "조회 상태 : " +  searchState);
 		
-		List<QaWeb> QaWebs = QaWebService.listQaWeb(pageCnt, searchState);
+		List<QaWeb> QaWebs = qaWebService.listQaWeb(pageCnt, searchState);
 		
 		return QaWebs;
 	}
@@ -55,7 +55,7 @@ public class QaWebController {
 		logger.info("QaWeb/view.do - 문의 번호 : " + qa_Web_seq);
 		ModelAndView mv = new ModelAndView();
 		
-		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
+		QaWeb QaWeb = qaWebService.searchByQaWebSeq(qa_Web_seq);
 		mv.addObject("QaWeb", QaWeb);
 		
 		mv.setViewName("admin/qaView-web");
@@ -72,8 +72,15 @@ public class QaWebController {
 	public String write(QaWeb qaWeb){
 		logger.info("QaWeb/write.do - 문의 하기 : " + qaWeb);
 		
-		QaWebService.registerQaWeb(qaWeb);
-		
+		qaWebService.registerQaWeb(qaWeb);
+		//추후에 수정해야함.
+		String sender ="nareejdk@naver.com";
+		String sender_pw ="naree123";
+		String receiver ="aram@knowledge-seek.com";
+		String subject ="문의하기가 등록 되었습니다.(픽토그램)";
+		String content ="관리자 폼에서 확인해주세요!";
+		//
+		Sender_mail.send(sender,sender_pw, receiver, subject, content);
 		return "redirect:/contact.jsp";
 	}
 	/**
@@ -85,9 +92,9 @@ public class QaWebController {
 	public String answerForm(@Param("qa_Web_seq")int qa_Web_seq,Model model){
 		logger.info("QaWeb/answerForm.do: 메일로 답변 폼 " + qa_Web_seq);
 		
-		QaWeb QaWeb = QaWebService.searchByQaWebSeq(qa_Web_seq);
+		QaWeb QaWeb = qaWebService.searchByQaWebSeq(qa_Web_seq);
 		model.addAttribute("QaWeb", QaWeb);
-		
+	
 		return "admin/answer_mail";
 	}
 	/**
@@ -109,7 +116,7 @@ public class QaWebController {
 		System.out.println(script);
 		model.addAttribute("script",script);
 		if(script.contains("성공")){
-			QaWebService.updateStateQaWeb(qa_Web_seq);
+			qaWebService.updateStateQaWeb(qa_Web_seq);
 		}
 		
 		return "admin/answer_mail";
@@ -117,15 +124,29 @@ public class QaWebController {
 	
 	/**
 	 * 문의내용 수동 답변
-	 * @param QaWeb_seq
+	 * @param qa_Web_seq
 	 * @return
 	 */
 	@RequestMapping(value = "manual_answer.do", method=RequestMethod.GET)
 	public String manual_answer(@Param("qa_Web_seq")int qa_Web_seq,Model model){
 		
-		QaWebService.updateStateQaWeb(qa_Web_seq);
+		qaWebService.updateStateQaWeb(qa_Web_seq);
 		
 		return "redirect:/views/admin/qaList-web.jsp";
+	}
+	/**
+	 * 공지사항 삭제하기
+	 * @param qa_Web_seq
+	 * @return
+	 */
+	@RequestMapping(value = "erase.do", method=RequestMethod.POST)
+	public ModelAndView erase(@Param("qa_Web_seq")int qa_Web_seq){
+		logger.info("QaWeb/erase.do - 문의하기 번호 : " + qa_Web_seq);
+		ModelAndView mv = new ModelAndView();
+		
+		qaWebService.eraseByqa_web_Seq(qa_Web_seq);
+		mv.setViewName("admin/qaList-web");
+		return mv;
 	}
 	
 	

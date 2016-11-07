@@ -49,4 +49,11 @@ public interface QaWebService {
 	 * @return
 	 */
 	int updateStateQaWeb(int qa_Web_seq);
+	
+	/**
+	 * 문의사항 삭제
+	 * @param qa_Web_seq
+	 * @return
+	 */
+	int eraseByqa_web_Seq(int qa_Web_seq);
 }

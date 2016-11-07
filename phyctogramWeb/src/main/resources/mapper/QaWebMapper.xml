@@ -43,5 +43,10 @@
 		  FROM qa_web_tb
 		WHERE qa_Web_seq = #{qa_Web_seq}
 	</select>
+	
+	<delete id="eraseByqa_web_Seq" parameterType="Integer">
+		DELETE FROM qa_web_tb
+		WHERE qa_Web_seq = #{qa_Web_seq}
+	</delete>
 
 </mapper>

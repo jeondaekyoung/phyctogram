@@ -69,10 +69,24 @@ public class QaWebServiceImpl implements QaWebService {
 		
 		return QaWebDao.selectByQaWebSeq(QaWeb_seq);
 	}
-
+	
+	/**
+	 * 문의사항 답변상태 변경
+	 * @param QaWeb_seq
+	 * @return
+	 */
 	@Override
 	public int updateStateQaWeb(int QaWeb_seq) {
-		// TODO Auto-generated method stub
 		return QaWebDao.updateStateQaWeb(QaWeb_seq);
+	}
+
+	/**
+	 * 문의사항 삭제
+	 * @param qa_Web_seq
+	 * @return
+	 */
+	@Override
+	public int eraseByqa_web_Seq(int qa_Web_seq) {
+		return QaWebDao.eraseByqa_web_Seq(qa_Web_seq);
 	}
 }

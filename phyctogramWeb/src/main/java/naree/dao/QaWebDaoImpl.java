@@ -137,4 +137,24 @@ public class QaWebDaoImpl implements QaWebDao {
 		}
 		return result;
 	}
+
+	
+	/**
+	 * 문의사항 삭제
+	 * @param qa_Web_seq
+	 * @return
+	 */
+	@Override
+	public int eraseByqa_web_Seq(int qa_Web_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			QaWebMapper QaWebMapper = sqlSession.getMapper(QaWebMapper.class);
+			result = QaWebMapper.eraseByqa_web_Seq(qa_Web_seq);
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		return result;
+	}
 }
