@@ -60,6 +60,10 @@ button { border: none; background: none;}
 .lang {float: left; padding: 1em 0.1em; margin: 1em; position: relative}
 .lang>a {
     color: #fff;
+    line-height: 1;
+}
+.lang:last-child a {
+	margin-left: -3px;
 }
 .lang>a:hover::before {
     content: '';
@@ -265,11 +269,11 @@ img{
     left: -222px;
 }
 #iphone-red{
-    top: 80px;
+    top: 220px;
     left: 0px;
 }
 #iphone-blue{
-    top: 0px;
+    top: 150px;
     left: 300px;
 }
 #iphone-green{
