@@ -78,7 +78,7 @@
 			
 			<div class="row">
 				<div class="col-8 prefix-2 suffix-2">		
-					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" width="100%" />
+					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" />
 				</div>
 			</div>
 		</div>

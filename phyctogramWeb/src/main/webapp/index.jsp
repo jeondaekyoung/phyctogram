@@ -75,7 +75,7 @@
 			</div>
 			<div class="row">
 				<div class="col-8 prefix-2 suffix-2">			
-					<img src="<%=application.getContextPath()%>/resources/res/imgs/11.png" alt="리포트 분석 페이지" width="100%" />
+					<img src="<%=application.getContextPath()%>/resources/res/imgs/11.png" alt="리포트 분석 페이지" />
 				</div>
 			</div>
 		</div>

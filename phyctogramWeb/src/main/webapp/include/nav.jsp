@@ -31,7 +31,7 @@
         <div class="col-3 m-col-12">
             <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/index.jsp">한국어</a></div>
             <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/en/index.jsp">English</a></div>
-            <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/cn/index.jsp">中国語</a></div>
+            <div class="lang m-col-4"><a href="<%=application.getContextPath()%>/cn/index.jsp">中文</a></div>
         </div>
     </div>
 </div>
