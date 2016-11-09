@@ -42,8 +42,8 @@
 	<div class="section" id="section1">
 		<div class="wrap row">
 			<div class="col-7">
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/0.png" alt="main" id="iphone2" />
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/2.png" alt="growth card" id="iphone3" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/0-en.png" alt="main" id="iphone2" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/2-en.png" alt="growth card" id="iphone3" />
 			</div>
 
 			<div class="box box-1 col-5 m-col-12 animated">
