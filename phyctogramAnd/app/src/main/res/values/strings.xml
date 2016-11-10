@@ -145,9 +145,9 @@
 
     <string name="includeAnalysis_finalHeight">키</string>
     <string name="includeAnalysis_highRank">상위</string>
-    <string name="includeAnalysis_avg">평균보다</string>
-    <string name="includeAnalysis_growth">성장</string>
-    <string name="includeAnalysis_analysis">8~9세 미만에 사춘기증세, 성조숙증 의심해보세요</string>
+    <string name="includeAnalysis_avg">평균</string>
+    <string name="includeAnalysis_growth">3개월동안 성장</string>
+    <string name="includeAnalysis_analysis">9세에 사춘기증세, 성조숙증 의심해보세요</string>
     <string name="includeAnalysis_analysisContentLink">솔루션 보기 +</string>
     <string name="includeAnalysis_analysisShare">공유하기</string>
 
