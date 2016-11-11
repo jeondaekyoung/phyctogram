@@ -39,6 +39,29 @@
 	      <img src="<%=application.getContextPath()%>/resources/res/imgs/main_2.png" alt="phyctogram" class="animated fadeInUpBig col-12">
 	    </div>
 	</div>
+	
+	<div class="section row" id="section0-0">
+	    <div class="headlineProd animated section0-0">
+	      <h3>Stadiometer</h3>
+	      <p>We can know user's information by LED Display</p>
+		  <p>Harmlessness Ultrasonic sensor measures child's height</p>
+	      <img src="<%=application.getContextPath()%>/resources/res/imgs/stadio.png" alt="phyctogram-stadiometer" class="col-10 prefix-1 suffix-1">
+	    </div>
+	</div>
+	
+	<div class="section row" id="section0-1">
+      <div class="col-8 animated scale-img">
+      	<img src="<%=application.getContextPath()%>/resources/res/imgs/scale.jpg" alt="phyctogram-body-scale">
+      </div>
+      <div class="col-3">
+	    <div class="headlineProd animated scale-box">
+	      <h3>Body Scale</h3>
+      	  <p>Selected Wi-Fi method for the convenient use compared to existing products</p>
+		  <p>Used black colored tempered glass for simple &amp; luxurious design</p>
+		</div>
+      </div>
+	</div>
+	
 	<div class="section" id="section1">
 		<div class="wrap row">
 			<div class="col-7">
@@ -56,8 +79,8 @@
 	<div class="section moveDown" id="section2">
 		<div class="wrap">
 			<div class="col-6">
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/4-en.png" alt="report" id="iphone-red" />
-				<img src="<%=application.getContextPath()%>/resources/res/imgs/3-en.png" alt="check lists" id="iphone-blue" />
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/4-en.png" alt="report" id="iphone-red" class="animated img-4 dur400"/>
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/3-en.png" alt="check lists" id="iphone-blue" class="animated img-3"/>
 			</div>
 
 			<div class="box box-2 col-6 m-col-12 animated">
@@ -75,17 +98,14 @@
 				<h2>Offer contents associated growth</h2>
 				You can creating contents about baby book and childcare  including the process of growth
 			</div>
-			
-			<div class="row">
-				<div class="col-8 prefix-2 suffix-2">		
-					<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" />
-				</div>
+			<div class="col-8 prefix-2 suffix-2 animated img-last dur500">		
+				<img src="<%=application.getContextPath()%>/resources/res/imgs/11-en.png" alt="baby book" />
 			</div>
 		</div>
 	</div>
 	
 	<div class="section" id="section4">
-        <div class="row contact animated fadeInUp">        
+        <div class="row contact animated">        
             <div class="col-12">
               <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
@@ -116,9 +136,9 @@
             
             <div class="col-12">
                 <ul class="contact-info row">
-                    <li class="col-4">Suite 310, Startup Campus Building 3, 20, Pangyo-ro 289beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea</li>
-                    <li class="col-4">+82 70-8624-4536</li>
-                    <li class="col-4">seek-knowledge@knowledge-seek.com</li>
+                    <li class="col-4 animated dur700">Suite 310, Startup Campus Building 3, 20, Pangyo-ro 289beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Korea</li>
+                    <li class="col-4 animated dur300">+82 70-8624-4536</li>
+                    <li class="col-4 animated dur500">seek-knowledge@knowledge-seek.com</li>
                 </ul>
             </div>
             <!-- end: .col-5 -->

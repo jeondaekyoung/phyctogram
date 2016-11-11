@@ -10,7 +10,7 @@ $(document).ready(function() {
 		'navigationPosition': 'right',
 
 		'afterLoad': function(anchorLink, index){
-	         if(index == 1){
+			 if(index == 1){
 	           $('.modal').css({'display': 'block'});
 	           $('#header').css({'background-color': 'transparent'});
 	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
@@ -18,41 +18,96 @@ $(document).ready(function() {
 	         if(index == 2){
 	           $('.headlineProd').addClass('fadeInUp');
 	           $('.modal').css({'display': 'none'});
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
 	           $('#header').css({'background-color': '#776096'});
 	         }
-			 if(index == 3){
+	         if(index == 3){
+	           $('.section0-0').addClass('fadeInUp');
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	           $('#header').css({'background-color': '#776096'});
+	         }
+	         if(index == 4){
+	           $('.scale-box').addClass('fadeInRight');
+	           $('.scale-img').addClass('fadeInLeft');
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	           $('#header').css({'background-color': '#776096'});
+	         }
+			 if(index == 5){
 			   $('#iphone3, #iphone2, #iphone4').addClass('active');
 	           $('.box-1').addClass('fadeInRight');
-			 }
-	         if(index == 4){
-	           $('.box-2').addClass('fadeInUp');
-	         }
-	         if(index == 5){
 	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
-	           $('.box-3').addClass('fadeInUp');
-	         }
+	           $('#header').css({'background-color': '#776096'});
+			 }
 	         if(index == 6){
+	           $('.box-2').addClass('fadeInUp');
+	           $('.img-4').addClass('fadeInUp');
+	           $('.img-3').addClass('fadeInUp');
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	           $('#header').css({'background-color': '#776096'});
+	         }
+	         if(index == 7){
+	           $('.box-3').addClass('fadeInUp');
+	           $('.img-last').addClass('fadeInUp');
+	           $('#footer').css({'background-color': 'transparent', 'color':'transparent'});
+	           $('#header').css({'background-color': '#776096'});
+	         }
+	         if(index == 8){
+		       $('.contact').addClass('fadeInUp');
+	           $('.contact-info>li').addClass('fadeIn');
 		       $('#footer').css({'background-color': '#776096', 'color':'#fff'});
+		       $('#header').css({'background-color': '#776096'});
              }
 		},
 
 		'onLeave': function(index, nextIndex, direction){
 			if(index == 2 && direction == 'down'){
-		           $('.headlineProd').removeClass('fadeInUp');
+		        $('.section0-0').removeClass('fadeInUp');
+			}
+			else if(index == 2 && direction == 'up'){
+		        $('.section0-0').removeClass('fadeInUp');
 			}
 			if(index == 3 && direction == 'down'){
+		        $('.headlineProd').removeClass('fadeInUp');
+			}
+			else if(index == 3 && direction == 'up'){
+		        $('.headlineProd').removeClass('fadeInUp');
+			}
+			if(index == 4 && direction == 'down'){
+				$('.scale-box').removeClass('fadeInRight');
+		        $('.scale-img').removeClass('fadeInLeft');
+			}
+			else if(index == 4 && direction == 'up'){
+				$('.scale-box').removeClass('fadeInRight');
+		        $('.scale-img').removeClass('fadeInLeft');
+			}
+			if(index == 5 && direction == 'down'){
 				$('#iphone3, #iphone2, #iphone4').removeClass('active');
 		        $('.box-1').removeClass('fadeInRight');
 			}
-			if (index == 4 && direction == 'down'){
+			else if(index == 5 && direction == 'up'){
+				$('#iphone3, #iphone2, #iphone4').removeClass('active');
+		        $('.box-1').removeClass('fadeInRight');
+			}
+			if (index == 6 && direction == 'down'){
 				$('.section').eq(index -1).removeClass('moveDown').addClass('moveUp');
        			$('#header').css({'background-color': '#776096'});
    				$('.box-2').removeClass('fadeInUp');
-				$('.box-3').removeClass('fadeInUp');
+ 	            $('.img-4').removeClass('fadeInUp');
+ 	            $('.img-3').removeClass('fadeInUp');
 			}
-			else if(index == 4 && direction == 'up'){
+			else if(index == 6 && direction == 'up'){
 				$('.section').eq(index -1).removeClass('moveUp').addClass('moveDown');
 				$('.box-2').removeClass('fadeInUp');
+		        $('.img-4').removeClass('fadeInUp');
+		        $('.img-3').removeClass('fadeInUp');
+			}
+			if (index == 7 && direction == 'down'){
+				$('.box-3').removeClass('fadeInUp');
+		        $('.img-last').removeClass('fadeInUp');
+			}
+			else if(index == 7 && direction == 'up'){
+				$('.box-3').removeClass('fadeInUp');
+		        $('.img-last').removeClass('fadeInUp');
 			}
 		},
 		
