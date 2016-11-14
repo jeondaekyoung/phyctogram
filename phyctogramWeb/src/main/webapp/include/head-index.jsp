@@ -52,7 +52,6 @@ $(document).ready(function() {
 	           $('#header').css({'background-color': '#776096'});
 	         }
 	         if(index == 8){
-		       $('.contact').addClass('fadeInUp');
 	           $('.contact-info>li').addClass('fadeIn');
 		       $('#footer').css({'background-color': '#776096', 'color':'#fff'});
 		       $('#header').css({'background-color': '#776096'});

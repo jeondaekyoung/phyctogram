@@ -105,7 +105,7 @@
 	</div>
 	
 	<div class="section" id="section4">
-        <div class="row contact animated">        
+        <div class="row contact">        
             <div class="col-12">
               <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=s96duQ89XbZlmLcPnKIc"></script>
 	          <div id="map" class="box-map" style="width:100%;height:450px;"></div>
