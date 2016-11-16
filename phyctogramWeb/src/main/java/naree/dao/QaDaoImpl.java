@@ -118,4 +118,26 @@ public class QaDaoImpl implements QaDao {
 		}
 		return result;
 	}
+	
+	/**
+	 * 문의사항 삭제
+	 * @param member_seq
+	 * @return
+	 */
+	@Override
+	public int deleteByMember_seq(int member_seq) {
+		SqlSession sqlSession = ConnectionFactory.getInstance().getSqlSession();
+		int result = 0;
+		try {
+			QaMapper qaMapper = sqlSession.getMapper(QaMapper.class);
+			result = qaMapper.deleteByMember_seq(member_seq);
+			
+		} finally {
+			sqlSession.commit();
+			sqlSession.close();
+		}
+		
+		return result;
+		
+	}
 }

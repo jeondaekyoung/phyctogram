@@ -44,4 +44,12 @@ public interface QaMapper {
 	 * @return
 	 */
 	Qa selectByQaSeq(int qa_seq);
+	
+	
+	/**
+	 * 문의사항 삭제
+	 * @param member_seq
+	 * @return
+	 */
+	int deleteByMember_seq(int member_seq);
 }

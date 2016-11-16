@@ -2,6 +2,7 @@ package naree.rest.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -21,7 +22,10 @@ import com.google.android.gcm.server.Result;
 import com.google.android.gcm.server.Sender;
 
 import naree.db.domain.Member;
+import naree.db.domain.Users;
 import naree.service.MemberService;
+import naree.service.QaService;
+import naree.service.UsersService;
 
 @RestController
 @RequestMapping(value = "rest/member")
@@ -31,6 +35,12 @@ public class MemberRestController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private UsersService usersService;
+	
+	@Autowired
+	private QaService qaService;
 	
 	/**
 	 * 픽토그램 멤버가입
@@ -140,8 +150,8 @@ public class MemberRestController {
 		//가입동의 지우기
 		int result3 = memberService.deleteJoinAgreByMemberSeq(member_seq);
 		
-		//문의 지우기(쓰지않으니깐 패스)
-		int result4 = 0;
+		//문의 지우기
+		int result4 = qaService.deleteByMember_seq(member_seq);
 		
 		//멤버 지우기
 		int result5 = memberService.deleteMemberByMemberSeq(member_seq); 

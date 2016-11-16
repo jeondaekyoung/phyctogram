@@ -69,4 +69,16 @@ public class QaServiceImpl implements QaService {
 		
 		return qaDao.selectByQaSeq(qa_seq);
 	}
+	
+	/**
+	 * 문의사항 삭제
+	 * @param member_seq
+	 * @return
+	 */
+	@Override
+	public int deleteByMember_seq(int member_seq) {
+		
+		return qaDao.deleteByMember_seq(member_seq);
+	}
+	
 }

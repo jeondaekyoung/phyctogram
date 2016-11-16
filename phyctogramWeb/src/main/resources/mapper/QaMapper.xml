@@ -50,5 +50,9 @@
 		  FROM qa_tb
 		WHERE qa_seq = #{qa_seq}
 	</select>
+	
+	<delete id="deleteByMember_seq" parameterType="Integer">
+		DELETE FROM qa_tb WHERE member_seq= #{member_seq}
+	</delete>
 
 </mapper>
