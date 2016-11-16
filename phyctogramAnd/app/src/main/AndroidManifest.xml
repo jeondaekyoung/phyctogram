@@ -212,6 +212,10 @@
             android:name="com.knowledge_seek.phyctogram.WifiPopUpActivity"
             android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.knowledge_seek.phyctogram.GuideActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"/>
 
 
         <!-- 파일업로드 테스트 -->
