@@ -3,7 +3,7 @@
 <html>
 <head>	
   <jsp:include page="../include/head.jsp"/>
-  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter.js"></script>
+  <script src="<%=application.getContextPath()%>/resources/res/js/typewriter-en.js"></script>
   <script>
 	  $(function () {
 	      var typewriter = new Typewriter($("#typewriter"));
