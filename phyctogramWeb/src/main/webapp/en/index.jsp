@@ -24,7 +24,7 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <div class="col-6 m-col-12 prefix-3 suffix-3">
+        <div class="col-12">
 	        <h1 id="typewriter"></h1>
 	        <p>Phyctogram measures height and weight easily and accurately, and provides growth solution by automatically analysis</p>
         </div>

@@ -23,7 +23,7 @@
 	    </video>
 	    <div class="modal">
 	      <div class="layer animated dur400 fadeInUp">
-	        <div class="col-6 m-col-12 prefix-3 suffix-3">
+	        <div class="col-12">
 				<h1 id="typewriter"></h1>
 		        <p>픽토그램은 자녀의 키와 체중을 쉽고 정확하게 측정하고, 자동으로 분석하여 성장 솔루션을 제공합니다</p>        
 	        </div>
@@ -54,7 +54,7 @@
       <div class="col-3">
 	    <div class="headlineProd animated scale-box">
 	      <h3>스마트 체중계</h3>
-      	  <p>간편한 Wi-Fi 방식으로 스마트폰과 페어링합니다</p>
+      	  <p>편리성을 위해 타사 제품과는 다르게 Wi-Fi 방식을 채택하였습니다</p>
 		  <p>간결하면서 고급스러운 디자인으로, 시각적인 만족감을 선사합니다</p>
 		</div>
       </div>

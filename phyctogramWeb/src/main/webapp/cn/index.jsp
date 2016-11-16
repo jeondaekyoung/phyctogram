@@ -23,7 +23,7 @@
     </video>
     <div class="modal">
       <div class="layer animated dur400 fadeInUp">
-        <div class="col-6 m-col-12 prefix-3 suffix-3">
+        <div class="col-12">
 	        <h1 id="typewriter"></h1>
 	        <p>phyctogram测孩子的身高和体重很容易和准确，把测量的数据自动分析，提供生长解决方案</p>
         </div>
