@@ -35,7 +35,7 @@ public class HeightController {
 		logger.info("/height/register.do : " + user_seq + ", " + height);
 		//logger.warn("/height/register.do");
 		//logger.error("/height/register.do");
-		
+		if(height!=null){
 		Height insHeight = new Height();
 		insHeight.setHeight(Double.valueOf(height));
 		/*SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMdd");
@@ -50,7 +50,7 @@ public class HeightController {
 		System.out.println(insHeight.toString());
 		
 		heightService.registerHeight(insHeight);
-		
+		}
 	}
 	
 	/**
