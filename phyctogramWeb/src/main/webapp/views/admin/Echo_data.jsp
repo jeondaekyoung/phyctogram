@@ -16,24 +16,9 @@
 <title>Echo Chamber</title>
 </head>
 <body>
-	
-  <div>
-        <input type="text" id="messageinput" />
-    </div>
-    <!-- <div>
-        <button type="button" onclick="openSocket();">Open</button>
-        <button type="button" onclick="send();">Send</button>
-        <button type="button" onclick="closeSocket();">Close</button>
-    </div>  -->
     <!-- Server responses get written here -->
     <div id="messages"></div>
-    <div id ="height"></div>
-    <div id ="rank"></div>
-    <div id ="grow"></div>
-    <div id ="imgName"></div>
     
-    
-
     <!-- Script to utilise the WebSocket -->
     <script type="text/javascript">
         var webSocket;
@@ -45,7 +30,6 @@
                 writeResponse("WebSocket is already opened.");
                 return;
             }
-            
             //로컬인지 아닌지 판단
             if( window.location.host =='localhost:8080'){
           	    var rootPath = window.location.host+'/phyctogramWeb';  
@@ -53,14 +37,8 @@
             else{
             	var rootPath = window.location.host;	
             }
-
-          /*   if(currentOS == 'android'){
-            	
-            } */
-            
             // Create a new instance of the websocket
             webSocket = new WebSocket("ws://"+rootPath+"/echo?user_seq="+"<c:out value='${user_seq}'/>");
-
             /**
              * Binds functions to the listeners for the websocket.
              */
@@ -73,12 +51,9 @@
                 alert("open");
                 writeResponse(event.data);
             };
-
             webSocket.onmessage = function(event) {
             	writeResponse(event.data);
-            	
             };
-
             webSocket.onclose = function(event) {
                 writeResponse("Connection closed");
             };
@@ -97,21 +72,17 @@
         }
 
         function writeResponse(text) {
-        	if(text.indexOf("height")!= -1){
+        	if(text.indexOf(",")!= -1){
 	        		var currentOS;
 	   			 var mobile = (/iphone|ipad|ipod|android/i.test(navigator.userAgent.toLowerCase()));
-	   			 
-	   			if (mobile) {
+	   			
+	   			 var sp_text=text.split(",");
+	       	if (mobile) {
 		   				// 유저에이전트를 불러와서 OS를 구분합니다.
 		   				var userAgent = navigator.userAgent.toLowerCase();
 		   				if (userAgent.search("android") > -1){
 		   					currentOS = "android";
-		   	   				var sp_text=text.split(",");
-		   	        		document.getElementById("height").innerHTML = sp_text[0];
-		   	        		document.getElementById("rank").innerHTML = sp_text[1];
-		   	        		document.getElementById("grow").innerHTML = sp_text[2];
-		   	        		document.getElementById("imgName").innerHTML = sp_text[3];
-		   	        		window.AppJs.setHeight(sp_text[0],sp_text[1],sp_text[2],sp_text[3]);
+		   	   	    		window.AppJs.setHeight(sp_text[0],sp_text[1],sp_text[2],sp_text[3]);
 		   				}
 		   				else if ((userAgent.search("iphone") > -1) || (userAgent.search("ipod") > -1)
 		   							|| (userAgent.search("ipad") > -1)){
@@ -124,12 +95,9 @@
 	   			} else {
 	   				// 모바일이 아닐 때
 	   				currentOS = "nomobile";
-	   				//console.log(currentOS);
 	        	}
+	    	}	
 	            messages.innerHTML += "<br/>" + text;
-	        
-	        }
-        
         }
         
     </script>
