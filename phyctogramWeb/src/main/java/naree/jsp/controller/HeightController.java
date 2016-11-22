@@ -1,14 +1,25 @@
 package naree.jsp.controller;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.websocket.OnClose;
+import javax.websocket.OnError;
+import javax.websocket.OnMessage;
+import javax.websocket.OnOpen;
+import javax.websocket.Session;
+import javax.websocket.RemoteEndpoint.Basic;
+import javax.websocket.server.ServerEndpoint;
+
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,12 +27,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import naree.db.domain.Height;
 import naree.service.HeightService;
+import naree.service.UsersService;
 
 @Controller
 @RequestMapping("height")
+@ServerEndpoint(value="/echo")
 public class HeightController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HeightController.class);
+	
+	private static final java.util.Set<Session> sessions = java.util.Collections.synchronizedSet(new java.util.HashSet<Session>());
+	
+	private static final java.util.Map<String,Session> USER = java.util.Collections.synchronizedMap(new java.util.HashMap<String,Session>());
+	@Autowired
+	private UsersService usersService;
+	  
 	
 	@Autowired
 	private HeightService heightService;
@@ -29,12 +49,8 @@ public class HeightController {
 	//키 입력
 	@RequestMapping(value = "register.do", method = RequestMethod.GET)
 	@ResponseBody
-	public void registerHeight(String user_seq, String height){
-		//logger.trace("/height/register.do");
-		//logger.debug("/height/register.do");
+	public void registerHeight(String user_seq, String height,Model model){
 		logger.info("/height/register.do : " + user_seq + ", " + height);
-		//logger.warn("/height/register.do");
-		//logger.error("/height/register.do");
 		if(height!=null){
 		Height insHeight = new Height();
 		insHeight.setHeight(Double.valueOf(height));
@@ -50,7 +66,42 @@ public class HeightController {
 		System.out.println(insHeight.toString());
 		
 		heightService.registerHeight(insHeight);
+/*		System.out.println("register.do user_seq:"+user_seq);
+		return "redirect:/Test/webSocket.do?user_seq="+user_seq;*/
+		try {
+			if(USER.get(user_seq)!=null){
+				List<Height> heights=usersService.findUsersMainInfoByUserSeq(Integer.parseInt(user_seq));
+	    		for (int i = 0; i < heights.size() - 1; i++) {
+	    			heights.get(i).setGrow(String.format("%.1f", (heights.get(i).getHeight() - heights.get(i + 1).getHeight())));
+	            }
+	    		//상위
+	    		String rank = String.valueOf(heights.get(0).getRank());
+	    		//내아이 이미지
+	    		String imgName =heights.get(0).getAnimal_img().substring(0, 12);
+	    		//성장키
+	    		String grow ="";
+	    		 if (heights.size() == 2) {
+	                 if (Double.valueOf(heights.get(0).getGrow()) >= 0) {
+	                     grow=heights.get(0).getGrow();
+	                 }
+	                 else{
+	                	 grow="none"; 
+	                 }
+	             }
+	    		 else{
+	    			 grow="oneData";
+	    		 }
+	    			 
+	    	System.out.println("height:" + height +",rank:"+rank+",grow:"+grow+",imgName:"+imgName);	
+			USER.get(user_seq).getBasicRemote().sendText("height:" + height +",rank:"+rank+",grow:"+grow+",imgName:"+imgName);
+			}
+		} catch (IOException e) {
+
+			e.printStackTrace();
 		}
+		
+		}
+
 	}
 	
 	/**
@@ -72,5 +123,69 @@ public class HeightController {
 		mv.setViewName("/height/data");
 		return mv;
 	}
+	
+
+	//앱 webView에 로드 되는 view
+	 @RequestMapping("webSocket.do")
+	    public String testView(@Param(value = "user_seq")String user_seq,Model model){
+	    	System.out.println("user_seq:"+user_seq);
+	    	//user_seq 저장(웹뷰에서 받은) 
+	    	model.addAttribute("user_seq", user_seq);
+	    	return "/admin/Echo_data";
+	    }
+	
+	
+	@OnOpen
+    public void onOpen(Session session){
+        System.out.println("Open session id : " + session.getId());
+        String queryString=session.getQueryString();
+        String qs_value=queryString.substring(queryString.indexOf("=")+1, queryString.length());
+        System.out.println("session.getQueryString() value:"+qs_value);
+        
+        sessions.add(session);
+        USER.put(qs_value,session);
+
+        try {
+            final Basic basic = session.getBasicRemote();
+            basic.sendText("Connection Established..! "+queryString);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+                
+    }
+    
+    
+    /**
+     * When a user sends a message to the server, this method will intercept the message
+     * and allow us to react to it. For now the message is read as a String.
+     */
+    @OnMessage
+    public void onMessage(String message, Session session){
+        System.out.println("Message from " + session.getId() + ": " + message);
+        try {
+            final Basic basic = session.getBasicRemote();
+            basic.sendText("to : " + message);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        //sendAllSessionToMessage( session, message );
+    }
+    
+    @OnError
+    public void onError( Throwable e, Session session){
+        
+    }
+    
+    /**
+     * The user closes the connection.
+     * 
+     * Note: you can't send messages to the client from this method
+     */
+    @OnClose
+    public void onClose(Session session){
+        System.out.println("Session " +session.getId()+" has ended");
+        sessions.remove(session);
+    }
 	
 }

@@ -12,6 +12,13 @@ public class Height {
 	private Timestamp input_date;
 	private int rank;
 	private double height_50;
+    private String grow;       
+	public String getGrow() {
+		return grow;
+	}
+	public void setGrow(String grow) {
+		this.grow = grow;
+	}
 	private String animal_img;
 	public String getHeight_seq() {
 		return height_seq;
