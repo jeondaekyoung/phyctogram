@@ -35,7 +35,7 @@
           	    var rootPath = window.location.host+'/phyctogramWeb';  
             }
             else{
-            	var rootPath = window.location.host;	
+            	var rootPath = window.location.host+":8080";	
             }
             // Create a new instance of the websocket
             webSocket = new WebSocket("ws://"+rootPath+"/echo?user_seq="+"<c:out value='${user_seq}'/>");
