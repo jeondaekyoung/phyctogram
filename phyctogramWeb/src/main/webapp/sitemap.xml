@@ -1,39 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+      
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" -->	  	  
+<!-- www.check-domains.com sitemap generator -->
+ 
 <url>
-  <loc>http://phyctogram.com/</loc>
-  <changefreq>monthly</changefreq>
-  <priority>1.00</priority>
+   <loc>http://www.phyctogram.com/</loc>
+   <changefreq>monthly</changefreq>
+   <priority>1.0000</priority>
 </url>
 <url>
-  <loc>http://phyctogram.com/index.jsp</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
+   <loc>http://www.phyctogram.com/index.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
 </url>
 <url>
-  <loc>http://phyctogram.com/know.jsp</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
+   <loc>http://www.phyctogram.com/about.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
 </url>
 <url>
-  <loc>http://phyctogram.com/agreement.jsp</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
+   <loc>http://www.phyctogram.com/media.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
 </url>
 <url>
-  <loc>http://phyctogram.com/privacy.jsp</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
+   <loc>http://www.phyctogram.com/contact.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
 </url>
 <url>
-  <loc>http://phyctogram.com/partnership.jsp</loc>
-  <changefreq>monthly</changefreq>
-  <priority>0.80</priority>
+   <loc>http://www.phyctogram.com/en/index.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/cn/index.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.8000</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/en/about.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/en/media.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/en/contact.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/cn/about.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/cn/media.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
+</url>
+<url>
+   <loc>http://www.phyctogram.com/cn/contact.jsp</loc>
+   <changefreq>monthly</changefreq>
+   <priority>0.6400</priority>
 </url>
 </urlset>
